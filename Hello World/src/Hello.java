@@ -145,5 +145,67 @@ public class Main{
         
     }
 }
-  */
+*/
+
+
+//1017
+  /*
+   import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        System.out.printf("%d %d %d",a,a,a);
+        
+    }
+}
+   * */
  
+//1018
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a;
+        a=sc.next();
+        System.out.println(a);
+    }
+}
+*/
+
+//1019
+/*
+ import java.util.Scanner;
+public class Hello{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String[] str;
+		int a,b,c;
+		str=sc.next().split("\\.");
+		a=Integer.parseInt(str[0]);
+		b=Integer.parseInt(str[1]);
+		c=Integer.parseInt(str[2]);
+		System.out.printf("%04d.%02d.%02d",a,b,c); //이렇게 표현하는게 중요했다!!!
+		 split("\\.") 이래야지 .을 기준으로 배열을 만든다. 정규표현식이라해서 
+ \.하다가 오류가 너무 많이 나왔다..
+	}
+}
+ */
+
+//1020
+/*import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String[] a;
+        a=sc.next().split("-");
+        
+        System.out.println(a[0]+a[1]);
+    }
+}
+ 자바는 배열과 문자열이 c와 다르다. 문자열과 배열이 다르므로 문자열을 자르면 배열이므로 타입이 문자열인 변수에 값을
+ 할당할 수 없다.
+
+*/
