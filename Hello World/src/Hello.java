@@ -209,3 +209,81 @@ public class Hello{
  할당할 수 없다.
 
 */
+
+//1021
+
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a;
+        a=sc.next();
+        System.out.println(a);
+    }
+}
+*/
+
+//1022
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a;
+        a=sc.nextLine();
+        System.out.println(a);
+    }
+}
+*/
+//1023
+/*
+import java.util.Scanner;
+
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        double a;
+        String[] str;
+        a=sc.nextDouble();
+        str = Double.toString(a).split("\\."); 캐스팅하고 문자열을 나눠서 문자열 배열에 할당
+        System.out.printf("%s %s",str[0],str[1]);
+    }
+}
+*/
+
+//1024
+
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String[] str;
+        str=sc.next().split(""); //이러면 모든 문자열을 문자 1개로 나눈다. js 랑은 다르네..
+        for(int i=0;i<str.length;i++) {
+        	System.out.printf("\'%s\'\n",str[i]);
+        }
+    }
+}*/
+
+//1025
+
+/*
+import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String[] a;
+        int j=0;
+        a=sc.next().split(""); 받은 숫자문자열을 다 나눈다
+        for(int i=10000; i>=1;i=i/10){
+            System.out.printf("[%d] \n", Integer.parseInt(a[j++])*i);
+            //차근 차근 곱하면서 배열의 인덱스를 증가시켜 해당하는 인덱스에 맞게 곱한다
+        }
+    }
+}
+*/
