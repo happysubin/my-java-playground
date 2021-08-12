@@ -287,3 +287,195 @@ public class Hello{
     }
 }
 */
+
+//1026
+/*
+import java.util.Scanner;
+
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String[] str;
+        str=sc.next().split(":");
+        System.out.printf("%s",str[1].equals("00")?'0':str[1]);
+    }
+} 00:00:00 시분초 분을 출력하는데 분이 00 이면 0을 출력.
+equal 메소드는 값을 비교!!! ==는 주소값을 비교한다고 한다.
+*/
+
+//1027
+/*
+import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String[] str;
+        str=sc.next().split("\\."); .을 기준으로 문자열을 나눈다
+        System.out.printf("%s-%s-%s",str[2],str[1],str[0]);
+        
+    }
+}
+*/
+
+//1028
+/*
+import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        long a; long int 형을 선언
+        a=sc.nextLong(); long int 형을 받는다
+        System.out.printf("%d", a);
+    }
+}
+*/
+//1029
+/*
+import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        double a; 
+        a=sc.nextDouble(); 
+        System.out.printf("%.11f", a);
+    }
+}
+   자바는 %lf 가 없다 %.11f 이렇게 자리수를 나타내서 더 찍어야한다.
+*/
+
+//1030
+
+/*
+
+import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a; 
+        a=sc.nextLine(); 
+        System.out.printf("%s", a);
+    }}
+    
+*/
+//1031
+/*import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a; 
+        a=sc.nextInt(); 
+        System.out.printf("%o", a); 8진수로 출력
+    }}
+    */
+
+//1032
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a; 
+        a=sc.nextInt(); 
+        System.out.printf("%x", a); 16진법 출력 알파벳이 소문자이다.
+    }}
+    
+
+*/
+
+//1033
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a; 
+        a=sc.nextInt(); 
+        System.out.printf("%X", a.); 16진법으로 출력 알파벳이 대문자이다.
+    }
+  }
+    */
+
+//1034
+/*
+import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a;
+        int b;
+        a=sc.next();
+        b=Integer.valueOf(a, 8); 숫자열을 문자열로 받아서 문자열을 8진수로 바꾼다.
+        System.out.printf("%d", b);
+        
+    }
+}
+//1035
+ /*
+ import java.util.Scanner;
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a;
+        int b;
+        a=sc.next();
+        b=Integer.valueOf(a, 16); 숫자열을 문자로 받아서 16진수로 바꾼다
+        System.out.printf("%o", b); 16진수를 8진수로 출력
+        
+    }
+}
+//1036
+ //charAt은 자바에 문자열에 index값을 통해 문자를 읽어오는 함수
+  /*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        char a;
+        int b;
+        a=sc.next().charAt(0);  문자열에서 0인덱스를 가지는 문자를 가져온다  (한문자만 입력됨)
+        b=(int)a; 문자를 int형으로 바꾼다. 여기서 문자의 값이 바뀌는 정수의 값은 아스키코드이다.
+        System.out.printf("%d", b);
+    }}
+    
+  */
+/*
+ import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        char a;
+        a=sc.next().charAt(0);
+        int b=a; char형을 int형에 박아도 그냥 실행된다!1
+        System.out.printf("%d", b);
+    }}
+    
+*/
+//1037
+
+/*
+
+ import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        char b=(char)a; 똑같이 그냥 숫자를 char형으로 바꾸면 아스키코드 값으로 바뀐다.
+        System.out.printf("%c", b);
+    }}
+    /*
+
+//1038
+
+/*
+ import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        double a,b;
+        a=sc.nextDouble();
+        b=sc.nextDouble();
+        
+        System.out.printf("%.0f",a+b); //이러면 소수점 아래를 출력하지않는다!!!
+    }}
+    */
