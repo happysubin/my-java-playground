@@ -465,7 +465,7 @@ public class Main{
     }}
     /*
 
-//1038
+//1038 1039
 
 /*
  import java.util.Scanner;
@@ -477,5 +477,271 @@ public class Main{
         b=sc.nextDouble();
         
         System.out.printf("%.0f",a+b); //이러면 소수점 아래를 출력하지않는다!!!
+        
     }}
     */
+
+//1040
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        System.out.printf("%d", -a);
+    }
+}
+*/
+//1041
+/*
+ * import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        char a;
+        a=sc.next().charAt(0);
+        System.out.printf("%c", a+1); a를 입력하면 b가 출력됩니다.
+    }
+}
+ */
+
+//1042
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.printf("%d", a/b);
+    }
+}
+*/
+
+//1043
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.printf("%d", a%b);
+    }
+}
+*/
+
+//1044
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        long a;
+        a=sc.nextInt();
+        System.out.printf("%d", ++a);
+    }
+}
+*/
+
+//1045
+
+/*
+
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        double a,b;
+        a=sc.nextDouble();
+        b=sc.nextDouble();
+        System.out.printf("%.0f\n", a+b); 소수점부터 안보여준다 즉 정수자리만 보여줌!!!
+        System.out.printf("%.0f\n", a-b);
+        System.out.printf("%.0f\n", a*b);
+        System.out.printf("%.0f\n", a/b);
+        System.out.printf("%.0f\n", a%b); 
+        System.out.printf("%.2f", a/b);
+    }
+}
+
+
+*/
+
+//1046
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        double a,b,c;
+        a=sc.nextDouble();
+        b=sc.nextDouble();
+        c=sc.nextDouble();
+        System.out.printf("%.0f\n", a+b+c); 
+        System.out.printf("%.1f", (a+b+c)/3);
+      
+    }
+}
+*/
+
+//1047
+
+/*
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int a = sc.nextInt();
+        
+        System.out.printf("%d", a<<1);
+        
+	}
+}
+*/
+
+//1048
+/*
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int a = sc.nextInt();
+		int b=sc.nextInt();
+		sc.close();
+        
+        System.out.printf("%d", a<<b);
+        
+	}
+}
+*/
+//1049
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.printf("%d",a>b?1:0);
+    }
+}
+
+
+*/
+
+//1050
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.printf("%d",a==b?1:0);
+    }
+}
+*/
+//1051
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.printf("%d",b>=a?1:0);
+    }
+}
+*/
+
+//1052
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.printf("%d",b!=a?1:0);
+    }
+}
+*/
+
+//1053
+
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+    
+        System.out.printf("%b",a==1?0:1);
+    }
+}
+
+//1054
+ /*
+  * import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        if(a==1&&b==1){
+            System.out.println(1);
+        }
+        else{
+            System.out.println(0);
+        }
+        
+    }
+}
+  */
+//1055
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        if(a==1||b==1){
+            System.out.println(1);
+        }
+        else{
+            System.out.println(0);
+        }
+        
+    }
+}
+*/
