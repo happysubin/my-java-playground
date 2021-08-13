@@ -1046,6 +1046,250 @@ public class Main{
         }
     } 
 }
+//1071
+ 
+ /*
+  * import java.util.Scanner;
 
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        while(a!=0){
+            System.out.println(a);
+            a=sc.nextInt();
+        }
+        
+    }
+}
+  */
+//1072
+
+/*
+import java.util.Scanner;
+
+public class Hello{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int[] arr=new int[a];
+        
+        for(int i=0;i<a;i++ ){
+            arr[i]=sc.nextInt();
+        }
+        for(int i=0;i<a;i++ ){
+            System.out.println(arr[i]);
+        }
+    }
+}
+*/
+
+//1073
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        while(a!=0){
+            System.out.println(a);
+            a=sc.nextInt();
+        }
+    }
+}
+*/
+
+//1074
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        while(a>0){
+            System.out.println(a);
+            --a;
+        }
+    }
+}
+*/
+
+//1075
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        while(a>0){
+            --a;
+            System.out.println(a);
+            
+        }
+    }
+}
+*/
+//1076
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        char a=sc.next().charAt(0); 문자열을 문자로 만든다(1개 문자만 받는다)
+        int b=(int)'a';   a의 아스키코드값을 가져와서 더한다.
+        do{
+            System.out.println((char)b);  a부터 출력
+            b++; 아스키코드 값 기준으로 더한다.
+        }while(b<=(int)a); a가 입력된 숫자의 아스키 코드 값보다 작다면
+    }
+}
 
 */
+
+//1077
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=0;
+        do{
+            System.out.println(b);
+            b++;
+        }while(b<=a);
+    }
+}
+*/
+//1078
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int a=0,sum=0;
+        while(num>=a){
+            sum=sum+a;
+            a=a+2;
+        }
+        System.out.println(sum);
+    }
+}
+
+*/
+
+//1079
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        char str=sc.next().charAt(0);
+        while(str!='q'){
+            System.out.println(str);
+            str=sc.next().charAt(0);
+        }
+        System.out.println(str);
+    }
+}
+*/
+
+//1080
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int sum=0,i=1;
+        do{
+            sum=sum+i;
+            ++i;
+        } while(sum<num);
+        System.out.println(i-1);
+    }
+}
+
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int sum=0;
+        for(int i=0; i<num;i++){
+            sum=sum+i;
+            if(sum>=num){
+                System.out.println(i);
+                break;
+            }
+        }
+        
+    }
+}
+*/
+//1081
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        for(int i=1; i<=a;i++){
+            for(int j=1; j<=b;j++){
+                System.out.printf("%d %d\n",i,j);
+            }
+            
+        }
+    }
+}
+*/
+
+//1082
+//sc.nextInt(16)을 이용해 16진수로 받는다. %X를 이용해 16진수로 출력
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt(16);
+        for(int i=1;i<16;i++){
+            System.out.printf("%X*%X=%X\n",num,i,num*i);
+        }
+    }
+}
+*/
+
+//1083
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int i=1;
+        while(num>=i){
+            if(i%3==0)System.out.printf("%c ",'X');
+            else System.out.printf("%d ",i);
+            i++;
+        }
+    }
+}
+*/
+
