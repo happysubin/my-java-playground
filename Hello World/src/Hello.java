@@ -745,3 +745,307 @@ public class Main{
     }
 }
 */
+
+//1056
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        if((a==1&&b==0)||(a==0&&b==1))System.out.println(1);
+        else System.out.println(0);
+    }
+}
+
+*/
+
+//1057
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        if(a==b)System.out.println(1);
+        else System.out.println(0);
+    }
+}
+
+*/
+
+//1058
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        if(a==0&&b==0)System.out.println(1);
+        else System.out.println(0);
+    }
+}
+
+*/
+
+//1059
+/*
+
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=~a; 비트연산자.
+        System.out.println(b);
+    }
+}
+*/
+
+//1060
+
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.println(a&b); and 논리 연산자
+    }
+}
+*/
+
+//1061
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.println(a|b); or 연산자
+    }
+}
+*/
+
+//1062
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.println(a^b); xor 연산자.
+    }
+}
+*/
+
+//1063
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        System.out.println(a>b?a:b);
+    }
+}
+*/
+
+//1064
+
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b,c;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        c=sc.nextInt();
+        System.out.println((a<b?a:b)<c?(a<b?a:b):c);
+    }
+}
+*/
+
+//1065
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b,c;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        c=sc.nextInt();
+        if(a%2==0) System.out.println(a);
+        if(b%2==0) System.out.println(b);
+        if(c%2==0) System.out.println(c);
+        
+    }
+}
+
+*/
+
+//1066
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a,b,c;
+        a=sc.nextInt();
+        b=sc.nextInt();
+        c=sc.nextInt();
+        if(a%2==0) System.out.println("even");
+        else System.out.println("odd");
+        if(b%2==0) System.out.println("even");
+        else System.out.println("odd");
+        if(c%2==0) System.out.println("even");
+        else System.out.println("odd");
+        
+    }
+}
+*/
+
+//1067
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        if(a>=0){
+            System.out.println("plus");
+            if(a%2==0)System.out.println("even");
+            else System.out.println("odd");
+        }
+        else{
+            System.out.println("minus");
+            if(a%2==0)System.out.println("even");
+            else System.out.println("odd");
+        }
+        
+    }
+}
+
+*/
+
+//1068
+
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        if(a>=90){
+            System.out.println('A');
+        }
+        else if(a>=70){
+            System.out.println('B');
+        }
+        else if(a>=40){
+            System.out.println('C');
+        }
+        else{
+            System.out.println("D");
+        }
+        
+    }
+}
+*/
+
+//1069
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String str;
+        str=sc.next();
+        switch(str){
+            case "A":
+                System.out.println("best!!!");
+                break;
+            case "B":
+                System.out.println("good!!");
+                break;
+            case "C":
+                System.out.println("run!");
+                break;
+            case "D":
+                System.out.println("slowly~");
+                break;
+            default :
+                System.out.println("what?");
+            
+        }
+    }
+}
+
+*/
+//1070
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a;
+        a=sc.nextInt();
+        switch(a){
+            case 12:
+            case 1:
+            case 2:
+                System.out.println("winter");
+                break;
+            case 3:
+            case 4:
+            case 5:
+                System.out.println("spring");
+                break;
+            case 6:
+            case 7:
+            case 8:
+                System.out.println("summer");
+                break;
+            case 9:
+            case 10:
+            case 11:
+                System.out.println("fall");
+                break;
+        }
+    } 
+}
+
+
+*/
