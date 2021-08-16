@@ -1478,3 +1478,192 @@ public class Main{
     }
 }
 */
+
+//1095
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int[] arr=new int[num];
+        for(int i=0; i<num; i++){
+            arr[i]=sc.nextInt();
+        }
+        int min=arr[0];
+        for(int i=1;i<num;i++){
+            if(min>arr[i])min=arr[i];
+        }
+        System.out.println(min);
+    }
+}
+*/
+
+//1096
+
+/*
+ * 
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int[][] arr=new int[num][2];
+        int[][] back=new int[19][19];
+        
+        // 이거를 써줄 필요가 없다..? 자바는 알아서 초기화 시키는거 같다.
+        for(int i=0; i<19;i++){
+            for(int j=0;j<19;j++){
+                back[i][j]=0;
+            }
+        }
+        // 
+        
+        for(int i=0; i<num;i++){
+            for(int j=0;j<2;j++){
+                arr[i][j]=sc.nextInt(); //
+            }
+        }
+        
+        for(int i=0; i<num;i++){
+            back[arr[i][0]-1][arr[i][1]-1]=1;
+        }
+        
+        
+        for(int i=0; i<19;i++){
+            for(int j=0;j<19;j++){
+                System.out.print(back[i][j]+" ");
+            }
+            System.out.print("\n");
+        }
+    }
+}*/
+
+
+
+//* 배열의 초기화 배열은 원래 생성과 동시에 자동으로 자신의 타입에 해당하는 기본값으로 초기화. 따라서 0으로 초기화된다 알아서.
+
+//1097
+
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int[][] arr=new int[19][19];
+        for(int i=0;i<19;i++){
+            for(int j=0;j<19;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        int num=sc.nextInt();
+        
+        for(int i=1;i<=num;i++){
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            //엔터가 들어오면 바뀐다.
+            for(int j=0;j<19;j++){
+                if(arr[a-1][j]==0) arr[a-1][j]=1;
+                else arr[a-1][j]=0;
+            }
+            
+            for(int j=0;j<19;j++){
+                if(arr[j][b-1]==0) arr[j][b-1]=1;
+                else arr[j][b-1]=0;
+            }
+        }
+        
+        for(int i=0;i<19;i++){
+            for(int j=0;j<19;j++){
+                System.out.printf(arr[i][j]+" ");
+            }
+            System.out.printf("\n");
+        }
+    }
+}
+*/
+
+//1098
+
+/*
+
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int row=sc.nextInt();
+        int column=sc.nextInt();
+        int[][] arr=new int[row][column];
+        int num=sc.nextInt();
+        for(int i=0;i<num;i++){
+            int length=sc.nextInt();
+            int direction=sc.nextInt();
+            int x=sc.nextInt()-1;
+            int y=sc.nextInt()-1;
+            if(direction==1){
+                for(int j=x;j<x+length;j++){
+                        arr[j][y]=1;
+                }
+            }else{
+                    //방향이 0일때
+                for(int j=y;j<y+length;j++){
+                        arr[x][j]=1;
+                }
+            }
+        }
+        
+        for(int i=0;i<row;i++){
+            for(int j=0;j<column;j++){
+                System.out.printf(arr[i][j]+" ");
+            }
+            System.out.printf("\n");
+        }
+    }
+}
+*/
+
+//1099
+/*
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+    
+        int[][] arr=new int[10][10];
+        
+        for (int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        sc.close();
+        road(1,1,arr);
+        for (int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.print("\n");
+        }
+    }
+    
+    public static void road(int x,int y,int[][] arr) {
+        if(arr[x][y]==2){
+            arr[x][y]=9;
+            return;
+            }
+        arr[x][y]=9;
+        
+        if(arr[x][y+1]!=1) road(x,y+1,arr); //가로 다음탄이 비었다.
+        if(arr[x][y+1]==1){ // 가로 다음 칸이 막힘
+            if(arr[x+1][y]==1) return; //아래도 막히면 끝
+            else road(x+1,y,arr); //그게 아니면 밑으로 가서 진행
+        }
+        
+    }
+}
+*/
