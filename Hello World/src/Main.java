@@ -54,7 +54,7 @@ public class Main{
 	}
 }
 */
-
+/*
 import java.util.Scanner;
 //소문자만 처음에 사용된 인덱스를 표시
 public class Main{
@@ -78,4 +78,33 @@ public class Main{
         }
         
     }
+}
+*/
+// 백준1157 단어 공부이다
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String word=sc.next().toUpperCase();
+		sc.close();
+		int[] arr=new int[26];
+		int max;
+		for(int i=0;i<word.length();i++) {
+			arr[word.charAt(i)-'A']++;//문자열을 문자로 바꾸고 소문자로 사용하면 증가시킴.
+		}
+		max=arr[0];
+		//max=arr[0]이라 했다가 계속 틀렸었다. 이유가 무엇일까..?
+		//바로 찾았다. a일 경우 오류가 발생한다. i+'A' 에서 i인 0이 존재하지 않기 때문이다!!!세상에!
+		char answer='?';
+		for(int i=1;i<arr.length;i++) {
+			if(max<arr[i]) {
+				max=arr[i];
+				answer=(char)(i+'A');
+			}else if(max==arr[i]) {
+				answer='?';
+			}
+		}
+		System.out.print(answer);
+	}
 }
