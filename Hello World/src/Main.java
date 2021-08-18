@@ -81,7 +81,7 @@ public class Main{
 }
 */
 // 백준1157 단어 공부이다
-import java.util.Scanner;
+/*import java.util.Scanner;
 
 public class Main{
 	public static void main(String[] args) {
@@ -106,5 +106,22 @@ public class Main{
 			}
 		}
 		System.out.print(answer);
+	}
+}
+*/
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String[] arr=sc.nextLine().trim().split(" ");
+		// 띄어쓰기가 들어갈경우 split가 배열로 바꿔서 오류가 난다. 무조건 1이 있는거다.
+		//띄어쓰기만하면 배열요소에 아무것도 들어가지 않았다. 그래서 그걸 체크하고 다른것은 정상적으로 보낸다
+		if(arr[0].equals("")) {
+			System.out.print(0);
+		}else {
+			System.out.print(arr.length);
+		} 
+		
 	}
 }
