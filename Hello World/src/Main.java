@@ -158,7 +158,7 @@ public class Main{
 // 문자열에서 알파벳이 나올 시 알파벳 배열을 선언할 생각을 해야한다!!!
 
 //자바 5622 전화기 문제 이건 내풀이.
-import java.util.Scanner;
+/*import java.util.Scanner;
 public class Main{
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
@@ -227,3 +227,55 @@ public class Main{
 			else count += 10;
 
 */
+
+//진짜 개고생했다
+//크로아티아 알파벳 문제
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String str=sc.next().trim();
+		int cnt=0;
+		int len=str.length();
+		for(int i=0;i<len;i++) {
+			cnt++;
+			switch(str.charAt(i)) {
+			case'c':
+				if(i<len-1&&(str.charAt(i+1)=='='||str.charAt(i+1)=='-')) {
+					i++;
+				}
+				break;
+			case'd':
+				if(i<len-2&&str.charAt(i+1)=='z'&&str.charAt(i+2)=='=') {
+						 i+=2;
+				}
+				else if(i<len-1&&str.charAt(i+1)=='-') {
+						 i++;
+				}
+				break;
+			case'l':
+			case'n':
+				if(i<len-1&&str.charAt(i+1)=='j') {
+						i++;
+				}
+				break;
+			case's':
+			case'z':
+				if(i<len-1&&str.charAt(i+1)=='=') 
+					{
+						i++;
+					}
+				break;
+			}
+			
+		}
+		sc.close();
+		System.out.print(cnt);
+	}
+}
+
+//오류가 발생하는데 원인은 바로 마지막에 c가들어온다고 생각해보자.
+//그러면 c는 i+1을 하며 다음 문자를 찾는데 문자열의 마지막이므로 더 찾을 문자가 없어 오류가 발생한다.
+//그러므로 조건문을 전체적으로 추가하자.
