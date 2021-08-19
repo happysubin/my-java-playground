@@ -93,11 +93,11 @@ public class Main{
 		for(int i=0;i<word.length();i++) {
 			arr[word.charAt(i)-'A']++;//문자열을 문자로 바꾸고 소문자로 사용하면 증가시킴.
 		}
-		max=arr[0];
+		max=0;
 		//max=arr[0]이라 했다가 계속 틀렸었다. 이유가 무엇일까..?
 		//바로 찾았다. a일 경우 오류가 발생한다. i+'A' 에서 i인 0이 존재하지 않기 때문이다!!!세상에!
 		char answer='?';
-		for(int i=1;i<arr.length;i++) {
+		for(int i=0;i<arr.length;i++) {
 			if(max<arr[i]) {
 				max=arr[i];
 				answer=(char)(i+'A');
@@ -109,6 +109,9 @@ public class Main{
 	}
 }
 */
+
+//백준 1152 단어 개수구하기
+/*
 import java.util.Scanner;
 
 public class Main{
@@ -125,3 +128,102 @@ public class Main{
 		
 	}
 }
+*/
+
+//백준 2908 숫자 뒤집어서 큰수 찾기
+/*
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		String[] numbers=sc.nextLine().split(" ");
+		for(int i=0;i<2;i++) {
+			StringBuffer sb=new StringBuffer(numbers[i]);
+			numbers[i]=sb.reverse().toString(); 
+			//sb객체 생성후 사용가능한 reverse 메소드를 이용해서 뒤집고 타입이 맞지않으니 문자열로 바꾼다.
+		}
+		int a=Integer.parseInt(numbers[0]);
+		int b=Integer.parseInt(numbers[1]);
+		if(a>b) {
+			System.out.print(a);
+		}
+		else {
+			System.out.print(b);
+		}
+	}
+}
+*/
+
+// 문자열에서 알파벳이 나올 시 알파벳 배열을 선언할 생각을 해야한다!!!
+
+//자바 5622 전화기 문제 이건 내풀이.
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String arr=sc.next();
+		int sum=0;
+		for(int i=0;i<arr.length();i++) {
+			switch(arr.charAt(i)){
+			case'A':
+			case'B':
+			case'C':
+				sum+=3;
+				break;
+			case'D':
+			case'E':
+			case'F':
+				sum+=4;
+				break;
+			case'G':
+			case'H':
+			case'I':
+				sum+=5;
+				break;
+			case'J':
+			case'K':
+			case'L':
+				sum+=6;
+				break;
+			case'M':
+			case'N':
+			case'O':
+				sum+=7;
+				break;
+			case'P':
+			case'Q':
+			case'R':
+			case'S':
+				sum+=8;
+				break;
+			case'T':
+			case'U':
+			case'V':
+				sum+=9;
+				break;
+			case'W':
+			case'X':
+			case'Y':
+			case'Z':
+				sum+=10;
+				break;
+	
+			}
+		}
+		System.out.print(sum);
+	}
+}
+/*이건 인터넷에서 찾은 풀이 생각의 전환이 정말 놀라웠다.
+아스키코드값을 기준으로 나눴다. 한 수 배웠다..
+전체 코드 말고 기준을 나누는 부분만 가져왔다.
+			if(value < 68) count += 3;
+			else if(value < 71) count += 4;
+			else if(value < 74) count += 5;
+			else if(value < 77) count += 6;
+			else if(value < 80) count += 7;
+			else if(value < 84) count += 8;
+			else if(value < 87) count += 9;
+			else count += 10;
+
+*/
