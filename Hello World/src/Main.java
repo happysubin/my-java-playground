@@ -230,7 +230,7 @@ public class Main{
 
 //진짜 개고생했다
 //크로아티아 알파벳 문제
-
+/*
 import java.util.Scanner;
 
 public class Main{
@@ -275,7 +275,75 @@ public class Main{
 		System.out.print(cnt);
 	}
 }
-
+*/
 //오류가 발생하는데 원인은 바로 마지막에 c가들어온다고 생각해보자.
 //그러면 c는 i+1을 하며 다음 문자를 찾는데 문자열의 마지막이므로 더 찾을 문자가 없어 오류가 발생한다.
 //그러므로 조건문을 전체적으로 추가하자.
+//스위치문은 해당하는 케이스를 찾으면 수행하고 break가 없으면 밑에 경우를 실행한다. 세성
+
+
+//왜 틀렸는지 연구해보자
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String str=sc.next().trim();
+		int cnt=0;
+		for(int i=0;i<str.length();i++) {
+			switch(str.charAt(i)) {
+			case'c':
+				if(i<str.length()-1) {
+					if(str.charAt(i+1)=='='||str.charAt(i+1)=='-') {
+						i++;
+					}
+				}
+				break;
+			case'd':
+				//여기가 문제였다.
+//if문은 성공하면 다음 else if 문을 안돌린다. 그런데 외부 if는 성공하고 내부 if 가 실패한다고 가정하면
+// else if 가 맞을 수도 있는데 else if를 갈 수가 없다. 그래서 이런 경우를 예방하기위해 한번에 체크해줘야한다.
+				if(i<str.length()-1) {
+					if(str.charAt(i+1)=='-') {
+						 i++;
+					}
+				}	
+				else if(i<str.length()-2) {
+					if(str.charAt(i+1)=='z'&&str.charAt(i+2)=='=') {
+						 i+=2;
+					}
+				}
+				break; 
+				//따라서 이게 맞다.
+				/*
+				 * if(i<str.length()-1&&str.charAt(i+1)=='-') {
+						 i++;	
+				}	
+				else if(i<str.length()-2&&str.charAt(i+1)=='z'&&str.charAt(i+2)=='=') {
+						 i+=2;
+				}
+				 */
+			case'l':
+			case'n':
+				if(i<str.length()-1) {
+					if(str.charAt(i+1)=='j') {
+						i++;
+					}
+				}
+			break;
+			case's':
+			case'z':
+				if(i<str.length()-1) {
+					if(str.charAt(i+1)=='=') {
+						i++;
+					}
+				}
+				break;
+			}
+			cnt++;
+		}
+		sc.close();
+		System.out.print(cnt);
+	}
+}
+//break가 필요한이유는 i를 증가시키기 때문이다.
