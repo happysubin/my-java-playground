@@ -282,7 +282,9 @@ public class Main{
 //스위치문은 해당하는 케이스를 찾으면 수행하고 break가 없으면 밑에 경우를 실행한다. 세성
 
 
+
 //왜 틀렸는지 연구해보자
+/*
 import java.util.Scanner;
 
 public class Main{
@@ -303,7 +305,8 @@ public class Main{
 				//여기가 문제였다.
 //if문은 성공하면 다음 else if 문을 안돌린다. 그런데 외부 if는 성공하고 내부 if 가 실패한다고 가정하면
 // else if 가 맞을 수도 있는데 else if를 갈 수가 없다. 그래서 이런 경우를 예방하기위해 한번에 체크해줘야한다.
-				if(i<str.length()-1) {
+				//여기가 문제였다 해결!!!!
+				/*if(i<str.length()-1) {
 					if(str.charAt(i+1)=='-') {
 						 i++;
 					}
@@ -313,16 +316,16 @@ public class Main{
 						 i+=2;
 					}
 				}
-				break; 
+				break;
 				//따라서 이게 맞다.
-				/*
-				 * if(i<str.length()-1&&str.charAt(i+1)=='-') {
+				
+				if(i<str.length()-1&&str.charAt(i+1)=='-') {
 						 i++;	
 				}	
 				else if(i<str.length()-2&&str.charAt(i+1)=='z'&&str.charAt(i+2)=='=') {
 						 i+=2;
 				}
-				 */
+				 break;
 			case'l':
 			case'n':
 				if(i<str.length()-1) {
@@ -346,4 +349,20 @@ public class Main{
 		System.out.print(cnt);
 	}
 }
-//break가 필요한이유는 i를 증가시키기 때문이다.
+*/
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		int n=sc.nextInt();
+		int result=fibo(n);
+		System.out.print(result);
+	}
+	public static int fibo(int n) {
+		if(n==0) return 0;
+		if(n==1) return 1;
+		return fibo(n-1)+fibo(n-2);
+	}
+}
