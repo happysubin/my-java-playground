@@ -351,6 +351,8 @@ public class Main{
 }
 */
 
+//피보나치 수열
+/*
 import java.util.Scanner;
 
 public class Main{
@@ -364,5 +366,148 @@ public class Main{
 		if(n==0) return 0;
 		if(n==1) return 1;
 		return fibo(n-1)+fibo(n-2);
+	}
+}
+*/
+
+
+//백준 25 88
+/*
+import java.util.Scanner;
+
+public class brute {
+	public static void main(String args[]){
+	Scanner sc=new Scanner(System.in);
+	int num=sc.nextInt();
+	String[] num2=sc.next().split("");
+	for(int i=2;i>=0;i--) {
+			System.out.printf("%d\n", num*Integer.parseInt(num2[i]));
+		}	
+	String fin = String.join("",num2);
+	System.out.printf("%d",num*Integer.parseInt(fin));
+	}
+}
+
+*/
+/*
+import java.util.Scanner;
+public class Main{
+	public static void main(String args[]) {
+	Scanner sc=new Scanner(System.in);
+	int a=sc.nextInt();
+	int b=sc.nextInt();
+	System.out.printf("%d\n", a+b);
+	System.out.printf("%d\n", a-b);
+	System.out.printf("%d\n", a*b);
+	System.out.printf("%d\n", a/b);
+	System.out.printf("%d\n", a%b);
+	}
+}
+*/
+
+/*
+import java.util.Scanner;
+public class Main{
+	public static void main(String args[]) {
+	Scanner sc=new Scanner(System.in);
+	int A=sc.nextInt();
+	int B=sc.nextInt();
+	int C=sc.nextInt();
+	System.out.printf("%d\n",(A+B)%C);
+	System.out.printf("%d\n",((A%C)+(B%C))%C);
+	System.out.printf("%d\n",(A*B)%C);
+	System.out.printf("%d\n",((A%C)*(B%C))%C);
+	
+	}
+}
+
+*/
+/*
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		int a=sc.nextInt();
+		int b=sc.nextInt();
+		
+		if(a>b) System.out.println(">");
+		else if(a<b) System.out.println("<");
+		else System.out.println("==");
+	}
+}
+*/
+
+//시험 점수를 입력받아 90 ~ 100점은 A, 80 ~ 89점은 B, 70 ~ 79점은 C, 60 ~ 69점은 D, 나머지 점수는 F를 출력하는 프로그램을 작성하시오.
+/*
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		int score=sc.nextInt();
+		if(score>=90) System.out.println("A");
+		else if(score>=80) System.out.println("B");
+		else if(score>=70) System.out.println("C");
+		else if(score>=60) System.out.println("D");
+		else  System.out.println("F");
+		
+	}
+	
+	
+}
+*/
+
+/*
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        if(a % 4 == 0 && (a % 100 != 0 || a % 400 == 0)) {
+            System.out.println("1");
+        } else {
+            System.out.println("0");
+        }
+        
+    }
+}
+*/
+
+/*
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		int x=sc.nextInt();
+		int y=sc.nextInt();
+		if (x>0&&y>0)System.out.println("1");
+		else if (x<0&&y>0)System.out.println("2");
+		else if (x>0&&y<0)System.out.println("4");
+		else System.out.println("3");
+	}
+}
+*/
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		int hour=sc.nextInt();
+		int min=sc.nextInt();
+		if(hour==0&&min<45) {
+			int minus=45-min;
+			System.out.printf("%d %d",23,60-minus);
+		}
+		else if(min<45) {
+			int minus=45-min;
+			System.out.printf("%d %d",hour-1,60-minus);
+		}
+		else {
+			System.out.printf("%d %d",hour,min-45);
+		}
 	}
 }
