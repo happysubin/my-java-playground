@@ -754,3 +754,87 @@ public class Main{
 	}
 }
 */
+/*
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String args[])throws IOException{
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st=new StringTokenizer(br.readLine()," ");
+		int first=Integer.parseInt(st.nextToken());
+		int second=Integer.parseInt(st.nextToken());
+		while(first!=0&&second!=0) {
+			bw.write(first+second+"\n");
+			st=new StringTokenizer(br.readLine()," ");
+			first=Integer.parseInt(st.nextToken());
+			second=Integer.parseInt(st.nextToken());
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+
+/*
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String args[])throws IOException{
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+		StringTokenizer st;
+		String str="";
+	
+		while((str=br.readLine())!=null) {
+			st=new StringTokenizer(str," "); 
+			int a=Integer.parseInt(st.nextToken());
+			int b=Integer.parseInt(st.nextToken());
+			bw.write(a+b+"\n");
+		}
+		bw.flush();
+		
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+	
+		int num=Integer.parseInt(br.readLine());
+		
+		int result=num;
+		int cnt=0;
+		
+		while(true) {
+			num=(( num % 10 ) * 10) + (((num / 10) + (num % 10)) % 10);
+			cnt++;	
+			if(num==result)break;
+		}
+		System.out.println(cnt);
+	}
+}
