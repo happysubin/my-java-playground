@@ -529,6 +529,7 @@ public class Main{
 }
 */
 
+/*
 import java.util.Scanner;
 
 public class Main{
@@ -557,6 +558,7 @@ public class Main{
 		
 	}
 }
+*/
 
 /*
 public class Main{
@@ -573,3 +575,31 @@ public class Main{
 }
 
 */
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;  
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String args[]) throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in)); 
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		//Buffer reader,writer 콘솔에서 사용법
+		
+		int num=Integer.parseInt(br.readLine());//읽어 들이고 정수형으로 캐스팅
+		StringTokenizer st; //사용자가 지정하는 기준을 바탕으로 문자열을나눈다.
+		
+		for(int i=0; i<num;i++) {
+			st=new StringTokenizer(br.readLine()," "); //한줄을 읽고 띄어쓰기 기준으로 나눈다
+			bw.write(Integer.parseInt(st.nextToken())+Integer.parseInt(st.nextToken())+"\n"); //버퍼에 작성
+			//nextToken 메소드는 문자열에서 다음 토큰을 가져온다
+		}
+		bw.flush(); //이걸 해야 버퍼에 작성되었던 것들이 모두 나온다.
+		bw.close();
+		br.close();
+	}
+}
