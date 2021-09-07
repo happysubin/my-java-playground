@@ -492,6 +492,7 @@ public class Main{
 */
 
 //알람시계 문제
+/*
 import java.util.Scanner;
 
 public class Main{
@@ -512,3 +513,63 @@ public class Main{
 		}
 	}
 }
+*/
+
+/*
+import java.util.Scanner;
+public class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        for(int i=num;i>0;--i) {
+        	System.out.printf("%d\n",i);
+        }
+        
+    }
+}
+*/
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("반지름과 원의 중심을 입력하세요");
+		int radius=sc.nextInt();
+		int centerX=sc.nextInt();
+		int centerY=sc.nextInt();
+		
+		System.out.println("좌표를 입력하세요");
+		int pointX=sc.nextInt();
+		int pointY=sc.nextInt();
+		
+		double distanceY=Math.pow((pointY-centerY),2);
+		double distanceX=Math.pow((pointX-centerX),2);
+		
+		double pointDistance=Math.sqrt(distanceX+distanceY);
+		
+		if(pointDistance>radius) {
+			System.out.println("원 밖에 있습니다.");
+		}else {
+			System.out.println("원 안에 있습니다.");
+		}
+		
+	}
+}
+
+/*
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("입력 :");
+		int num1=sc.nextInt();
+		System.out.println(Integer.toBinaryString(num1));
+		
+		System.out.println("입력 : bit의 위치 (1 이상)");
+		int place=sc.nextInt();
+		System.out.println("출력 :" +((num1>>>--place)&1));
+	}
+}
+
+*/
