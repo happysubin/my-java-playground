@@ -576,6 +576,7 @@ public class Main{
 
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -603,3 +604,153 @@ public class Main{
 		br.close();
 	}
 }
+*/
+
+//น้มุ 2741
+/*
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String args[]) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		int num=Integer.parseInt(br.readLine());
+		for(int i=1;i<=num;i++) bw.write(i+"\n");
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String args[])throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		int num=Integer.parseInt(br.readLine());
+		for(int i=num;i>=1;i--)bw.write(i+"\n");
+		
+		
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String args[]) throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int num=Integer.parseInt(br.readLine());
+		StringTokenizer st;
+		
+		int a,b;
+		for(int i=1;i<=num;i++) {
+			st=new StringTokenizer(br.readLine()," ");
+			a=Integer.parseInt(st.nextToken());
+			b=Integer.parseInt(st.nextToken());
+			bw.write("Case #"+i+": "+a+" + "+b+" = "+(a+b)+"\n");
+		}
+		bw.flush();
+		br.close();
+		bw.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String args[])throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		int num=Integer.parseInt(br.readLine());
+		for(int i=1;i<=num;i++) {
+			for(int j=1;j<=i;j++) {
+				bw.write("*");
+			}
+			bw.write("\n");
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String args[])throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int num=Integer.parseInt(br.readLine());
+		for(int i=1;i<=num;i++) {
+			for(int j=num-i;j>=1;j--)bw.write(" ");
+			for(int z=1;z<=i;z++)bw.write("*");
+			bw.write("\n");
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+/*
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String args[])throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st=new StringTokenizer(br.readLine()," ");
+		int num=Integer.parseInt(st.nextToken());
+		int max=Integer.parseInt(st.nextToken());
+		st=new StringTokenizer(br.readLine()," ");
+		for(int i=0;i<num;i++) {
+			int content=Integer.parseInt(st.nextToken());
+			if(content<max)bw.write(content+" ");
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
