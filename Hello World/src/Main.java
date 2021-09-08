@@ -813,7 +813,7 @@ public class Main{
 }
 */
 
-
+/*
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -832,8 +832,230 @@ public class Main{
 		
 		while(true) {
 			num=(( num % 10 ) * 10) + (((num / 10) + (num % 10)) % 10);
+			//입력할 때 num이 바뀌어야하므로 result 는 안된다.
 			cnt++;	
 			if(num==result)break;
+		}
+		
+		System.out.println(cnt);
+	}
+}
+*/
+
+//백준 배열 문제들
+
+/*
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int num=Integer.parseInt(br.readLine());
+		
+		StringTokenizer st=new StringTokenizer(br.readLine()," ");
+		int content=Integer.parseInt(st.nextToken());
+		int max=content;
+		int min=content;
+		for(int i=1;i<num;i++) { //한번 꺼냈으니 총 횟수에서 1개를 줄인다.
+			content=Integer.parseInt(st.nextToken());
+			if(max<content)max=content;
+			if(min>content)min=content;
+		}
+		bw.write(min+" "+max);
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		int max=0,cnt=1;
+		for(int i=1;i<=9;i++) {
+			int num=Integer.parseInt(br.readLine());
+			if(num>max) {
+				max=num;
+				cnt=i;
+			}
+		}
+		bw.write(max+"\n"+cnt);
+		bw.flush();
+		bw.close();
+		br.close();
+		
+	}
+}
+
+*/
+
+/*
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		int a=Integer.parseInt(br.readLine());
+		int b=Integer.parseInt(br.readLine());
+		int c=Integer.parseInt(br.readLine());
+		int num=a*b*c;
+		int[] arr=new int[10];
+		
+		String[] element=String.valueOf(num).split("");
+		for(int i=0;i<element.length;i++) {
+			int x=Integer.parseInt(element[i]);//1이야
+			arr[x]++;
+		}
+		for(int i=0;i<arr.length;i++) {
+			bw.write(arr[i]+"\n");
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+		int num=Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<num;i++) {
+			String[] str=br.readLine().split(" ");
+			int sum=0;
+			int cnt=Integer.parseInt(str[0]);
+			int moreThanAverage=0;
+			
+			for(int j=1;j<=cnt;j++) {
+				sum+=Integer.parseInt(str[j]);
+			}
+			
+			int average=sum/cnt;
+
+			for(int j=1;j<=cnt;j++) {
+				if(average<Integer.parseInt(str[j]))moreThanAverage++;
+			}
+			System.out.printf("%.3f%%\n",((double)moreThanAverage/cnt)*100);
+		}
+		br.close();
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args) throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<num;i++) {
+			String[] str=br.readLine().split("X");//X를 기준으로 나눔
+			int score=0;
+			for(int j=0;j<str.length;j++) {// 나눈 개수만큼 반복
+				if(str[j]!="") {
+					String[] Olength=str[j].split(""); //그 안의 O가 있는 걸 다시 나눔.
+					//예를 들어 OOXXOXXOOO  OO   O OOO 이렇게 3개가 있을것임.
+					//그러나 X였던곳은 ""이런 상태임.고로 이것도 체크해야함
+					for(int z=1;z<=Olength.length;z++) {
+						score+=z; //길이가 1이면 1만 더함 2이면 1 2 3이면 1 2 3!!!
+					}
+				}	
+			}
+			System.out.println(score);
+		}
+		
+	}
+}
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine()); //총 점수 개수를 받음
+		double sum=0;
+		
+		String[] scores=br.readLine().split(" "); //점수를 받고 띄어쓰기로 구분
+		double max=Double.parseDouble(scores[0]);
+		for(int i=1;i<num;i++) {
+			double score=Double.parseDouble(scores[i]);
+			if(max<score)max=score; //최대값을 결정
+			
+		}
+		
+		for(int i=0;i<num;i++) {
+			double score=Double.parseDouble(scores[i]);
+			double newScore=score/max*100;
+			scores[i]=String.valueOf(newScore);
+		}
+		
+		for(int i=0;i<num;i++) {
+			
+			sum+=Double.parseDouble(scores[i]);
+			
+		}
+		System.out.printf("%.2f",sum/num);
+	}
+}
+*/
+
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int[] arr=new int[42];
+		int cnt=10;
+		
+		for(int i=0;i<10;i++) {
+			int num=Integer.parseInt(br.readLine())%42;
+			if(arr[num]==1) {
+				cnt--;
+				continue;
+			}else {
+				arr[num]=1;
+				
+			}
 		}
 		System.out.println(cnt);
 	}
