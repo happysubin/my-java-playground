@@ -972,6 +972,8 @@ public class Main{
 }
 */
 
+//1193
+
 /*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -1037,6 +1039,7 @@ public class Main{
 }
 */
 
+/*
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -1058,5 +1061,39 @@ public class Main{
 			}
 		}
 		System.out.println(cnt);
+	}
+}
+*/
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class Main{
+	
+	static BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+	
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int n=Integer.parseInt(br.readLine());
+		bw.write((int) (Math.pow(2, n) - 1) + "\n");
+		hanoi(n,1,2,3);
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+	public static void hanoi(int n,int a, int b, int c) throws IOException{
+		if(n==1) {
+			bw.write(a+" "+c+"\n");
+			return;
+		}
+		else {
+			hanoi(n-1,a,c,b); //n-1 개를 a에서 b로 이동
+			bw.write(a+" "+c+"\n");//1개를 a에서 c로 이동
+			hanoi(n-1,b,a,c); //n-1개를 b에서 c로 이동
+		}
 	}
 }
