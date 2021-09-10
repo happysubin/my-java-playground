@@ -1065,6 +1065,7 @@ public class Main{
 }
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
@@ -1095,5 +1096,38 @@ public class Main{
 			bw.write(a+" "+c+"\n");//1개를 a에서 c로 이동
 			hanoi(n-1,b,a,c); //n-1개를 b에서 c로 이동
 		}
+	}
+}
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		int cnt=0;
+		
+		String[] str=br.readLine().split(" ");
+		for(int i=0;i<num;i++) {
+			int checkingNum=Integer.parseInt(str[i]);
+			int check=0;
+			if(checkingNum==1)continue;
+			
+			for(int j=2;j<=checkingNum;j++) {
+				if(checkingNum%j==0) {
+					check++;
+				}
+			}
+			if(check==1) {
+				cnt++;
+			}
+			
+		}
+		System.out.println(cnt);
+		br.close();
 	}
 }
