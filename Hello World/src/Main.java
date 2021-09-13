@@ -1175,6 +1175,7 @@ public class Main{
 }
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -1194,5 +1195,31 @@ public class Main{
 			else if(Math.pow(c, 2)+Math.pow(b, 2)==Math.pow(a, 2))System.out.println("right");
 			else System.out.println("wrong");
 		}
+	}
+}
+
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+		String[] a=br.readLine().split(" ");
+		String[] b=br.readLine().split(" ");
+		String[] c=br.readLine().split(" ");
+	
+		if(Integer.parseInt(a[0])==Integer.parseInt(b[0])) System.out.print(c[0]);
+		else if(Integer.parseInt(b[0])==Integer.parseInt(c[0])) System.out.print(a[0]);
+		else System.out.print(b[0]);
+		
+		if(Integer.parseInt(a[1])==Integer.parseInt(b[1])) System.out.print(" "+c[1]);
+		else if(Integer.parseInt(b[1])==Integer.parseInt(c[1])) System.out.print(" "+a[1]);
+		else System.out.print(" "+b[1]);
+		
+		
 	}
 }
