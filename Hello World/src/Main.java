@@ -1200,6 +1200,7 @@ public class Main{
 
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -1223,3 +1224,39 @@ public class Main {
 		
 	}
 }
+
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		int cnt=num;
+		for(int i=0;i<num;i++) {
+			String arr=br.readLine();
+			int check[]=new int[26];
+			for(int j=1;j<arr.length();j++) {
+				char content=arr.charAt(j);
+					char beforeContent=arr.charAt(j-1);
+					if(content==beforeContent&&check[beforeContent-'a']==0)continue;
+					else if(check[beforeContent-'a']==0&&content!=beforeContent){
+						check[beforeContent-'a']=1;
+					}
+					else if(check[beforeContent-'a']==1) {
+						cnt--;
+						break;
+					}
+					if(j==arr.length()-1&&check[content-'a']==1) {
+						cnt--;
+						break;
+					}		
+			}	
+		}
+		System.out.println(cnt);
+	}
+}
+//abaa°¡ ¹Ý·Ê´Ù.
