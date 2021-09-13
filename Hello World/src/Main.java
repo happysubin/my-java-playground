@@ -1227,6 +1227,7 @@ public class Main {
 
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -1259,4 +1260,37 @@ public class Main{
 		System.out.println(cnt);
 	}
 }
-//abaa가 반례다.
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		int[] arr=new int[num];
+		
+		for(int i=0;i<num;i++) {
+			int element=Integer.parseInt(br.readLine());
+			arr[i]=element;
+		}
+		
+		int i,j,key;
+		
+		for( i=1;i<num;i++) {
+			key=arr[i];
+			
+			for( j=i-1; j>=0&&arr[j]>key ; j--) { //자바는 만약 &&문이 앞에서 거짓이면 뒤에것은 확인하지 않는다.
+				//그래서 순서도 따져야하는 거 같다.
+				arr[j+1]=arr[j];
+			}
+			arr[j+1]=key;
+		}
+		
+		for( i=0;i<num;i++) {
+			System.out.println(arr[i]);
+		}
+		
+	}
+}
