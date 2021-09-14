@@ -1262,6 +1262,7 @@ public class Main{
 }
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -1281,7 +1282,7 @@ public class Main{
 		for( i=1;i<num;i++) {
 			key=arr[i];
 			
-			for( j=i-1; j>=0&&arr[j]>key ; j--) { //자바는 만약 &&문이 앞에서 거짓이면 뒤에것은 확인하지 않는다.
+			for( j=i-1; j>=0&arr[j]>key ; j--) { //자바는 만약 &&문이 앞에서 거짓이면 뒤에것은 확인하지 않는다.
 				//그래서 순서도 따져야하는 거 같다.
 				arr[j+1]=arr[j];
 			}
@@ -1292,5 +1293,33 @@ public class Main{
 			System.out.println(arr[i]);
 		}
 		
+	}
+}
+//&를 쓰도록 하자. 이게 앞 뒤 조건 둘다 검사한다.
+
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+	public static void main(String[] args)throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		int i; //층을 나타낼 변수
+		int sum=0;//이번 계층까지 합한 것들
+		for( i=1;sum<num;i++) {
+			sum+=i;
+		}
+		i--; //증가시키고 조건문에서 막히기 때문에 i--실행. i가 층임
+		int underNums=sum-i; //이번 계층 아래에 있는 것들
+		int leaveNums=num-underNums;//현재 계층에서 (자기를 포함하고) 아래 계층을 빼고 남은 숫자들 
+		if(i%2==0) { //짝수
+			System.out.println(leaveNums+"/"+(i-leaveNums+1));
+		}
+		else {//홀수
+			System.out.println((i-leaveNums+1)+"/"+leaveNums);
+		}
 	}
 }
