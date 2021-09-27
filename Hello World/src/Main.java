@@ -1299,6 +1299,7 @@ public class Main{
 
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -1321,5 +1322,35 @@ public class Main{
 		else {//È¦¼ö
 			System.out.println((i-leaveNums+1)+"/"+leaveNums);
 		}
+	}
+}
+*/
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String[] str=br.readLine().split(" ");
+		int cardNumber=Integer.parseInt(str[0]);
+		int ourGoal=Integer.parseInt(str[1]);
+		
+		String[] numArr=br.readLine().split(" ");
+		int result=0;
+		for(int i=0;i<numArr.length-2;i++) {
+			for(int j=i+1;j<numArr.length-1;j++) {
+				for(int z=j+1;z<numArr.length;z++) {
+					int sum=Integer.parseInt(numArr[i])+Integer.parseInt(numArr[j])+Integer.parseInt(numArr[z]);
+					if(result<sum&sum<=ourGoal) {
+						result=sum;
+					}
+				}
+					
+			}
+		}
+		System.out.println(result);
 	}
 }
