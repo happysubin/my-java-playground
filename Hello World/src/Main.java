@@ -1327,6 +1327,7 @@ public class Main{
 */
 
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -1339,12 +1340,15 @@ public class Main{
 		int ourGoal=Integer.parseInt(str[1]);
 		
 		String[] numArr=br.readLine().split(" ");
-		int result=0;
+		int result=0; //우리의 결과
 		for(int i=0;i<numArr.length-2;i++) {
 			for(int j=i+1;j<numArr.length-1;j++) {
 				for(int z=j+1;z<numArr.length;z++) {
 					int sum=Integer.parseInt(numArr[i])+Integer.parseInt(numArr[j])+Integer.parseInt(numArr[z]);
-					if(result<sum&sum<=ourGoal) {
+					if(result<sum&sum<=ourGoal) { //합이 우리의 목표보다 작거나 같고 
+						//저장한 result가 sum보다 작으면 갈아버림.
+						// 세 카드의 합이 이전 합보다 크면서 ourGoal 보다 작을 경우 result 갱신
+						//결국 제일 큰게 뽑힐듯
 						result=sum;
 					}
 				}
@@ -1352,5 +1356,32 @@ public class Main{
 			}
 		}
 		System.out.println(result);
+	}
+}
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String[] str=br.readLine().split(" ");
+		int num=Integer.parseInt(str[0]);
+		int money=Integer.parseInt(str[1]);
+		int arr[]=new int[num];
+		int cnt=0;
+		for(int i=0;i<num;i++) {
+			arr[i]=Integer.parseInt(br.readLine());
+		}
+		
+		for(int i=arr.length-1;i>=0;i--) {
+			while(money>=arr[i]) {
+				money=money-arr[i];//
+				cnt++;
+			}
+		}
+		System.out.println(cnt);
 	}
 }
