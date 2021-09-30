@@ -40,11 +40,12 @@ public class greed{
 		int cnt=0;
 		
 		for(int i=0;i<str.length();i++) {
+			
 			if(str.charAt(0)=='1') { //1로 시작할때
 				if(i<str.length()-1) { //마지막 숫자 전까지
 					if(str.charAt(i)==str.charAt(i+1)) {
 						continue;
-					}else if(str.charAt(i)=='1'&&str.charAt(i+1)=='0'){
+					}else if(str.charAt(i)=='1'&&str.charAt(i+1)=='0'){ //바뀌는 지점에서 증가
 						cnt++;
 					}
 				}
@@ -53,7 +54,7 @@ public class greed{
 				if(i<str.length()-1) { //마지막 숫자 전까지
 					if(str.charAt(i)==str.charAt(i+1)) { //1과 같으면 진행
 						continue;
-					}else if(str.charAt(i)=='0'&str.charAt(i+1)=='1'){
+					}else if(str.charAt(i)=='0'&str.charAt(i+1)=='1'){ //바뀌는 지점에서 증가
 						cnt++;
 					}
 				}
@@ -63,3 +64,8 @@ public class greed{
 		System.out.println(cnt);
 	}
 }
+
+//0으로 시작한다. 001100110011001100 묶음의수 0 - 5 1 - 4 따라서 1을 돌림 
+//            000011001100110011 묶음의수 0 - 4 1- 4 따라서 아무거나 다됨
+//1로 시작한다.  11001100110011 묶음의 수 0 - 3 1 - 4 따라서 0을 돌려
+//            1100110011000 묶음의 수 1 - 3 0 - 3 따라서 아무거나 해도됨   
