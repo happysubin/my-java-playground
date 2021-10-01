@@ -1,6 +1,5 @@
 
 /*
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.io.IOException;
@@ -29,10 +28,12 @@ public class greed {
 
 */
 
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
+/*
 public class greed{
 	public static void main(String[] args)throws IOException {
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
@@ -64,8 +65,31 @@ public class greed{
 		System.out.println(cnt);
 	}
 }
-
+*/
 //0으로 시작한다. 001100110011001100 묶음의수 0 - 5 1 - 4 따라서 1을 돌림 
 //            000011001100110011 묶음의수 0 - 4 1- 4 따라서 아무거나 다됨
 //1로 시작한다.  11001100110011 묶음의 수 0 - 3 1 - 4 따라서 0을 돌려
 //            1100110011000 묶음의 수 1 - 3 0 - 3 따라서 아무거나 해도됨   
+
+
+import java.io.BufferedReader;
+
+
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+public class greed{
+public static void main(String[] args)throws IOException {
+	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	long num=Long.parseLong(br.readLine());
+	long i=0,sum=0;
+	if(num==1) System.out.println(1);
+	for(i=1;sum<=num;i++) {
+		sum+=i;
+		}
+	System.out.println(i-2);
+	
+	}
+}
