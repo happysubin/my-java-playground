@@ -123,23 +123,23 @@ public class greed{
 			
 			Arrays.sort(arr); //정렬 완료
 			
-			if(num2%2==0) { 
+			if(num2%2==0) { //짝수일때
 				int k=0;
 				for(int j=0;j<arr.length;j++) {
 					
 					if(j%2==0) {
-						arr2[k++]=arr[j];
+						arr2[k++]=arr[j]; //짝수 자리에 숫자들을 앞에서부터 담음
 					}
 					else {
-						arr2[arr.length-k]=arr[j];
+						arr2[arr.length-k]=arr[j]; //홀수 자리 숫자들을 뒤에서 부터 담음 결국 1234  1342
 					}
 				}
 				
-				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]);
+				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]); //끝과 처음 차이를 기준으로 시작. 절댓값 씌워서 알아내기
 				for(int j=0;j<arr2.length-1;j++) {
-					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);		
+					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);//차이 큰거 업데이트
 				}
-					System.out.println(gap);
+					System.out.println(gap); 
 
 			}
 			
@@ -148,22 +148,20 @@ public class greed{
 				for(int j=0;j<arr2.length-1;j++) {
 						
 						if(j%2==0) {
-							arr2[k++]=arr[j];
+							arr2[k++]=arr[j]; //짝수 자리를 앞에서 부터 넣는다  ex 7이면 0123
 						}
 						
 						else {
-							arr2[arr2.length-k]=arr[j];
+							arr2[arr2.length-k]=arr[j]; //홀수 자리를 뒤에서부터 넣는다 654
 						}
 				}
-				arr2[arr2.length/2]=arr[arr.length-1];
+				arr2[arr2.length/2]=arr[arr.length-1]; //제일 큰 숫자를 가운데에 넣는다. 7이면 3
 				
-				
-				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]);
+				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]); //끝과 처음 차이를 기준으로 시작
 				for(int j=0;j<arr2.length-1;j++) {
 					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);		
 				}
-					System.out.println(gap);
-					
+					System.out.println(gap);	
 			}
 		}
 	}
