@@ -29,6 +29,7 @@ public class greed {
 */
 
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -72,6 +73,9 @@ public class greed{
 //            1100110011000 묶음의 수 1 - 3 0 - 3 따라서 아무거나 해도됨   
 
 
+/*
+
+
 import java.io.BufferedReader;
 
 
@@ -91,5 +95,76 @@ public static void main(String[] args)throws IOException {
 		}
 	System.out.println(i-2);
 	
+	}
+}
+
+*/
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.io.IOException;
+
+public class greed{
+	public static void main(String[] args) throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		for(int i=0;i<num;i++) {
+			int num2=Integer.parseInt(br.readLine());
+			String[] str=br.readLine().split(" "); 
+			
+			int[] arr=new int[str.length];
+			int[] arr2=new int[str.length];
+			
+			for(int j=0;j<str.length;j++) {
+				arr[j]=Integer.parseInt(str[j]);
+			}
+			
+			Arrays.sort(arr); //정렬 완료
+			
+			if(num2%2==0) { 
+				int k=0;
+				for(int j=0;j<arr.length;j++) {
+					
+					if(j%2==0) {
+						arr2[k++]=arr[j];
+					}
+					else {
+						arr2[arr.length-k]=arr[j];
+					}
+				}
+				
+				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]);
+				for(int j=0;j<arr2.length-1;j++) {
+					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);		
+				}
+					System.out.println(gap);
+
+			}
+			
+			else { //길이가 홀 수 일 때
+				int k=0;
+				for(int j=0;j<arr2.length-1;j++) {
+						
+						if(j%2==0) {
+							arr2[k++]=arr[j];
+						}
+						
+						else {
+							arr2[arr2.length-k]=arr[j];
+						}
+				}
+				arr2[arr2.length/2]=arr[arr.length-1];
+				
+				
+				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]);
+				for(int j=0;j<arr2.length-1;j++) {
+					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);		
+				}
+					System.out.println(gap);
+					
+			}
+		}
 	}
 }
