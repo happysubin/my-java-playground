@@ -100,7 +100,7 @@ public static void main(String[] args)throws IOException {
 
 */
 
-
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -166,3 +166,45 @@ public class greed{
 		}
 	}
 }
+
+*/
+
+//햄버거 문제
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class greed{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String[] str=br.readLine().split(" ");
+		int num=Integer.parseInt(str[0]);
+		int range=Integer.parseInt(str[1]);
+		String[] line=br.readLine().split("");
+		int cnt=0;
+		
+		for(int i=0;i<line.length;i++) {
+			//System.out.println(line[i].equals("P"));
+			if(line[i].equals("P")) { //요소가 P일때
+				for(int j=i-range;j<=i+range;j++) { //기준이 2라면 앞에서부터 뒤까지 반복해야함. 물론 배열의 길이에 유의.
+					if(j>=0&j<line.length) {
+						if(line[j].equals("H")) {
+						cnt++;
+						line[j]="D";
+						break;
+						}
+					}	
+				}	
+			}
+		}
+		System.out.println(cnt);
+	}
+}
+
+//p는 사람 h는 햄버거
+//equals 함수 중요
+
+/*20 2
+HHHHHPPPPPHPHPHPHHHP
+*/
