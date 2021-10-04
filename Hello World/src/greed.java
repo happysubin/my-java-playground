@@ -171,6 +171,7 @@ public class greed{
 
 //햄버거 문제
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -201,10 +202,35 @@ public class greed{
 		System.out.println(cnt);
 	}
 }
-
+*/
 //p는 사람 h는 햄버거
 //equals 함수 중요
 
 /*20 2
 HHHHHPPPPPHPHPHPHHHP
 */
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.io.IOException;
+
+public class greed{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		String[] str=br.readLine().split(" "); 
+		int[] arr=new int[str.length];
+		int sum=0; //뽑힌 값들을 곱하고 더할 때 쓰임
+		for(int i=0;i<str.length;i++) arr[i]=Integer.parseInt(str[i]);
+		Arrays.sort(arr);
+		
+		for(int i=num-1;i>0;i--) {
+			sum+=arr[i]*arr[i-1];
+			arr[i-1]=arr[i]+arr[i-1];
+			
+		}
+		
+		System.out.println(sum);
+	}
+}
