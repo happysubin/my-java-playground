@@ -210,6 +210,7 @@ public class greed{
 HHHHHPPPPPHPHPHPHHHP
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -232,5 +233,38 @@ public class greed{
 		}
 		
 		System.out.println(sum);
+	}
+}
+
+*/
+
+//폴리노미노 
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class greed{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String[] str=br.readLine().split("-"); //마이너스로 나눔
+		
+
+		for(int i=0;i<str.length;i++) {
+			int sum=0;
+			if(str[i].length()>2) {
+				String[] str2=str[i].split("\\+");
+				for(int j=0;j<str2.length;j++) {
+					sum+=Integer.parseInt(str2[j]);
+				}
+				str[i]=String.valueOf(sum);
+			}	
+		}
+		
+		int result=Integer.parseInt(str[0]);
+		for(int i=1;i<str.length;i++) {
+			result-=Integer.parseInt(str[i]);
+		}
+		System.out.println(result);
 	}
 }
