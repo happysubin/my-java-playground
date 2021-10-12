@@ -109,45 +109,50 @@ public class javaClass{
 */
 
 
-class Disk{
+class Disk  {
 	public int width=5;
-	public Disk() {};
+	public Disk(){};
 }
 
 class Disk1 extends Disk{
 	protected int height=6;
-	public int width=10;
-	public Disk1() {}
-	public int area(Disk2 d) {
-		return super.width*height;
+	public Disk1() {};
+	public int area() {
+		return width*height;
 	}
-	
-
 }
 
 class Disk2 extends Disk1{
-	private int depth=7; 
-	public int width=15;
+	private int depth=7;
 	public Disk2(int depth) {
 		this.depth=depth;
+	}
+	public void setdepth(int dep) {
+		this.depth=dep;
 	}
 	public int getdepth() {
 		return depth;
 	}
-	public void setdepth(int depth) {
-		this.depth=depth;
-	}
 	public int vol() {
-		return area(this)*depth;
+		return area()*depth;
 	}
 }
 
-public class javaClass{
+class javaClass{
 	public static void main(String[] args) {
-		Disk2 d =new Disk2(8);
-		System.out.println("d width ="+d.width);
-		System.out.println("d height ="+d.height + ", area ="+d.area(d));
-		d.setdepth(9);
-		System.out.println("d deth = "+d.getdepth()+", vol = "+d.vol());
+		Disk2 d=new Disk2(8);
+	System.out.println("d width = "+d.width);
+	System.out.println("dheight="+d.height+",area="+d.area());
+	d.setdepth(9);
+	System.out.println("ddepth="+d.getdepth()+",vol="+d.vol());
 	}
 }
+
+//¹öÀü 1 
+/*
+
+d width = 5
+dheight=6,area=30
+ddepth=9,vol=270
+
+/*
