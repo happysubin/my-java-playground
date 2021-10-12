@@ -119,7 +119,7 @@ class Disk1 extends Disk{
 	public int width=10; // 여기에 A파트 추가
 	public Disk1() {};
 	public int area(Disk2 d) { //여기에 C파트 수정
-		return d.width*d.height; 
+		return super.width*height;  //여기에 F파트 수정
 	}
 }
 
@@ -186,3 +186,12 @@ ddepth=9,vol=810 90곱하기 9 depth는 set함수를 이용해서 정해진 마지막 값 따라서 8
 */
 
 
+//버전 4 (A,B,C,D,E)
+
+/*
+
+d width = 15 제일 마지막에 값 할당된 width. Disk2에서 할당.
+dheight=6,area=30 //super 키워드는 부모 클래스 멤버 변수와, 메소드를 사용할 수 있다. Disk width는 5. 5*6으로 30 height는 Disk1의 멤버변수
+ddepth=9,vol=270 //30*9를 통해 값 도출
+
+*/
