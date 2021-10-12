@@ -116,6 +116,7 @@ class Disk  {
 
 class Disk1 extends Disk{
 	protected int height=6;
+	public int width=10; // 여기에 A파트 추가
 	public Disk1() {};
 	public int area() {
 		return width*height;
@@ -124,6 +125,7 @@ class Disk1 extends Disk{
 
 class Disk2 extends Disk1{
 	private int depth=7;
+	public int width=15; //여기에 B파트 추가
 	public Disk2(int depth) {
 		this.depth=depth;
 	}
@@ -155,4 +157,16 @@ d width = 5
 dheight=6,area=30
 ddepth=9,vol=270
 
+*/
+
+//버전 2 (A,B)
+
 /*
+d width = 15  제일 마지막에 값 할당된 width. Disk2에서 할당.
+
+dheight=6,area=60 height 는 Disk1에서 값 할당.
+area 메소드가 디스크1의 width height를 곱합 각각 6과 10 이다. 따라서 60
+
+ddepth=9,vol=540 9와 60을 곱한다.
+
+*/
