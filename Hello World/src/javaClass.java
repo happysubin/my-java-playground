@@ -58,6 +58,8 @@ public class javaClass{
 */
 //문제점 분자로 0이 들어오면 안된다.
 
+
+/*
 import java.util.Scanner;
 
 class Book{
@@ -101,5 +103,51 @@ public class javaClass{
 		}
 		sc.close();
 		
+	}
+}
+
+*/
+
+
+class Disk{
+	public int width=5;
+	public Disk() {};
+}
+
+class Disk1 extends Disk{
+	protected int height=6;
+	public int width=10;
+	public Disk1() {}
+	public int area(Disk2 d) {
+		return super.width*height;
+	}
+	
+
+}
+
+class Disk2 extends Disk1{
+	private int depth=7; 
+	public int width=15;
+	public Disk2(int depth) {
+		this.depth=depth;
+	}
+	public int getdepth() {
+		return depth;
+	}
+	public void setdepth(int depth) {
+		this.depth=depth;
+	}
+	public int vol() {
+		return area(this)*depth;
+	}
+}
+
+public class javaClass{
+	public static void main(String[] args) {
+		Disk2 d =new Disk2(8);
+		System.out.println("d width ="+d.width);
+		System.out.println("d height ="+d.height + ", area ="+d.area(d));
+		d.setdepth(9);
+		System.out.println("d deth = "+d.getdepth()+", vol = "+d.vol());
 	}
 }
