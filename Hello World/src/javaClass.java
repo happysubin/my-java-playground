@@ -108,7 +108,7 @@ public class javaClass{
 
 */
 
-
+/*
 class Disk  {
 	public int width=5;
 	public Disk(){};
@@ -149,6 +149,7 @@ class javaClass{
 	System.out.println("ddepth="+d.getdepth()+",vol="+d.vol());
 	}
 }
+*/
 
 //버전 1 
 /*
@@ -195,3 +196,49 @@ dheight=6,area=30 //super 키워드는 부모 클래스 멤버 변수와, 메소드를 사용할 수 �
 ddepth=9,vol=270 //30*9를 통해 값 도출
 
 */
+
+import java.util.Scanner;
+import java.lang.ArithmeticException;
+import java.util.InputMismatchException;
+
+public class javaClass{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int divided=0, dividing=0; int result=0;
+		while(true) {
+			try{
+				System.out.println("나뉨 수를 입력하세요.");
+				 divided=sc.nextInt();
+			}
+			catch(InputMismatchException e) {
+				System.out.println("정수가 아닙니다. 숫자를 입력하세요.");
+				sc.next(); //next로 입력스트림에 있는 정수가 아닌 토큰을 버린다.
+				continue; //이걸 넣어야 밑에 while 문으로 들어가지 않는다.
+			}
+			while(true) {
+				try {
+					System.out.println("나눔 수를 입력하세요.");
+					dividing=sc.nextInt(); //값을 입력받는다.
+					
+				}
+				
+				catch(InputMismatchException e) {
+					System.out.println("정수가 아닙니다. 숫자를 입력하세요.");
+					sc.next(); //next로 입력스트림에 있는 정수가 아닌 토큰을 버린다.
+					continue; //다시 실시한다.
+				}
+				try {
+					result=divided/dividing; //나눈다. 여기서 dividing가 0이면 오류 발생
+					System.out.println(divided+" 를 "+dividing+" 로 나누면 "+result+" 이다.");
+					break; //잘 실행되면 밖으로 나가서 다시 시작.
+				}
+				
+				catch(ArithmeticException e) {
+					System.out.println("0 으로 나눌 수 없습니다. 다른 정수를 입력하세요.");
+					continue; //0이면 sc.next()를 다시할 이유가 없다
+				}
+				
+			}
+		}
+	}
+}
