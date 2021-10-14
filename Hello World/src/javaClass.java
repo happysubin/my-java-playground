@@ -197,6 +197,8 @@ ddepth=9,vol=270 //30*9를 통해 값 도출
 
 */
 
+
+/*
 import java.util.Scanner;
 import java.lang.ArithmeticException;
 import java.util.InputMismatchException;
@@ -241,4 +243,51 @@ public class javaClass{
 			}
 		}
 	}
+}
+
+*/
+
+import java.util.Scanner;
+
+ class Book{ //public class 라고 선언 X
+	String year,author,title;
+	
+	public Book(String title, String author){
+		this(title,author,"발간년도 미상"); //오버로드를 이용하고 this 생성자
+	}
+	public Book(String title, String author, String year){
+		this.year=year;
+		this.title=title;
+		this.author=author;
+	}
+}
+
+public class javaClass{
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	Book[] arr=new Book[2];
+	for(int i=0;i<arr.length;i++) {
+		System.out.println("제목>>");
+		String title=sc.nextLine();
+		
+		System.out.println("저자>>");
+		String author=sc.nextLine();
+		
+		System.out.println("발간년도>>");
+		String year=sc.nextLine();
+		
+		if(year=="") { // 입력이 없을 때 바로 엔터친다면
+			arr[i]=new Book(title,author);
+		}
+		else {
+			arr[i]=new Book(title,author,year);
+			
+		}
+	}
+	for(int i=0;i<arr.length;i++) {
+		System.out.print("(" + arr[i].title + ", " + arr[i].author+ ", " + arr[i].year + ")");
+	}
+	sc.close();
+	
+	}	
 }
