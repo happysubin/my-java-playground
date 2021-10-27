@@ -38,28 +38,23 @@ class highSchool extends PersonX{
 }
 
 public class UpcastingEx3 {
-
-	public static void main(String[] args) {
-		PersonX pu,ph;
-		
-		PersonX p=new PersonX("일반인");
-		underGraduate uG=new underGraduate("대학생");
-		highSchool hS=new highSchool("고등학생");
-		
-		pu=uG; //업캐스팅 발생. 따라서 uG와 같이 오버라이드된 함수를 사용가능.
-		
-		ph=hS;//업캐스팅 발생. 따라서 hS와 같이 오버라이드된 함수를 사용가능.
-		//ph=(PersonX)hS;
-		
-		System.out.println(uG.name); //오류 없음
-		pu.work();
-				
-		//hS=(highSchool)ph;
-		System.out.println(hS.name);//오류 없음
-		ph.work();
-		
-		//p=(PersonX)ph;
-		System.out.println(p.name);//오류 없음
-		p.work();
-	}
-}
+	   public static void main(String[] args) {
+	       PersonX  pu, ph;
+	       PersonX p = new PersonX("Person");
+	       underGraduate uG = new underGraduate("대학생");
+	       highSchool hS = new highSchool("고등학생");
+	       pu = uG; // 업캐스팅 발생
+	       //pu = (PersonX) uG;
+	       ph = hS; // 업캐스팅 발생
+	       //System.out.println(pu.name); // 오류 없음
+	       System.out.println(uG.name); // 오류 없음
+	        pu.work();
+	         //System.out.println(ph.name); // 오류 없음
+	        System.out.println(hS.name); // 오류 없음
+	        ph.work();
+	        //hS.work();
+	        uG = (underGraduate) pu; // 다운캐스팅 발생
+	        System.out.println(p.name); // 오류 없음
+	        p.work();
+	        }
+	    }
