@@ -240,6 +240,7 @@ public class greed{
 
 //폴리노미노 
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -266,5 +267,27 @@ public class greed{
 			result-=Integer.parseInt(str[i]);
 		}
 		System.out.println(result);
+	}
+}
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class greed {
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=1000-Integer.parseInt(br.readLine());
+		int cnt=0;
+		while(num>0) {
+			if(num>=500) {num-=500;cnt++;}
+			else if(num>=100) {num-=100;cnt++;}
+			else if(num>=50) {num-=50;cnt++;}
+			else if(num>=10) {num-=10;cnt++;}
+			else if(num>=5) {num-=5;cnt++;}
+			else {num-=1;cnt++;}
+		}
+		System.out.println(cnt);
 	}
 }
