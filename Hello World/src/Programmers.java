@@ -32,6 +32,7 @@ public class Programmers {
 	        else answer[0]=6;
 	        
 	        return answer;
+	        //ss
 	    }
 	}
 	
