@@ -1,7 +1,7 @@
 
 public class Programmers {
 
-	
+	/*
 	class Solution {
 	    public int[] solution(int[] lottos, int[] win_nums) {
 	        int[] answer = new int[2];
@@ -32,8 +32,27 @@ public class Programmers {
 	        else answer[0]=6;
 	        
 	        return answer;
-	        //sssss
+	    }
+	}
+	*/
+	class Solution {
+	    public int solution(String s) {
+	        int answer = 0;
+	        s=s.replace("zero","0");
+	        s=s.replace("one","1");
+	        s=s.replace("two","2");
+	        s=s.replace("three","3");
+	        s=s.replace("four","4");
+	        s=s.replace("five","5");
+	        s=s.replace("six","6");
+	        s=s.replace("seven","7");
+	        s=s.replace("eight","8");
+	        s=s.replace("nine","9");
+	        String str=String.join("",s);
+	        answer=Integer.parseInt(str);
+	        return answer;
 	    }
 	}
 	
+
 }
