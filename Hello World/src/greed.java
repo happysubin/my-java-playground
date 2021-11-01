@@ -293,6 +293,7 @@ public class greed {
 }
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -314,5 +315,22 @@ public class greed{
 			if(max<sum)max=sum;
 		}
 		System.out.println(max);
+	}
+}
+
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class greed{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String str=br.readLine();
+		str=str.replace("XXXX","AAAA");
+		str=str.replace("XX","BB");
+		if(str.contains("X"))System.out.println(-1); //X가 남아있다면 -1 출력
+		else System.out.println(str);
 	}
 }
