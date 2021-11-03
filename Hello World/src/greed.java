@@ -320,6 +320,7 @@ public class greed{
 
 */
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -332,5 +333,41 @@ public class greed{
 		str=str.replace("XX","BB");
 		if(str.contains("X"))System.out.println(-1); //X가 남아있다면 -1 출력
 		else System.out.println(str);
+		str.toLowerCase()
 	}
 }
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+public class greed {
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String[] str=br.readLine().split(" ");
+		int x=Integer.parseInt(str[0]);
+		int y=Integer.parseInt(str[1]);
+		int cnt=0;
+		while(y>x) {
+			if(y%10==1) {
+				y/=10;
+				cnt++;
+				//System.out.println(y);
+			
+			}
+			else if(y%2==0) {
+				y/=2;
+				cnt++;
+				//System.out.println(y);
+			}
+			else {
+				break;
+			}
+		}
+		if(y==x)System.out.println(++cnt);
+		else System.out.println(-1);
+		
+	}
+}
+
+//5 /2 ==2 cnt =1  2>2 x로 움직임 근데 y==x 그래서 2가나옴
