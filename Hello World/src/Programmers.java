@@ -35,6 +35,7 @@ public class Programmers {
 	    }
 	}
 	*/
+	/*
 	class Solution {
 	    public int solution(String s) {
 	        int answer = 0;
@@ -53,6 +54,20 @@ public class Programmers {
 	        return answer;
 	    }
 	}
-	
+	*/
+	class Solution {
+	    public int solution(int[] absolutes, boolean[] signs) {
+	        int sum=0;
+	        for(int i=0; i<absolutes.length;i++){
+	            if(signs[i]==false)absolutes[i]*=-1;
+	        }
+	        for(int i=0; i<absolutes.length;i++){
+	            sum+=absolutes[i];
+	        }
+	        
+	        int answer = sum;
+	        return answer;
+	    }
+	}
 
 }
