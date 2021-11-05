@@ -337,7 +337,7 @@ public class greed{
 	}
 }
 */
-
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -371,3 +371,24 @@ public class greed {
 }
 
 //5 /2 ==2 cnt =1  2>2 x로 움직임 근데 y==x 그래서 2가나옴
+
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class greed{
+	public static void main(String[] args)throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String[] str=br.readLine().split(""); //모든 요소로 나눈다.
+		int i=0;
+		for(int j=0;j<str.length;j++) {
+			if(i==0&str[j].equals("U"))i++;
+			if((i==1 ||i==3)&str[j].equals("C"))i++;
+			if(i==2 & str[j].equals("P"))i++;
+		}
+		if(i==4)System.out.println("I love UCPC");
+		else System.out.println("I hate UCPC");
+	}
+}
