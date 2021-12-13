@@ -43,20 +43,20 @@ public class greed{
 		
 		for(int i=0;i<str.length();i++) {
 			
-			if(str.charAt(0)=='1') { //1·Î ½ÃÀÛÇÒ¶§
-				if(i<str.length()-1) { //¸¶Áö¸· ¼ýÀÚ Àü±îÁö
+			if(str.charAt(0)=='1') { //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½
+				if(i<str.length()-1) { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					if(str.charAt(i)==str.charAt(i+1)) {
 						continue;
-					}else if(str.charAt(i)=='1'&&str.charAt(i+1)=='0'){ //¹Ù²î´Â ÁöÁ¡¿¡¼­ Áõ°¡
+					}else if(str.charAt(i)=='1'&&str.charAt(i+1)=='0'){ //ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						cnt++;
 					}
 				}
 			}
-			else {//0À¸·Î ½ÃÀÛÇÒ¶§
-				if(i<str.length()-1) { //¸¶Áö¸· ¼ýÀÚ Àü±îÁö
-					if(str.charAt(i)==str.charAt(i+1)) { //1°ú °°À¸¸é ÁøÇà
+			else {//0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½
+				if(i<str.length()-1) { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					if(str.charAt(i)==str.charAt(i+1)) { //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						continue;
-					}else if(str.charAt(i)=='0'&str.charAt(i+1)=='1'){ //¹Ù²î´Â ÁöÁ¡¿¡¼­ Áõ°¡
+					}else if(str.charAt(i)=='0'&str.charAt(i+1)=='1'){ //ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						cnt++;
 					}
 				}
@@ -67,10 +67,10 @@ public class greed{
 	}
 }
 */
-//0À¸·Î ½ÃÀÛÇÑ´Ù. 001100110011001100 ¹­À½ÀÇ¼ö 0 - 5 1 - 4 µû¶ó¼­ 1À» µ¹¸² 
-//            000011001100110011 ¹­À½ÀÇ¼ö 0 - 4 1- 4 µû¶ó¼­ ¾Æ¹«°Å³ª ´ÙµÊ
-//1·Î ½ÃÀÛÇÑ´Ù.  11001100110011 ¹­À½ÀÇ ¼ö 0 - 3 1 - 4 µû¶ó¼­ 0À» µ¹·Á
-//            1100110011000 ¹­À½ÀÇ ¼ö 1 - 3 0 - 3 µû¶ó¼­ ¾Æ¹«°Å³ª ÇØµµµÊ   
+//0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 001100110011001100 ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ 0 - 5 1 - 4 ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+//            000011001100110011 ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ 0 - 4 1- 4 ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Å³ï¿½ ï¿½Ùµï¿½
+//1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.  11001100110011 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 0 - 3 1 - 4 ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//            1100110011000 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 1 - 3 0 - 3 ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Å³ï¿½ ï¿½Øµï¿½ï¿½ï¿½   
 
 
 /*
@@ -121,43 +121,43 @@ public class greed{
 				arr[j]=Integer.parseInt(str[j]);
 			}
 			
-			Arrays.sort(arr); //Á¤·Ä ¿Ï·á
+			Arrays.sort(arr); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 			
-			if(num2%2==0) { //Â¦¼öÀÏ¶§
+			if(num2%2==0) { //Â¦ï¿½ï¿½ï¿½Ï¶ï¿½
 				int k=0;
 				for(int j=0;j<arr.length;j++) {
 					
 					if(j%2==0) {
-						arr2[k++]=arr[j]; //Â¦¼ö ÀÚ¸®¿¡ ¼ýÀÚµéÀ» ¾Õ¿¡¼­ºÎÅÍ ´ãÀ½
+						arr2[k++]=arr[j]; //Â¦ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					}
 					else {
-						arr2[arr.length-k]=arr[j]; //È¦¼ö ÀÚ¸® ¼ýÀÚµéÀ» µÚ¿¡¼­ ºÎÅÍ ´ãÀ½ °á±¹ 1234  1342
+						arr2[arr.length-k]=arr[j]; //È¦ï¿½ï¿½ ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½á±¹ 1234  1342
 					}
 				}
 				
-				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]); //³¡°ú Ã³À½ Â÷ÀÌ¸¦ ±âÁØÀ¸·Î ½ÃÀÛ. Àý´ñ°ª ¾º¿ö¼­ ¾Ë¾Æ³»±â
+				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]); //ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½
 				for(int j=0;j<arr2.length-1;j++) {
-					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);//Â÷ÀÌ Å«°Å ¾÷µ¥ÀÌÆ®
+					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);//ï¿½ï¿½ï¿½ï¿½ Å«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 				}
 					System.out.println(gap); 
 
 			}
 			
-			else { //±æÀÌ°¡ È¦ ¼ö ÀÏ ¶§
+			else { //ï¿½ï¿½ï¿½Ì°ï¿½ È¦ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 				int k=0;
 				for(int j=0;j<arr2.length-1;j++) {
 						
 						if(j%2==0) {
-							arr2[k++]=arr[j]; //Â¦¼ö ÀÚ¸®¸¦ ¾Õ¿¡¼­ ºÎÅÍ ³Ö´Â´Ù  ex 7ÀÌ¸é 0123
+							arr2[k++]=arr[j]; //Â¦ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½  ex 7ï¿½Ì¸ï¿½ 0123
 						}
 						
 						else {
-							arr2[arr2.length-k]=arr[j]; //È¦¼ö ÀÚ¸®¸¦ µÚ¿¡¼­ºÎÅÍ ³Ö´Â´Ù 654
+							arr2[arr2.length-k]=arr[j]; //È¦ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½ 654
 						}
 				}
-				arr2[arr2.length/2]=arr[arr.length-1]; //Á¦ÀÏ Å« ¼ýÀÚ¸¦ °¡¿îµ¥¿¡ ³Ö´Â´Ù. 7ÀÌ¸é 3
+				arr2[arr2.length/2]=arr[arr.length-1]; //ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½Ö´Â´ï¿½. 7ï¿½Ì¸ï¿½ 3
 				
-				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]); //³¡°ú Ã³À½ Â÷ÀÌ¸¦ ±âÁØÀ¸·Î ½ÃÀÛ
+				int gap=Math.abs(arr2[arr2.length-1]-arr2[0]); //ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				for(int j=0;j<arr2.length-1;j++) {
 					if(gap<Math.abs(arr2[j+1]-arr2[j])) gap=Math.abs(arr2[j+1]-arr2[j]);		
 				}
@@ -169,7 +169,7 @@ public class greed{
 
 */
 
-//ÇÜ¹ö°Å ¹®Á¦
+//ï¿½Ü¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 /*
 import java.io.BufferedReader;
@@ -187,8 +187,8 @@ public class greed{
 		
 		for(int i=0;i<line.length;i++) {
 			//System.out.println(line[i].equals("P"));
-			if(line[i].equals("P")) { //¿ä¼Ò°¡ PÀÏ¶§
-				for(int j=i-range;j<=i+range;j++) { //±âÁØÀÌ 2¶ó¸é ¾Õ¿¡¼­ºÎÅÍ µÚ±îÁö ¹Ýº¹ÇØ¾ßÇÔ. ¹°·Ð ¹è¿­ÀÇ ±æÀÌ¿¡ À¯ÀÇ.
+			if(line[i].equals("P")) { //ï¿½ï¿½Ò°ï¿½ Pï¿½Ï¶ï¿½
+				for(int j=i-range;j<=i+range;j++) { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ø¾ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ï¿½.
 					if(j>=0&j<line.length) {
 						if(line[j].equals("H")) {
 						cnt++;
@@ -203,8 +203,8 @@ public class greed{
 	}
 }
 */
-//p´Â »ç¶÷ h´Â ÇÜ¹ö°Å
-//equals ÇÔ¼ö Áß¿ä
+//pï¿½ï¿½ ï¿½ï¿½ï¿½ hï¿½ï¿½ ï¿½Ü¹ï¿½ï¿½ï¿½
+//equals ï¿½Ô¼ï¿½ ï¿½ß¿ï¿½
 
 /*20 2
 HHHHHPPPPPHPHPHPHHHP
@@ -222,7 +222,7 @@ public class greed{
 		int num=Integer.parseInt(br.readLine());
 		String[] str=br.readLine().split(" "); 
 		int[] arr=new int[str.length];
-		int sum=0; //»ÌÈù °ªµéÀ» °öÇÏ°í ´õÇÒ ¶§ ¾²ÀÓ
+		int sum=0; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		for(int i=0;i<str.length;i++) arr[i]=Integer.parseInt(str[i]);
 		Arrays.sort(arr);
 		
@@ -238,7 +238,7 @@ public class greed{
 
 */
 
-//Æú¸®³ë¹Ì³ë 
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ 
 
 /*
 import java.io.BufferedReader;
@@ -248,7 +248,7 @@ import java.io.IOException;
 public class greed{
 	public static void main(String[] args)throws IOException {
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		String[] str=br.readLine().split("-"); //¸¶ÀÌ³Ê½º·Î ³ª´®
+		String[] str=br.readLine().split("-"); //ï¿½ï¿½ï¿½Ì³Ê½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 
 		for(int i=0;i<str.length;i++) {
@@ -331,7 +331,7 @@ public class greed{
 		String str=br.readLine();
 		str=str.replace("XXXX","AAAA");
 		str=str.replace("XX","BB");
-		if(str.contains("X"))System.out.println(-1); //X°¡ ³²¾ÆÀÖ´Ù¸é -1 Ãâ·Â
+		if(str.contains("X"))System.out.println(-1); //Xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Ù¸ï¿½ -1 ï¿½ï¿½ï¿½
 		else System.out.println(str);
 		str.toLowerCase()
 	}
@@ -370,7 +370,7 @@ public class greed {
 	}
 }
 
-//5 /2 ==2 cnt =1  2>2 x·Î ¿òÁ÷ÀÓ ±Ùµ¥ y==x ±×·¡¼­ 2°¡³ª¿È
+//5 /2 ==2 cnt =1  2>2 xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ùµï¿½ y==x ï¿½×·ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 */
 
@@ -382,7 +382,7 @@ import java.io.IOException;
 public class greed{
 	public static void main(String[] args)throws IOException {
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		String[] str=br.readLine().split(""); //¸ðµç ¿ä¼Ò·Î ³ª´«´Ù.
+		String[] str=br.readLine().split(""); //ï¿½ï¿½ï¿½ ï¿½ï¿½Ò·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		int i=0;
 		for(int j=0;j<str.length;j++) {
 			if(i==0&str[j].equals("U"))i++;
@@ -427,3 +427,5 @@ public class greed{
 		}
 	}
 }
+
+//ì¢…ê°•í–ˆìœ¼ë‹ˆ ì´í´ë¦½ìŠ¤ ì‚­ì œí•˜ê³  VSCë¡œ ë‹¤ì‹œ ì‹œìž‘
