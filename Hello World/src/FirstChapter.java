@@ -77,13 +77,36 @@ public class FirstChapter{
 }
 */
 
+import java.util.Scanner;
+
+public class FirstChapter{
+    public String solution(String str){
+        String answer="";
+        for(char x: str.toCharArray()){
+            if(Character.isLowerCase(x))answer+=Character.toUpperCase(x);
+            else answer+=Character.toLowerCase(x);
+        }
+        return answer;
+    }
+
+    public static void main(String[] args){
+        FirstChapter T=new FirstChapter();
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        System.out.println(T.solution(str));
+
+
+    }
+}
+
+
+/*
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 
 
 public class FirstChapter{
-
     public static String solution(String str){
         String[] arr=str.split(" ");
         String result=arr[0];
@@ -94,9 +117,13 @@ public class FirstChapter{
         }
         return result;
     }
+
     public static void main(String[] args)throws IOException{
         BufferedReader br=new java.io.BufferedReader(new InputStreamReader(System.in));
         String str=br.readLine();
         System.out.println(solution(str));
     }
 }
+*/
+
+
