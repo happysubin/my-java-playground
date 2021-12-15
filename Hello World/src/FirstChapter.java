@@ -47,6 +47,7 @@ class TeacherSolution{
 }
 */
 
+/*
 import java.util.Scanner;
 
 public class FirstChapter{
@@ -72,5 +73,30 @@ public class FirstChapter{
         for(int i=0;i<result.length;i++){
             System.out.print(result[i]);
         }
+    }
+}
+*/
+
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+
+public class FirstChapter{
+
+    public static String solution(String str){
+        String[] arr=str.split(" ");
+        String result=arr[0];
+        int max=arr[0].length();
+
+        for(int i=1;i<arr.length;i++){
+            if(max<arr[i].length())result=arr[i];
+        }
+        return result;
+    }
+    public static void main(String[] args)throws IOException{
+        BufferedReader br=new java.io.BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        System.out.println(solution(str));
     }
 }
