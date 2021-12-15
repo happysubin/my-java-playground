@@ -77,6 +77,7 @@ public class FirstChapter{
 }
 */
 
+/*
 import java.util.Scanner;
 
 public class FirstChapter{
@@ -98,7 +99,7 @@ public class FirstChapter{
 
     }
 }
-
+*/
 
 /*
 import java.io.InputStreamReader;
@@ -127,3 +128,27 @@ public class FirstChapter{
 */
 
 
+import java.lang.StringBuffer;
+import java.io.*;
+
+public class FirstChapter{
+
+    public static void solution(int num,String[] arr){
+
+        for(int i=0;i<arr.length;i++){
+            StringBuffer sb=new StringBuffer(arr[i]);
+            String str=sb.reverse().toString();
+            System.out.println(str);
+        }
+        
+    }
+    public static void main(String[] args)throws IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num=Integer.parseInt(br.readLine());  
+        String[] arr=new String[num];
+        for(int i=0; i<num;i++){
+            arr[i]=br.readLine();
+        }  
+        solution(num,arr);   
+    }
+}
