@@ -1,3 +1,4 @@
+/*
 import java.util.Scanner;
 
 public class FirstChapter {
@@ -42,5 +43,34 @@ class TeacherSolution{
         char c=kb.next().charAt(0);
         System.out.println(T.solution(str,c));
         kb.close();
+    }
+}
+*/
+
+import java.util.Scanner;
+
+public class FirstChapter{
+    public static char[] solution(String str){
+        char[] answer=new char[str.length()];
+        for(int i=0;i<str.length();i++){
+            if(Character.isUpperCase(str.charAt(i))){
+                answer[i]=Character.toLowerCase(str.charAt(i));
+            }
+            else if(Character.isLowerCase(str.charAt(i))){
+                answer[i]=Character.toUpperCase(str.charAt(i));
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        char[] result=new char[str.length()];
+
+        result=solution(str);       
+        for(int i=0;i<result.length;i++){
+            System.out.print(result[i]);
+        }
     }
 }
