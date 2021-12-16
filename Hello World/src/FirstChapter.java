@@ -270,6 +270,7 @@ public class FirstChapter{
 
 */
 
+/*
 import java.io.*;
 
 public class FirstChapter{
@@ -293,5 +294,30 @@ public class FirstChapter{
         
         String str=br.readLine();
         System.out.println(T.solution(str));
+    }
+}
+*/
+
+import java.util.Scanner;
+
+//indexOf 함수는 인자로 들어오는 문자가 등장하는 배열의 제일 처음 인덱스 값을 알려준다.
+//따라서 for 문에서 i와 indexOf 리턴 값이 같으면 제일 처음 등장한 문자다. 이것만 answer에 더하면 된다.
+
+public class FirstChapter {
+    public String solution(String str){
+        String answer="";
+        
+        for(int i=0;i<str.length();i++){
+            if(str.indexOf(str.charAt(i))==i)answer+=str.charAt(i);
+        }
+
+        return answer;
+    }
+    public static void main(String[] args){
+        FirstChapter T=new FirstChapter();
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        System.out.println(T.solution(str));
+
     }
 }
