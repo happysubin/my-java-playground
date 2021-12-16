@@ -364,6 +364,7 @@ public class FirstChapter{
 }
 */
 
+/*
 
 import java.util.*;
 class Main {	
@@ -402,4 +403,25 @@ class Main {
 		String str=kb.next();
 		System.out.print(T.solution(str));
 	}
+}
+
+*/
+
+import java.io.*;
+
+
+public class FirstChapter{
+    public String solution(String str){
+        str=str.toLowerCase().replaceAll("[^a-z]",""); //처음인자는 제거할 정규 표현식, 이후는 제거한 곳에 들어갈 문자
+        StringBuffer sb=new StringBuffer(str);
+        if(str.equals(sb.reverse().toString()))return "YES";
+        return "NO";
+
+    }
+    public static void main(String[] args) throws IOException{
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        System.out.println(T.solution(str));
+    }
 }
