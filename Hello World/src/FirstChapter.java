@@ -196,6 +196,7 @@ public class FirstChapter{
 }
 */
 
+/*
 import java.io.*;
 public class FirstChapter{
 
@@ -210,7 +211,7 @@ public class FirstChapter{
                 lt++;
                 rt--;
             }
-            else if(Character.isAlphabetic(arr[lt])!=true &Character.isAlphabetic(arr[rt])!=true){
+            else if(Character.isAlphabetic(arr[lt])!=true &Character.isAlphabetic(arr[rt])!=true){ 
                 lt++;rt--;
             }
             else if(Character.isAlphabetic(arr[lt])!=true)lt++;
@@ -226,5 +227,42 @@ public class FirstChapter{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String str=br.readLine();
         System.out.println(T.solution(str));
+    }
+}
+
+//꼭 자리가 맞을 필요는 없다. 알파벳이 아니면 lt는 뒤로 향하고 rt는 앞으로 향한다.
+// lt rt가 둘다 알파벳이 아닐 수 있으므로 둘 다 아닌 것을 먼저 검사하고 이후에 lt rt 배열 인덱스를 1개씩 검사
+//참고로 lt 는 left rt는 right
+
+*/
+
+import java.util.Scanner;
+
+public class FirstChapter{
+
+    public String solution(String str){
+        String answer;
+        int lt=0, rt=str.length()-1;
+        char[] arr=str.toCharArray();
+        while(lt<rt){
+            if(!Character.isAlphabetic(arr[lt]))lt++; 
+            else if(!Character.isAlphabetic(arr[rt]))rt--;
+            else{
+                char tmp=arr[lt];
+                arr[lt]=arr[rt];
+                arr[rt]=tmp;
+                lt++;
+                rt--;
+            }
+        }
+        answer=String.valueOf(arr);
+        return answer;
+    }
+    public static void main(String[] args){
+        FirstChapter T=new FirstChapter();
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        System.out.println(T.solution(str));
+        sc.close();
     }
 }
