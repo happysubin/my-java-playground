@@ -298,6 +298,8 @@ public class FirstChapter{
 }
 */
 
+/*
+
 import java.util.Scanner;
 
 //indexOf 함수는 인자로 들어오는 문자가 등장하는 배열의 제일 처음 인덱스 값을 알려준다.
@@ -319,5 +321,43 @@ public class FirstChapter {
         String str=sc.next();
         System.out.println(T.solution(str));
 
+    }
+}
+*/
+import java.io.*;
+
+public class FirstChapter{
+    public String solution(String str){
+        String answer="";
+        str=str.toLowerCase();
+        if(str.length()%2==0){ //짝수
+            for(int i=0;i<str.length()/2;i++){
+                if(str.charAt(i)==str.charAt(str.length()-1-i)){
+                    if(i==str.length()/2-1) answer=answer.concat("YES");
+                }
+                else {
+                    answer=answer.concat("NO");
+                    break;
+                }
+            }
+        }else{ //홀수
+            for(int i=0;i<str.length();i++){
+                if(str.charAt(i)==str.charAt(str.length()-1-i)){
+                    if(i==str.length()/2-1) answer=answer.concat("YES");
+                }
+                else {
+                    answer=answer.concat("NO");
+                    break;
+                }
+            }
+        }
+        return answer;
+
+    }
+    public static void main(String[] args)throws IOException{
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        System.out.println(T.solution(str));
     }
 }
