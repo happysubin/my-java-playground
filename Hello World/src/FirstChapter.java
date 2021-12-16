@@ -127,14 +127,15 @@ public class FirstChapter{
 }
 */
 
+/*
 
-import java.lang.StringBuffer;
+import java.lang.StringBuffer; //이걸 사용해야만 reverse method 사용 가능.
 import java.io.*;
 
 public class FirstChapter{
 
     public static void solution(int num,String[] arr){
-
+        
         for(int i=0;i<arr.length;i++){
             StringBuffer sb=new StringBuffer(arr[i]);
             String str=sb.reverse().toString();
@@ -150,5 +151,45 @@ public class FirstChapter{
             arr[i]=br.readLine();
         }  
         solution(num,arr);   
+    }
+}
+
+*/
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class FirstChapter{
+    public ArrayList<String> solution(int num,String[] str){
+        ArrayList<String> answer=new ArrayList<String>();
+        for(String x:str){
+            char[] s=x.toCharArray();
+            int lt=0; int rt=s.length-1; //lt는 뒤집을 문자 배열의 앞을 가리킨다. rt는 뒤집을 문자 배열의 뒤를 가리킨다.
+            //직접 뒤집는 알고리즘
+            while(lt<rt){ //짝수든 홀수든 이 조건.
+                char tmp=s[lt];
+                s[lt]=s[rt];
+                s[rt]=tmp;
+                //교환
+                lt++;
+                rt--;
+            }
+            String tmp=String.valueOf(s);
+            answer.add(tmp);
+        }
+        return answer;
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        FirstChapter T=new FirstChapter();
+        int num=sc.nextInt();
+        String[] str=new String[num];
+        for(int i=0;i<num;i++){
+            str[i]=sc.next();
+        }
+        for(String x:T.solution(num,str)){
+            System.out.println(x);
+        }
+        sc.close();
     }
 }
