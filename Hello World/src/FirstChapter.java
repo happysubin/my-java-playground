@@ -236,6 +236,7 @@ public class FirstChapter{
 
 */
 
+/*
 import java.util.Scanner;
 
 public class FirstChapter{
@@ -264,5 +265,33 @@ public class FirstChapter{
         String str=sc.next();
         System.out.println(T.solution(str));
         sc.close();
+    }
+}
+
+*/
+
+import java.io.*;
+
+public class FirstChapter{
+
+    public String solution(String str){
+        String answer="";
+        String[] arr=str.split("");
+        for(int i=0;i<str.length();i++){
+            if(!answer.contains(arr[i])){
+                answer=answer.concat(arr[i]);
+            }
+            else continue;
+        }
+
+        return answer;
+    }
+    public static void main(String[] args)throws IOException{
+
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        
+        String str=br.readLine();
+        System.out.println(T.solution(str));
     }
 }
