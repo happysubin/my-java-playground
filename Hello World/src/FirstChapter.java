@@ -156,6 +156,7 @@ public class FirstChapter{
 
 */
 
+/*
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -191,5 +192,39 @@ public class FirstChapter{
             System.out.println(x);
         }
         sc.close();
+    }
+}
+*/
+
+import java.io.*;
+public class FirstChapter{
+
+    public String solution(String str){
+        char[] arr=str.toCharArray();
+        int lt=0,rt=arr.length-1;
+        while(lt<rt){
+            if(Character.isAlphabetic(arr[lt])&Character.isAlphabetic(arr[rt])){ //알파벳인지 검사
+                char tmp=arr[lt];
+                arr[lt]=arr[rt];
+                arr[rt]=tmp;
+                lt++;
+                rt--;
+            }
+            else if(Character.isAlphabetic(arr[lt])!=true &Character.isAlphabetic(arr[rt])!=true){
+                lt++;rt--;
+            }
+            else if(Character.isAlphabetic(arr[lt])!=true)lt++;
+            else if(Character.isAlphabetic(arr[rt])!=true)rt--;
+            
+
+        }
+        str=String.valueOf(arr);
+        return str;
+    }
+    public static void main(String[] args)throws IOException{
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        System.out.println(T.solution(str));
     }
 }
