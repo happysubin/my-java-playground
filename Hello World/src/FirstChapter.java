@@ -407,6 +407,7 @@ class Main {
 
 */
 
+/*
 import java.io.*;
 
 
@@ -419,6 +420,23 @@ public class FirstChapter{
 
     }
     public static void main(String[] args) throws IOException{
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        System.out.println(T.solution(str));
+    }
+}
+*/
+import java.io.*;
+
+public class FirstChapter {
+
+    public int solution(String str){
+        String answer=str.toLowerCase().replaceAll("[a-z]",""); //알파벳들을 전부 제거
+        int num=Integer.parseInt(answer);
+        return num;
+    }
+    public static void main(String[] args)throws IOException{
         FirstChapter T=new FirstChapter();
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String str=br.readLine();
