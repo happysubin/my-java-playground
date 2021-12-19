@@ -448,6 +448,9 @@ public class FirstChapter {
 
 */
 
+
+/*
+
 //숫자 0 은 아스키 번호로 48  아스키 번호 57까지가 숫자 9.
 
 import java.util.*;
@@ -457,9 +460,9 @@ class Main {
 		String answer="";
 		for(char x : s.toCharArray()){
 			//if(x>=48 && x<=57) answer=answer*10+(x-48);
-			/*if(Character.isDigit(x)){
-				answer=answer*10+ Character.getNumericValue(x);
-			}*/
+			//if(Character.isDigit(x)){
+				//answer=answer*10+ Character.getNumericValue(x);
+			//}
 			if(Character.isDigit(x)) answer+=x;
 		}
 		return Integer.parseInt(answer);
@@ -472,5 +475,30 @@ class Main {
 		System.out.print(T.solution(str));
 	}
 }
+*/
 
+import java.io.*;
 
+public class FirstChapter{
+    public void solution(String str,int num){
+        String[] arr=new String[num];
+       str=str.replace("#","1");
+       str=str.replace("*","0");
+       int j=0;
+       for(int i=0; i<=str.length()-7;i=i+7){
+           System.out.println(i);
+           arr[j++]=str.substring(i,i+7); //이러면 i 부터 i+6 까지의 숫자를 가져온다. 그러므로 총 7개를 가져오는 것
+       }
+       for(int i=0;i<arr.length;i++){
+           char a=(char)Integer.parseInt(arr[i],2);// 문자열을 2진수로 바꾼다. char형 캐스팅을 통해 정수를 문자로 변환
+           System.out.print(a);
+       }
+    }
+    public static void main(String[] args)throws IOException{
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num=Integer.parseInt(br.readLine());
+        String str=br.readLine();
+        T.solution(str,num);
+    }
+}
