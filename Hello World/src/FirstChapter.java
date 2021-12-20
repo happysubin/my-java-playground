@@ -533,6 +533,8 @@ class Main {
 
 */
 
+
+/*
 import java.io.*;
 
 public class FirstChapter{
@@ -541,8 +543,7 @@ public class FirstChapter{
         String answer="";
         int num=1;
         for(int i=0;i<s.length();i++){
-
-            if(i==s.length()-1){
+            if(i==s.length()-1){ //문자열의 마지막 문자에서 실행됨. 더해진게 있으면 처리 없으면. 문자만 더해짐
                 if(num>1){
                     answer=answer+s.charAt(i)+String.valueOf(num);
                     num=1;
@@ -552,7 +553,7 @@ public class FirstChapter{
                 }  
             }
 
-            else if(s.charAt(i)==s.charAt(i+1)){
+            else if(s.charAt(i)==s.charAt(i+1)){ //s.length -1 까지 만 돈다. 대신 모든 곳을 체크
                 num++;
             }     
 
@@ -575,4 +576,33 @@ public class FirstChapter{
         String s=br.readLine();
         System.out.println(T.solution(s));
     }
+}
+
+*/
+
+
+
+import java.util.*;
+class Main {	
+	public String solution(String s){
+		String answer="";
+		s=s+" "; //이 빈 문자 넣는 테크닉에 정말 놀랐다.
+		int cnt=1;
+		for(int i=0; i<s.length()-1; i++){
+			if(s.charAt(i)==s.charAt(i+1)) cnt++; //맞는 지 검사
+			else{
+				answer+=s.charAt(i); //더하고
+				if(cnt>1) answer+=String.valueOf(cnt); //다르니 숫자가 있으면 넣는다.
+				cnt=1; //숫자를 1로
+			}
+		}
+		return answer;
+	}
+
+	public static void main(String[] args){
+		Main T = new Main();
+		Scanner kb = new Scanner(System.in);
+		String str=kb.next();
+		System.out.println(T.solution(str));
+	}
 }
