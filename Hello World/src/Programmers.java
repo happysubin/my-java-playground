@@ -1,5 +1,5 @@
 
-public class Programmers {
+
 
 	/*
 	class Solution {
@@ -56,19 +56,43 @@ public class Programmers {
 	}
 	*/
 	
-	class Solution {
-	    public int solution(int[] absolutes, boolean[] signs) {
-	        int sum=0;
-	        for(int i=0; i<absolutes.length;i++){
-	            if(signs[i]==false)absolutes[i]*=-1;
-	        }
-	        for(int i=0; i<absolutes.length;i++){
-	            sum+=absolutes[i];
-	        }
-	        
-	        int answer = sum;
-	        return answer;
-	    }
-	}
+	import java.io.*;
 
+public class Programmers {
+	public static String solution(String new_id) {
+		String answer="";
+		new_id=new_id.toLowerCase(); //1
+		new_id=new_id.replaceAll("[^a-z0-9-_.]","");//괄호안의 문자 빼고 다 찾음 2
+			
+		new_id=new_id.replaceAll("\\.+","."); //마침표 \.이 아니라 \\.으로 표현 3
+
+		if(new_id.startsWith(".")){ //4
+			new_id=new_id.substring(1);
+		}
+
+		if(new_id.endsWith(".")){
+			new_id=new_id.substring(0, new_id.length()-1);
+		}
+
+		if(new_id.isEmpty())new_id+="a"; //빈 공백이면 a를 더한다 5
+
+		if(new_id.length()>15)new_id=new_id.substring(0, 15); //0부터 15번째 문자열로 자른다. 6
+
+		if(new_id.endsWith(".")){
+			new_id=new_id.substring(0, new_id.length()-1);
+		}
+		if(new_id.length()<3){ //7
+			for(int i=new_id.length();i<3;i++){
+				new_id+=String.valueOf(new_id.charAt(new_id.length()-1));
+			}
+		}
+		answer+=new_id;	    
+	    return answer;
+	}
+	
+	public static void main(String[] args)throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String s=br.readLine();
+		System.out.println(solution(s));
+	}
 }

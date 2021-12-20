@@ -317,7 +317,8 @@ public class FirstChapter {
     }
     public static void main(String[] args){
         FirstChapter T=new FirstChapter();
-        Scanner sc=new Scanner(System.in);
+        Scanner sc=new Scan
+        ner(System.in);
         String str=sc.next();
         System.out.println(T.solution(str));
 
@@ -580,7 +581,7 @@ public class FirstChapter{
 
 */
 
-
+/*
 
 import java.util.*;
 class Main {	
@@ -605,4 +606,24 @@ class Main {
 		String str=kb.next();
 		System.out.println(T.solution(str));
 	}
+}
+
+*/
+
+
+import java.io.*;
+
+public class FirstChapter{
+
+    public String solution(String str, String word){   
+        int p=1000;
+    }
+    public static void main(String[] args)throws IOException{
+        FirstChapter T= new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        String s=arr[0];
+        String c=arr[1];
+        System.out.println(T.solution(s,c));
+    }
 }
