@@ -507,6 +507,8 @@ public class FirstChapter{
 
 */
 
+/*
+
 import java.util.*;
 class Main {	
 	public String solution(int n, String s){
@@ -527,4 +529,50 @@ class Main {
 		String str=kb.next();
 		System.out.println(T.solution(n, str));
 	}
+}
+
+*/
+
+import java.io.*;
+
+public class FirstChapter{
+
+    public String solution(String s){
+        String answer="";
+        int num=1;
+        for(int i=0;i<s.length();i++){
+
+            if(i==s.length()-1){
+                if(num>1){
+                    answer=answer+s.charAt(i)+String.valueOf(num);
+                    num=1;
+                }
+                else {
+                    answer=answer+s.charAt(i);
+                }  
+            }
+
+            else if(s.charAt(i)==s.charAt(i+1)){
+                num++;
+            }     
+
+            else{
+                if(num>1){
+                    answer=answer+s.charAt(i)+String.valueOf(num);
+                    num=1;
+                }
+                else {
+                    answer=answer+s.charAt(i);
+                }
+            }     
+            
+        }
+        return answer;
+    }
+    public static void main(String[] args)throws IOException{
+        FirstChapter T=new FirstChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String s=br.readLine();
+        System.out.println(T.solution(s));
+    }
 }
