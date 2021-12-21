@@ -615,15 +615,43 @@ import java.io.*;
 
 public class FirstChapter{
 
-    public String solution(String str, String word){   
-        int p=1000;
+    public void solution(String str, char word){  
+        int[] arr=new int[str.length()];
+        int p=500;//문자와 문자 사이의 거리
+
+        for(int i=0;i<str.length();i++){ //앞에서부터 검사
+            if(str.charAt(i)==word){
+                p=0;
+
+            }else{
+                p++;
+                arr[i]=p;
+            }
+        }
+
+         p=500;//문자와 문자 사이의 거리
+
+        for(int i=str.length()-1;i>=0;i--){ //뒤에서부터 다시 검사
+            if(str.charAt(i)==word){
+                p=0;
+            }else{
+                p++;
+                if(arr[i]>p){
+                    arr[i]=p;
+                }
+            }
+        }
+        for(int i=0;i<str.length();i++){
+            System.out.print(arr[i]+" ");
+        }
     }
     public static void main(String[] args)throws IOException{
         FirstChapter T= new FirstChapter();
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String[] arr=br.readLine().split(" ");
         String s=arr[0];
-        String c=arr[1];
-        System.out.println(T.solution(s,c));
+
+        char c=arr[1].charAt(0);
+        System.out.println(T.solution(s,c)); 
     }
 }
