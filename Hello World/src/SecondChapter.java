@@ -25,6 +25,8 @@ public class SecondChapter {
 }
 */
 
+/*
+
 import java.util.*;
 class Main {	
 	public ArrayList<Integer> solution(int n, int[] arr){
@@ -51,3 +53,32 @@ class Main {
 }
 
 
+*/
+
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class SecondChapter{
+	public int solution(String s,int num){
+		int answer=1;
+		String[] arr=s.split(" ");
+		int max=Integer.parseInt(arr[0]);
+		for(int i=1;i<arr.length;i++){
+			if(max<Integer.parseInt(arr[i])){
+				max=Integer.parseInt(arr[i]);
+				answer++;
+			}
+		}
+		return answer;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		String str=br.readLine();
+		System.out.println(T.solution(str, num));
+	}
+}
