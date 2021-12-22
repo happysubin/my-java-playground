@@ -1,4 +1,5 @@
 
+
 /*
 import java.io.*;
 
@@ -84,7 +85,7 @@ public class SecondChapter{
 }
 */
 
-
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -115,3 +116,35 @@ public class SecondChapter{
 }
 
 //1 가위 2 바위 3 보
+
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class SecondChapter{
+
+	public int[] solution(int num){
+		int f=1;
+		int s=1;
+		int[] arr=new int[num];
+		arr[0]=1;arr[1]=1;
+		for(int i=2;i<num;i++){
+			int tmp=s;
+			s+=f;
+			f=tmp;
+			arr[i]=s;
+		}
+		return arr;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		for(int x: T.solution(num)){
+			System.out.print(x+" ");
+		}
+	}
+}
