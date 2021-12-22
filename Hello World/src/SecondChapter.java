@@ -56,7 +56,7 @@ class Main {
 */
 
 
-
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -82,3 +82,36 @@ public class SecondChapter{
 		System.out.println(T.solution(str, num));
 	}
 }
+*/
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class SecondChapter{
+	public String[] solution(int num, String A, String B){
+		String[] answer=new String[num];
+		char[] a=A.replaceAll(" ","").toCharArray();
+		char[] b=B.replaceAll(" ","").toCharArray();
+
+		for(int i=0;i<num;i++){
+			if(a[i]==b[i])answer[i]="D";
+			else if((a[i]=='1'&b[i]=='3')||(a[i]=='2'&b[i]=='1')||(a[i]=='3'&b[i]=='2'))answer[i]="A";
+			else answer[i]="B";
+		}
+		return answer;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		String A=br.readLine();
+		String B=br.readLine();
+		for(String x:T.solution(num, A, B)){
+			System.out.println(x);
+		}		
+	}
+}
+
+//1 가위 2 바위 3 보
