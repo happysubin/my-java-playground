@@ -196,6 +196,7 @@ class Main {
 
 */
 
+/*
 
 import java.io.*;
 
@@ -231,5 +232,34 @@ public class SecondChapter{
 		int num=Integer.parseInt(br.readLine());
 		System.out.println(T.solution(num));
 		
+	}
+}
+
+*/
+
+import java.io.*;
+
+
+public class SecondChapter{
+
+	public int solution(int n){
+		int cnt=0;
+		int[] ch=new int[n+1]; //num+1을 해야 num 까지 인덱스가 생긴다.
+
+		for(int i=2;i<=n;i++){ //i는 2부터 n까지
+			if(ch[i]==0){ //아직 검사하지 않은 수
+				cnt++;
+				for(int j=i;j<=n;j=j+i)ch[j]=1; //i의 배수들을 모두 체크
+			}
+		}
+
+		return cnt;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		System.out.print(T.solution(num));
+
 	}
 }
