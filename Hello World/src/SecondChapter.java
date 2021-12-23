@@ -237,6 +237,7 @@ public class SecondChapter{
 
 */
 
+/*
 import java.io.*;
 
 
@@ -260,6 +261,43 @@ public class SecondChapter{
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 		int num=Integer.parseInt(br.readLine());
 		System.out.print(T.solution(num));
+
+	}
+}
+*/
+
+
+import java.io.*;
+
+
+public class SecondChapter{
+
+	public String solution(int n,String s){
+		String answer="";
+		String [] arr=s.split(" ");
+		for(int i=0;i<n;i++){
+			StringBuffer sb=new StringBuffer(arr[i]);
+			String str=String.valueOf(sb.reverse());
+			int num=Integer.parseInt(str);
+			
+			for(int j=2;j<=num;j++){
+				if(num%j==0){
+					if(j!=num){ // 소수란 1과 자기 자신만으로 나눌 수 있는 수. 고로 2부터 시작해서 자신말고 나뉘는 수가 있으면 멈춤. 만약 이걸 이기면 소수라는 뜻
+						break;
+					}
+					answer+=String.valueOf(num)+" ";
+				}
+
+			}
+		}
+		return answer;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		String s=br.readLine();
+		System.out.print(T.solution(num,s));
 
 	}
 }
