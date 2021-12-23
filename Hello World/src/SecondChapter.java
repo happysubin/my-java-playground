@@ -1,5 +1,4 @@
 
-
 /*
 import java.io.*;
 
@@ -153,6 +152,7 @@ public class SecondChapter{
 
 */
 
+/*
 import java.util.*;
 class Main {	
 	public int[] solution(int n){
@@ -191,5 +191,45 @@ class Main {
 		Scanner kb = new Scanner(System.in);
 		int n=kb.nextInt();
 		T.solution(n);
+	}
+}
+
+*/
+
+
+import java.io.*;
+
+public class SecondChapter{
+	public int solution(int num){
+		int cnt=0;
+		int[] arr=new int[num];
+		for(int i=0;i<num;i++){
+			arr[i]=i+1; //0번 째 인덱스부터 1,2,3.. 순서대로 들어감
+		}
+		
+
+		for(int i=1;i<num;i++){ //1로 시작하면 어차피 다 나뉘므로 2부터 시작
+			if(arr[i]==-1)continue; //-1은 제낀다
+			if(arr[i]*arr[i]<num){ //숫자의 제곱이 최고 숫자보다 작다면 실행
+				for(int j=i+1;j<num;j++){
+					if(arr[j]%arr[i]==0)arr[j]=-1; //만약 검사하는게 기준 arr[i]로 나누어지면 숫자 0을 넣는다.
+				}
+			}else{ 	//숫자의 제곱이 최고 숫자 이상이면 정지
+				break;
+			}
+		}
+
+		for(int i=0;i<num;i++){
+			if(arr[i]>0)cnt++;
+		}
+
+		return cnt-1;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		System.out.println(T.solution(num));
+		
 	}
 }
