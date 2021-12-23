@@ -304,6 +304,7 @@ public class SecondChapter{
 }
 */
 
+/*
 import java.util.*;
 class Main {	
 	public boolean isPrime(int num){
@@ -339,5 +340,32 @@ class Main {
 		for(int x : T.solution(n, arr)){
 			System.out.print(x+" ");
 		}
+	}
+}
+*/
+
+import java.io.*;
+
+public class SecondChapter{
+	public int solution(int num,String s){
+		int answer=0;
+		int score=0;
+		
+		String[] arr=s.split(" ");
+		for(int i=0;i<num;i++){
+			if(Integer.parseInt(arr[i])==1){
+				score++;
+				answer+=score;
+			}
+			else score=0;
+		}
+		return answer;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int num=Integer.parseInt(br.readLine());
+		String s=br.readLine();
+		System.out.println(T.solution(num, s));
 	}
 }
