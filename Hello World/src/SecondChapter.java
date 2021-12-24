@@ -475,6 +475,7 @@ class Main {
 
 */
 
+/*
 import java.util.Scanner;
 
 public class SecondChapter{
@@ -502,5 +503,36 @@ public class SecondChapter{
 
 		System.out.println(T.solution(n, arr));
 		sc.close();
+	}
+}
+
+*/
+
+import java.io.*;
+
+public class SecondChapter{
+	public int[] solution(int n,String str){
+		String[] arr=str.split(" ");
+		int[] answer=new int[n];
+		for(int i=0;i<n;i++){
+			int rank=1;
+			int now=Integer.parseInt(arr[i]);
+			for(int j=0;j<n;j++){
+				if(now<Integer.parseInt(arr[j])){
+					rank++;
+				}
+			}
+			answer[i]=rank;
+		}
+		return answer;
+	}
+	public static void main(String[] args)throws IOException{
+		SecondChapter T=new SecondChapter();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int n=Integer.parseInt(br.readLine());
+		String s=br.readLine();
+		for(int x: T.solution(n, s)){
+			System.out.print(x+" ");
+		}
 	}
 }
