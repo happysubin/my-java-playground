@@ -344,6 +344,8 @@ class Main {
 }
 */
 
+
+/*
 import java.io.*;
 
 public class SecondChapter{
@@ -367,5 +369,66 @@ public class SecondChapter{
 		int num=Integer.parseInt(br.readLine());
 		String s=br.readLine();
 		System.out.println(T.solution(num, s));
+	}
+}
+
+*/
+
+
+import java.util.Scanner;
+
+public class SecondChapter{
+		public int solution(int num,int[][] arr){
+			int max=0;
+			int sum=0;
+			
+			for(int i=0;i<num;i++){
+				sum=0;
+				for(int j=0;j<num;j++){
+					sum+=arr[i][j];
+				}	
+				if(sum>max)max=sum;
+			}
+
+			for(int i=0;i<num;i++){
+				sum=0;
+				for(int j=0;j<num;j++){
+					sum+=arr[j][i];
+				}	
+				if(sum>max)max=sum;
+			}
+
+			
+
+			sum=0;
+			
+			for(int i=0;i<num;i++){
+				sum+=arr[i][i];
+			}
+
+			if(sum >max)max=sum;
+
+			sum=0;
+		
+			for(int i=0;i<num;i++){
+				sum+=arr[i][num-1-i];
+			}	
+		
+			if(sum >max)max=sum;
+
+			return max;
+		}
+	public static void main(String[] args){
+		SecondChapter T=new SecondChapter();
+		Scanner sc=new Scanner(System.in);
+		int num=sc.nextInt();
+		int[][] arr=new int[num][num];
+		for(int i=0;i<num;i++){
+			for(int j=0;j<num;j++){
+				arr[i][j]=sc.nextInt();
+			}
+		}
+		System.out.println(T.solution(num,arr));
+		sc.close();
 	}
 }
