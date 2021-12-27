@@ -1,4 +1,3 @@
-
 /*
 import java.io.*;
 
@@ -541,6 +540,7 @@ public class SecondChapter{
 
 */
 
+/*
 
 import java.util.*;
 class Main {	
@@ -578,3 +578,78 @@ class Main {
 		System.out.print(T.solution(n, arr));
 	}
 }
+
+*/
+
+
+//같은 반을 여러번해도 한번만 체크해야함. 학년은 무조건 5학년까지!!
+
+import java.util.Scanner;;
+
+public class SecondChapter{
+
+	public int solution(int n, int[][] arr){
+		int answer=0;
+		int[][] check=new int[n][n];
+		int[] result=new int[n];
+		int max=-1;
+
+		for(int i=0;i<5;i++){
+			for(int j=0;j<n;j++){
+				for(int z=0;z<n;z++){
+					if(j!=z&&arr[j][i]==arr[z][i]){
+						check[j][z]=1;
+					}
+				}
+			}
+		}		
+
+		for(int i=0;i<n;i++){
+			for(int j=0;j<n;j++){
+				if(check[i][j]==1){
+					result[i]++;
+				}
+			}
+		}
+
+		for(int i=0;i<n;i++){
+			if(max<result[i]){
+				max=result[i];
+				answer=i;
+			}
+		}
+		return answer+1;
+	}
+
+	public static void main(String[] args){
+		SecondChapter T=new SecondChapter();
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+
+		int[][] arr=new int[n][5];
+
+		for(int i=0;i<n;i++){
+			for(int j=0;j<5;j++){
+				arr[i][j]=sc.nextInt();
+			}
+		}
+
+		System.out.print(T.solution(n, arr));
+		sc.close();
+
+	}
+}
+
+/**
+ * 
+ *          1 2 3 4 5   가로는 arr[i][j] 중 j가 나타낸다. 즉 열의 개수
+ *       
+		1	2 3 1 7 3   세로는 arr[i][j] 중 i가 나타낸다. 즉 행의 개수
+ 		2	4 1 9 6 8
+		3	5 5 2 4 4
+		4	6 5 2 6 7
+		5	8 4 2 2 2
+ * 
+ * 
+ * 
+ */
