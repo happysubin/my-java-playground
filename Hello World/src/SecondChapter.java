@@ -584,21 +584,24 @@ class Main {
 
 //같은 반을 여러번해도 한번만 체크해야함. 학년은 무조건 5학년까지!!
 
+
+/*
+
 import java.util.Scanner;;
 
 public class SecondChapter{
 
 	public int solution(int n, int[][] arr){
 		int answer=0;
-		int[][] check=new int[n][n];
-		int[] result=new int[n];
+		int[][] check=new int[n][n]; //한 학생을 기준으로 같은 반에 만난 학생들을 기록. 이 배열로 중복을 피한다.
+		int[] result=new int[n]; //비교할 배열
 		int max=-1;
 
 		for(int i=0;i<5;i++){
 			for(int j=0;j<n;j++){
 				for(int z=0;z<n;z++){
 					if(j!=z&&arr[j][i]==arr[z][i]){
-						check[j][z]=1;
+						check[j][z]=1; // j 가 기준 학생 z 가 만난 학생으로 저장
 					}
 				}
 			}
@@ -607,7 +610,7 @@ public class SecondChapter{
 		for(int i=0;i<n;i++){
 			for(int j=0;j<n;j++){
 				if(check[i][j]==1){
-					result[i]++;
+					result[i]++; //만난학생이 있다면 해당하는 인덱스의 값을 증가. 인덱스는 즉 학생 번호
 				}
 			}
 		}
@@ -640,6 +643,8 @@ public class SecondChapter{
 	}
 }
 
+*/
+
 /**
  * 
  *          1 2 3 4 5   가로는 arr[i][j] 중 j가 나타낸다. 즉 열의 개수
@@ -653,3 +658,41 @@ public class SecondChapter{
  * 
  * 
  */
+
+import java.util.*;
+class Main {	
+	public int solution(int n, int[][] arr){
+		int answer=0, max=0;
+		for(int i=1; i<=n; i++){
+			int cnt=0;
+			for(int j=1; j<=n; j++){
+				for(int k=1; k<=5; k++){
+					if(arr[i][k]==arr[j][k]){
+						cnt++; 
+						break;// 중복 체크할수 있으니 한 번 같은반이였으면 break;
+					}
+				}
+			}
+			if(cnt>max){
+				max=cnt;
+				answer=i;
+			}
+		}
+		return answer;
+	}
+
+	public static void main(String[] args){
+		Main T = new Main();
+		Scanner kb = new Scanner(System.in);
+		int n=kb.nextInt();
+		int[][] arr=new int[n+1][6];
+		for(int i=1; i<=n; i++){
+			for(int j=1; j<=5; j++){
+				arr[i][j]=kb.nextInt();
+			}
+		}
+		System.out.print(T.solution(n, arr));
+	}
+}
+
+ 
