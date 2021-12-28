@@ -1,4 +1,5 @@
 
+
 /*
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,6 +76,8 @@ public class ThirdChapter{
 
 */
 
+/*
+
 import java.util.*;
 class Main {	
 	public ArrayList<Integer> solution(int n, int m, int[] a, int[] b){
@@ -104,4 +107,65 @@ class Main {
 		}
 		for(int x : T.solution(n, m, a, b)) System.out.print(x+" ");
 	}
+}
+
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class ThirdChapter {
+
+    public ArrayList<Integer> solution(int num1,int num2, int[] arr1,int[] arr2){
+        ArrayList<Integer> result=new ArrayList<>();
+        ArrayList<Integer> answer=new ArrayList<>();
+        int p1=0,p2=0;
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        while(p1<num1 &p2<num2){
+            if(arr1[p1]<arr2[p2])result.add(arr1[p1++]);
+            else result.add(arr2[p2++]);
+        }
+
+        while(p1<num1)result.add(arr1[p1++]);
+        while(p2<num2)result.add(arr2[p2++]);
+
+        for(int i=0;i<result.size()-1;i++){
+            
+            if(result.get(i+1).equals(result.get(i))){
+                answer.add(result.get(i+1));
+            }
+            
+        }
+
+        return answer;
+    }
+    public static void main(String[] args)throws IOException{
+        ThirdChapter T=new ThirdChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num1=Integer.parseInt(br.readLine());
+        StringTokenizer st =new StringTokenizer(br.readLine()); 
+        int[] arr1=new int[num1];
+        int i=0;
+        while(st.hasMoreTokens()){
+            arr1[i++]=Integer.parseInt(st.nextToken());
+        }
+
+        int num2=Integer.parseInt(br.readLine());
+        st =new StringTokenizer(br.readLine()); 
+        int[] arr2=new int[num2];
+        i=0;
+        while(st.hasMoreTokens()){
+            arr2[i++]=Integer.parseInt(st.nextToken());
+        }        
+        
+        for(int x: T.solution(num1, num2, arr1, arr2)){
+            System.out.print(x+" ");
+        }
+    }
 }
