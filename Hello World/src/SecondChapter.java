@@ -659,6 +659,8 @@ public class SecondChapter{
  * 
  */
 
+/*
+
 import java.util.*;
 class Main {	
 	public int solution(int n, int[][] arr){
@@ -696,3 +698,43 @@ class Main {
 }
 
  
+*/
+
+
+import java.util.Scanner;
+
+public class SecondChapter{
+	public int solution(int student, int test, int[][] arr){
+		int answer=0;
+		int check[][]=new int[student][student];
+
+		for(int i=0;i<test;i++){
+			for(int j=0;j<student;j++){
+				for(int k=0;k<student;k++){
+					
+					
+				}
+			}
+			System.out.println();
+		}
+		return answer;
+	}
+
+	public static void main(String[] args){
+		SecondChapter T=new SecondChapter();
+		Scanner sc=new Scanner(System.in);
+		int student=sc.nextInt();
+		int test=sc.nextInt();
+
+		int[][] arr=new int[test][student];
+		for(int i=0;i<test;i++){
+			for(int j=0;j<student;j++){
+				arr[i][j]=sc.nextInt();
+			}
+		}
+
+		System.out.print(T.solution(student, test, arr));
+
+		sc.close();
+	}
+}
