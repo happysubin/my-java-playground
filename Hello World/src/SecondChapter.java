@@ -700,3 +700,39 @@ class Main {
  
 */
 
+import java.util.Scanner;;
+
+public class SecondChapter{
+	public int solution(int n,int m,int[][] arr){
+		int answer=0;
+		for(int i=1;i<=n;i++){ //각 학생들
+			for(int j=1;j<=n;j++){
+				int cnt=0;
+				for(int z=0;z<m;z++){ //테스트 개수 만큼
+					int pi=0,pj=0; // pi는 멘토 pj는 멘티
+					for(int k=0;k<n;k++){//학생 수 만큼 이게 등수
+						if(arr[z][k]==i)pi=k; // 학생들 등수를 위한 배열을 돌리는데, 이게 우리가 찾는 멘토번호(i) 와 같다면 학생번호 비교를 위해 넣는다.
+						if(arr[z][k]==j)pj=k; //이건 학생 배열에서 우리가 찾는 j 멘티번호와 같으면 그 값을 넣고 비교.
+					}
+					if(pi<pj)cnt++;
+				}
+				if(cnt==m)answer++; //시험 개수만큼 멘토가 앞에 있는 것이니 통과
+			}
+		}
+		
+		return answer;
+	}
+	public static void main(String[] args){
+		SecondChapter T = new SecondChapter();
+		Scanner kb = new Scanner(System.in);
+		int n=kb.nextInt(); //학생
+		int m=kb.nextInt(); //테스트
+		int[][] arr=new int[m][n];
+		for(int i=0; i<m; i++){
+			for(int j=0; j<n; j++){
+				arr[i][j]=kb.nextInt();
+			}
+		}
+		System.out.print(T.solution(n, m, arr));
+	}
+}
