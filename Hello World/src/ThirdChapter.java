@@ -227,6 +227,8 @@ public class ThirdChapter{
 */
 
 
+/*
+
 import java.io.*;
 import java.util.StringTokenizer;
 
@@ -262,5 +264,36 @@ public class ThirdChapter{
         }
         System.out.print(T.solution(total, continu, arr));
 
+    }
+}
+
+*/
+
+import java.util.Scanner;
+
+public class ThirdChapter{
+    public int solution(int n,int k,int[] arr){
+        int answer=0, sum=0;
+        for(int i=0;i<k;i++){
+            sum+=arr[i];
+        }
+        answer=sum;
+
+        for(int i=k;i<n;i++){       //예를 들어 1 2 3 4 5 6 7 8 이 있다.
+            sum+=arr[i]-arr[i-k];  //1 2 3 을 더한 값이 기본 값. 이후 1 2 3 4 에서 4를 더하고 1을 빼 2 3 4를 구하는 방식. 이것이 슬라이딩 윈도우 방식
+            answer=Math.max(answer, sum);
+        }
+        return answer;
+    }
+    public static void main(String[] args){
+        ThirdChapter T = new ThirdChapter();
+		Scanner kb = new Scanner(System.in);
+		int n=kb.nextInt();
+		int k=kb.nextInt();
+		int[] arr=new int[n];
+		for(int i=0; i<n; i++){
+			arr[i]=kb.nextInt();
+		}
+		System.out.print(T.solution(n, k, arr));
     }
 }
