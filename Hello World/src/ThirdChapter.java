@@ -174,6 +174,8 @@ public class ThirdChapter {
 
 */
 
+/*
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -219,5 +221,46 @@ public class ThirdChapter{
         for(int x:T.solution(num1, num2, arr1, arr2)){
             System.out.print(x+" ");
         }
+    }
+}
+
+*/
+
+
+import java.io.*;
+import java.util.StringTokenizer;
+
+public class ThirdChapter{
+
+    public int solution(int total, int continu, int[] arr){
+        int answer=0;
+        int max=0;
+        for(int i=0;i<total-continu;i++){
+            int check=0;
+            for(int j=i;j<i+continu;j++){
+                check+=arr[j];
+            }
+            if(max<check){
+                max=check;
+                answer=max;
+            }
+        }
+        return answer;
+    }
+    public static void main(String[] args)throws IOException{
+        ThirdChapter T=new ThirdChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] s=br.readLine().split(" ");
+        int total=Integer.parseInt(s[0]);
+        int continu=Integer.parseInt(s[1]);
+
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        int[] arr=new int[total];
+        int i=0;
+        while(st.hasMoreTokens()){
+            arr[i++]=Integer.parseInt(st.nextToken());
+        }
+        System.out.print(T.solution(total, continu, arr));
+
     }
 }
