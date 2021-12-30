@@ -303,11 +303,43 @@ public class ThirdChapter{
 */
 
 
+//3-4 강사님 풀이
+
+import java.util.*;
+class Main {	
+	public int solution(int n, int m, int[] arr){
+		int answer=0, sum=0, lt=0;
+		for(int rt=0; rt<n; rt++){
+			sum+=arr[rt];
+			if(sum==m) answer++;
+			while(sum>=m){
+				sum-=arr[lt++];
+				if(sum==m) answer++; 
+			}
+		}
+		return answer;
+	}
+
+	public static void main(String[] args){
+		Main T = new Main();
+		Scanner kb = new Scanner(System.in);
+		int n=kb.nextInt();
+		int m=kb.nextInt();
+		int[] arr=new int[n];
+		for(int i=0; i<n; i++){
+			arr[i]=kb.nextInt();
+		}
+		System.out.print(T.solution(n, m, arr));
+	}
+}
+
+
+//3-4 내 풀이
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class ThirdChapter{
+public class Main{
 
     public int solution (int total, int goal, int[] arr){
    
@@ -331,7 +363,7 @@ public class ThirdChapter{
         return cnt;
     }
     public static void main(String[] args)throws IOException{
-        ThirdChapter T=new ThirdChapter();
+        Main T=new Main();
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String[] s=br.readLine().split(" ");
         int total=Integer.parseInt(s[0]);
@@ -347,5 +379,3 @@ public class ThirdChapter{
         System.out.print(T.solution(total, goal, arr));
     }
 }
-
-
