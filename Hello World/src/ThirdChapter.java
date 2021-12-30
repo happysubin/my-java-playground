@@ -302,7 +302,7 @@ public class ThirdChapter{
 
 */
 
-/*
+
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -315,7 +315,7 @@ public class ThirdChapter{
 
         // 1 2 1 3 1 1 1 2  
         //순서를 적어보자면 차례로 더 하다가 값이 맞으면 멈춘다. 왜냐면 어차피 숫자가 1보다 커 더해지므로 더 이상의 경우는 없기 때문.
-        //그러면 1에서 모든 수를 구하면 2 다음은 1 다음은 3 이렇게 구하는 생각이였다.
+        //그러면 1에서 모든 수를 구하면 2 다음은 1 다음은 3 이러헤
         for(int i=0; i<total;i++){  
             int sum=0;
             for(int j=i;j<total;j++){
@@ -324,6 +324,7 @@ public class ThirdChapter{
                     cnt++;
                     break;
                 }
+                else if(goal<sum)break; //그냥 안 맞고 값이 커지면 멈춘다. 시간낭비를 막자
 
             }
         }
@@ -347,7 +348,4 @@ public class ThirdChapter{
     }
 }
 
-*/
 
-//시간 초과로 삼중 포문은 실패
-//이것도 시간 초과.. ㅇㄴ
