@@ -336,6 +336,7 @@ class Main {
 
 */
 
+/*
 
 import java.io.*;
 
@@ -357,7 +358,7 @@ public class ThirdChapter{
         }
 
         
-        return cnt;
+        return cnt-1;
     }
     public static void main(String[] args)throws IOException{
         ThirdChapter T=new ThirdChapter();
@@ -366,3 +367,5 @@ public class ThirdChapter{
         System.out.println(T.solution(num));
     }
 }
+
+*/
