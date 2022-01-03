@@ -1,4 +1,5 @@
 
+/*
 import java.io.*;
 import java.util.HashMap;
 
@@ -32,4 +33,38 @@ public class FourthChapter {
         System.out.println(T.solution(num,arr));
     }
     
+}
+*/
+
+import java.io.*;
+import java.util.HashMap;
+
+public class FourthChapter{
+    public String solution(String[] arr1,String[] arr2){
+        HashMap<String,Integer> map1=new HashMap<String,Integer>();
+        HashMap<String,Integer> map2=new HashMap<String,Integer>();
+        for(String x:arr1){
+            map1.put(x,map1.getOrDefault(x, 0)+1);
+        }
+
+        for(String x:arr2){
+            map2.put(x,map2.getOrDefault(x, 0)+1);
+        }   
+
+        for(String x:arr1){
+            if(map1.get(x)!=map2.get(x)){
+                return "NO";
+            }
+        }
+
+        return "YES";
+
+    }
+    public static void main(String[] args)throws IOException{
+        FourthChapter T=new FourthChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr1=br.readLine().split("");
+        String[] arr2=br.readLine().split("");
+        System.out.print(T.solution(arr1, arr2));
+    }
 }
