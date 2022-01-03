@@ -36,6 +36,7 @@ public class FourthChapter {
 }
 */
 
+/*
 import java.io.*;
 import java.util.HashMap;
 
@@ -66,5 +67,62 @@ public class FourthChapter{
         String[] arr1=br.readLine().split("");
         String[] arr2=br.readLine().split("");
         System.out.print(T.solution(arr1, arr2));
+    }
+}
+*/
+
+import java.io.*;
+import java.security.KeyStore.Entry;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
+public class FourthChapter{
+    public int[] solution(int total,int cons,int[] arr){
+        HashMap<Integer,Integer> map=new HashMap<>(total-cons+1);
+        int cnt=0;
+        int lt=0;
+        int[] answer=new int[total-cons+1];
+        int j=0;
+
+        for(int rt=0;rt<total;rt++){  
+            if(cnt<cons){
+                map.put(arr[rt],map.getOrDefault(arr[rt],0)+1);//찾는키가 있으면 더함 
+                cnt++;
+            }
+            if(cnt==cons){
+                answer[j++]=map.size();
+                if(map.get(arr[lt])==1){
+                    map.remove(arr[lt]);
+                    lt++;
+                }
+                else if(map.get(arr[lt])>1){
+                    int num=map.get(arr[lt]);
+                    map.put(arr[lt],num-1);
+                    lt++;
+                }
+                cnt--;
+            }
+        }   
+        
+        return answer;
+    }
+    public static void main(String[] args)throws IOException{
+        FourthChapter T=new FourthChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] s=br.readLine().split(" ");
+        int total=Integer.parseInt(s[0]);
+        int cons=Integer.parseInt(s[1]);
+
+
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        int[] arr=new int[total];
+        int i=0;
+        while(st.hasMoreTokens()){
+            arr[i++]=Integer.parseInt(st.nextToken());
+        }
+
+        for(int x: T.solution(total, cons, arr)){
+            System.out.print(x+" ");
+        }
     }
 }
