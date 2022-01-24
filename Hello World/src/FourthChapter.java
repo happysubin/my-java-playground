@@ -71,8 +71,9 @@ public class FourthChapter{
 }
 */
 
+/*
+
 import java.io.*;
-import java.security.KeyStore.Entry;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -124,5 +125,47 @@ public class FourthChapter{
         for(int x: T.solution(total, cons, arr)){
             System.out.print(x+" ");
         }
+    }
+}
+
+*/
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Set;
+public class FourthChapter{
+    public int solution(String s,String c){
+        HashMap<String,Integer> map=new HashMap<>();
+        int answer=0;
+        String[] arr=s.split("");
+        String[] str=c.split("");
+        int lt=0;
+        int cnt=0;
+        int limit=str.length;
+
+        for(int rt=0;rt<arr.length;rt++){
+
+            if(cnt<limit){
+                map.put(arr[rt],1);
+                cnt++;
+            }
+            if(cnt==limit){
+                Set<String> set= map.keySet();
+                for(String x: set){
+                    System.out.print(x+" ");
+                }
+                map.remove(arr[lt++]);
+                cnt--;
+            }
+        }
+
+        return answer;
+    }
+    public static void main(String[] args)throws IOException{
+        FourthChapter T=new FourthChapter();
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        String s=br.readLine();
+        System.out.print(T.solution(str, s));
     }
 }

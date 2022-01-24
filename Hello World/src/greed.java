@@ -1,4 +1,5 @@
 
+
 /*
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -395,37 +396,3 @@ public class greed{
 }
 */
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
-public class greed{
-	public static void main(String[] args)throws IOException {
-		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		int num=Integer.parseInt(br.readLine());
-		for(int i=0;i<num;i++) {
-			int num2=Integer.parseInt(br.readLine());
-			int cnt=0;
-			int[][] arr=new int[num2][2];
-			for(int j=0;j<num2;j++) {
-				StringTokenizer st = new StringTokenizer(br.readLine());
-				arr[j][0]=Integer.parseInt(st.nextToken());
-				arr[j][1]=Integer.parseInt(st.nextToken());
-			}
-			
-			for(int j=0;j<num2;j++) {
-				for(int z=0;z<num2;z++) {
-					if(arr[j][0]>arr[z][0]&arr[j][1]>arr[z][1]) {
-						cnt++;
-						break;
-					}
-				}
-			}
-			System.out.println(num2-cnt);		
-		}
-	}
-}
-
-//종강했으니 이클립스 삭제하고 VSC로 다시 시작
