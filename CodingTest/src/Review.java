@@ -354,3 +354,51 @@ public class Review{
 }
 
  */
+
+
+import java.util.Scanner;
+
+public class Review{
+    public static int solution(int[][] arr,int num){
+        int[][] check=new int[num][num];
+        int max=0;
+        int result=0;
+
+        for(int i=0;i<5;i++){
+            for(int j=0;j<num;j++){
+               for(int z=0;z<num;z++){
+            if(arr[j][i]==arr[z][i]) {
+                check[j][z]=1;
+            }
+               }
+            }
+        }
+
+        for(int i=0;i<num;i++){
+            int sum=0;
+            for(int j=0;j<num;j++){
+                sum+=check[i][j];
+            }
+            if(max<sum){
+                max=sum;
+                result=i;
+            }
+
+        }
+
+        return result+1;
+    }
+
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int[][] arr=new int[num][5];
+
+        for(int i=0;i<num;i++){
+            for(int j=0;j<5;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        System.out.println(solution(arr,num));
+    }
+}
