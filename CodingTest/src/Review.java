@@ -354,7 +354,7 @@ public class Review{
 }
 
  */
-
+/*
 
 import java.util.Scanner;
 
@@ -400,5 +400,202 @@ public class Review{
             }
         }
         System.out.println(solution(arr,num));
+    }
+}
+*/
+
+/*
+
+import java.io.*;
+
+public class Review{
+    public static int[] solution(String[] arr1, String[] arr2,int num1,int num2){
+        int lt=0,rt=0,i=0;
+
+        int[] answer=new int[num1+num2];
+
+        while(lt<num1&rt<num2){
+            if(Integer.parseInt(arr1[lt])<Integer.parseInt(arr2[rt])){
+                answer[i++]=Integer.parseInt(arr1[lt++]);
+            }else {
+                answer[i++] = Integer.parseInt(arr2[rt++]);
+            }
+        }
+
+        if(lt==num1){
+            for(int j=rt;j<num2;j++){
+                answer[i++]=Integer.parseInt(arr2[rt++]);
+            }
+        }else{
+            for(int j=lt;j<num1;j++){
+                answer[i++]=Integer.parseInt(arr1[lt++]);
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num1=Integer.parseInt(br.readLine());
+        String[] arr1=br.readLine().split(" ");
+        int num2=Integer.parseInt(br.readLine());
+        String[] arr2=br.readLine().split(" ");
+
+        for(int x:solution(arr1,arr2,num1,num2)){
+            System.out.print(x+" ");
+        }
+    }
+}
+*/
+
+/*
+import java.io.*;
+import java.util.Arrays;
+
+public class Review{
+    public static int[] solution(String[] arr1, String[] arr2,int num1,int num2){
+        int z1=0,z2=0,i=0;
+        int lt=0,rt=0;
+        int[] iArr1=new int[num1];
+        int[] iArr2=new int[num2];
+        int[] answer=new int[Math.max(num1,num2)];
+
+        for(String x :arr1){
+            iArr1[z1++]=Integer.parseInt(x);
+        }
+        for(String x: arr2){
+            iArr2[z2++]=Integer.parseInt(x);
+        }
+
+        Arrays.sort(iArr1);
+        Arrays.sort(iArr2);
+
+        while(lt<num1&rt<num2){
+            if(iArr1[lt]<iArr2[rt])lt++;
+            else if(iArr1[lt]>iArr2[rt])rt++;
+            else{
+                answer[i++]=iArr1[lt];
+                lt++;rt++;
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num1=Integer.parseInt(br.readLine());
+        String[] arr1=br.readLine().split(" ");
+        int num2=Integer.parseInt(br.readLine());
+        String[] arr2=br.readLine().split(" ");
+
+        for(int x:solution(arr1,arr2,num1,num2)){
+            if(x!=0)System.out.print(x+" ");
+        }
+    }
+}
+ */
+
+
+/*
+import java.io.*;
+
+public class Review{
+    public static int solution(int len, int num, String[] arr){
+        int[] arr2 =new int[len];
+        int z=0,sum=0,max=0,lt=0;
+        for(String x:arr){
+            arr2[z++]=Integer.parseInt(x);
+        }
+
+        for(int i=0;i<num;i++){
+            sum+=arr2[i];
+        }
+
+        max=sum;
+
+        for(int rt=num;rt<len;rt++){
+            sum=sum-arr2[lt++]+arr2[rt];
+            max=Math.max(max,sum);
+        }
+        return max;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr1=br.readLine().split(" ");
+        int len=Integer.parseInt(arr1[0]);
+        int num=Integer.parseInt(arr1[1]);
+        String[] arr2=br.readLine().split(" ");
+       System.out.print(solution(len,num,arr2));
+
+
+    }
+}
+*/
+
+
+/*
+import java.io.*;
+
+public class Review{
+    public static int solution(int len, int num, String[] arr){
+        int[] arr2 =new int[len];
+        int z=0,sum=0,cnt=0,lt=0;
+        for(String x:arr){
+            arr2[z++]=Integer.parseInt(x);
+        }
+
+        for(int rt=0;rt<len;rt++){
+            sum+=arr2[rt];
+            if(sum==num)cnt++;
+            while(sum>=num){
+                sum-=arr2[lt++];
+                if(sum==num)cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr1=br.readLine().split(" ");
+        int len=Integer.parseInt(arr1[0]);
+        int num=Integer.parseInt(arr1[1]);
+        String[] arr2=br.readLine().split(" ");
+        System.out.print(solution(len,num,arr2));
+    }
+}
+ */
+
+
+
+import java.io.*;
+
+public class Review{
+    public static int solution(int num){
+        int cnt=0, sum=0,lt=0;
+        int[] arr=new int[num];
+        for(int i=1;i<=num;i++){
+            arr[i-1]=i;
+        }
+
+        for(int rt=0;rt<num;rt++){
+            sum+=arr[rt];
+            if(sum==num)cnt++;
+            while(sum>=num){
+                sum-=arr[lt++];
+                if(sum==num)cnt++;
+            }
+        }
+
+
+        return cnt;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num=Integer.parseInt(br.readLine());
+        System.out.print(solution(num));
     }
 }
