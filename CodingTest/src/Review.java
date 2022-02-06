@@ -679,6 +679,7 @@ public class Review{
  */
 
 
+/*
 import java.io.*;
 import java.util.HashMap;
 
@@ -723,3 +724,92 @@ public class Review{
         }
     }
 }
+
+ */
+
+import java.io.*;
+import java.util.HashMap;
+
+public class Review{
+    public static int solution(String str, String key){
+        HashMap<Character,Integer> mapA=new HashMap<>();
+        HashMap<Character,Integer> mapB=new HashMap<>();
+        int answer=0,lt=0;
+
+        for( char c:key.toCharArray()){
+            mapB.put(c,mapB.getOrDefault(c,0)+1);
+        }
+
+        for(int i=0;i<key.length()-1;i++){
+            char c=str.charAt(i);
+            mapA.put(c,mapA.getOrDefault(c,0)+1);
+        }
+
+        for(int rt=key.length()-1;rt<str.length();rt++){
+            char c=str.charAt(rt);
+            mapA.put(c,mapA.getOrDefault(c,0)+1);
+            if(mapA.equals(mapB))answer++;
+
+            mapA.put(str.charAt(lt),mapA.get(str.charAt(lt))-1);
+            if(mapA.get(str.charAt(lt))==0)mapA.remove(str.charAt(lt));
+            lt++;
+
+
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String big=br.readLine();
+        String small=br.readLine();
+
+        System.out.println(solution(big,small));
+    }
+}
+
+
+
+
+
+/*
+import java.io.*;
+import java.util.*;
+
+public class Review{
+    public static int solution(int num, int rank,String[] str){
+        TreeSet<Integer> set=new TreeSet<>(Collections.reverseOrder());
+        Integer[] arr=new Integer[num];
+        int k=0;
+        for(String x:str){
+            arr[k++]=Integer.parseInt(x);
+        }
+        for(int i=0;i<num;i++){
+            for(int j=i+1;j<num;j++){
+                for(int z=j+1;z<num;z++){
+                    set.add(arr[i]+arr[j]+arr[z]);
+                }
+            }
+        }
+        int cnt=0;
+        for(int i: set){
+            cnt++;
+            if(cnt==rank)return i;
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        int num=Integer.parseInt(arr[0]);
+        int rank=Integer.parseInt(arr[1]);
+        String[] arr2=br.readLine().split(" ");
+
+        System.out.println(solution(num,rank,arr2));
+    }
+}
+
+ */
