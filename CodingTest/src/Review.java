@@ -568,7 +568,7 @@ public class Review{
 }
  */
 
-
+/*
 
 import java.io.*;
 
@@ -597,5 +597,129 @@ public class Review{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         int num=Integer.parseInt(br.readLine());
         System.out.print(solution(num));
+    }
+}
+
+ */
+
+/*
+
+import java.io.*;
+import java.util.HashMap;
+
+
+public class Review{
+    public static String solution(int num,String[] arr){
+        HashMap<String,Integer> map=new HashMap<>();
+        int max=0;
+        String answer="";
+
+        for(String x:arr){
+            map.put(x,map.getOrDefault(x,0)+1);
+            //getOrDefault(Object key, V DefaultValue) 키. DefaultValue는 값이 없다면 나오는 기본 값.
+        }
+
+        for( String string:map.keySet()){
+            if(max<map.get(string)){
+                answer=string;
+                max=map.get(string);
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int num=Integer.parseInt(br.readLine());
+        String[] arr=br.readLine().split("");
+        System.out.print(solution(num,arr));
+    }
+}
+
+ */
+
+/*
+
+import java.io.*;
+import java.util.HashMap;
+
+
+public class Review{
+    public static String solution(String str1, String str2){
+        HashMap<Character,Integer> map1=new HashMap<>();
+        HashMap<Character,Integer> map2=new HashMap<>();
+
+
+        for(char x:str1.toCharArray()){
+            map1.put(x,map1.getOrDefault(x,0)+1);
+        }
+        for(char x:str2.toCharArray()){
+            map2.put(x,map2.getOrDefault(x,0)+1);
+        }
+
+        for(char x :map1.keySet()){
+            if(map1.get(x)==map2.get(x))continue;
+            else {
+                return "NO";
+            }
+        }
+
+        return "YES";
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
+        String str1=br.readLine();
+        String str2=br.readLine();
+        System.out.print(solution(str1,str2));
+    }
+}
+
+ */
+
+
+import java.io.*;
+import java.util.HashMap;
+
+
+public class Review{
+    public static int[] solution(int len, int num,String str){
+        HashMap<String,Integer> map=new HashMap<>();
+        String[] key=str.split(" ");
+        int[] answer=new int[len-num+1];
+        int j=0,lt=0;
+
+        for(int i=0;i<num;i++){
+            map.put(key[i],map.getOrDefault(key[i],0)+1);
+        }
+
+        answer[j++]=map.size();
+
+        for(int rt=num;rt<len;rt++){
+            if(map.get(key[lt])!=1){
+                map.put(key[lt],map.get(key[lt])-1);
+            }
+            else if(map.get(key[lt])==1){
+                map.remove(key[lt]);
+            }
+            lt++;
+            map.put(key[rt],map.getOrDefault(key[rt],0)+1);
+            answer[j++]=map.size();
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args)throws  IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        int len=Integer.parseInt(arr[0]);
+        int num=Integer.parseInt(arr[1]);
+        String str=br.readLine();
+
+        for(int x:solution(len,num,str)){
+            System.out.print(x+" ");
+        }
     }
 }
