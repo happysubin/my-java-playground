@@ -33,6 +33,7 @@ public class Unit5 {
 5-1 올바른 괄호 판단
  */
 
+/*
 import java.io.*;
 import java.util.Stack;
 
@@ -68,6 +69,7 @@ public class Unit5 {
 
 //5 -2 괄호 문자 제거
 
+ */
 /*
 
 import java.io.*;
@@ -168,3 +170,171 @@ public class Unit5 {
 
 5-4 후위식 연산
  */
+
+/*
+import java.io.*;
+import java.util.Stack;
+
+
+public class Unit5 {
+    public static int solution(String str) {
+        Stack<Character> stack = new Stack<>();
+        int cnt=0;
+
+        for(int i=0;i<str.length();i++) {
+            if(str.charAt(i)=='('){
+                stack.push(str.charAt(i));
+            }
+            else { //c가 )일 때
+                stack.pop();
+                if(str.charAt(i-1)=='(')cnt+=stack.size();
+                else cnt++;
+            }
+        }
+
+        return cnt;
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+
+        System.out.println(solution(str));
+
+    }
+}
+
+*/
+
+/*
+
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+public class Unit5 {
+    public static int solution(int len, int sec){
+        Queue<Integer> queue=new LinkedList();
+        for(int i=1;i<=len;i++){
+            queue.offer(i);
+        }
+        while(queue.size()!=1){
+            for(int i=1;i<sec;i++) queue.offer(queue.poll());
+            queue.poll();
+        }
+        return queue.poll();
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        int len=Integer.parseInt(arr[0]);
+        int sec=Integer.parseInt(arr[1]);
+        System.out.print(solution(len,sec));
+
+    }
+}
+
+ 5 - 6 공주 구하기 큐
+ */
+
+/*
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+public class Unit5 {
+    public static String solution(String keyword, String str){
+        Queue<Character> queueA=new LinkedList();
+        Queue<Character> queueB=new LinkedList<>();
+
+        for(char c: str.toCharArray()){
+            queueA.offer(c);
+        }
+
+        for(char c: keyword.toCharArray()){
+            queueB.offer(c);
+        }
+
+        while(!queueA.isEmpty()){
+            if(queueA.peek()==queueB.peek()){
+                    queueA.poll();queueB.poll();
+            }
+            else queueA.poll();
+        }
+
+        if(!queueB.isEmpty())return "NO";
+
+        return "YES";
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String keyword=br.readLine();
+        String str=br.readLine();
+
+        System.out.println(solution(keyword,str));
+
+    }
+}
+5 - 7 교육과정 설계
+ */
+
+
+
+
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+class Person {
+    int seq;
+    int danger;
+
+    Person(int seq, int danger) {
+        this.seq = seq;
+        this.danger= danger;
+    }
+}
+
+public class Unit5 {
+    public static int solution(int len,int rank,int[] line) {
+        Queue<Person> queue=new LinkedList<>();
+        int cnt=0;
+
+        for(int i=0;i<len;i++){
+            queue.offer(new Person(i,line[i]));
+        }
+
+        while(!queue.isEmpty()){
+            Person person=queue.poll();
+            for(Person temp:queue){
+                if(person.danger<temp.danger){
+                    queue.offer(person);
+                    person=null;
+                    break;
+                }
+            }
+            if(person!=null){
+                cnt++;
+                if(person.seq==rank)return cnt;
+            }
+        }
+
+        return cnt;
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        int len=Integer.parseInt(arr[0]);
+        int rank=Integer.parseInt(arr[1]),j=0;
+        String[] arr2=br.readLine().split(" ");
+        int[] line=new int[len];
+        for(String s:arr2){
+            line[j++]=Integer.parseInt(s);
+        }
+
+        System.out.println(solution(len,rank,line));
+
+    }
+}
