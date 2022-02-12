@@ -36,6 +36,7 @@ public class Unit6 {
 6 - 1선택 정렬
  */
 
+/*
 import java.io.*;
 
 public class Unit6 {
@@ -74,6 +75,8 @@ public class Unit6 {
 }
 
 
+6-2 버블정렬
+ */
 /*
 import java.io.*;
 
@@ -110,3 +113,42 @@ public class Unit6 {
 
 6 - 3 삽입 정렬
  */
+
+import java.io.*;
+import java.util.ArrayList;
+
+public class Unit6 {
+    public static ArrayList<String> solution(int size, int len, String[] str) {
+        ArrayList<String> arr = new ArrayList<>(size);
+
+        for(int i=0;i<len;i++){
+            String num=str[i];
+
+
+            if(arr.contains(num)){
+                arr.remove(num);
+                arr.add(num);
+            }
+            else arr.add(num);
+
+            if(arr.size()>size)arr.remove(0);
+
+
+        }
+        return arr;
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        int size=Integer.parseInt(arr[0]);
+        int len=Integer.parseInt(arr[1]);
+        String[] str=br.readLine().split(" ");
+
+        ArrayList<String> solution = solution(size, len, str);
+        for(int i=solution.size()-1;i>=0;i--){
+            System.out.print(solution.get(i)+" ");
+        }
+
+
+    }
+}
