@@ -114,6 +114,7 @@ public class Unit6 {
 6 - 3 삽입 정렬
  */
 
+/*
 import java.io.*;
 import java.util.ArrayList;
 
@@ -150,5 +151,68 @@ public class Unit6 {
         }
 
 
+    }
+}
+ 6 - 4 LRU
+ */
+
+/*
+import java.io.*;
+import java.util.Arrays;
+
+public class Unit6 {
+    public static String solution(int num, String[] str) {
+        String answer="U";
+        Arrays.sort(str);
+
+        for(int i=0;i<num-1;i++){
+            if(str[i].equals(str[i+1]))return "D";
+        }
+
+
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int num = Integer.parseInt(br.readLine());
+        String[] str=br.readLine().split(" ");
+        System.out.println(solution(num,str)+" ");
+    }
+}
+6- 5 중복 문자 체크
+ */
+
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Unit6 {
+    public static ArrayList<Integer> solution(int num, int[] arr) {
+        ArrayList<Integer> answer=new ArrayList<>();
+
+        int[] clone=arr.clone();
+        Arrays.sort(clone);
+
+        for(int i=0;i<num;i++){
+            if(clone[i]!=arr[i])answer.add(i+1);
+        }
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int num = Integer.parseInt(br.readLine());
+        String[] str=br.readLine().split(" ");
+        int[] arr=new int[num];
+        int j=0;
+
+        for(String x: str){
+            arr[j++]=Integer.parseInt(x);
+        }
+        for( int x: solution(num,arr)){
+            System.out.print(x+" ");
+        }
     }
 }
