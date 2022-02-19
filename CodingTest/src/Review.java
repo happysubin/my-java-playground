@@ -727,6 +727,7 @@ public class Review{
 
  */
 
+/*
 import java.io.*;
 import java.util.HashMap;
 
@@ -813,3 +814,61 @@ public class Review{
 }
 
  */
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Review{
+    public static int count(int[] arr, int capacity){
+        int cnt=1,sum=0;
+        for(int x:arr){
+            if(sum+x>capacity){
+                cnt++;
+                sum=x;
+            }
+            else sum+=x;
+        }
+
+        return cnt;
+    }
+
+    public static int solution(int len, int num, int[] arr){
+        int lt=Arrays.stream(arr).max().getAsInt();
+        int rt= Arrays.stream(arr).sum();
+        int answer=0;
+
+        while(lt<=rt){
+            int mid=(lt+rt)/2;
+            if(count(arr,mid)<=num){ //mid가 DVD의 용량
+                answer=mid;
+                rt=mid-1;
+            }
+            else lt=mid+1;
+        }
+        return answer;
+    }
+
+    //결정 알고리즘은 답이 확실히 존재한다는 가정하에 사용
+    //rt가 모든 뮤직비디오가 dvd에 들어가는 최대 값
+    //최소 dvd 용량이 뮤직비디오의 제일 큰 값.
+    //그래야지 제일 큰 뮤직비디오가 들어갈 수 있다.
+
+    public static void main(String[] args)throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] str=br.readLine().split(" ");
+        int len=Integer.parseInt(str[0]);
+        int num=Integer.parseInt(str[1]);
+
+        String[] arr=br.readLine().split(" ");
+        int[] list=new int[len];
+        int k=0;
+        for(String s:arr){
+            list[k++]=Integer.parseInt(s);
+        }
+
+        System.out.println(solution(len,num,list));
+    }
+}

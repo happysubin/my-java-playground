@@ -220,6 +220,7 @@ public class Unit6 {
 6 - 6 장난꾸러기
  */
 
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -267,6 +268,8 @@ public class Unit6{
 //6 - 7 좌표 정렬
 
 
+ */
+
 /*
 import java.io.*;
 import java.util.Arrays;
@@ -277,6 +280,23 @@ public class Unit6 {
         int answer=0;
         for(int i=0;i<len;i++){
             if(arr[i]==aim)answer=i+1;
+        }
+        return answer;
+    }
+
+    public static int solution(int len,int aim, int[] arr) {
+        int answer=0;
+        Arrays.sort(arr);
+        int lt=0,rt=len-1;
+
+        while(lt<=rt){ 이분 검색은 언젠가 lt가 rt보다 커진다.
+            int mid=(lt+rt)/2;
+            if(arr[mid]==aim){
+                answer=mid+1;
+                break;
+            }
+            if(arr[mid]>aim)rt=mid-1;
+            else lt=mid+1;
         }
         return answer;
     }
@@ -299,3 +319,52 @@ public class Unit6 {
 
 6 - 8 이분검색
  */
+
+
+import java.io.*;
+import java.util.Arrays;
+
+public class Unit6 {
+
+    public static int count(int[] arr, int capacity){
+        int cnt=1,sum=0;
+        for(int x:arr){
+            if(sum+x>capacity){
+                cnt++;
+                sum=x;
+            }
+            else sum+=x;
+        }
+        return cnt;
+    }
+    public static int solution(int len,int sec, int[] arr) {
+        int lt=arr[len-1];
+        int rt=Arrays.stream(arr).sum();
+        int answer=0;
+
+        while(lt<=rt){
+            int mid=(lt+rt)/2; //mid가 DVD의 용량
+            if(count(arr,mid)<=sec){
+                answer=mid;
+                rt=mid-1;
+            }
+            else lt=mid+1;
+        }
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        int len=Integer.parseInt(arr[0]);
+        int sec=Integer.parseInt(arr[1]);
+        String[] str=br.readLine().split(" ");
+        int[] list=new int[len];
+        int j=0;
+        for(String x: str){
+            list[j++]=Integer.parseInt(x);
+        }
+
+        System.out.println(solution(len,sec,list)+" ");
+    }
+}
