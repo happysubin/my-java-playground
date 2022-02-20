@@ -320,6 +320,7 @@ public class Unit6 {
 6 - 8 이분검색
  */
 
+/*
 
 import java.io.*;
 import java.util.Arrays;
@@ -368,3 +369,5 @@ public class Unit6 {
         System.out.println(solution(len,sec,list)+" ");
     }
 }
+*/
+

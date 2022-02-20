@@ -816,6 +816,7 @@ public class Review{
  */
 
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -870,5 +871,45 @@ public class Review{
         }
 
         System.out.println(solution(len,num,list));
+    }
+}
+
+
+ */
+
+//특정 문자 뒤집기 복습
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Review{
+    public static String solution(String str){
+        int lt=0,rt=str.length()-1;
+        String answer="";
+        char[] arr = str.toCharArray();
+        while(lt<=rt){
+            if(!Character.isAlphabetic(arr[lt]))lt++;
+            else if(!Character.isAlphabetic(arr[rt]))rt--;
+            else{
+                char tmp=arr[lt];
+                arr[lt]=arr[rt];
+                arr[rt]=tmp;
+                lt++;rt--;
+            }
+        }
+
+        for(char c:arr){
+            answer+=c;
+        }
+
+        return answer;
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str=br.readLine();
+        System.out.println(solution(str));
+
     }
 }
