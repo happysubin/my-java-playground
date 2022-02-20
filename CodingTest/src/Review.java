@@ -879,6 +879,7 @@ public class Review{
 
 //특정 문자 뒤집기 복습
 
+/*
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -913,3 +914,162 @@ public class Review{
 
     }
 }
+
+
+ */
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Review{
+    public static int[] solution(String[] str,String target){
+        int[] answer=new int[str.length];
+        int distance=1000;
+
+        for(int i=0;i<str.length;i++){
+            if(str[i].equals(target)){
+                distance=0;
+                answer[i]=distance;
+                distance++;
+            }
+            else {
+                answer[i]=distance;
+                distance++;
+            }
+        }
+
+        distance=1000;
+
+        for(int i=str.length-1;i>=0;i--){
+            if(str[i].equals(target)){
+                distance=0;
+                answer[i]=distance;
+                distance++;
+            }
+            else {
+                if(answer[i]>distance){
+                    answer[i]=distance;
+                    distance++;
+                }
+            }
+        }
+        return answer;
+    }
+    public static void main(String[] args)throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] arr=br.readLine().split(" ");
+        String str=arr[0];
+        String target=arr[1];
+        for(int i: solution(str.split(""),target)){
+            System.out.print(i+" ");
+        }
+    }
+}
+//가장 짧은 문자 거리 복습
+
+*/
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Review{
+
+    public static int count(int[] list, int capacity){
+        int cnt=1;//목표 DVD개수 최소 1개니 1부터 시작
+        int sum=0;//각 뮤직비디오를 담을 용량
+        for(int i:list){
+            if(sum+i>capacity) {
+                sum=i;
+                cnt++;
+            }
+            else sum+=i;
+        }
+        return cnt;
+    }
+    public static int solution(int len,int num,int[] list){
+        int lt= Arrays.stream(list).max().getAsInt();
+        int rt=Arrays.stream(list).sum();
+        int answer=0;
+
+        while(lt<=rt){
+            int mid=(lt+rt)/2;
+            if(count(list,mid)<=num){//목표로 잡은 DVD개수 num을 만족하는지 체크
+                answer=mid;
+                rt=mid-1;//작거나 같으므로 용량을 줄이는게 목표
+            }
+            else lt=mid+1;//너무 작으므로 용량을 키운다.
+        }
+        return answer;
+
+    }
+    public static void main(String[] args)throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String[] str=br.readLine().split(" ");
+        int len=Integer.parseInt(str[0]);
+        int num=Integer.parseInt(str[1]);
+
+        String[] arr=br.readLine().split(" ");
+        int[] list=new int[len];
+        int j=0;
+        for(String s:arr){
+            list[j++]=Integer.parseInt(s);
+        }
+
+        System.out.println(solution(len,num,list));
+
+    }
+}
+
+뮤직비디오 (결정 알고리즘) 복습
+
+ */
+
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+class Point implements Comparable<Point>{
+    public int x;
+    public int y;
+
+    public Point(int x,int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        if(o.x==this.x)return this.y-o.y;
+        else return this.x-o.x;
+    }
+}
+
+public class Review{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        ArrayList<Point> list = new ArrayList<>();
+
+        int num=sc.nextInt();
+
+        for(int i=0;i<num;i++){
+            int x=sc.nextInt();
+            int y=sc.nextInt();
+            list.add(new Point(x,y));
+        }
+
+        Collections.sort(list);
+
+        for(Point p: list){
+            System.out.println(p.x+" "+p.y);
+        }
+    }
+}
+
+//좌표 정렬 복습
