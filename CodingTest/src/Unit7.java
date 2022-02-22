@@ -70,7 +70,7 @@ public class Unit7 {
     팩토리얼 재귀로 풀기
 */
 
-
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -92,3 +92,99 @@ public class Unit7 {
     }
 }
 //피보나치 수열 재귀를 이용.
+
+
+ */
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/*
+
+class Node{
+    int data;
+    Node rt,lt;
+
+    public Node(int value){
+        data=value;
+        lt=rt=null;
+    }
+
+}
+
+public class Unit7 {
+    Node root;
+    public void DFS(Node root){
+        if(root==null)return ;
+        else {
+            //System.out.print(root.data+" "); //전위 순회
+            DFS(root.lt);
+            //System.out.print(root.data+" "); //중위 순회
+            DFS(root.rt);
+            System.out.print(root.data+" "); //후위 순회
+        }
+    }
+    public static void main(String[] args){
+        Unit7 tree=new Unit7();
+        tree.root=new Node(1);
+        tree.root.lt=new Node(2);
+        tree.root.rt=new Node(3);
+        tree.root.lt.lt=new Node(4);
+        tree.root.lt.rt=new Node(5);
+        tree.root.rt.lt=new Node(6);
+        tree.root.rt.rt=new Node(7);
+        tree.DFS(tree.root);
+
+    }
+}
+
+ */
+/** 트리 모양
+ *                1
+ *             2     3
+ *           4  5   6  7
+ *
+ */
+
+//이진 트리 순회 DFS
+
+
+class Node{
+    int data;
+    Node rt,lt;
+
+    public Node(int value){
+        data=value;
+        lt=rt=null;
+    }
+
+}
+
+public class Unit7 {
+    static int n;
+    static int[] ch;
+    public void DFS(int L){
+        if(L==n+1){
+            String tmp="";
+            for(int i=1;i<=n;i++){
+                if(ch[i]==1)tmp+=(i+" ");
+            }
+            if(tmp.length()>0) System.out.println(tmp);
+        }
+        else {
+            ch[L]=1;
+            DFS(L+1); //왼쪽. 사용한다.
+            ch[L]=0;
+            DFS(L+1);//오른쪽. 사용하지 않는다.
+        }
+    }
+    public static void main(String[] args){
+        Unit7 tree=new Unit7();
+        n=3;
+        ch=new int[n+1];
+        tree.DFS(1);// value가 1인 루트부터 시작
+    }
+}
+
+//부분집합 구하기
