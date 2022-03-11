@@ -99,6 +99,8 @@ public class Unit7 {
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /*
 
@@ -149,6 +151,7 @@ public class Unit7 {
 
 //이진 트리 순회 DFS
 
+    /*
 
 class Node{
     int data;
@@ -188,3 +191,99 @@ public class Unit7 {
 }
 
 //부분집합 구하기
+
+
+class Node{
+    int data;
+    Node rt,lt;
+
+    public Node(int value){
+        data=value;
+        lt=rt=null;
+    }
+
+}
+
+public class Unit7{
+    Node root;
+
+    public void BFS(Node root){
+        Queue<Node> queue=new LinkedList();
+        queue.offer(root);
+        int L=0;
+        while(!queue.isEmpty()){
+            Node node = queue.poll();
+            System.out.print(node.data+" ");
+
+            if(node.lt!=null)queue.offer(node.lt);
+            if(node.rt!=null)queue.offer(node.rt);
+
+        }
+    }
+
+    public void BFS(Node root){
+        Queue<Node> queue=new LinkedList();
+        queue.offer(root);
+        int L=0;
+        while(!queue.isEmpty()){
+            int len=queue.size();
+            System.out.print(L + " : ");
+
+            for(int i=0;i<len;i++){
+                Node node = queue.poll();
+                System.out.print(node.data+" ");
+                if(node.lt!=null)queue.offer(node.lt);
+                if(node.rt!=null)queue.offer(node.rt);
+            }
+            L++;
+            System.out.println();
+
+        }
+    }
+
+    public static void main(String[] args) {
+        Unit7 tree=new Unit7();
+        tree.root=new Node(1);
+        tree.root.lt=new Node(2);
+        tree.root.rt=new Node(3);
+        tree.root.lt.lt=new Node(4);
+        tree.root.lt.rt=new Node(5);
+        tree.root.rt.lt=new Node(6);
+        tree.root.rt.rt=new Node(7);
+
+        tree.BFS(tree.root);
+    }
+}
+
+     */
+
+import java.util.*;
+
+public class Unit7 {
+    int answer = 0;
+    int[] dist = {1, -1, 5};
+    int[] ch;
+    Queue<Integer> Q = new LinkedList<>();
+
+    public int BFS(int s, int e) {
+        ch = new int[100001];
+        ch[s] = 1;
+        Q.offer(s);
+        int L = 0; //루트 레벨은 0
+        while (!Q.isEmpty()) {
+
+        }
+
+        return 0;
+    }
+
+
+
+    public static void main(String[] args) {
+        Unit7 T=new Unit7();
+        Scanner sc=new Scanner(System.in);
+        int s=sc.nextInt();//현수 위치
+        int e=sc.nextInt();//송아지 위치
+        System.out.println(T.BFS(s,e));
+    }
+}
