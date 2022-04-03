@@ -1030,7 +1030,7 @@ public class Review{
  */
 
 
-
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -1071,5 +1071,57 @@ public class Review{
         }
     }
 }
-
+ */
 //좌표 정렬 복습
+
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Test implements Comparable<Test>{
+    public int x;
+    public int y;
+    
+    public Test(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int compareTo(Test o){
+        if(this.x > o.x ) return 1;
+        return -1;
+    }
+
+}
+
+public class Review{
+    public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int num = Integer.parseInt(br.readLine());
+        for(int i=0; i< num;i++){
+            int total = Integer.parseInt(br.readLine());
+            ArrayList<Test> arr = new ArrayList<>();
+            for(int j=0;j<total;j++){
+                String[] str = br.readLine().split(" ");
+                arr.add(new Test(Integer.parseInt(str[0]),Integer.parseInt(str[1])));
+                
+            }
+            Collections.sort(arr);
+
+            int standard = arr.get(0).y; //1등 면접을 기준으로
+            int count=1; //1등이 있으니깐
+
+            for(int z=1;z<total;z++){
+                if(standard>arr.get(z).y){
+                    count++;
+                    standard= arr.get(z).y;
+                }
+            }
+            bw.write(count+"\n");
+        }
+        bw.flush();
+    }
+}
