@@ -1,7 +1,7 @@
-package happysubin.javapractice.javastudy.week4.stack;
+package happysubin.javapractice.javastudy.week4.queue;
 
-public class EmptyStackException extends RuntimeException{
-    public EmptyStackException(String msg){
+public class EmptyQueueException extends RuntimeException{
+    public EmptyQueueException(String msg){
         super(msg);
     }
 }
