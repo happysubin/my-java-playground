@@ -42,7 +42,7 @@ class QueueByArrayTest {
     }
 
     @Test
-    @DisplayName("큐가 가득차고 enqueue를 실행하면 FullQueueException 발생.")
+    @DisplayName("빈 큐에서  dequeue를 실행하면 EmptyQueueException 발생.")
     void occurEmptyQueueException(){
         assertThatThrownBy(()->{
             QueueByArray queue = new QueueByArray();
