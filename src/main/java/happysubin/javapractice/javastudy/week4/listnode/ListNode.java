@@ -4,11 +4,11 @@ public class ListNode {
     private int value;
     private ListNode nextNode;
 
-    ListNode(){
+    public ListNode(){
 
     }
 
-    ListNode(int value){
+    public ListNode(int value){
         this.value = value;
         this.nextNode = null;
     }

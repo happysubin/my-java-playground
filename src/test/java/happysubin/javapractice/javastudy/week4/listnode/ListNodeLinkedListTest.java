@@ -106,21 +106,25 @@ class ListNodeLinkedListTest {
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
         ListNode node4 = new ListNode(4);
+        ListNode node5 = new ListNode(5);
 
         node1.setNextNode(node2);
         node3.setNextNode(node4);
 
         //when
         linkedList.add(node1,node3,1);
+        linkedList.add(node1,node5,0);
 
         //then
+
+        assertThat(node5.getNextNode()).isSameAs(node1);
         assertThat(node1.getNextNode()).isSameAs(node3);
         assertThat(node4.getNextNode()).isSameAs(node2);
     }
 
     //ToDo remove 로직
     @Test
-    @DisplayName("정상적인 ListNode add 로직")
+    @DisplayName("정상적인 ListNode Remove 로직")
     void successRemoveLogic(){
         //given
         ListNodeLinkedList linkedList = new ListNodeLinkedList();
@@ -174,7 +178,7 @@ class ListNodeLinkedListTest {
     }
 
     @Test
-    @DisplayName("contains 리턴 값이 true")
+    @DisplayName("contains 리턴 값이 false")
     void containsReturnIsFalse(){
 
         //given
