@@ -1,7 +1,5 @@
 package happysubin.javapractice.javastudy.week4.queue;
 
-//ListNode를 사용해서 Stack을 구현하세요.
-
 import happysubin.javapractice.javastudy.week4.listnode.ListNode;
 
 public class QueueByListNode {
