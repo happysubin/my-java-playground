@@ -1,4 +1,4 @@
-/*
+package happysubin.javapractice.codingtest.baekjoon;/*
 
 import java.io.*;
 import java.util.ArrayList;
@@ -57,3 +57,19 @@ public class Greedy {
 
 
  */
+
+//1759
+import java.io.*;
+
+public class Greedy{
+    public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long num = Long.valueOf(br.readLine());
+        long sum = 0;
+        int i;
+        for(i = 1 ; sum<=num ;i++){
+            sum+=i;
+        }
+        System.out.println(i-2);
+    }
+}
