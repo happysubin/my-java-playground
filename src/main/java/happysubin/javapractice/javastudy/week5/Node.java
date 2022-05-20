@@ -1,5 +1,7 @@
 package happysubin.javapractice.javastudy.week5;
 
+import java.util.Stack;
+
 public class Node {
     private int value;
     private Node right;

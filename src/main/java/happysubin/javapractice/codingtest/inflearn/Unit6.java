@@ -1,4 +1,4 @@
-package happysubin.javapractice.codingtest;/*
+package happysubin.javapractice.codingtest.inflearn;/*
 import java.io.*;
 
 public class Unit6 {

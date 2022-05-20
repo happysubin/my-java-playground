@@ -1,4 +1,4 @@
-package happysubin.javapractice.codingtest;
+package happysubin.javapractice.codingtest.inflearn;
 /*
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -96,9 +96,6 @@ public class Unit7 {
 
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -256,8 +253,6 @@ public class Unit7{
 }
 
      */
-
-import java.util.*;
 
 public class Unit7 {
     int answer = 0;

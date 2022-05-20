@@ -2,7 +2,7 @@ package happysubin.javapractice.javastudy.week5;
 
 import java.util.LinkedList;
 
-public class BinaryTree {
+public class BinaryTree  {
 
 
     public BinaryTree() {
@@ -25,6 +25,7 @@ public class BinaryTree {
         while(!queue.isEmpty()){
             node  = queue.poll();
             System.out.println(node.getValue());
+
             if(node.getLeft() != null) queue.add(node.getLeft());
             if(node.getRight() !=null) queue.add(node.getRight());
         }
