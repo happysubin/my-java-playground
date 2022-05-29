@@ -1,6 +1,6 @@
 package happysubin.javapractice.book.realworld.ThirdChapter;
 
-import happysubin.javapractice.book.realworld.SecondChapter.step3.BankTransaction;
+import happysubin.javapractice.book.realworld.SecondChapter.step4.BankTransaction;
 
 import java.time.Month;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import java.util.List;
 
 public class BankStatementProcessor {
     private final List<BankTransaction> bankTransactions;
+    private final BankTransactionFilter bankTransactionFilter = new BankTransactionIsInFebruaryAndExpensive();
 
 
     public BankStatementProcessor(List<BankTransaction> bankTransactions) {
@@ -92,4 +93,14 @@ public class BankStatementProcessor {
      * BankTransactionFilter는 test라는 불린 값을 리턴하는 함수형 인터페이스다!
      *
      */
+
+    public List<BankTransaction> findTransactions (BankTransaction bankTransaction){
+        final List<BankTransaction> result = new ArrayList<>();
+        for (BankTransaction transaction : bankTransactions) {
+            if(bankTransactionFilter.test(transaction)){
+                result.add(transaction);
+            }
+        }
+        return result;
+    }
 }
