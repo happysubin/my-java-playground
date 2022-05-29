@@ -11,30 +11,29 @@ import java.util.List;
 
 public class BankStatementProcessor {
     private final List<BankTransaction> bankTransactions;
-    private final BankTransactionFilter bankTransactionFilter = new BankTransactionIsInFebruaryAndExpensive();
+    private final BankTransactionFilter bankTransactionFilter;
+    private final BankTransactionSummarizer bankTransactionSummarizer;
 
 
     public BankStatementProcessor(List<BankTransaction> bankTransactions) {
         this.bankTransactions = bankTransactions;
+        this.bankTransactionFilter = new BankTransactionIsInFebruaryAndExpensive();
+        this.bankTransactionSummarizer = new BankTransactionSummarizerImplV1();
     }
-    /*
 
-    public double calculateTotalAmount(){
-        double total = 0d;
+
+    public double summarizeTransactions(BankTransactionSummarizer bankTransactionSummarizer){
+        double result = 0;
         for (BankTransaction bankTransaction : bankTransactions) {
-            total += bankTransaction.getAmount();
+            result = bankTransactionSummarizer.summarize(result,bankTransaction);
         }
-        return total;
+
+        return result;
     }
 
     public double calculateTotalInMonth(Month month){
-        double total = 0d;
-        for (BankTransaction bankTransaction : bankTransactions) {
-            if(bankTransaction.getLocalDate().getMonth() == month){
-                total += bankTransaction.getAmount();
-            }
-        }
-        return total;
+        return summarizeTransactions((acc,bankTransaction)->
+                bankTransaction.getLocalDate().getMonth() == month ? acc + bankTransaction.getAmount() : acc);
     }
 
     public double calculateTotalForCategory(String category){
@@ -47,11 +46,11 @@ public class BankStatementProcessor {
         return total;
     }
 
-     */
     //--여기가 이번장에서 추가한 요구사항 부분 --//
 
     //특정 금액 이상의 거래 찾기
-    public List<BankTransaction> findTransactionGreaterThanEqual(final int amount){
+
+    public List<BankTransaction> findTransactionGreaterThanEqualV1(final int amount){
         final List<BankTransaction> result = new ArrayList<>();
         for (BankTransaction bankTransaction : bankTransactions) {
             if(bankTransaction.getAmount() >= amount){
@@ -94,7 +93,7 @@ public class BankStatementProcessor {
      *
      */
 
-    public List<BankTransaction> findTransactions (BankTransaction bankTransaction){
+    public List<BankTransaction> findTransactions (BankTransactionFilter bankTransactionFilter){
         final List<BankTransaction> result = new ArrayList<>();
         for (BankTransaction transaction : bankTransactions) {
             if(bankTransactionFilter.test(transaction)){
@@ -102,5 +101,9 @@ public class BankStatementProcessor {
             }
         }
         return result;
+    }
+
+    public List<BankTransaction> findTransactionGreaterThanEqualV2(final int amount){
+        return findTransactions(bankTransaction -> bankTransaction.getAmount() >= amount );
     }
 }
