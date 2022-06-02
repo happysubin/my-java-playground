@@ -1,4 +1,4 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step3;
+package happysubin.javapractice.book.realworld.secondchapter.step3;
 
 
 
@@ -7,10 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
-
-import static happysubin.javapractice.book.realworld.SecondChapter.step2.BankExampleV2.calculateTotalAmount;
 
 //기존 V2클래스는 다양한 응용프로그램을 연결하는 지점이였다.
 //그러나 이전에 클래스에서 계산 관련작업이나 파싱이나 결과 전송과는 직접적인 관련이 없다.

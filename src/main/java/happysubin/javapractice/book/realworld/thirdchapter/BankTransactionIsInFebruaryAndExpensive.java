@@ -1,6 +1,6 @@
-package happysubin.javapractice.book.realworld.ThirdChapter;
+package happysubin.javapractice.book.realworld.thirdchapter;
 
-import happysubin.javapractice.book.realworld.SecondChapter.step4.BankTransaction;
+import happysubin.javapractice.book.realworld.secondchapter.step4.BankTransaction;
 
 import java.time.Month;
 

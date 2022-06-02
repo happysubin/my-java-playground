@@ -1,4 +1,4 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step4;
+package happysubin.javapractice.book.realworld.secondchapter.step4;
 
 
 

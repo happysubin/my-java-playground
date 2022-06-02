@@ -1,6 +1,6 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step4;
+package happysubin.javapractice.book.realworld.secondchapter.step4;
 
-import happysubin.javapractice.book.realworld.ThirdChapter.Notification;
+import happysubin.javapractice.book.realworld.thirdchapter.Notification;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -66,7 +66,7 @@ public class BankTransaction {
 
         final LocalDate parsedDate;
         try{
-            parsedDate = LocalDate.parse(this.localDate.format());
+            parsedDate = LocalDate.parse(this.localDate.toString());
             if(parsedDate.isAfter(LocalDate.now())){
                 notification.addError("date cannot be int the future");
             }
@@ -74,6 +74,8 @@ public class BankTransaction {
         catch(DateTimeParseException e){
             notification.addError("Invalid format for date");
         }
+
+        return notification;
 
     }
 }

@@ -1,4 +1,4 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step1;
+package happysubin.javapractice.book.realworld.secondchapter.step1;
 
 import java.io.IOException;
 import java.nio.file.Files;

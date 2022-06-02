@@ -1,4 +1,4 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step3;
+package happysubin.javapractice.book.realworld.secondchapter.step3;
 
 import java.time.Month;
 import java.util.List;

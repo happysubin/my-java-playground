@@ -62,7 +62,7 @@ public class Greedy {
 import java.io.*;
 
 public class Greedy{
-    public static void main(String[] args)throws IOException{
+    public static void main(Strings[] args)throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         long num = Long.valueOf(br.readLine());
         long sum = 0;

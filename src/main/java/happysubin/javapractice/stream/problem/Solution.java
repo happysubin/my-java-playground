@@ -1,4 +1,4 @@
-package stream.problem;
+package happysubin.javapractice.stream.problem;
 
 import java.util.Arrays;
 import java.util.Comparator;

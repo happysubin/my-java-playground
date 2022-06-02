@@ -1,15 +1,11 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step4;
+package happysubin.javapractice.book.realworld.secondchapter.step4;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BankStatementCSVParserTest {
 

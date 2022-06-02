@@ -1,4 +1,4 @@
-package happysubin.javapractice.book.realworld.SecondChapter.step2;
+package happysubin.javapractice.book.realworld.secondchapter.step2;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

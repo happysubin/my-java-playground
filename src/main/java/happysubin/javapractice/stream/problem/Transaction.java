@@ -1,4 +1,4 @@
-package stream.problem;
+package happysubin.javapractice.stream.problem;
 
 public class Transaction {
     private final Trader trader;

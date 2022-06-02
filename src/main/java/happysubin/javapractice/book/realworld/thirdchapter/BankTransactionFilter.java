@@ -1,8 +1,6 @@
-package happysubin.javapractice.book.realworld.ThirdChapter;
+package happysubin.javapractice.book.realworld.thirdchapter;
 
-import happysubin.javapractice.book.realworld.SecondChapter.step4.BankTransaction;
-
-import java.util.List;
+import happysubin.javapractice.book.realworld.secondchapter.step4.BankTransaction;
 
 @FunctionalInterface
 public interface BankTransactionFilter {

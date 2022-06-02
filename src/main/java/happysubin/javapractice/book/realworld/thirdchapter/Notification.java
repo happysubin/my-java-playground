@@ -1,4 +1,4 @@
-package happysubin.javapractice.book.realworld.ThirdChapter;
+package happysubin.javapractice.book.realworld.thirdchapter;
 
 import java.util.ArrayList;
 import java.util.List;
