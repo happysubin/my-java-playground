@@ -102,10 +102,10 @@ public class Kakao{
 
 */
 
-
+/*
 
 //이거 아이디를 넣고 그것만 바꿔줘도 될듯.. 똑똑한 사람이 많구나
-//
+//오픈 채팅방
 public class Kakao{
 
     static public String[] solution(String[] record) {
@@ -161,5 +161,73 @@ public class Kakao{
                         "Change uid4567 Ryan"};
 
         System.out.println(solution(result));
+    }
+}
+
+ */
+
+
+
+
+
+public class Kakao {
+
+    static public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = new String[arr1.length];
+        String[] str1 = new String[arr1.length];
+        String[] str2 = new String[arr2.length];
+
+        for(int i = 0; i < arr1.length; i++){
+            String s = Integer.toBinaryString(arr1[i]);
+            while(s.length() < arr1.length){
+                s = "0" + s;
+            }
+            str1[i] = s;
+        }
+
+        for(int i = 0; i < arr2.length; i++){
+            String s = Integer.toBinaryString(arr2[i]);
+            while(s.length() < arr2.length){
+                s = "0" + s;
+            }
+            str2[i] = s;
+        }
+        //변환 완료
+
+
+
+        for(int i = 0; i < arr1.length; i++){
+            String s = "";
+            String[] map1 = str1[i].split("");
+            String[] map2 = str2[i].split("");
+            for(int j = 0; j < map1.length; j++){
+                if(map1[j].equals("1") | map2[j].equals("1")){
+                    s = s +"#";
+                }
+                else{
+                    s = s +" ";
+                }
+            }
+            answer[i] = s;
+        }
+
+
+        for (String s : answer) {
+            System.out.println("s = " + s);
+        }
+
+        return answer;
+    }
+
+
+    public static void main(String[] args) {
+        int n = 5;
+
+        int[] arr1 = {9, 20, 28, 18, 11};
+        int[] arr2 = {30, 1, 21, 17, 28};
+
+        System.out.println(solution(n,arr1,arr2));
+
+
     }
 }
