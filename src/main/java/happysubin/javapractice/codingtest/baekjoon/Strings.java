@@ -344,6 +344,7 @@ public class Strings {
 
  */
 
+/*
 
 //10610
 public class Strings {
@@ -368,7 +369,128 @@ public class Strings {
             }
         }
 
+    }
+}
+*/
 
+/*
+
+//11656
+public class Strings {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        String[] arr = new String[str.length()];
+
+        for(int i = 0; i < str.length(); i++){
+            arr[i] = str.substring(i,str.length());
+        }
+        Arrays.sort(arr);
+
+        for (String s : arr) {
+            System.out.println(s);
+        }
+
+    }
+}
+
+*/
+
+//14425
+/*
+public class Strings {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int num1 = Integer.parseInt(str[0]);
+        int num2 = Integer.parseInt(str[1]);
+        int answer = 0;
+
+        List<String> list = new ArrayList<>();
+
+        for(int i = 0; i < num1; i++){
+            list.add(br.readLine());
+        }
+
+        for(int i = 0; i < num2; i++){
+            if(list.contains(br.readLine())){
+                answer++;
+            }
+        }
+
+
+        System.out.println(answer);
+
+    }
+}
+
+
+ */
+
+/*
+//11478
+public class Strings {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Set<String> set = new HashSet<>(); //중복 방지
+        String str = br.readLine();
+
+        for(int i = 0; i <= str.length(); i++){
+            for(int j = i; j <= str.length(); j++){
+                String substring = str.substring(i, j);
+                if(!substring.equals("")){ //이 경우가 아니면 모두 추가
+                    set.add(substring);
+                }
+            }
+        }
+        System.out.println(set.size());
+    }
+}
+
+ */
+
+
+//5635
+class Birthday implements  Comparable<Birthday>{
+    String name;
+    int year;
+    int month;
+    int day;
+
+    public Birthday(String name, int day, int month, int year) {
+        this.name = name;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    @Override
+    public int compareTo(Birthday o) {
+        if(this.year < o.year ) return 1;
+        else if(this.year > o.year) return -1;
+        else if(this.month < o.month) return 1;
+        else if(this.month > o.month) return -1;
+        else if(this.day < o.day) return 1;
+        else  return -1;
+    }
+}
+
+public class Strings {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<Birthday> arr = new ArrayList<>();
+        int num = Integer.parseInt(br.readLine());
+        for(int i = 0; i < num; i++){
+            String[] str = br.readLine().split(" ");
+            Birthday birthday =
+                    new Birthday(str[0],Integer.parseInt(str[1]),Integer.parseInt(str[2]),Integer.parseInt(str[3]));
+            arr.add(birthday);
+        }
+
+        Collections.sort(arr);
+
+        System.out.println(arr.get(0).name);
+        System.out.println(arr.get(arr.size()-1).name);
 
     }
 }
