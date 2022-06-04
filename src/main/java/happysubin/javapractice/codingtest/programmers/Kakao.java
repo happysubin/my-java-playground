@@ -1,5 +1,7 @@
 package happysubin.javapractice.codingtest.programmers;
 
+import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /*
@@ -44,6 +46,9 @@ public class Kakao {
 
  */
 
+/*
+
+//신고 결과 받기
 public class Kakao{
 
     static public int[] solution(String[] id_list, String[] report, int k) {
@@ -92,5 +97,69 @@ public class Kakao{
         for (int i : solution) {
             System.out.println("i = " + i);
         }
+    }
+}
+
+*/
+
+
+
+//이거 아이디를 넣고 그것만 바꿔줘도 될듯.. 똑똑한 사람이 많구나
+//
+public class Kakao{
+
+    static public String[] solution(String[] record) {
+        Map<String, String> nameMap = new HashMap<>();
+        ArrayList<String> log = new ArrayList<>();
+
+        for(int i = 0; i < record.length; i++){
+            handleProcess(record[i], nameMap, log);
+        }
+
+        String[] answer = new String[log.size()];
+
+        for (int i = 0; i< log.size(); i++) {
+            String[] str =  log.get(i).split("&&");
+            String nickName = log.get(i).split("님이")[0];
+            String uid = str[1];
+           if(log.get(i).contains(uid) & nameMap.get(uid) != nickName){
+               String s = str[0].replace(nickName,nameMap.get(uid));
+               answer[i] = s;
+           }
+        }
+
+        return answer;
+    }
+
+    static void handleProcess(String str, Map<String,String> nameMap, ArrayList<String> log ){
+        StringTokenizer token = new StringTokenizer(str, " ");
+        String action = token.nextToken();
+        if(action.equals("Enter")){
+            String uid = token.nextToken();
+            String nickName = token.nextToken();
+            nameMap.put(uid, nickName);
+            log.add(nickName+"님이 들어왔습니다." + "&&" + uid);
+        }
+        else if(action.equals("Leave")){
+            String uid = token.nextToken();
+            String nickName = nameMap.get(uid);
+            log.add(nickName+"님이 나갔습니다." +"&&" + uid);
+        }
+        else{
+            String uid = token.nextToken();
+            String newNickName = token.nextToken();
+            nameMap.put(uid,newNickName);
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] result =
+                        {"Enter uid1234 Muzi",
+                        "Enter uid4567 Prodo",
+                        "Leave uid1234",
+                        "Enter uid1234 Prodo",
+                        "Change uid4567 Ryan"};
+
+        System.out.println(solution(result));
     }
 }
