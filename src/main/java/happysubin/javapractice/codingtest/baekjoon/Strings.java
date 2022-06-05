@@ -451,6 +451,8 @@ public class Strings {
 
 
 //5635
+
+/*
 class Birthday implements  Comparable<Birthday>{
     String name;
     int year;
@@ -492,5 +494,36 @@ public class Strings {
         System.out.println(arr.get(0).name);
         System.out.println(arr.get(arr.size()-1).name);
 
+    }
+}
+
+
+ */
+
+public class Strings {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int num = Integer.parseInt(br.readLine());
+        Map<String, Integer> map = new HashMap<>();
+        String answer = "{";
+
+        for(int i = 0; i < num; i++){
+            String key = br.readLine();;
+            map.put(key , map.getOrDefault(key , 0 ) + 1 );
+        }
+
+        Object[] objects = map.keySet().toArray();
+        Arrays.sort(objects);
+
+        int max = -1;
+        for (Object s : objects) {
+            if(max <  map.get(s)){
+                max = map.get(s);
+                answer = s.toString();
+            }
+        }
+        System.out.println(answer);
     }
 }
