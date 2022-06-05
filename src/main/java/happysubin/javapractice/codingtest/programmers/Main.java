@@ -42,6 +42,8 @@ public class Main {
 
  */
 
+/*
+
 public class Main {
 
     static public int solution(int left, int right) {
@@ -63,6 +65,75 @@ public class Main {
 
 
         int solution = solution(13, 17);
+        System.out.println("solution = " + solution);
+
+    }
+}
+
+
+ */
+
+/*
+public class Main {
+
+    static public int solution(int left, int right) {
+        int answer = 0;
+        for(int i = left; i<=right; i++){
+            int count = 0;
+            for(int j = 1; j <= i; j++){
+                if(i%j == 0){
+                    count++;
+                }
+            }
+            if(count%2 == 0) answer += i;
+            else answer -= i;
+        }
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+
+        int solution = solution(13, 17);
+        System.out.println("solution = " + solution);
+
+    }
+}
+
+
+ */
+
+public class Main {
+
+    static public int[] solution(int[] numbers) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for(int i = 0; i < numbers.length - 1; i++){
+            for(int j = i + 1; j < numbers.length; j++){
+                int num = numbers[i] + numbers[j];
+                if(!list.contains(num)){
+                    list.add(num);
+                }
+            }
+        }
+
+        int[] answer = new int[list.size()];
+
+        Collections.sort(list);
+
+        for(int i = 0; i < list.size(); i++){
+            answer[i] = list.get(i);
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2,1,3,4,1};
+        int[] solution = solution(arr);
+        for (int i : solution) {
+            System.out.println("i = " + i);
+        }
         System.out.println("solution = " + solution);
 
     }
