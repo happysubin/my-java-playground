@@ -1,6 +1,7 @@
 package happysubin.javapractice.codingtest.baekjoon;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -500,6 +501,9 @@ public class Strings {
 
  */
 
+//1302
+
+/*
 public class Strings {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -525,5 +529,96 @@ public class Strings {
             }
         }
         System.out.println(answer);
+    }
+}
+
+ */
+
+public class Strings {
+
+    static boolean checkEven(Map<Character,Integer> map){
+        int count = 0 ;
+        for (Character character : map.keySet()) {
+            if(map.get(character) % 2 == 1) count++;
+        }
+        if(count == 0) return true; //홀수가 없어야 한다.
+        else return false;
+    }
+
+    static boolean checkOdd(Map<Character,Integer> map){
+        int count = 0 ;
+        for (Character character : map.keySet()) {
+            if(map.get(character) % 2 == 1) count++;
+        }
+        if(count == 1) return true; //홀수가 1개여야만한다.
+        else return false;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Map<Character, Integer> map = new HashMap<>();
+
+        char[] chars = br.readLine().toCharArray();
+
+
+        for (Character character : chars) {
+            map.put(character, map.getOrDefault(character, 0) + 1);
+        }
+
+        ArrayList<Character> keys = new ArrayList<>(map.keySet());
+
+        Collections.sort(keys);
+
+        //짝수열 팰린드롬은 홀수를 허용하지 않는다.
+        //정렬한 걸 뒤에서 챡챡 더함
+
+        if(chars.length % 2 == 0){ //짝수 일 때
+            if(checkEven(map)){ //문자 갯수가 홀수인 것이 없어야 진행
+                int lt = 0;
+                int rt = chars.length - 1;
+                for (Character key : keys) {
+                    while(map.get(key) > 0){
+                            chars[lt] = key;
+                            chars[rt] = key;
+                            rt--;
+                            lt++;
+                            map.put(key,map.get(key) - 2);
+                    }
+                }
+            }
+            else{
+                System.out.println("I'm Sorry Hansoo");
+                return;
+            }
+
+        }
+        //홀수열함팰린드롬은 홀수 1개를 허용한다.
+        else{
+            if(checkOdd(map)){ //문자 갯수가 홀수인 것이 하나여야 진행
+                int lt = 0;
+                int rt = chars.length - 1;
+                for (Character key : keys) {
+                    while(map.get(key)> 0){
+                        if(map.get(key) == 1){
+                            chars[ chars.length / 2 ] = key;
+                            map.put(key,map.get(key) - 1);
+                        }
+                        else{
+                            chars[lt] = key;
+                            chars[rt] = key;
+                            rt--;
+                            lt++;
+                            map.put(key,map.get(key) - 2);
+                        }
+                    }
+                }
+            }
+            else{
+                System.out.println("I'm Sorry Hansoo");
+                return;
+            }
+        }
+        System.out.println(String.valueOf(chars));
+        //팰린드롬은 갯수가 홀수인 문자가 1개 있어야만 한다.
     }
 }
