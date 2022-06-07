@@ -169,7 +169,8 @@ public class Kakao{
 
 
 
-
+/*
+//비밀지도
 public class Kakao {
 
     static public String[] solution(int n, int[] arr1, int[] arr2) {
@@ -227,6 +228,83 @@ public class Kakao {
         int[] arr2 = {30, 1, 21, 17, 28};
 
         System.out.println(solution(n,arr1,arr2));
+
+
+    }
+}
+
+
+ */
+
+public class Kakao {
+
+    static public int solution(String dartResult) {
+        int answer = 0;
+
+        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<Integer> score = new ArrayList<>();
+        String[] split = dartResult.split("");
+
+        String s = "";
+        for(int i = 0; i <  split.length; i++){
+            if(Character.isDigit(split[i].charAt(0))){
+                s += split[i].charAt(0);
+            }
+            else{
+                arr.add(s);
+                arr.add(split[i]);
+                s = "";
+            }
+        }
+        for(int i = 0; i < arr.size() ; i++){
+            if(arr.get(i).equals("S")){
+                int num = Integer.parseInt(arr.get(i - 1));
+                score.add(num);
+            }
+            else if(arr.get(i).equals("D")){
+                int num = Integer.parseInt(arr.get(i - 1));
+                score.add(num * num);
+
+            }
+            else if(arr.get(i).equals("T")){
+                int num = Integer.parseInt(arr.get(i - 1));
+                score.add(num * num * num);
+            }
+            else if(arr.get(i).equals("*")){ // 두배 두배
+                if(score.size() == 1){  //첫번째 자리라면
+                    int num = score.get(score.size() - 1);
+                    score.remove(score.size() - 1);
+                    score.add(num * 2);
+                }
+                else { //그 뒤라면
+                   int num2 = score.get(score.size() - 2);
+                    int num1 = score.get(score.size() - 1);
+
+                    score.remove(score.size() - 2); //안에 껄 먼저 삭제
+                    score.remove(score.size() - 1);
+                    score.add(num2 * 2);
+                    score.add(num1 * 2);
+                }
+
+            }
+            else if(arr.get(i).equals("#")){
+                int num = score.get(score.size() - 1);
+                score.remove(score.size() - 1);
+                score.add(num * - 1 );
+            }
+        }
+
+        for (int i  : score) {
+            answer += i ;
+        }
+        return answer;
+    }
+
+
+    public static void main(String[] args) {
+        String  s = "1D2S#10S";
+
+        System.out.println(solution(s));
 
 
     }
