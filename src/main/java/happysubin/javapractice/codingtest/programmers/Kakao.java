@@ -242,67 +242,63 @@ public class Kakao {
         int answer = 0;
 
         ArrayList<String> arr = new ArrayList<>();
-        ArrayList<Integer> score = new ArrayList<>();
-        String[] split = dartResult.split("");
+        String[] word = dartResult.split("");
+        int[] score = new int[3];
+        String[] split = dartResult.split("[SDT*#]");
 
-        String s = "";
-        for(int i = 0; i <  split.length; i++){
-            if(Character.isDigit(split[i].charAt(0))){
-                s += split[i].charAt(0);
-            }
-            else{
-                arr.add(s);
-                arr.add(split[i]);
-                s = "";
+        int z = 0;
+        for (String s : split) {
+            if(!s.equals("")){
+                score[z++] = Integer.parseInt(s);
             }
         }
-        for(int i = 0; i < arr.size() ; i++){
-            if(arr.get(i).equals("S")){
-                int num = Integer.parseInt(arr.get(i - 1));
-                score.add(num);
-            }
-            else if(arr.get(i).equals("D")){
-                int num = Integer.parseInt(arr.get(i - 1));
-                score.add(num * num);
 
+        int seq = 0;
+
+        for(int i = 0; i < word.length ; i++){
+            if(word[i].equals("S")){
+                seq++;
             }
-            else if(arr.get(i).equals("T")){
-                int num = Integer.parseInt(arr.get(i - 1));
-                score.add(num * num * num);
+            else if(word[i].equals("D")){
+                int num = score[seq];
+                score[seq] = num * num;
+                seq++;
             }
-            else if(arr.get(i).equals("*")){ // 두배 두배
-                if(score.size() == 1){  //첫번째 자리라면
-                    int num = score.get(score.size() - 1);
-                    score.remove(score.size() - 1);
-                    score.add(num * 2);
+            else if(word[i].equals("T")){
+                int num = score[seq];
+                score[seq] = num * num * num;
+                seq++;
+            }
+            else if(word[i].equals("*")){ // 두배 두배
+                if(seq - 1 == 0){  //첫번째 자리라면
+                    int num = score[seq  - 1];
+                    score[seq - 1] = num * 2;
                 }
                 else { //그 뒤라면
-                   int num2 = score.get(score.size() - 2);
-                    int num1 = score.get(score.size() - 1);
+                   int num2 = score[seq - 2];
+                    int num1 = score[seq - 1];
 
-                    score.remove(score.size() - 2); //안에 껄 먼저 삭제
-                    score.remove(score.size() - 1);
-                    score.add(num2 * 2);
-                    score.add(num1 * 2);
+                    score[seq - 2] = num2 * 2;
+                    score[seq - 1] = num1 * 2;
                 }
 
             }
-            else if(arr.get(i).equals("#")){
-                int num = score.get(score.size() - 1);
-                score.remove(score.size() - 1);
-                score.add(num * - 1 );
+            else if(word[i].equals("#")){
+                int num = score[seq  - 1];
+                score[seq - 1] = num * -1;
             }
         }
 
         for (int i  : score) {
             answer += i ;
         }
+
         return answer;
     }
 
 
     public static void main(String[] args) {
-        String  s = "1D2S#10S";
+        String  s = "1S2D*3T";
 
         System.out.println(solution(s));
 
