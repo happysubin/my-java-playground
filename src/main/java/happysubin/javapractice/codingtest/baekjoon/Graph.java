@@ -3,6 +3,7 @@ package happysubin.javapractice.codingtest.baekjoon;
 import java.io.*;
 import java.util.*;
 
+/*
 public class Graph {
     static void dfs(int[][] graph, int startNode, int[] visitedLocation ){
         visitedLocation[startNode]  = 1;
@@ -57,5 +58,77 @@ public class Graph {
         dfs(graph, startNode, visitedLocation);
         System.out.println();
         bfs(graph, startNode);
+    }
+}
+
+
+ */
+
+
+public class Graph {
+
+    class Position{
+        int x;
+        int y;
+        int count;
+
+        public Position(int x, int y, int count) {
+            this.x = x;
+            this.y = y;
+            this.count = count;
+        }
+    }
+
+    void solution(int[][] graph, int row, int col){
+        Queue<Position> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[row][col];
+
+        visited[0][0] = true;
+
+        queue.add(new Position(0,0,0));
+
+        while(!queue.isEmpty()){
+            Position poll = queue.poll();
+            if( poll.x + 1 < row && graph[poll.x + 1][poll.y] == 1 && !visited[poll.x + 1][poll.y] ){
+                visited[poll.x + 1][poll.y] = true;
+                queue.add(new Position(poll.x + 1, poll.y, poll.count + 1));
+            }
+            if( poll.x - 1 >= 0 && graph[poll.x - 1][poll.y] == 1 && !visited[poll.x - 1][poll.y] ){
+                visited[poll.x - 1][poll.y] = true;
+                queue.add(new Position(poll.x - 1, poll.y, poll.count + 1));
+            }
+            if( poll.y + 1 < col && graph[poll.x][poll.y + 1] == 1 && !visited[poll.x][poll.y + 1] ){
+                visited[poll.x][poll.y + 1] = true;
+                queue.add(new Position(poll.x, poll.y + 1, poll.count + 1));
+            }
+            if( poll.y - 1 >= 0 && graph[poll.x][poll.y - 1] == 1 && !visited[poll.x][poll.y - 1] ){
+                visited[poll.x][poll.y - 1] = true;
+                queue.add(new Position(poll.x, poll.y - 1, poll.count + 1));
+            }
+
+            if(poll.x == row - 1 & poll.y == col -1){
+                System.out.println(poll.count + 1);
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] s = br.readLine().split(" ");
+
+        Graph g = new Graph();
+
+        int row = Integer.parseInt(s[0]);
+        int col = Integer.parseInt(s[1]);
+
+        int[][] arr = new int[row][col];
+
+        for (int i = 0; i < row ; i++ ) {
+            String[] str = br.readLine().split("");
+            for (int j = 0; j < col ; j++ ) {
+                arr[i][j] = Integer.parseInt(str[j]);
+            }
+        }
+        g.solution(arr, row, col);
     }
 }
