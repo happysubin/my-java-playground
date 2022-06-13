@@ -314,6 +314,8 @@ public class Kakao {
 
  */
 
+/*
+실패율
 
 public class Kakao {
 
@@ -344,7 +346,7 @@ public class Kakao {
         //list.sort(Map.Entry.comparingByValue());// value에 의한 오름차순
 
 
-        List<Map.Entry<Integer, Double>> collect = result.entrySet().stream()
+        List<Map.Entry<Intege, Double>> collect = result.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                 .collect(Collectors.toList());
 
@@ -374,6 +376,72 @@ public class Kakao {
 
         int[] stages2={3,3,3,3};
         System.out.println(solution(5,stages2));
+
+
+    }
+}
+
+ */
+
+//키패드 누르기
+
+public class Kakao {
+
+    static public String solution(int[] numbers, String hand) {
+        String answer = "";
+        int leftHandPosition = 10;
+        int rightHandPosition = 12;
+
+        for(int i = 0; i < numbers.length; i++){
+           if(numbers[i] == 0){
+               numbers[i] = 11;
+           }
+        }
+
+        for(int i = 0; i < numbers.length; i++){
+            if(numbers[i] % 3 == 0){
+                answer += "R";
+                rightHandPosition = numbers[i];
+            }
+            else if(numbers[i] % 3 == 1 ){
+                answer += "L";
+                leftHandPosition = numbers[i];
+            }
+            else{
+                //세로 + 가로 더한 것이 괄호다.
+                int leftHandDistance = Math.abs(leftHandPosition - numbers[i]) / 3 + Math.abs(leftHandPosition - numbers[i]) % 3;
+                int rightHandDistance = Math.abs(rightHandPosition - numbers[i]) / 3 + Math.abs(rightHandPosition - numbers[i]) % 3;
+
+                if(leftHandDistance < rightHandDistance){
+                    leftHandPosition = numbers[i];
+                    answer += "L";
+                }
+                else if(leftHandDistance > rightHandDistance){
+                    rightHandPosition = numbers[i];
+                    answer += "R";
+                }
+                else{
+                    if(hand.equals("right")){
+                        rightHandPosition = numbers[i];
+                        answer += "R";
+                    }
+                    else{
+                        leftHandPosition = numbers[i];
+                        answer += "L";
+                    }
+                }
+            }
+        }
+        return answer;
+    }
+
+
+    public static void main(String[] args) {
+        int[] numbers={1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5};
+        String hand = "right";
+        String hand1 = "left";
+
+        System.out.println(solution(numbers, hand));
 
 
     }
