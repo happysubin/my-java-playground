@@ -41,6 +41,8 @@ public class Hashs {
 
  */
 
+/*
+//해시 전화번호 목록
 public class Hashs {
 
     static public boolean solution(String[] phone_book) {
@@ -54,11 +56,37 @@ public class Hashs {
 
     }
 
-
-
     public static void main(String[] args) {
         String[] arr1 = {"119", "97674223", "1195524421"};
         String[] arr2 = {"123", "456", "789"};
+        System.out.println(solution(arr1));
+    }
+}
+
+ */
+
+public class Hashs {
+
+    static public int solution(String[][] clothes) {
+        int answer = 1;
+        Map<String ,List<String>> map = new HashMap<>() ;
+        for(int i = 0; i < clothes.length; i++){
+            if(map.get(clothes[i][1]) == null){
+                    map.put(clothes[i][1], new ArrayList<>());
+            }
+            map.get(clothes[i][1]).add(clothes[i][0]);
+        }
+
+        for (String s : map.keySet()) {
+            answer *= map.get(s).size() + 1;
+        }
+
+
+        return answer - 1;
+    }
+
+    public static void main(String[] args) {
+        String[][] arr1 = {{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}};
         System.out.println(solution(arr1));
     }
 }
