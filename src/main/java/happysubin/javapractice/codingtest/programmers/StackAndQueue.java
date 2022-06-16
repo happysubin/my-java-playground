@@ -72,6 +72,7 @@ public class StackAndQueue {
 
  */
 
+//프린터
 public class StackAndQueue {
     class Element{
         int rank;

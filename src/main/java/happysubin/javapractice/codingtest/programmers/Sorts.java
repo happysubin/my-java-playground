@@ -1,10 +1,11 @@
 package happysubin.javapractice.codingtest.programmers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
+
+/*
+
+k번째 수
 public class Sorts {
     static public int[] solution(int[] array, int[][] commands) {
         int[] answer = new int[commands.length];
@@ -42,5 +43,40 @@ public class Sorts {
 
         System.out.println(solution(array,commands));
 
+    }
+}
+
+
+ */
+
+public class Sorts {
+
+    public String solution(int[] numbers) {
+        List<String> arr = new ArrayList<>();
+        for (int number : numbers) {
+            arr.add(String.valueOf(number));
+        }
+
+        Collections.sort(arr, Collections.reverseOrder());
+
+        String answer = arr.get(0);
+
+        for(int i = 1; i < arr.size() - 1 ; i++){
+            String now = arr.get(i);
+            String next = arr.get(i + 1);
+            if(now.length() == next.length()){
+                answer = answer;
+            }
+        }
+
+        return "";
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {104 , 1};
+        int[] arr2 = {3, 30, 34, 5, 9};
+        Sorts main = new Sorts();
+        String solution = main.solution(arr2);
+        System.out.println("solution = " + solution);
     }
 }

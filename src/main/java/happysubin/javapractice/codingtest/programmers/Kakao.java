@@ -1,6 +1,7 @@
 package happysubin.javapractice.codingtest.programmers;
 
 import javax.swing.text.ElementIterator;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -314,75 +315,81 @@ public class Kakao {
 
  */
 
-/*
-실패율
+
+//실패율
 
 public class Kakao {
+    class Stage implements Comparable<Stage> {
+        public int id;
+        public double failure;
 
-    static int[] solution(int N, int[] stages) {
+        public Stage(int id, double failure) {
+            this.id = id;
+            this.failure = failure;
+        }
+
+        @Override
+        public int compareTo(Stage o) {
+            if (failure < o.failure ) {
+                return -1;
+            }
+            if (failure > o.failure ) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    int[] solution(int N, int[] stages) {
         int[] answer = new int [N];
         double denominator = stages.length;
         Map<Integer, Integer> map = new HashMap<>();
-        Map<Integer, Double> result = new HashMap<>();
+        ArrayList<Stage> result = new ArrayList<>();
 
-        for (int i = 1; i <= N +1; i++) {
-            map.put(i,0);
+        for (int i = 1; i <= N; i++) {
+            if(i != N + 1) map.put(i, 0);
         }
+
         for (int stage : stages) { //스테이지와 실패한 사람들을 넣는다.
-            map.put(stage, map.getOrDefault(stage, 0) + 1);
+            if(stage != N + 1) map.put(stage, map.getOrDefault(stage, 0) + 1);
         }
 
         for (Integer key : map.keySet()) {
             int person = map.get(key); //실패한 사람들
-            if(denominator != 0)result.put(key, person / denominator ); //스테이지당 실패율을 넣는다.
-            else result.put(key,0D);
+            if(denominator != 0) result.add(new Stage (key, person / denominator) ); //스테이지당 실패율을 넣는다.
+            else result.add(new Stage (key, 0D));
             denominator -= person;
-
         }
 
-        Set<Map.Entry<Integer, Double>> entries = result.entrySet();
+        Collections.sort(result, Collections.reverseOrder());
 
-        List<Map.Entry<Integer, Double>> list = new ArrayList<>(result.entrySet());
-        //list.sort(Map.Entry.comparingByValue());// value에 의한 오름차순
-
-
-        List<Map.Entry<Intege, Double>> collect = result.entrySet().stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toList());
-
-        int i = 0;
-        for (Map.Entry<Integer, Double> m : collect) {
-            if(m.getKey() != N+1){
-                answer[i++] = m.getKey();
-            }
+        for(int i = 0; i < N; i++){
+            answer[i] = result.get(i).id;
         }
-
-        for (int i1 : answer) {
-            System.out.println("i1 = " + i1);
-        }
-
-        for (Map.Entry<Integer, Double> integerDoubleEntry : collect) {
-            System.out.println("integerDoubleEntry = " + integerDoubleEntry);
-        }
-
         return answer;
     }
 
 
     public static void main(String[] args) {
+        Kakao main = new Kakao();
         int n = 5;
         int[] stages={2, 1, 2, 6, 2, 4, 3, 3};
         int[] stages1={4,4,4,4,4,4};
 
         int[] stages2={3,3,3,3};
-        System.out.println(solution(5,stages2));
+        int[] solution = main.solution(5, stages);
+
+        for (int i : solution) {
+            System.out.println("i = " + i);
+        }
 
 
     }
 }
 
- */
 
+
+/*
 //키패드 누르기
 
 public class Kakao {
@@ -446,3 +453,5 @@ public class Kakao {
 
     }
 }
+
+ */
