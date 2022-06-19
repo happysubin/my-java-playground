@@ -13,23 +13,39 @@ public class BaseballGame {
     }
 
     public void start() {
-        computer.generateAnswer();
+        ArrayList<Integer> answer = computer.generateAnswer();
+
+        for (Integer integer : answer) {
+            System.out.println("integer = " + integer);
+        }
 
         Hint hint;
 
         do{
             ArrayList<Integer> attemptedAnswer = player.createAttemptedAnswer();
-            hint = computer.comparedWithAnswer(attemptedAnswer);
-        }while(computer.isNotAnswer(hint));
+            hint = computer.comparedWithAnswer(attemptedAnswer, answer);
 
-        System.out.println("hint.getMessage() = " + hint.getMessage());
-        for(Integer i : computer.getAnswer()){
-            System.out.print(i);
+        } while (computer.isNotAnswer(hint));
+
+        System.out.println(hint.getMessage());
+
+        //개인의 의사 결정
+        if(player.choiceGamerStartOrStop() == 1){
+            finishGame();
         }
-
+        else{
+            restartGame();
+        }
     }
 
-    public void stop(){
-
+    public void restartGame(){
+        start();
     }
+
+    public void finishGame(){
+        System.out.println("게임을 종료합니다");
+    }
+
+
+
 }

@@ -4,11 +4,10 @@ import java.util.*;
 
 public class Computer {
 
-    private ArrayList<Integer> answer = new ArrayList<>(3);
-
-    public void generateAnswer() {
+    public ArrayList<Integer> generateAnswer() {
         Random random = new Random();
 
+        ArrayList<Integer> answer = new ArrayList<>(3);
         int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         for (int i = 0; answer.size() < 3; i++) {
             int temp = random.nextInt(numbers.length);
@@ -17,10 +16,12 @@ public class Computer {
                 numbers[temp] = -1;
             }
         }
+
+        return answer;
     }
 
     //비교를 하는 메서드
-    public Hint comparedWithAnswer(ArrayList<Integer> attemptedAnswer){
+    public Hint comparedWithAnswer(ArrayList<Integer> attemptedAnswer, ArrayList<Integer> answer){
         int strikeCount = 0; //스트라이크 검사
         int ballCount = 0; //볼 검사
 
@@ -48,7 +49,4 @@ public class Computer {
         }
     }
 
-    public ArrayList<Integer> getAnswer() {
-        return answer;
-    }
 }

@@ -12,4 +12,16 @@ public class InputSystem {
         attemptedAnswer.add((inputNumber % 100) / 10 );
         attemptedAnswer.add(inputNumber % 10);
     }
+
+    public int receiveChoice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("게임을 종료하시려면 1을 입력하세요.");
+        System.out.println("게임을 계속하시려면 2을 입력하세요.");
+
+        int inputNumber = scanner.nextInt();
+
+        return inputNumber;
+    }
+
+    //게임을 재시작할 것인지, 종료할 것인지 값을 받는다.
 }

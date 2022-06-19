@@ -12,4 +12,13 @@ public class Player {
 
         return attemptedAnswer;
     }
+
+    //게임을 계속할 것인지 아닌지 의사 결정을 한다
+    public int choiceGamerStartOrStop(){
+        InputSystem inputSystem = new InputSystem();
+
+        int choice = inputSystem.receiveChoice();
+
+        return choice;
+    }
 }
