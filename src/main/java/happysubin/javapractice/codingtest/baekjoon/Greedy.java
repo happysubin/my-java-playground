@@ -58,18 +58,64 @@ public class Greedy {
 
  */
 
-//1759
 import java.io.*;
+import java.util.*;
+//회의실
 
 public class Greedy{
-    public static void main(Strings[] args)throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long num = Long.valueOf(br.readLine());
-        long sum = 0;
-        int i;
-        for(i = 1 ; sum<=num ;i++){
-            sum+=i;
+    public class Meeting implements Comparable<Meeting>{
+        int start;
+        int end;
+
+        public Meeting(int start, int end) {
+            this.start = start;
+            this.end = end;
         }
-        System.out.println(i-2);
+
+        @Override
+        public int compareTo(Meeting o) {
+            if(this.end == o.end) return this.start - o.start; //종료 시점이 같으면 시작 시간으로 정렬
+            return this.end - o.end;
+        }
+
+        //양수면 자리가 바뀐다.
+
+        @Override
+        public String toString() {
+            return "Meeting{" +
+                    "start=" + start +
+                    ", end=" + end +
+                    '}';
+        }
+    }
+
+    public int solution()throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<Meeting> list = new ArrayList<>();
+        int num = Integer.parseInt(br.readLine());
+        int answer = 0;
+
+        for(int i = 0; i < num; i++){
+            String[] s = br.readLine().split(" ");
+            list.add(new Meeting(Integer.parseInt(s[0]),Integer.parseInt(s[1])));
+        }
+        Collections.sort(list);
+
+        int previousEndTime = 0;
+
+        for(int i = 0; i < num; i++){
+            // 직전 종료시간이 다음 회의 시작 시간보다 작거나 같다면 갱신한다
+            if(previousEndTime <= list.get(i).start){
+                previousEndTime = list.get(i).end;
+                answer++;
+            }
+        }
+
+        return answer;
+
+    }
+    public static void main(String[] args) throws IOException {
+        Greedy main = new Greedy();
+        System.out.println(main.solution());
     }
 }
