@@ -49,34 +49,42 @@ public class Sorts {
 
  */
 
-public class Sorts {
+
+//가장 큰 수
+public class Sorts{
 
     public String solution(int[] numbers) {
         List<String> arr = new ArrayList<>();
+        String answer = "";
+
         for (int number : numbers) {
             arr.add(String.valueOf(number));
         }
 
-        Collections.sort(arr, Collections.reverseOrder());
-
-        String answer = arr.get(0);
-
-        for(int i = 1; i < arr.size() - 1 ; i++){
-            String now = arr.get(i);
-            String next = arr.get(i + 1);
-            if(now.length() == next.length()){
-                answer = answer;
+        Collections.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return (o2 + o1).compareTo(o1 + o2);
             }
+        });
+
+        if(arr.get(0).equals("0")) {
+            return "0";
         }
 
-        return "";
+        for (String s1 : arr) {
+            answer += s1;
+        }
+
+
+        return answer;
     }
 
     public static void main(String[] args) {
-        int[] arr = {104 , 1};
+        int[] arr = {100 , 1000};
         int[] arr2 = {3, 30, 34, 5, 9};
         Sorts main = new Sorts();
-        String solution = main.solution(arr2);
+        String solution = main.solution(arr);
         System.out.println("solution = " + solution);
     }
 }
