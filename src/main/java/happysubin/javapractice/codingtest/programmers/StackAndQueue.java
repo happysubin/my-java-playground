@@ -72,7 +72,8 @@ public class StackAndQueue {
 
  */
 
-//프린터
+//프린터 dd
+/*
 public class StackAndQueue {
     class Element{
         int rank;
@@ -127,6 +128,47 @@ public class StackAndQueue {
         System.out.println(main.solution(priorities1,0));
 
 
+    }
+
+}
+ */
+
+public class StackAndQueue {
+
+    public int[] solution(int []arr) {
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
+        for (int i : arr) {
+            if(queue.isEmpty()){
+                queue.offer(i);
+            }
+            else if(queue.peek() == i){
+                continue;
+            }
+            else{
+                list.add(queue.poll());
+                queue.offer(i);
+            }
+        }
+
+        while(!queue.isEmpty()){
+            list.add(queue.poll());
+        }
+
+        int[] answer = new int[list.size()];
+        int i = 0;
+        for (Integer integer : list) {
+            answer[i++] = integer;
+        }
+
+        return answer;
+    }
+
+
+    public static void main(String[] args) {
+        int[] priorities1= {1,1,3,3,0,1,1};
+        StackAndQueue main = new StackAndQueue();
+        System.out.println(main.solution(priorities1));
     }
 
 }
