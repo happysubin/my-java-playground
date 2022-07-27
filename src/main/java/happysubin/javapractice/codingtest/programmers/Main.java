@@ -2,6 +2,7 @@ package happysubin.javapractice.codingtest.programmers;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /*
 public class Main {
@@ -142,24 +143,26 @@ public class Main {
 
  */
 
-public class Main {
+// https://school.programmers.co.kr/learn/courses/30/lessons/12982 예산 문제
 
-    static public int solution(int n) {
+public class Main{
+
+    public static int solution(int[] d, int budget) {
         int answer = 0;
-        for(int i = 2; i <= n; i++){
-            for(int j = 2; j <= i; j++){
-                if(i%j ==0){
-                    if(i != j)break;
-                    answer++;
-                }
-            }
+        Arrays.sort(d);
+
+        for (int i = 0; i < d.length ; i++) {
+            budget -= d[i];
+            if(budget < 0 ) break;
+            answer++;
         }
+
         return answer;
     }
-    //asdfjalsfjdk
 
     public static void main(String[] args) {
-        System.out.println(solution(10));
+        int[] arr = {1, 3, 2, 5, 4};
+        solution(arr, 9);
     }
 }
 
