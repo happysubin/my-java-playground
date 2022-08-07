@@ -64,7 +64,7 @@ public class Hashs {
 }
 
  */
-
+/*
 public class Hashs {
 
     static public int solution(String[][] clothes) {
@@ -88,5 +88,32 @@ public class Hashs {
     public static void main(String[] args) {
         String[][] arr1 = {{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}};
         System.out.println(solution(arr1));
+    }
+}
+
+ */
+
+public class Hashs {
+
+    static public int solution(int[] nums) {
+        Set<Integer> hashSet = new HashSet<>();
+        int count = nums.length / 2;
+
+        for (int num : nums) {
+            hashSet.add(num);
+        }
+
+        if(hashSet.size() > count){
+            return count;
+        }
+
+        else {
+            return hashSet.size();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3,1,2,3};
+        System.out.println(solution(arr));
     }
 }
