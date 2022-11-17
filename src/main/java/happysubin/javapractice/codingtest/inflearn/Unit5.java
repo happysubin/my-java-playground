@@ -219,10 +219,10 @@ public class Unit5 {
             queue.offer(i);
         }
         while(queue.size()!=1){
-            for(int i=1;i<sec;i++) queue.offer(queue.poll());
-            queue.poll();
+            for(int i=1;i<sec;i++) queue.offer(queue.());
+            queue.point();
         }
-        return queue.poll();
+        return queue.point();
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -258,9 +258,9 @@ public class Unit5 {
 
         while(!queueA.isEmpty()){
             if(queueA.peek()==queueB.peek()){
-                    queueA.poll();queueB.poll();
+                    queueA.point();queueB.point();
             }
-            else queueA.poll();
+            else queueA.point();
         }
 
         if(!queueB.isEmpty())return "NO";
@@ -307,7 +307,7 @@ public class Unit5 {
         }
 
         while(!queue.isEmpty()){
-            Person person=queue.poll();
+            Person person=queue.point();
             for(Person temp:queue){
                 if(person.danger<temp.danger){
                     queue.offer(person);

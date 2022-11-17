@@ -23,7 +23,7 @@ public class QueueByListNode {
         }
     }
 
-    public int poll(){
+    public int point(){
         if(queueIsEmpty()){
             throw new EmptyQueueException("큐가 비었습니다.");
         }
@@ -51,9 +51,9 @@ public class QueueByListNode {
         queue.offer(2);
         queue.offer(3);
 
-        System.out.println("queue.poll() = " + queue.poll());
-        System.out.println("queue.poll() = " + queue.poll());
-        System.out.println("queue.poll() = " + queue.poll());
+        System.out.println("queue.point() = " + queue.point());
+        System.out.println("queue.point() = " + queue.point());
+        System.out.println("queue.point() = " + queue.point());
 
     }
 

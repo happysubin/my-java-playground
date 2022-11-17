@@ -209,7 +209,7 @@ public class Unit7{
         queue.offer(root);
         int L=0;
         while(!queue.isEmpty()){
-            Node node = queue.poll();
+            Node node = queue.point();
             System.out.print(node.data+" ");
 
             if(node.lt!=null)queue.offer(node.lt);
@@ -227,7 +227,7 @@ public class Unit7{
             System.out.print(L + " : ");
 
             for(int i=0;i<len;i++){
-                Node node = queue.poll();
+                Node node = queue.point();
                 System.out.print(node.data+" ");
                 if(node.lt!=null)queue.offer(node.lt);
                 if(node.rt!=null)queue.offer(node.rt);
@@ -287,3 +287,5 @@ public class Unit7 {
 
     }
 }
+
+

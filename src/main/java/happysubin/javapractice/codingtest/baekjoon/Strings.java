@@ -534,6 +534,8 @@ public class Strings {
 
  */
 
+/*
+
 public class Strings {
 
     static boolean checkEven(Map<Character,Integer> map){
@@ -620,5 +622,17 @@ public class Strings {
         }
         System.out.println(String.valueOf(chars));
         //팰린드롬은 갯수가 홀수인 문자가 1개 있어야만 한다.
+    }
+}
+*/
+
+//17413
+
+public class Strings{
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str =br.readLine();
+       // System.out.println(solution(str));
     }
 }

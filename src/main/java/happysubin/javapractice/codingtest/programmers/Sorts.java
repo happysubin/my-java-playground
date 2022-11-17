@@ -49,6 +49,7 @@ public class Sorts {
 
  */
 
+/*
 
 //가장 큰 수
 public class Sorts{
@@ -85,6 +86,32 @@ public class Sorts{
         int[] arr2 = {3, 30, 34, 5, 9};
         Sorts main = new Sorts();
         String solution = main.solution(arr);
+
+        String str1 = "1";
+        String str2 = "9";
+        System.out.println(str1.compareTo(str2));
         System.out.println("solution = " + solution);
+    }
+}
+
+ */
+
+public class Sorts{
+
+    /**
+     * 어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index입니다.
+     *
+     * 이 과학자가 발표한 논문의 수는 5편이고,
+     * 그중 3편의 논문은 3회 이상 인용되었습니다.
+     * 그리고 나머지 2편의 논문은 3회 이하 인용되었기 때문에 이 과학자의 H-Index는 3입니다.
+     */
+
+    public int solution(int[] citations) {
+
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

@@ -11,11 +11,11 @@ import static org.assertj.core.api.Assertions.*;
 class QueueByListNodeTest {
 
     @Test
-    @DisplayName("빈 큐에서 poll을 하면 EmptyQueueException 발생")
+    @DisplayName("빈 큐에서 point을 하면 EmptyQueueException 발생")
     void occurEmptyQueueException(){
         Assertions.assertThrows(EmptyQueueException.class,()->{
             QueueByListNode queue = new QueueByListNode();
-            queue.poll();
+            queue.point();
         });
     }
     @Test
@@ -37,16 +37,16 @@ class QueueByListNodeTest {
     }
 
     @Test
-    @DisplayName("정상적인 큐 poll 실행 로직")
-    void pollTest(){
+    @DisplayName("정상적인 큐 point 실행 로직")
+    void pointTest(){
         //given
         QueueByListNode queue = new QueueByListNode();
         queue.offer(1);
         queue.offer(2);
 
         //when
-        int result1 = queue.poll();
-        int result2 = queue.poll();
+        int result1 = queue.point();
+        int result2 = queue.point();
 
         //then
         assertThat(result1).isEqualTo(1);
