@@ -53,35 +53,64 @@ import java.util.List;
  * }
  */
 
+
+/** 나누어 떨어지는 숫자 배열
+ * public class Practice{
+ *
+ *     public int[] solution(int[] arr, int divisor) {
+ *         List<Integer> list = new ArrayList<>();
+ *         for (int i = 0; i < arr.length; i++) {
+ *             if(arr[i] % divisor == 0){
+ *                 list.add(arr[i]);
+ *             }
+ *         }
+ *
+ *         int[] answer = new int[list.size()];
+ *
+ *
+ *         for (int i = 0; i < answer.length; i++) {
+ *             answer[i] = list.get(i);
+ *         }
+ *
+ *         Arrays.sort(answer);
+ *
+ *         return answer.length == 0 ? new int[]{-1} :  answer;
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         int[] arr = {5, 9, 7, 10};
+ *         int divisor = 5;
+ *         Practice practice = new Practice();
+ *         int[] solution = practice.solution(arr, divisor);
+ *         for (int i : solution) {
+ *             System.out.println("i = " + i);
+ *         }
+ *     }
+ * }
+ */
+
 public class Practice{
 
-    public int[] solution(int[] arr, int divisor) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i] % divisor == 0){
-                list.add(arr[i]);
-            }
+    public long solution(int a, int b) {
+
+        if(a > b){
+            int temp = b;
+            b = a;
+            a = temp;
         }
 
-        int[] answer = new int[list.size()];
+        long answer = 0;
 
-
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = list.get(i);
+        for (int i = a; i <= b ; i++) {
+            answer += i;
         }
-
-        Arrays.sort(answer);
-
-        return answer.length == 0 ? new int[]{-1} :  answer;
+        
+        return answer;
     }
-
+    
     public static void main(String[] args) {
-        int[] arr = {5, 9, 7, 10};
-        int divisor = 5;
         Practice practice = new Practice();
-        int[] solution = practice.solution(arr, divisor);
-        for (int i : solution) {
-            System.out.println("i = " + i);
-        }
+        long solution = practice.solution(5, 3);
+        System.out.println("solution = " + solution);
     }
 }
