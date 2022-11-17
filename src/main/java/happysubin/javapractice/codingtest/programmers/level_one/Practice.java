@@ -25,9 +25,7 @@ package happysubin.javapractice.codingtest.programmers.level_one;
  */
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /** 2016년
  * public class Practice{
@@ -89,28 +87,95 @@ import java.util.List;
  * }
  */
 
+
+/** 두 정수 사이의 합
+ * public class Practice{
+ *
+ *     public long solution(int a, int b) {
+ *
+ *         if(a > b){
+ *             int temp = b;
+ *             b = a;
+ *             a = temp;
+ *         }
+ *
+ *         long answer = 0;
+ *
+ *         for (int i = a; i <= b ; i++) {
+ *             answer += i;
+ *         }
+ *
+ *         return answer;
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         Practice practice = new Practice();
+ *         long solution = practice.solution(5, 3);
+ *         System.out.println("solution = " + solution);
+ *     }
+ * }
+ *
+ */
+
+
+
 public class Practice{
 
-    public long solution(int a, int b) {
 
-        if(a > b){
-            int temp = b;
-            b = a;
-            a = temp;
+    class CustomString implements Comparable<CustomString>{
+
+        private String arr;
+        private Integer idx;
+
+        public CustomString(String arr, Integer idx) {
+            this.arr = arr;
+            this.idx = idx;
         }
 
-        long answer = 0;
-
-        for (int i = a; i <= b ; i++) {
-            answer += i;
+        public String getArr() {
+            return arr;
         }
-        
+
+        public Integer getIdx() {
+            return idx;
+        }
+
+
+        @Override
+        public int compareTo(CustomString o) { //다음에 오는 객체
+            char next = o.getArr().charAt(o.getIdx());
+            char now = this.arr.charAt(idx);
+            return now - next;
+
+//            return now  > next ? 1 : -1;
+        }
+    }
+
+    public String[] solution(String[] strings, int n) {
+        List<CustomString> arr = new ArrayList<>();
+
+        Arrays.sort(strings);
+
+        for (String string : strings) {
+            arr.add(new CustomString(string, n));
+        }
+        Collections.sort(arr);
+
+
+        String[] answer = new String[arr.size()];
+
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = arr.get(i).getArr();
+        }
         return answer;
     }
-    
+
     public static void main(String[] args) {
+        String[] arr = {"abce", "abcd", "cdx"};
         Practice practice = new Practice();
-        long solution = practice.solution(5, 3);
-        System.out.println("solution = " + solution);
+        String[] solution = practice.solution(arr, 2);
+        for (String s : solution) {
+            System.out.println("s = " + s);
+        }
     }
 }
