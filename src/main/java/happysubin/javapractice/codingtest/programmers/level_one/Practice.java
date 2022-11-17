@@ -118,64 +118,97 @@ import java.util.*;
  */
 
 
+/** 문자열 내 마음대로 정렬하기
+ * public class Practice{
+ *
+ *
+ *     class CustomString implements Comparable<CustomString>{
+ *
+ *         private String arr;
+ *         private Integer idx;
+ *
+ *         public CustomString(String arr, Integer idx) {
+ *             this.arr = arr;
+ *             this.idx = idx;
+ *         }
+ *
+ *         public String getArr() {
+ *             return arr;
+ *         }
+ *
+ *         public Integer getIdx() {
+ *             return idx;
+ *         }
+ *
+ *
+ *         @Override
+ *         public int compareTo(CustomString o) { //다음에 오는 객체
+ *             char next = o.getArr().charAt(o.getIdx());
+ *             char now = this.arr.charAt(idx);
+ *             return now - next;
+ *
+ * //            return now  > next ? 1 : -1;
+ *         }
+ *     }
+ *
+ *     public String[] solution(String[] strings, int n) {
+ *         List<CustomString> arr = new ArrayList<>();
+ *
+ *         Arrays.sort(strings);
+ *
+ *         for (String string : strings) {
+ *             arr.add(new CustomString(string, n));
+ *         }
+ *         Collections.sort(arr);
+ *
+ *
+ *         String[] answer = new String[arr.size()];
+ *
+ *         for (int i = 0; i < answer.length; i++) {
+ *             answer[i] = arr.get(i).getArr();
+ *         }
+ *         return answer;
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String[] arr = {"abce", "abcd", "cdx"};
+ *         Practice practice = new Practice();
+ *         String[] solution = practice.solution(arr, 2);
+ *         for (String s : solution) {
+ *             System.out.println("s = " + s);
+ *         }
+ *     }
+ * }
+ */
+
 
 public class Practice{
 
-
-    class CustomString implements Comparable<CustomString>{
-
-        private String arr;
-        private Integer idx;
-
-        public CustomString(String arr, Integer idx) {
-            this.arr = arr;
-            this.idx = idx;
+    boolean solution(String s) {
+        String string = s.toLowerCase();
+        int yCount = 0;
+        int pCount = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == 'y') {
+                ++yCount;
+            } else if (string.charAt(i) == 'p') {
+                ++pCount;
+            }
         }
 
-        public String getArr() {
-            return arr;
-        }
+        if (pCount == yCount) return true;
+        else if (pCount == 0 & yCount == 0) return true;
 
-        public Integer getIdx() {
-            return idx;
-        }
+        return false;
 
-
-        @Override
-        public int compareTo(CustomString o) { //다음에 오는 객체
-            char next = o.getArr().charAt(o.getIdx());
-            char now = this.arr.charAt(idx);
-            return now - next;
-
-//            return now  > next ? 1 : -1;
-        }
-    }
-
-    public String[] solution(String[] strings, int n) {
-        List<CustomString> arr = new ArrayList<>();
-
-        Arrays.sort(strings);
-
-        for (String string : strings) {
-            arr.add(new CustomString(string, n));
-        }
-        Collections.sort(arr);
-
-
-        String[] answer = new String[arr.size()];
-
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = arr.get(i).getArr();
-        }
-        return answer;
     }
 
     public static void main(String[] args) {
-        String[] arr = {"abce", "abcd", "cdx"};
+        String s = "pPoooyY";
+
         Practice practice = new Practice();
-        String[] solution = practice.solution(arr, 2);
-        for (String s : solution) {
-            System.out.println("s = " + s);
-        }
+        boolean solution = practice.solution(s);
+        System.out.println("solution = " + solution);
+
     }
 }
