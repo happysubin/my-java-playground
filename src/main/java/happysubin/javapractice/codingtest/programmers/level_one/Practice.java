@@ -24,26 +24,64 @@ package happysubin.javapractice.codingtest.programmers.level_one;
  * }
  */
 
-//2016년
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/** 2016년
+ * public class Practice{
+ *
+ *     public String solution(int a, int b) {
+ *         int month = a - 1;
+ *         int date = b;
+ *         int[] months = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+ *         String[] day = {"THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED"};
+ *
+ *         for (int i = 0; i < month; i++) {
+ *             date += months[i];
+ *         }
+ *
+ *         return day[date  % 7];
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         Practice practice = new Practice();
+ *         String solution = practice.solution(1, 14);
+ *         System.out.println("solution = " + solution);
+ *     }
+ * }
+ */
 
 public class Practice{
 
-    public String solution(int a, int b) {
-        int month = a - 1;
-        int date = b;
-        int[] months = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        String[] day = {"THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED"};
-
-        for (int i = 0; i < month; i++) {
-            date += months[i];
+    public int[] solution(int[] arr, int divisor) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] % divisor == 0){
+                list.add(arr[i]);
+            }
         }
 
-        return day[date  % 7];
+        int[] answer = new int[list.size()];
+
+
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = list.get(i);
+        }
+
+        Arrays.sort(answer);
+
+        return answer.length == 0 ? new int[]{-1} :  answer;
     }
 
     public static void main(String[] args) {
+        int[] arr = {5, 9, 7, 10};
+        int divisor = 5;
         Practice practice = new Practice();
-        String solution = practice.solution(1, 14);
-        System.out.println("solution = " + solution);
+        int[] solution = practice.solution(arr, divisor);
+        for (int i : solution) {
+            System.out.println("i = " + i);
+        }
     }
 }
