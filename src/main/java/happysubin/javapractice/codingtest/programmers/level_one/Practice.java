@@ -215,21 +215,52 @@ import java.util.*;
  *
  */
 
+
+/**
+ * 문자열 내림차순으로 배치하기
+ * public class Practice{
+ *
+ *     public String solution(String s) {
+ *         String[] arr = s.split("");
+ *         Arrays.sort(arr, Collections.reverseOrder());
+ *         StringBuffer sb = new StringBuffer();
+ *         for (String s1 : arr) {
+ *             sb.append(s1);
+ *         }
+ *         return sb.toString();
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String str = "Zbcdefg";
+ *         Practice practice = new Practice();
+ *         practice.solution(str);
+ *     }
+ * }
+ */
+
 public class Practice{
 
-    public String solution(String s) {
-        String[] arr = s.split("");
-        Arrays.sort(arr, Collections.reverseOrder());
-        StringBuffer sb = new StringBuffer();
-        for (String s1 : arr) {
-            sb.append(s1);
+    public boolean solution(String s) {
+
+        if(s.length() != 4 & s.length() != 6){
+            return false;
         }
-        return sb.toString();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (!Character.isDigit(s.charAt(i))){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
-        String str = "Zbcdefg";
+        String str = "1234";
         Practice practice = new Practice();
-        practice.solution(str);
+        boolean solution = practice.solution(str);
+        System.out.println("solution = " + solution);
     }
 }
+
+//문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 예를 들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴하면 됩니다.
