@@ -181,34 +181,55 @@ import java.util.*;
  * }
  */
 
+/** 문자열 내 p와 y의 개수
+ *public class Practice{
+ *
+ *     boolean solution(String s) {
+ *         String string = s.toLowerCase();
+ *         int yCount = 0;
+ *         int pCount = 0;
+ *         for (int i = 0; i < string.length(); i++) {
+ *             if (string.charAt(i) == 'y') {
+ *                 ++yCount;
+ *             } else if (string.charAt(i) == 'p') {
+ *                 ++pCount;
+ *             }
+ *         }
+ *
+ *         if (pCount == yCount) return true;
+ *         else if (pCount == 0 & yCount == 0) return true;
+ *
+ *         return false;
+ *
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String s = "pPoooyY";
+ *
+ *         Practice practice = new Practice();
+ *         boolean solution = practice.solution(s);
+ *         System.out.println("solution = " + solution);
+ *
+ *     }
+ * }
+ *
+ */
 
 public class Practice{
 
-    boolean solution(String s) {
-        String string = s.toLowerCase();
-        int yCount = 0;
-        int pCount = 0;
-        for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) == 'y') {
-                ++yCount;
-            } else if (string.charAt(i) == 'p') {
-                ++pCount;
-            }
+    public String solution(String s) {
+        String[] arr = s.split("");
+        Arrays.sort(arr, Collections.reverseOrder());
+        StringBuffer sb = new StringBuffer();
+        for (String s1 : arr) {
+            sb.append(s1);
         }
-
-        if (pCount == yCount) return true;
-        else if (pCount == 0 & yCount == 0) return true;
-
-        return false;
-
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        String s = "pPoooyY";
-
+        String str = "Zbcdefg";
         Practice practice = new Practice();
-        boolean solution = practice.solution(s);
-        System.out.println("solution = " + solution);
-
+        practice.solution(str);
     }
 }
