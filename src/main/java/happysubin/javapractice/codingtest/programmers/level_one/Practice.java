@@ -269,25 +269,61 @@ import java.util.*;
 
 //문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 예를 들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴하면 됩니다.
 
+/** 서울에서 김서방 찾기
+ * public class Practice{
+ *
+ *     public String solution(String[] seoul) {
+ *
+ *         int num = 0;
+ *
+ *         for (int i = 0; i < seoul.length; i++) {
+ *             if(seoul[i].equals("Kim")){
+ *                 num = i;
+ *             }
+ *         }
+ *         return "김서방은 " + num +  "에 있다";
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String[] arr = {"Jane", "Kim"};
+ *         Practice practice = new Practice();
+ *         String solution = practice.solution(arr);
+ *         System.out.println("solution = " + solution);
+ *     }
+ * }
+ */
 
 public class Practice{
 
-    public String solution(String[] seoul) {
+    public String solution(String s) {
+//        String[] arr = s.trim().split(" "); 해당 코드는 "abbbdd     " 뒤에 공백을 제거해버림. 따라서 에러가 발생함
+        String[] arr = s.trim().split(" ", -1); //공백을 유지해주는 아이디어
 
-        int num = 0;
+        StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < seoul.length; i++) {
-            if(seoul[i].equals("Kim")){
-                num = i;
+        for (int i = 0; i < arr.length; i++) {
+
+            for (int j = 0; j < arr[i].length(); j++) {
+                if(j % 2 == 0){
+                    sb.append(Character.toUpperCase(arr[i].charAt(j)));
+                }
+                else{
+                    sb.append(Character.toLowerCase(arr[i].charAt(j)));
+                }
+            }
+
+            if(i != arr.length - 1){
+                sb.append(" ");
             }
         }
-        return "김서방은 " + num +  "에 있다";
+
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        String[] arr = {"Jane", "Kim"};
+        String s = "abc cde      ";
         Practice practice = new Practice();
-        String solution = practice.solution(arr);
-        System.out.println("solution = " + solution);
+        String solution = practice.solution(s);
+        System.out.println(solution + "k");
     }
 }
