@@ -293,26 +293,73 @@ import java.util.*;
  * }
  */
 
+
+/** 이상한 문자 만들기
+ * public class Practice{
+ *
+ *     public String solution(String s) {
+ * //        String[] arr = s.trim().split(" "); 해당 코드는 "abbbdd     " 뒤에 공백을 제거해버림. 따라서 에러가 발생함
+ *         String[] arr = s.trim().split(" ", -1); //공백을 유지해주는 아이디어
+ *
+ *         StringBuilder sb = new StringBuilder();
+ *
+ *         for (int i = 0; i < arr.length; i++) {
+ *
+ *             for (int j = 0; j < arr[i].length(); j++) {
+ *                 if(j % 2 == 0){
+ *                     sb.append(Character.toUpperCase(arr[i].charAt(j)));
+ *                 }
+ *                 else{
+ *                     sb.append(Character.toLowerCase(arr[i].charAt(j)));
+ *                 }
+ *             }
+ *
+ *             if(i != arr.length - 1){
+ *                 sb.append(" ");
+ *             }
+ *         }
+ *
+ *         return sb.toString();
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String s = "abc cde      ";
+ *         Practice practice = new Practice();
+ *         String solution = practice.solution(s);
+ *         System.out.println(solution + "k");
+ *     }
+ * }
+ *
+ */
+
 public class Practice{
 
-    public String solution(String s) {
-//        String[] arr = s.trim().split(" "); 해당 코드는 "abbbdd     " 뒤에 공백을 제거해버림. 따라서 에러가 발생함
-        String[] arr = s.trim().split(" ", -1); //공백을 유지해주는 아이디어
+    public String solution(String s, int n) {
 
         StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < arr.length; i++) {
-
-            for (int j = 0; j < arr[i].length(); j++) {
-                if(j % 2 == 0){
-                    sb.append(Character.toUpperCase(arr[i].charAt(j)));
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(Character.isLowerCase(c)){
+                if(c + n > 122 ){ //z 아스키 코드 122, a는 97
+                     char c1 = (char) (c + n - 122 + 96);
+                     sb.append(c1);
                 }
                 else{
-                    sb.append(Character.toLowerCase(arr[i].charAt(j)));
+                    char c1 = (char)(c + n);
+                    sb.append(c1);
                 }
             }
-
-            if(i != arr.length - 1){
+            else if(Character.isUpperCase(c)){ //Z 아스키 코드
+                if(c + n > 90 ){ //Z 아스키 코드 90, A는 65
+                    char c1 = (char) (c + n - 90 + 64);
+                    sb.append(c1);
+                }
+                else{
+                    char c1 = (char)(c + n);
+                    sb.append(c1);
+                }
+            }
+            else {
                 sb.append(" ");
             }
         }
@@ -321,9 +368,12 @@ public class Practice{
     }
 
     public static void main(String[] args) {
-        String s = "abc cde      ";
+        String s = "Z";
+        int n =  4;
+
         Practice practice = new Practice();
-        String solution = practice.solution(s);
-        System.out.println(solution + "k");
+        String solution = practice.solution(s, n);
+        System.out.println("solution = " + solution);
+        char c1 = (char) (1 + 3 - 122 + 97);
     }
 }
