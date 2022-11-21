@@ -332,48 +332,143 @@ import java.util.*;
  *
  */
 
-public class Practice{
 
-    public String solution(String s, int n) {
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if(Character.isLowerCase(c)){
-                if(c + n > 122 ){ //z 아스키 코드 122, a는 97
-                     char c1 = (char) (c + n - 122 + 96);
-                     sb.append(c1);
-                }
-                else{
-                    char c1 = (char)(c + n);
-                    sb.append(c1);
-                }
-            }
-            else if(Character.isUpperCase(c)){ //Z 아스키 코드
-                if(c + n > 90 ){ //Z 아스키 코드 90, A는 65
-                    char c1 = (char) (c + n - 90 + 64);
-                    sb.append(c1);
-                }
-                else{
-                    char c1 = (char)(c + n);
-                    sb.append(c1);
-                }
-            }
-            else {
-                sb.append(" ");
-            }
-        }
+/**시저 암호
+ * public class Practice{
+ *
+ *     public String solution(String s, int n) {
+ *
+ *         StringBuilder sb = new StringBuilder();
+ *         for (int i = 0; i < s.length(); i++) {
+ *             char c = s.charAt(i);
+ *             if(Character.isLowerCase(c)){
+ *                 if(c + n > 122 ){ //z 아스키 코드 122, a는 97
+ *                      char c1 = (char) (c + n - 122 + 96);
+ *                      sb.append(c1);
+ *                 }
+ *                 else{
+ *                     char c1 = (char)(c + n);
+ *                     sb.append(c1);
+ *                 }
+ *             }
+ *             else if(Character.isUpperCase(c)){ //Z 아스키 코드
+ *                 if(c + n > 90 ){ //Z 아스키 코드 90, A는 65
+ *                     char c1 = (char) (c + n - 90 + 64);
+ *                     sb.append(c1);
+ *                 }
+ *                 else{
+ *                     char c1 = (char)(c + n);
+ *                     sb.append(c1);
+ *                 }
+ *             }
+ *             else {
+ *                 sb.append(" ");
+ *             }
+ *         }
+ *
+ *         return sb.toString();
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String s = "Z";
+ *         int n =  4;
+ *
+ *         Practice practice = new Practice();
+ *         String solution = practice.solution(s, n);
+ *         System.out.println("solution = " + solution);
+ *         char c1 = (char) (1 + 3 - 122 + 97);
+ *     }
+ * }
+ *
+ */
 
-        return sb.toString();
-    }
+//자릿수 더하기
+//public class Practice{
+//    public int solution(int n) {
+//        String s = String.valueOf(n);
+//
+//        int sum = 0;
+//        String[] split = s.split("");
+//        for (String s1 : split) {
+//            sum += Integer.valueOf(s1);
+//        }
+//
+//        return sum;
+//    }
+//
+//    public static void main(String[] args) {
+//        int n = 987;
+//        Practice practice = new Practice();
+//        int solution = practice.solution(n);
+//        System.out.println("solution = " + solution);
+//    }
+//}
 
-    public static void main(String[] args) {
-        String s = "Z";
-        int n =  4;
 
-        Practice practice = new Practice();
-        String solution = practice.solution(s, n);
-        System.out.println("solution = " + solution);
-        char c1 = (char) (1 + 3 - 122 + 97);
-    }
-}
+//자연수 뒤집어 배열로 만들기
+//public class Practice{
+//
+//
+//    public int[] solution(long n) {
+//        String s = String.valueOf(n);
+//        String[] split = s.split("");
+//        int[] arr = new int [s.length()];
+//        int j = 0;
+//        for (int i = arr.length - 1; i >= 0 ; i--) {
+//            arr[j++] = Integer.valueOf(split[i]);
+//        }
+//
+//        return arr;
+//    }
+//
+//    public static void main(String[] args) {
+//        long n = 12345;
+//        Practice practice = new Practice();
+//        int[] solution = practice.solution(n);
+//        for (int i : solution) {
+//            System.out.println("i = " + i);
+//        }
+//    }
+//}
+
+//정수 내림차순으로 배치하기
+//public class Practice{
+//
+//    public long solution(long n) {
+//        String s = String.valueOf(n);
+//        List<String> strings = Arrays.asList(s.split(""));
+//        Collections.sort(strings, Collections.reverseOrder());
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (String string : strings) {
+//            stringBuilder.append(string);
+//        }
+//        return Long.valueOf(stringBuilder.toString());
+//    }
+//
+//    public static void main(String[] args) {
+//        long n = 118372;
+//        Practice practice = new Practice();
+//        long solution = practice.solution(n);
+//        System.out.println("solution = " + solution);
+//    }
+//}
+
+//정수 제곱근 판별
+//public class Practice{
+//
+//    public long solution(long n) {
+//        double sqrt = Math.sqrt(n); //루트 씌우기
+//        if(sqrt % 1 != 0 ){
+//            return -1;
+//        }
+//        return (long) Math.pow(sqrt + 1, 2);
+//    }
+//
+//    public static void main(String[] args) {
+//        long n = 121;
+//        Practice practice = new Practice();
+//        long solution = practice.solution(n);
+//        System.out.println("solution = " + solution);
+//    }
+//}
