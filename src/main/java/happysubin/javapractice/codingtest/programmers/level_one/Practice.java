@@ -26,6 +26,8 @@ package happysubin.javapractice.codingtest.programmers.level_one;
 
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /** 2016년
  * public class Practice{
@@ -507,32 +509,67 @@ import java.util.*;
  * }
  */
 
-public class Practice{
 
-    public String solution(int[] food) {
-        String answer = 0 + "";
-        for (int i = food.length - 1; i >= 1; i--) {
-            if(food[i] % 2 == 0){
-                while(food[i] > 0 ){
-                    answer = i + answer + i;
-                    food[i] = food[i] - 2;
-                }
+/** 푸드 파이트 대회
+ * public class Practice{
+ *
+ *     public String solution(int[] food) {
+ *         String answer = 0 + "";
+ *         for (int i = food.length - 1; i >= 1; i--) {
+ *             if(food[i] % 2 == 0){
+ *                 while(food[i] > 0 ){
+ *                     answer = i + answer + i;
+ *                     food[i] = food[i] - 2;
+ *                 }
+ *             }
+ *             else if (food[i] % 2 == 1 & food[i] > 2){
+ *                 food[i] = --food[i];
+ *                 while(food[i] > 0 ){
+ *                     answer = i + answer + i;
+ *                     food[i] = food[i] - 2;
+ *                 }
+ *             }
+ *         }
+ *         return answer;
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         int[] arr = {1, 3, 4, 6};
+ *         Practice practice = new Practice();
+ *         String solution = practice.solution(arr);
+ *         System.out.println("solution = " + solution);
+ *     }
+ * }
+ *
+ */
+
+//replaeFirst를 사용하면 ye가 2번 들어간 경우에는 잡을 수 없다.
+
+public class Practice{
+    public int solution(String[] babbling) {
+        String[] words = { "ma", "ye", "woo", "aya" };
+        String[] words2 = { "mama", "yeye", "woowoo", "ayaaya" };
+        int answer = 0;
+        for (int i = 0; i < babbling.length; i++) {
+
+            for (String s : words2) {
+                babbling[i] = babbling[i].replace(s,"4");
             }
-            else if (food[i] % 2 == 1 & food[i] > 2){
-                food[i] = --food[i];
-                while(food[i] > 0 ){
-                    answer = i + answer + i;
-                    food[i] = food[i] - 2;
-                }
+
+            for (String s : words) {
+                babbling[i] = babbling[i].replace(s,"7");
             }
+
+            if(babbling[i].replaceAll("7","").length() == 0) ++answer;
         }
+
         return answer;
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 3, 4, 6};
+        String[] arr = {"wooyemawooye", "mayaa", "ymaeaya"};
         Practice practice = new Practice();
-        String solution = practice.solution(arr);
+        int solution = practice.solution(arr);
         System.out.println("solution = " + solution);
     }
 }
