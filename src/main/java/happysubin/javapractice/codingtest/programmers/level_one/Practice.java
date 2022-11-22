@@ -473,35 +473,66 @@ import java.util.*;
 //    }
 //}
 
+/** 최소공배수 최대 공약수
+ * public class Practice{
+ *
+ *     public int[] solution(int n, int m) { // 3, 12
+ *         int[] answer = new int[2];
+ *         //최대 공약수
+ *         int max = Math.max(n, m);
+ *         int min = Math.min(n, m );
+ *
+ *         for (int i = min; i > 0 ; i--) {
+ *             if(max % i == 0 & min % i ==0){
+ *                 answer[0] = i;
+ *                 break;
+ *             }
+ *         }
+ *
+ *         //최소 공배수
+ *         //최소 공배수기 문제였음.
+ *         answer[1] = max * min /answer[0];
+ *         return answer;
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         int n = 6;
+ *         int m = 26;
+ *         Practice practice = new Practice();
+ *         int[] solution = practice.solution(n, m);
+ *         for (int i : solution) {
+ *             System.out.println("i = " + i);
+ *         }
+ *     }
+ * }
+ */
 
 public class Practice{
 
-    public int[] solution(int n, int m) { // 3, 12
-        int[] answer = new int[2];
-        //최대 공약수
-        int max = Math.max(n, m);
-        int min = Math.min(n, m );
-
-        for (int i = min; i > 0 ; i--) {
-            if(max % i == 0 & min % i ==0){
-                answer[0] = i;
-                break;
+    public String solution(int[] food) {
+        String answer = 0 + "";
+        for (int i = food.length - 1; i >= 1; i--) {
+            if(food[i] % 2 == 0){
+                while(food[i] > 0 ){
+                    answer = i + answer + i;
+                    food[i] = food[i] - 2;
+                }
+            }
+            else if (food[i] % 2 == 1 & food[i] > 2){
+                food[i] = --food[i];
+                while(food[i] > 0 ){
+                    answer = i + answer + i;
+                    food[i] = food[i] - 2;
+                }
             }
         }
-
-        //최소 공배수
-        //최소 공배수기 문제였음.
-        answer[1] = max * min /answer[0];
         return answer;
     }
 
     public static void main(String[] args) {
-        int n = 6;
-        int m = 26;
+        int[] arr = {1, 3, 4, 6};
         Practice practice = new Practice();
-        int[] solution = practice.solution(n, m);
-        for (int i : solution) {
-            System.out.println("i = " + i);
-        }
+        String solution = practice.solution(arr);
+        System.out.println("solution = " + solution);
     }
 }
