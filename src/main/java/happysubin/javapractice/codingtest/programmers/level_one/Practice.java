@@ -545,31 +545,34 @@ import java.util.regex.Pattern;
 
 //replaeFirst를 사용하면 ye가 2번 들어간 경우에는 잡을 수 없다.
 
-public class Practice{
-    public int solution(String[] babbling) {
-        String[] words = { "ma", "ye", "woo", "aya" };
-        String[] words2 = { "mama", "yeye", "woowoo", "ayaaya" };
-        int answer = 0;
-        for (int i = 0; i < babbling.length; i++) {
+/** 옹알이 (2)
+ * public class Practice{
+ *     public int solution(String[] babbling) {
+ *         String[] words = { "ma", "ye", "woo", "aya" };
+ *         String[] words2 = { "mama", "yeye", "woowoo", "ayaaya" };
+ *         int answer = 0;
+ *         for (int i = 0; i < babbling.length; i++) {
+ *
+ *             for (String s : words2) {
+ *                 babbling[i] = babbling[i].replace(s,"4"); //replaceAll도 가능
+ *             }
+ *
+ *             for (String s : words) {
+ *                 babbling[i] = babbling[i].replace(s,"7");
+ *             }
+ *
+ *             if(babbling[i].replaceAll("7","").length() == 0) ++answer;
+ *         }
+ *
+ *         return answer;
+ *     }
+ *
+ *     public static void main(String[] args) {
+ *         String[] arr = {"wooyemawooye", "mayaa", "ymaeaya"};
+ *         Practice practice = new Practice();
+ *         int solution = practice.solution(arr);
+ *         System.out.println("solution = " + solution);
+ *     }
+ * }
+ */
 
-            for (String s : words2) {
-                babbling[i] = babbling[i].replace(s,"4");
-            }
-
-            for (String s : words) {
-                babbling[i] = babbling[i].replace(s,"7");
-            }
-
-            if(babbling[i].replaceAll("7","").length() == 0) ++answer;
-        }
-
-        return answer;
-    }
-
-    public static void main(String[] args) {
-        String[] arr = {"wooyemawooye", "mayaa", "ymaeaya"};
-        Practice practice = new Practice();
-        int solution = practice.solution(arr);
-        System.out.println("solution = " + solution);
-    }
-}
