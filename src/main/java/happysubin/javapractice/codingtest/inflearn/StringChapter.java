@@ -234,49 +234,117 @@ import java.util.*;
  * }
  */
 
+
+//문자열 압축
+
+/**
+ * public class StringChapter{
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String[] s = br.readLine().split(" ");
+ *         String[] arr = s[0].split("");
+ *         String word = s[1];
+ *
+ *         int d = 999;
+ *         int[] scores = new int[arr.length];
+ *
+ *         //앞에서 부터 측정함.
+ *         for (int i = 0; i < arr.length; i++) {
+ *             if(!arr[i].equals(word)){
+ *                 scores[i] = d;
+ *                 d++;
+ *             }
+ *             else if(arr[i].equals(word)){
+ *                 d = 0;
+ *                 scores[i] = 0;
+ *                 d++;
+ *             }
+ *         }
+ *
+ *         //이제 뒤에서부터도 측정해야함.
+ *         d = 1000;
+ *         for (int i = arr.length - 1; i >= 0 ; i--) {
+ *             if(!arr[i].equals(word)){
+ *                 if(scores[i] > d){
+ *                     scores[i] = d;
+ *                 }
+ *                 d++;
+ *             }
+ *             else if(arr[i].equals(word)){
+ *                 d = 0;
+ *                 scores[i] = 0;
+ *                 d++;
+ *             }
+ *         }
+ *
+ *         for (int score : scores) {
+ *             bw.write(score + " ");
+ *         }
+ *         bw.flush();
+ *     }
+ * }
+ */
+
+// 문자열 압축
+
+
+/**
+ * public class StringChapter{
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String s1 = br.readLine() + "!";
+ *         String[] str = s1.split("");
+ *
+ *         int cnt = 1;
+ *         StringBuffer sf = new StringBuffer();
+ *         for (int i = 0; i < str.length - 1; i++) {
+ *            if(str[i].equals(str[i + 1])){
+ *                 cnt ++;
+ *            }
+ *            else{
+ *                if(cnt == 1){
+ *                     sf.append(str[i]);
+ *                }
+ *                else {
+ *                    sf.append(str[i] + cnt);
+ *                    cnt = 1;
+ *                }
+ *            }
+ *         }
+ *
+ *         bw.write(sf.toString());
+ *         bw.flush();
+ *     }
+ * }
+ *
+ */
+
 public class StringChapter{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] s = br.readLine().split(" ");
-        String[] arr = s[0].split("");
-        String word = s[1];
-
-        int d = 999;
-        int[] scores = new int[arr.length];
-
-        //앞에서 부터 측정함.
-        for (int i = 0; i < arr.length; i++) {
-            if(!arr[i].equals(word)){
-                scores[i] = d;
-                d++;
-            }
-            else if(arr[i].equals(word)){
-                d = 0;
-                scores[i] = 0;
-                d++;
-            }
+        int num = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        String replace = str.replaceAll("#", "1");
+        String replace1 = replace.replaceAll("\\*", "0");
+        String[] arr = new String[num];
+        int[] arr2 = new int[num];
+        int j = 0;
+        for (int i = 0; i < num; i++) {
+            arr2[i] = Integer.parseInt(replace1.substring(j, j + 7), 2);
+            j += 7;
         }
 
-        //이제 뒤에서부터도 측정해야함.
-        d = 1000;
-        for (int i = arr.length - 1; i >= 0 ; i--) {
-            if(!arr[i].equals(word)){
-                if(scores[i] > d){
-                    scores[i] = d;
-                }
-                d++;
-            }
-            else if(arr[i].equals(word)){
-                d = 0;
-                scores[i] = 0;
-                d++;
-            }
+
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i : arr2) {
+            stringBuffer.append((char)i);
         }
 
-        for (int score : scores) {
-            bw.write(score + " ");
-        }
+        bw.write(stringBuffer.toString());
         bw.flush();
     }
 }
+
