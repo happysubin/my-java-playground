@@ -96,6 +96,45 @@ import java.util.Scanner;
  *     }
  */
 
+// 연속 부분 수열
+
+/**
+ * public class TwoPointersChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *
+ *         String[] split = br.readLine().split(" ");
+ *         int len = Integer.parseInt(split[0]);
+ *         int window = Integer.parseInt(split[1]);
+ *
+ *         String[] s = br.readLine().split(" ");
+ *         int[] arr = new int[len];
+ *
+ *         for (int i = 0; i < len; i++) {
+ *             arr[i] = Integer.parseInt(s[i]);
+ *         }
+ *
+ *         int sum = 0;
+ *         for (int i = 0; i < window; i++) {
+ *             sum += arr[i];
+ *         }
+ *         int max = sum;
+ *         int j = 0;
+ *         for (int i = window; i < len; i++) {
+ *             sum += + arr[i] - arr[j++];
+ *             if(max < sum){
+ *                 max = sum;
+ *             }
+ *         }
+ *
+ *         bw.write(max + "\n");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
 public class TwoPointersChapter {
 
     public static void main(String[] args) throws IOException {
@@ -104,29 +143,36 @@ public class TwoPointersChapter {
 
         String[] split = br.readLine().split(" ");
         int len = Integer.parseInt(split[0]);
-        int window = Integer.parseInt(split[1]);
+        int goal = Integer.parseInt(split[1]);
+        String[] str = br.readLine().split(" ");
+        int[] arr = new int[str.length];
 
-        String[] s = br.readLine().split(" ");
-        int[] arr = new int[len];
-
-        for (int i = 0; i < len; i++) {
-            arr[i] = Integer.parseInt(s[i]);
+        for (int i = 0; i < str.length; i++) {
+            arr[i] = Integer.parseInt(str[i]);
         }
 
+        int lt = 0, rt = 0;
         int sum = 0;
-        for (int i = 0; i < window; i++) {
-            sum += arr[i];
-        }
-        int max = sum;
-        int j = 0;
-        for (int i = window; i < len; i++) {
-            sum += + arr[i] - arr[j++];
-            if(max < sum){
-                max = sum;
+        int answer = 0;
+        while (rt < len){
+            if(sum < goal){
+                sum += arr[rt];
+                rt++;
+            }
+
+            else if(sum > goal){
+                sum -= arr[lt];
+                lt++;
+            }
+
+            if(sum == goal){
+                answer++;
+                sum -= arr[lt];
+                lt++;
             }
         }
 
-        bw.write(max + "\n");
+        bw.write(answer + "\n");
         bw.flush();
     }
 }
