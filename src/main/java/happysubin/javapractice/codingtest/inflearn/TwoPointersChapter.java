@@ -54,45 +54,79 @@ import java.util.Scanner;
 
 //공통원소 구하기
 
+/**
+ * public static void main(String[] args) throws IOException {
+ *         Scanner sc = new Scanner(System.in);
+ *         int num1 = sc.nextInt();
+ *         int[] arr1 = new int[num1];
+ *         for (int i = 0; i < num1; i++) {
+ *             arr1[i] = sc.nextInt();
+ *         }
+ *         int num2 = sc.nextInt();
+ *         int[] arr2 = new int[num2];
+ *         for (int i = 0; i < num2; i++) {
+ *             arr2[i] = sc.nextInt();
+ *         }
+ *
+ *         Arrays.sort(arr1);
+ *         Arrays.sort(arr2);
+ *
+ *         List<Integer> answer = new ArrayList<>();
+ *
+ *         int lt = 0;
+ *         int rt = 0;
+ *         while(lt < num1 && rt < num2){
+ *             if(arr1[lt] < arr2[rt]){
+ *                 lt++;
+ *             }
+ *             else if(arr1[lt] > arr2[rt]){
+ *                 rt++;
+ *             }
+ *
+ *             else{
+ *                 answer.add(arr1[lt]);
+ *                 lt++;
+ *                 rt++;
+ *             }
+ *         }
+ *
+ *         for (Integer integer : answer) {
+ *             System.out.print(integer + " ");
+ *         }
+ *     }
+ */
+
 public class TwoPointersChapter {
 
-    public static void main(String[] args)  {
-        Scanner sc = new Scanner(System.in);
-        int num1 = sc.nextInt();
-        int[] arr1 = new int[num1];
-        for (int i = 0; i < num1; i++) {
-            arr1[i] = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String[] split = br.readLine().split(" ");
+        int len = Integer.parseInt(split[0]);
+        int window = Integer.parseInt(split[1]);
+
+        String[] s = br.readLine().split(" ");
+        int[] arr = new int[len];
+
+        for (int i = 0; i < len; i++) {
+            arr[i] = Integer.parseInt(s[i]);
         }
-        int num2 = sc.nextInt();
-        int[] arr2 = new int[num2];
-        for (int i = 0; i < num2; i++) {
-            arr2[i] = sc.nextInt();
+
+        int sum = 0;
+        for (int i = 0; i < window; i++) {
+            sum += arr[i];
         }
-
-        Arrays.sort(arr1);
-        Arrays.sort(arr2);
-
-        List<Integer> answer = new ArrayList<>();
-
-        int lt = 0;
-        int rt = 0;
-        while(lt < num1 && rt < num2){
-            if(arr1[lt] < arr2[rt]){
-                lt++;
-            }
-            else if(arr1[lt] > arr2[rt]){
-                rt++;
-            }
-
-            else{
-                answer.add(arr1[lt]);
-                lt++;
-                rt++;
+        int max = sum;
+        int j = 0;
+        for (int i = window; i < len; i++) {
+            sum += + arr[i] - arr[j++];
+            if(max < sum){
+                max = sum;
             }
         }
 
-        for (Integer integer : answer) {
-            System.out.print(integer + " ");
-        }
+        bw.write(max + "\n");
+        bw.flush();
     }
 }
