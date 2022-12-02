@@ -1,7 +1,5 @@
 package happysubin.javapractice.codingtest.inflearn;
 
-import javax.crypto.spec.PSource;
-import java.io.*;
 import java.util.Scanner;
 
 //큰 수 출력하기
@@ -386,7 +384,7 @@ import java.util.Scanner;
  * }
  */
 
- public class Arrays {
+ public class ArraysChapter {
 
      public static void main(String[] args) {
          Scanner sc = new Scanner(System.in);
