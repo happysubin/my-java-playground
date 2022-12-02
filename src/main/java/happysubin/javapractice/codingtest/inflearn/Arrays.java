@@ -386,3 +386,37 @@ import java.util.Scanner;
  * }
  */
 
+ public class Arrays {
+
+     public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+         int studentCnt = sc.nextInt();
+         int testCnt = sc.nextInt();
+
+         int[][] answer = new int[studentCnt][studentCnt];
+         int[][] arr = new int[testCnt][studentCnt];
+
+         for (int i = 0; i < testCnt; i++) {
+             for (int j = 0; j < studentCnt; j++) {
+                 arr[i][j] = sc.nextInt();
+             }
+         }
+
+         for (int i = 0; i < testCnt; i++) {
+             for (int j = 0; j < studentCnt; j++) {
+                 for (int k = j; k >= 0; k--) {
+                     answer[arr[i][j] - 1][arr[i][k] - 1] = 1;
+                 }
+             }
+         }
+
+        int result = 0;
+
+         for (int i = 0; i < studentCnt; i++) {
+             for (int j = 0; j < studentCnt; j++) {
+                 if(answer[i][j] == 0) result ++;
+             }
+         }
+         System.out.println(result);
+     }
+ }
