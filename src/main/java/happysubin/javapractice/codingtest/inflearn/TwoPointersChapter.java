@@ -135,39 +135,82 @@ import java.util.Scanner;
  * }
  */
 
+//연속 부분 수열
+
+/**
+ * public class TwoPointersChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *
+ *         String[] split = br.readLine().split(" ");
+ *         int len = Integer.parseInt(split[0]);
+ *         int goal = Integer.parseInt(split[1]);
+ *         String[] str = br.readLine().split(" ");
+ *         int[] arr = new int[str.length];
+ *
+ *         for (int i = 0; i < str.length; i++) {
+ *             arr[i] = Integer.parseInt(str[i]);
+ *         }
+ *
+ *         int lt = 0, rt = 0;
+ *         int sum = 0;
+ *         int answer = 0;
+ *         while (rt < len){
+ *             if(sum < goal){
+ *                 sum += arr[rt];
+ *                 rt++;
+ *             }
+ *
+ *             else if(sum > goal){
+ *                 sum -= arr[lt];
+ *                 lt++;
+ *             }
+ *
+ *             if(sum == goal){
+ *                 answer++;
+ *                 sum -= arr[lt];
+ *                 lt++;
+ *             }
+ *         }
+ *
+ *         bw.write(answer + "\n");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
+//연속된 자연수의 합
+
 public class TwoPointersChapter {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String[] split = br.readLine().split(" ");
-        int len = Integer.parseInt(split[0]);
-        int goal = Integer.parseInt(split[1]);
-        String[] str = br.readLine().split(" ");
-        int[] arr = new int[str.length];
-
-        for (int i = 0; i < str.length; i++) {
-            arr[i] = Integer.parseInt(str[i]);
+        int goal = Integer.parseInt(br.readLine());
+        int[] arr = new int[goal];
+        for (int i = 1; i < goal; i++) {
+            arr[i] = i;
         }
 
-        int lt = 0, rt = 0;
+        int lt = 1, rt = 1;
         int sum = 0;
         int answer = 0;
-        while (rt < len){
-            if(sum < goal){
+        while(arr[rt] < goal - 1 ) {
+            if (sum < goal) {
                 sum += arr[rt];
                 rt++;
             }
-
-            else if(sum > goal){
+            else if (sum > goal) {
                 sum -= arr[lt];
                 lt++;
             }
 
-            if(sum == goal){
+            if (sum == goal) {
                 answer++;
-                sum -= arr[lt];
+                sum -= arr[lt]; //0에서 중복이 발생했었음.
                 lt++;
             }
         }
