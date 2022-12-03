@@ -183,36 +183,69 @@ import java.util.Scanner;
 
 //연속된 자연수의 합
 
+/**
+ * public class TwoPointersChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *
+ *         int goal = Integer.parseInt(br.readLine());
+ *         int[] arr = new int[goal];
+ *         for (int i = 1; i < goal; i++) {
+ *             arr[i] = i;
+ *         }
+ *
+ *         int lt = 1, rt = 1;
+ *         int sum = 0;
+ *         int answer = 0;
+ *         while(arr[rt] < goal - 1 ) {
+ *             if (sum < goal) {
+ *                 sum += arr[rt];
+ *                 rt++;
+ *             }
+ *             else if (sum > goal) {
+ *                 sum -= arr[lt];
+ *                 lt++;
+ *             }
+ *
+ *             if (sum == goal) {
+ *                 answer++;
+ *                 sum -= arr[lt]; // 예륻들어 1 2 3 4 에서 10임. 맨 앞을 빼야하는데 arr[0]이 0이였음. 그럼 10 - 0이라 카운트가 한 번 더 됐음.
+ *                 lt++;
+ *             }
+ *         }
+ *
+ *         bw.write(answer + "\n");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
+
+// 최대 길이 연속부분수열
+
 public class TwoPointersChapter {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int goal = Integer.parseInt(br.readLine());
-        int[] arr = new int[goal];
-        for (int i = 1; i < goal; i++) {
-            arr[i] = i;
-        }
-
-        int lt = 1, rt = 1;
-        int sum = 0;
+        String[] split = br.readLine().split(" ");
+        int len = Integer.parseInt(split[0]);
+        int chance = Integer.parseInt(split[1]);
+        int lt = 0;
+        String[] arr = br.readLine().split(" ");
+        int cnt = 0;
         int answer = 0;
-        while(arr[rt] < goal - 1 ) {
-            if (sum < goal) {
-                sum += arr[rt];
-                rt++;
-            }
-            else if (sum > goal) {
-                sum -= arr[lt];
-                lt++;
-            }
 
-            if (sum == goal) {
-                answer++;
-                sum -= arr[lt]; //0에서 중복이 발생했었음.
+        for (int rt = 0; rt < arr.length; rt++) {
+            if(arr[rt].equals("0")) cnt++;
+            while(cnt > chance){
+                if(arr[lt].equals("0")) cnt--;
                 lt++;
             }
+            answer=Math.max(answer, rt-lt+1); //매 순간 비교
         }
 
         bw.write(answer + "\n");
