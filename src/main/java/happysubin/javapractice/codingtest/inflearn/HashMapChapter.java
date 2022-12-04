@@ -73,6 +73,47 @@ import java.util.*;
 
 //매출액 종류
 
+/**
+ * public class HashMapChapter {
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *
+ *         String[] str = br.readLine().split(" ");
+ *         List<Integer> answer = new ArrayList<>();
+ *         int len = Integer.parseInt(str[0]);
+ *         int window = Integer.parseInt(str[1]);
+ *         String[] arr = br.readLine().split(" ");
+ *         Map<String, Integer> map = new HashMap<>();
+ *
+ *
+ *         for (int i = 0; i < window; i++) {
+ *             map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+ *         }
+ *
+ *         int lt = 0;
+ *         answer.add(map.keySet().size());
+ *         for (int i = window; i < arr.length; i++) {
+ *             map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+ *             if(map.get(arr[lt]) <= 1){
+ *                 map.remove(arr[lt]);
+ *             }
+ *             else{
+ *                 map.put(arr[lt], map.get(arr[lt]) -1 );
+ *             }
+ *             lt++;
+ *             //set.remove(arr[lt++]);
+ *             answer.add(map.keySet().size());
+ *         }
+ *
+ *         for (Integer integer : answer) {
+ *             bw.write(integer + " ");
+ *         }
+ *         bw.flush();
+ *     }
+ * }
+ */
+
 public class HashMapChapter {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

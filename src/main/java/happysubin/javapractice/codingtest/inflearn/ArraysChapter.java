@@ -1,5 +1,9 @@
 package happysubin.javapractice.codingtest.inflearn;
 
+import java.io.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Scanner;
 
 //큰 수 출력하기
@@ -386,35 +390,52 @@ import java.util.Scanner;
 
  public class ArraysChapter {
 
-     public static void main(String[] args) {
-         Scanner sc = new Scanner(System.in);
-         int studentCnt = sc.nextInt();
-         int testCnt = sc.nextInt();
+     public static void main(String[] args) throws IOException {
 
-         int[][] answer = new int[studentCnt][studentCnt];
-         int[][] arr = new int[testCnt][studentCnt];
+         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-         for (int i = 0; i < testCnt; i++) {
-             for (int j = 0; j < studentCnt; j++) {
-                 arr[i][j] = sc.nextInt();
-             }
+         String[] arr = br.readLine().split("");
+         String[] word = br.readLine().split("");
+         int answer = arr.length - word.length + 1;
+
+         Map<String, Integer> standard = new HashMap<>();
+         for (String s : word) {
+             standard.put(s, standard.getOrDefault(s, 0) + 1);
          }
 
-         for (int i = 0; i < testCnt; i++) {
-             for (int j = 0; j < studentCnt; j++) {
-                 for (int k = j; k >= 0; k--) {
-                     answer[arr[i][j] - 1][arr[i][k] - 1] = 1;
+         Map<String, Integer> map = new HashMap<>();
+         //처음 윈도우 슬라이딩을 위한 설정
+         for (int i = 0; i < word.length; i++) {
+             map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+         }
+
+         for (String s : map.keySet()) {
+             if(map.get(s) != standard.get(s)){
+                 answer--;
+                 break;
+             }
+         }
+         int j = 0;
+         for (int i = word.length; i < arr.length; i++) {
+
+             if(map.get(arr[j]) <= 1){ //이 부분을 놓쳐서 첫 시도에서 틀림
+                 map.remove(arr[j]);
+                 j++;
+             }
+             else{
+                 map.put(arr[j], map.get(arr[j]) - 1 );
+                 j++;
+             }
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+             for (String s : map.keySet()) {
+                 if(map.get(s) != standard.get(s)) {
+                     answer--;
+                     break;
                  }
              }
          }
-
-        int result = 0;
-
-         for (int i = 0; i < studentCnt; i++) {
-             for (int j = 0; j < studentCnt; j++) {
-                 if(answer[i][j] == 0) result ++;
-             }
-         }
-         System.out.println(result);
+         bw.write(answer + "\n");
+         bw.flush();
      }
  }
