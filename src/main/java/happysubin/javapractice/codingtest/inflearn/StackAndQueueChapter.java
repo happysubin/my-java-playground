@@ -154,34 +154,68 @@ import java.util.*;
  * }
  */
 
+//공주 구하기
+
+/**
+ * public class StackAndQueueChapter {
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String[] arr = br.readLine().split(" ");
+ *         Integer len = Integer.parseInt(arr[0]);
+ *         Integer turn = Integer.parseInt(arr[1]);
+ *         Queue<Integer> queue = new LinkedList<>();
+ *
+ *
+ *         for (int i = 1; i <= len; i++) {
+ *             queue.add(i);
+ *         }
+ *
+ *         int cnt = 0;
+ *
+ *         while(queue.size() != 1){
+ *             cnt++;
+ *             Integer ele = queue.poll();
+ *             if(cnt != turn){
+ *                 queue.add(ele);
+ *             }
+ *             else{
+ *                 cnt = 0;
+ *             }
+ *         }
+ *
+ *         bw.write(queue.poll() + "");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
 public class StackAndQueueChapter {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] arr = br.readLine().split(" ");
-        Integer len = Integer.parseInt(arr[0]);
-        Integer turn = Integer.parseInt(arr[1]);
-        Queue<Integer> queue = new LinkedList<>();
+        String[] eProcess = br.readLine().split("");
+        String[] arr = br.readLine().split("");
+        String answer = "YES";
 
+        Queue<String> queue = new LinkedList<>();
 
-        for (int i = 1; i <= len; i++) {
-            queue.add(i);
+        for (String process : eProcess) {
+            queue.add(process);
         }
 
-        int cnt = 0;
-        
-        while(queue.size() != 1){
-            cnt++;
-            Integer ele = queue.poll();
-            if(cnt != turn){
-                queue.add(ele);
-            }
-            else{
-                cnt = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i].equals(queue.peek())){
+                queue.poll();
             }
         }
 
-        bw.write(queue.poll() + "");
+        if(queue.size() == 0){
+            bw.write("YES");
+        }
+        else{
+            bw.write("NO");
+        }
         bw.flush();
     }
 }
