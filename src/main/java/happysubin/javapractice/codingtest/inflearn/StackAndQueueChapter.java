@@ -1,10 +1,8 @@
 package happysubin.javapractice.codingtest.inflearn;
 
-import java.awt.*;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 // 올바른 괄호
 
@@ -124,30 +122,66 @@ import java.util.Stack;
  * }
  */
 
+// 쇠막대기
+
+/**
+ * public class StackAndQueueChapter {
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String[] arr = br.readLine().split("");
+ *         Stack<String> stack = new Stack();
+ *         int answer = 0;
+ *         for (int i = 0; i < arr.length; i++) {
+ *             if(arr[i].equals("(")){
+ *                 stack.push(arr[i]);
+ *             }
+ *             else {
+ *                 stack.pop();
+ *                 if(arr[i - 1].equals("(")){
+ *                     answer += stack.size();
+ *
+ *                 }
+ *                 else {
+ *                     answer++;
+ *                 }
+ *             }
+ *         }
+ *
+ *         bw.write(answer+ "\n");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
 public class StackAndQueueChapter {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] arr = br.readLine().split("");
-        Stack<String> stack = new Stack();
-        int answer = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i].equals("(")){
-                stack.push(arr[i]);
-            }
-            else {
-                stack.pop();
-                if(arr[i - 1].equals("(")){
-                    answer += stack.size();
+        String[] arr = br.readLine().split(" ");
+        Integer len = Integer.parseInt(arr[0]);
+        Integer turn = Integer.parseInt(arr[1]);
+        Queue<Integer> queue = new LinkedList<>();
 
-                }
-                else {
-                    answer++;
-                }
+
+        for (int i = 1; i <= len; i++) {
+            queue.add(i);
+        }
+
+        int cnt = 0;
+        
+        while(queue.size() != 1){
+            cnt++;
+            Integer ele = queue.poll();
+            if(cnt != turn){
+                queue.add(ele);
+            }
+            else{
+                cnt = 0;
             }
         }
 
-        bw.write(answer+ "\n");
+        bw.write(queue.poll() + "");
         bw.flush();
     }
 }
