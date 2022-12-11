@@ -1,9 +1,7 @@
 package happysubin.javapractice.codingtest.inflearn;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 // 선택 정렬
 
@@ -192,35 +190,82 @@ import java.util.Map;
 
 //장난 꾸러기
 
+/**
+ * public class SortAndSearchChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         int len = Integer.parseInt(br.readLine());
+ *
+ *         String[] arr = br.readLine().split(" ");
+ *         int[] intArr = new int[len];
+ *
+ *         for (int i = 0; i < len; i++) {
+ *             intArr[i] = Integer.parseInt(arr[i]);
+ *         }
+ *
+ *         int[] clone = intArr.clone();
+ *         Arrays.sort(intArr);
+ *
+ *
+ *         int[] answer = new int[2];
+ *         int j = 0;
+ *         for (int i = 0; i < len; i++) {
+ *             if(clone[i] != intArr[i]) answer[j++] = i + 1;
+ *         }
+ *
+ *
+ *         for (int i : answer) {
+ *             bw.write(i + " ");
+ *         }
+ *         bw.flush();;
+ *     }
+ * }
+ */
+
+
 public class SortAndSearchChapter {
 
-    public static void main(String[] args) throws IOException {
+    public void solution() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int len = Integer.parseInt(br.readLine());
-
-        String[] arr = br.readLine().split(" ");
-        int[] intArr = new int[len];
+        List<Point> list = new ArrayList<>();
 
         for (int i = 0; i < len; i++) {
-            intArr[i] = Integer.parseInt(arr[i]);
+            String[] str = br.readLine().split(" ");
+            list.add(new Point(Integer.parseInt(str[0]), Integer.parseInt(str[1])));
         }
 
-        int[] clone = intArr.clone();
-        Arrays.sort(intArr);
+        Collections.sort(list, new Comparator<Point>() {
+            @Override
+            public int compare(Point o1, Point o2) {
+                if(o1.x ==  o2.x) return o1.y - o2.y;
+                else return o1.x - o2.x;
+            }
+        });
 
-
-        int[] answer = new int[2];
-        int j = 0;
-        for (int i = 0; i < len; i++) {
-            if(clone[i] != intArr[i]) answer[j++] = i + 1;
+        for (Point point : list) {
+            bw.write(point.x + " " + point.y + "\n");
         }
+        bw.flush();
+    }
+
+    public static void main(String[] args) throws IOException {
+        SortAndSearchChapter main = new SortAndSearchChapter();
+        main.solution();
+    }
 
 
-        for (int i : answer) {
-            bw.write(i + " ");
+    class Point{
+        int x;
+        int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
-        bw.flush();;
     }
 }
 
