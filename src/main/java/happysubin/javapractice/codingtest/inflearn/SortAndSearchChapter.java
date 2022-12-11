@@ -1,6 +1,9 @@
 package happysubin.javapractice.codingtest.inflearn;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 // 선택 정렬
 
@@ -106,49 +109,118 @@ import java.io.*;
  * }
  */
 
+// LRU
+
+/**
+ * public class SortAndSearchChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String[] str = br.readLine().split(" ");
+ *         int size = Integer.parseInt(str[0]);
+ *         int len = Integer.parseInt(str[1]);
+ *
+ *         String[] list = br.readLine().split(" ");
+ *         int[] arr = new int[len];
+ *         int[] answer = new int[size];
+ *
+ *         for (int i = 0; i < len; i++) {
+ *             arr[i] = Integer.parseInt(list[i]);
+ *         }
+ *
+ *         for (int i = 0; i < len; i++) {
+ *             boolean has = false;
+ *             for (int j = 0; j < size; j++) {
+ *                 if(answer[j] == arr[i]){
+ *                     for (int k = j - 1; k >= 0 ; k--) {
+ *                         answer[k + 1] = answer[k];
+ *                     }
+ *                     answer[0] = arr[i];
+ *                     has = true;
+ *                 }
+ *             }
+ *
+ *             if(has == false){
+ *                 for (int j = size - 2; j >= 0; j--) {
+ *                     answer[j + 1] = answer[j];
+ *                 }
+ *                 answer[0] = arr[i];
+ *             }
+ *         }
+ *
+ *         for (int i : answer) {
+ *             bw.write(i + " ");
+ *         }
+ *
+ *
+ *         bw.flush();
+ *     }
+ * }
+ */
+
+//중복 확인
+
+/**
+ * public class SortAndSearchChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         int len = Integer.parseInt(br.readLine());
+ *         String[] arr = br.readLine().split(" ");
+ *         Map<String, Integer> map = new HashMap<>();
+ *         for (String s : arr) {
+ *             map.put(s, map.getOrDefault(s, 0) + 1);
+ *         }
+ *
+ *         for (String s : map.keySet()) {
+ *             if(map.get(s) > 1){
+ *                 bw.write("D");
+ *                 bw.flush();;
+ *                 return ;
+ *             }
+ *         }
+ *
+ *         bw.write("U");
+ *         bw.flush();;
+ *         return ;
+ *
+ *     }
+ * }
+ */
+
+//장난 꾸러기
+
 public class SortAndSearchChapter {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] str = br.readLine().split(" ");
-        int size = Integer.parseInt(str[0]);
-        int len = Integer.parseInt(str[1]);
+        int len = Integer.parseInt(br.readLine());
 
-        String[] list = br.readLine().split(" ");
-        int[] arr = new int[len];
-        int[] answer = new int[size];
+        String[] arr = br.readLine().split(" ");
+        int[] intArr = new int[len];
 
         for (int i = 0; i < len; i++) {
-            arr[i] = Integer.parseInt(list[i]);
+            intArr[i] = Integer.parseInt(arr[i]);
         }
 
+        int[] clone = intArr.clone();
+        Arrays.sort(intArr);
+
+
+        int[] answer = new int[2];
+        int j = 0;
         for (int i = 0; i < len; i++) {
-            boolean has = false;
-            for (int j = 0; j < size; j++) {
-                if(answer[j] == arr[i]){
-                    for (int k = j - 1; k >= 0 ; k--) {
-                        answer[k + 1] = answer[k];
-                    }
-                    answer[0] = arr[i];
-                    has = true;
-                }
-            }
-
-            if(has == false){
-                for (int j = size - 2; j >= 0; j--) {
-                    answer[j + 1] = answer[j];
-                }
-                answer[0] = arr[i];
-            }
+            if(clone[i] != intArr[i]) answer[j++] = i + 1;
         }
+
 
         for (int i : answer) {
             bw.write(i + " ");
         }
-
-
-        bw.flush();
+        bw.flush();;
     }
 }
 
