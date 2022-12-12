@@ -3,6 +3,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'jacoco'
+    id "net.bytebuddy.byte-buddy-gradle-plugin" version "1.12.19"
+
 }
 
 group = 'happysubin'
@@ -16,6 +18,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy
+    implementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.12.19'
+
 }
 
 tasks.named('test') {
@@ -31,5 +36,11 @@ jacocoTestReport {
         xml.required = false
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
+byteBuddy {
+    transformation {
+        plugin = net.bytebuddy.build.CachedReturnPlugin.class
     }
 }
