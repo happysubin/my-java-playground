@@ -121,29 +121,79 @@ package happysubin.javapractice.codingtest.inflearn;
  * }
  */
 
-class DFSAndBFSChapter {
-    static int n;
-    static int[] ch;
-    public void DFS(int L){
-        if(L==n+1){
-            String tmp="";
-            for(int i=1; i<=n; i++){
-                if(ch[i]==1) tmp+=(i+" ");
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * 부분 집합 구하기
+ *
+ * class DFSAndBFSChapter {
+ *     static int n;
+ *     static int[] ch;
+ *     public void DFS(int L){
+ *         if(L==n+1){
+ *             String tmp="";
+ *             for(int i=1; i<=n; i++){
+ *                 if(ch[i]==1) tmp+=(i+" ");
+ *             }
+ *             if(tmp.length()>0) System.out.println(tmp);
+ *         }
+ *         else{
+ *             ch[L]=1; //사용한다.
+ *             DFS(L+1);
+ *             ch[L]=0; //사용하지 않는다.
+ *             DFS(L+1);
+ *         }
+ *     }
+ *
+ *     public static void main(String[] args){
+ *         DFSAndBFSChapter T = new DFSAndBFSChapter();
+ *         n=3;
+ *         ch=new int[n+1];
+ *         T.DFS(1);
+ *     }
+ * }
+ */
+
+
+class Node{
+    int data;
+    Node lt, rt;
+    public Node(int val) {
+        data=val;
+        lt=rt=null;
+    }
+}
+
+public class DFSAndBFSChapter{
+    Node root;
+    public void BFS(Node root){
+        Queue<Node> Q=new LinkedList<>();
+        Q.add(root);
+        int L=0;
+        while(!Q.isEmpty()){
+            int len = Q.size();
+            System.out.print(L+" : ");
+            for(int i=0; i<len; i++){
+                Node cur = Q.poll();
+                System.out.print(cur.data+" ");
+                if(cur.lt!=null) Q.add(cur.lt);
+                if(cur.rt!=null) Q.add(cur.rt);
             }
-            if(tmp.length()>0) System.out.println(tmp);
-        }
-        else{
-            ch[L]=1; //사용한다.
-            DFS(L+1);
-            ch[L]=0; //사용하지 않는다.
-            DFS(L+1);
+            L++;
+            System.out.println();
         }
     }
 
-    public static void main(String[] args){
-        DFSAndBFSChapter T = new DFSAndBFSChapter();
-        n=3;
-        ch=new int[n+1];
-        T.DFS(1);
+    public static void main(String args[]) {
+        DFSAndBFSChapter tree = new DFSAndBFSChapter();
+        tree.root=new Node(1);
+        tree.root.lt=new Node(2);
+        tree.root.rt=new Node(3);
+        tree.root.lt.lt=new Node(4);
+        tree.root.lt.rt=new Node(5);
+        tree.root.rt.lt=new Node(6);
+        tree.root.rt.rt=new Node(7);
+        tree.BFS(tree.root);
     }
 }
