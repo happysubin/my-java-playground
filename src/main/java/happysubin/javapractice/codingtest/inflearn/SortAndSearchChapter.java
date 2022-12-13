@@ -321,6 +321,69 @@ import java.util.*;
 
 //뮤직 비디오 추후에 꼭 다시 풀어보자.
 
+/**
+ * public class SortAndSearchChapter {
+ *
+ *     public static int count(int[] arr, int capacity){ //DVD의 개수를 살핌.
+ *         int cnt = 1, sum = 0;
+ *         for (int x : arr) {
+ *             if(sum + x > capacity){
+ *                 cnt++;
+ *                 sum = x;
+ *             }
+ *             else sum+=x;
+ *         }
+ *
+ *         return cnt;
+ *     }
+ *
+ *     public static int solution(int len, int size, int[] arr){
+ *         int lt = arr[len - 1];
+ *         int rt = 0;
+ *         int answer = 0;
+ *
+ *         for (int i : arr) {
+ *             rt += i;
+ *         }
+ *
+ *         while(lt <= rt){
+ *             int mid = (lt + rt) / 2;
+ *             if(count(arr,mid) <= size){
+ *               answer = mid;
+ *               rt = mid -1;
+ *             }
+ *             else{
+ *                 lt = mid + 1;
+ *             }
+ *         }
+ *
+ *         return answer;
+ *     }
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *
+ *         String[] str = br.readLine().split(" ");
+ *         int len = Integer.parseInt(str[0]);
+ *         int size = Integer.parseInt(str[1]);
+ *
+ *         int[] arr = new int[len];
+ *         String[] temp = br.readLine().split(" ");
+ *
+ *         for (int i = 0; i < len; i++) {
+ *             arr[i] = Integer.parseInt(temp[i]);
+ *         }
+ *
+ *         //값 세팅 끝
+ *
+ *         bw.write(solution(len, size, arr)+ "");
+ *
+ *         bw.flush();
+ *     }
+ * }
+ */
+
 public class SortAndSearchChapter {
 
     public static int count(int[] arr, int capacity){ //DVD의 개수를 살핌.
@@ -348,8 +411,8 @@ public class SortAndSearchChapter {
         while(lt <= rt){
             int mid = (lt + rt) / 2;
             if(count(arr,mid) <= size){
-              answer = mid;
-              rt = mid -1;
+                answer = mid;
+                rt = mid -1;
             }
             else{
                 lt = mid + 1;
