@@ -3,6 +3,7 @@ package happysubin.javapractice.codingtest.inflearn;
 import java.io.*;
 import java.util.*;
 
+
 // 선택 정렬
 
 /**
@@ -273,43 +274,110 @@ import java.util.*;
  * }
  */
 
+//이분 검색
+
+/**
+ * public class SortAndSearchChapter {
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String[] str = br.readLine().split(" ");
+ *         int len = Integer.parseInt(str[0]);
+ *         int target = Integer.parseInt(str[1]);
+ *
+ *         String[] temp = br.readLine().split(" ");
+ *         int[] arr = new int[temp.length];
+ *
+ *         for (int i = 0; i < temp.length; i++) {
+ *             arr[i] = Integer.parseInt(temp[i]);
+ *         }
+ *
+ *         Arrays.sort(arr);
+ *
+ *         int lt = 0, rt = len - 1;
+ *         int answer = 0;
+ *         while(lt <= rt){
+ *             int mid = (lt + rt ) / 2;
+ *             if(arr[mid] == target){
+ *                 answer = mid + 1;
+ *                 break;
+ *             }
+ *
+ *             else if(arr[mid] > target){
+ *                 rt = mid - 1;
+ *             }
+ *
+ *             else{
+ *                 lt = mid + 1;
+ *             }
+ *         }
+ *
+ *         bw.write(answer + " ");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
+//뮤직 비디오 추후에 꼭 다시 풀어보자.
+
 public class SortAndSearchChapter {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] str = br.readLine().split(" ");
-        int len = Integer.parseInt(str[0]);
-        int target = Integer.parseInt(str[1]);
-
-        String[] temp = br.readLine().split(" ");
-        int[] arr = new int[temp.length];
-
-        for (int i = 0; i < temp.length; i++) {
-            arr[i] = Integer.parseInt(temp[i]);
+    public static int count(int[] arr, int capacity){ //DVD의 개수를 살핌.
+        int cnt = 1, sum = 0;
+        for (int x : arr) {
+            if(sum + x > capacity){
+                cnt++;
+                sum = x;
+            }
+            else sum+=x;
         }
 
-        Arrays.sort(arr);
+        return cnt;
+    }
 
-        int lt = 0, rt = len - 1;
+    public static int solution(int len, int size, int[] arr){
+        int lt = arr[len - 1];
+        int rt = 0;
         int answer = 0;
+
+        for (int i : arr) {
+            rt += i;
+        }
+
         while(lt <= rt){
-            int mid = (lt + rt ) / 2;
-            if(arr[mid] == target){
-                answer = mid + 1;
-                break;
+            int mid = (lt + rt) / 2;
+            if(count(arr,mid) <= size){
+              answer = mid;
+              rt = mid -1;
             }
-
-            else if(arr[mid] > target){
-                rt = mid - 1;
-            }
-
             else{
                 lt = mid + 1;
             }
         }
 
-        bw.write(answer + " ");
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String[] str = br.readLine().split(" ");
+        int len = Integer.parseInt(str[0]);
+        int size = Integer.parseInt(str[1]);
+
+        int[] arr = new int[len];
+        String[] temp = br.readLine().split(" ");
+
+        for (int i = 0; i < len; i++) {
+            arr[i] = Integer.parseInt(temp[i]);
+        }
+
+        //값 세팅 끝
+
+        bw.write(solution(len, size, arr)+ "");
+
         bw.flush();
     }
 }
