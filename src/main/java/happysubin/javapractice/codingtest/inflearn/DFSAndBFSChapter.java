@@ -121,6 +121,8 @@ package happysubin.javapractice.codingtest.inflearn;
  * }
  */
 
+import java.awt.image.DataBufferDouble;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -155,45 +157,143 @@ import java.util.Queue;
  * }
  */
 
+//이진트리 레벨 탐색
 
-class Node{
-    int data;
-    Node lt, rt;
-    public Node(int val) {
-        data=val;
-        lt=rt=null;
-    }
-}
+/**
+ * class Node{
+ *     int data;
+ *     Node lt, rt;
+ *     public Node(int val) {
+ *         data=val;
+ *         lt=rt=null;
+ *     }
+ * }
+ *
+ * public class DFSAndBFSChapter{
+ *     Node root;
+ *     public void BFS(Node root){
+ *         Queue<Node> Q=new LinkedList<>();
+ *         Q.add(root);
+ *         int L=0;
+ *         while(!Q.isEmpty()){
+ *             int len = Q.size();
+ *             System.out.print(L+" : ");
+ *             for(int i=0; i<len; i++){
+ *                 Node cur = Q.poll();
+ *                 System.out.print(cur.data+" ");
+ *                 if(cur.lt!=null) Q.add(cur.lt);
+ *                 if(cur.rt!=null) Q.add(cur.rt);
+ *             }
+ *             L++;
+ *             System.out.println();
+ *         }
+ *     }
+ *
+ *     public static void main(String args[]) {
+ *         DFSAndBFSChapter tree = new DFSAndBFSChapter();
+ *         tree.root=new Node(1);
+ *         tree.root.lt=new Node(2);
+ *         tree.root.rt=new Node(3);
+ *         tree.root.lt.lt=new Node(4);
+ *         tree.root.lt.rt=new Node(5);
+ *         tree.root.rt.lt=new Node(6);
+ *         tree.root.rt.rt=new Node(7);
+ *         tree.BFS(tree.root);
+ *     }
+ * }
+ */
 
-public class DFSAndBFSChapter{
-    Node root;
-    public void BFS(Node root){
-        Queue<Node> Q=new LinkedList<>();
-        Q.add(root);
+
+/** 끝까지 시도한 첫 풀이
+ * public class DFSAndBFSChapter{
+ *
+ *     class Node{
+ *         int level;
+ *         int value;
+ *
+ *         public Node(int value, int level) {
+ *             this.level = level;
+ *             this.value = value;
+ *         }
+ *     }
+ *
+ *     public int BFS(int start, int goal){
+ *         Queue<Node> queue = new LinkedList<>();
+ *         int[] pos = new int[100001];
+ *         queue.add(new Node(start, 0));
+ *         Node result = null;
+ *         while(true){
+ *             Node node = queue.poll();
+ *             pos[node.value] = 1;
+ *             if(node.value == goal){
+ *                 result = node;
+ *                 break;
+ *             }
+ *             else{
+ *                 if(node.value + 1 <= 10000 && node.value > 1 && pos[node.value + 1] == 0 )  queue.add(new Node(node.value + 1, node.level + 1));
+ *                 if(node.value + 1 <= 10000 && node.value > 1 && pos[node.value - 1] == 0 )  queue.add(new Node(node.value - 1, node.level + 1));
+ *                 if(node.value + 1 <= 10000 && node.value > 1 && pos[node.value + 5] == 0 )  queue.add(new Node(node.value + 5, node.level + 1));
+ *             }
+ *         }
+ *
+ *         return result.level;
+ *     }
+ *
+ *     public static void main(String args[]) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ *         String[] s = br.readLine().split(" ");
+ *         int start = Integer.parseInt(s[0]);
+ *         int goal = Integer.parseInt(s[1]);
+ *
+ *         DFSAndBFSChapter tree = new DFSAndBFSChapter();
+ *         int bfs = tree.BFS(start, goal);
+ *         bw.write(bfs + "");
+ *         bw.flush();
+ *     }
+ * }
+ */
+
+
+
+
+import java.util.*;
+public class DFSAndBFSChapter {
+    int answer=0;
+    int[] dis={1, -1, 5};
+    int[] ch;
+    Queue<Integer> Q = new LinkedList<>();
+    public int BFS(int s, int e){
+        ch=new int[10001];
+        ch[s]=1;
+        Q.offer(s);
         int L=0;
         while(!Q.isEmpty()){
-            int len = Q.size();
-            System.out.print(L+" : ");
+            int len=Q.size();
             for(int i=0; i<len; i++){
-                Node cur = Q.poll();
-                System.out.print(cur.data+" ");
-                if(cur.lt!=null) Q.add(cur.lt);
-                if(cur.rt!=null) Q.add(cur.rt);
+                int x = Q.poll();
+                for(int j=0; j<3; j++){
+                    int nx=x+dis[j];
+                    if(nx==e){
+                        return L+1;
+                    }
+                    if(nx>=1 && nx<=10000 && ch[nx]==0){
+                        ch[nx]=1;
+                        Q.offer(nx);
+                    }
+                }
             }
             L++;
-            System.out.println();
         }
+        return 0;
     }
 
-    public static void main(String args[]) {
-        DFSAndBFSChapter tree = new DFSAndBFSChapter();
-        tree.root=new Node(1);
-        tree.root.lt=new Node(2);
-        tree.root.rt=new Node(3);
-        tree.root.lt.lt=new Node(4);
-        tree.root.lt.rt=new Node(5);
-        tree.root.rt.lt=new Node(6);
-        tree.root.rt.rt=new Node(7);
-        tree.BFS(tree.root);
+    public static void main(String[] args){
+        DFSAndBFSChapter T = new DFSAndBFSChapter();
+        Scanner kb = new Scanner(System.in);
+        int s=kb.nextInt();
+        int e=kb.nextInt();
+        System.out.println(T.BFS(s, e));
     }
 }
+
