@@ -300,6 +300,40 @@ import java.util.Queue;
  */
 
 
+/** 말단 노드까지의 가장 짧은 경로(DFS)
+ * class Node{
+ *     int data;
+ *     Node lt, rt;
+ *     public Node(int val) {
+ *         data=val;
+ *         lt=rt=null;
+ *     }
+ * }
+ *
+ * public class DFSAndBFSChapter{
+ *
+ *     private Node root;
+ *
+ *     public static void main(String args[]) {
+ *         DFSAndBFSChapter tree=new DFSAndBFSChapter();
+ *         tree.root=new Node(1);
+ *         tree.root.lt=new Node(2);
+ *         tree.root.rt=new Node(3);
+ *         tree.root.lt.lt=new Node(4);
+ *         tree.root.lt.rt=new Node(5);
+ *         System.out.println(tree.DFS(0, tree.root));
+ *     }
+ *
+ *     public int DFS(int L, Node root){
+ *         if(root.lt==null && root.rt==null) return L;
+ *         else return Math.min(DFS(L+1, root.lt), DFS(L+1, root.rt));
+ *     }
+ * }
+ */
+
+
+//말단 노드까지의 가장 짧은 경로(BFS)
+
 class Node{
     int data;
     Node lt, rt;
@@ -320,14 +354,23 @@ public class DFSAndBFSChapter{
         tree.root.rt=new Node(3);
         tree.root.lt.lt=new Node(4);
         tree.root.lt.rt=new Node(5);
-        System.out.println(tree.DFS(0, tree.root));
+        System.out.println(tree.BFS(tree.root));
     }
 
-    public int DFS(int L, Node root){
-        if(root.lt==null && root.rt==null) return L;
-        else return Math.min(DFS(L+1, root.lt), DFS(L+1, root.rt));
-    }
-}
-
-
-
+    public int BFS(Node root){
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        int cnt = 0;
+        while(!queue.isEmpty()){
+            int len = queue.size();
+            for (int i = 0; i < len; i++) {
+                Node poll = queue.poll();
+                if(poll.lt == null && poll.rt == null) return cnt;
+                if(poll.lt == null) queue.offer(poll.lt);
+                if(poll.rt == null) queue.offer(poll.rt);
+            }
+            cnt ++;
+        }
+        return cnt;
+     }
+ }
