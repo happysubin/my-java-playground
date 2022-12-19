@@ -220,50 +220,124 @@ import java.util.Queue;
 
 /**
  * 송아지 찾기
+ *
+ * public class DFSAndBFSChapter{
+ *
+ *     private int BFS(int start, int goal, int[] arr) {
+ *         Queue<Integer> queue = new LinkedList<>();
+ *         arr[start] = 1;
+ *         queue.offer(start);
+ *         int cnt = 0;
+ *
+ *         while(!queue.isEmpty()){
+ *             int size = queue.size();
+ *             for (int i = 0; i < size; i++) {
+ *                 Integer poll = queue.poll();
+ *                 if(poll == goal) return cnt;
+ *                 if(poll - 1 >0 && poll - 1 < 10000 && arr[poll - 1] == 0){
+ *                     arr[poll - 1] = 1;
+ *                     queue.add(poll - 1);
+ *                 }
+ *                 if(poll + 1 >0 && poll + 1 < 10000 && arr[poll + 1] == 0){
+ *                     arr[poll + 1] = 1;
+ *                     queue.add(poll + 1);
+ *                 }
+ *                 if(poll + 5 >0 && poll + 5 < 10000 && arr[poll + 5] == 0){
+ *                     arr[poll + 5] = 1;
+ *                     queue.add(poll + 5);
+ *                 }
+ *             }
+ *             cnt++;
+ *         }
+ *         return cnt;
+ *     }
+ *
+ *     public static void main(String[] args) throws IOException {
+ *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ *         String[] str = br.readLine().split(" ");
+ *         int start = Integer.parseInt(str[0]);
+ *         int goal = Integer.parseInt(str[1]);
+ *
+ *         DFSAndBFSChapter T = new DFSAndBFSChapter();
+ *
+ *         int[] arr = new int[10001];
+ *
+ *         int result = T.BFS(start, goal, arr);
+ *         System.out.println(result);
+ *     }
+ * }
  */
 
+/** 말단 노드까지 최단거리 DFS
+ * class Node{
+ *     int data;
+ *     Node lt, rt;
+ *     public Node(int val) {
+ *         data=val;
+ *         lt=rt=null;
+ *     }
+ * }
+ *
+ * public class DFSAndBFSChapter{
+ *     Node root;
+ *
+ *     public static void main(String args[]) {
+ *         DFSAndBFSChapter tree=new DFSAndBFSChapter();
+ *         tree.root=new Node(1);
+ *         tree.root.lt=new Node(2);
+ *         tree.root.rt=new Node(3);
+ *         tree.root.lt.lt=new Node(4);
+ *         tree.root.lt.rt=new Node(5);
+ *         System.out.println(tree.DFS(0, tree.root));
+ *     }
+ *
+ *     private int DFS(int L, Node root) {
+ *         if(root.lt==null && root.rt==null) return L;
+ *         else return Math.min(DFS(L+1, root.lt), DFS(L+1, root.rt));
+ *     }
+ * }
+ */
+
+/** 말단 노드까지 최단거리 BFS
+ *
+ */
+class Node{
+    int data;
+    Node lt, rt;
+    public Node(int val) {
+        data=val;
+        lt=rt=null;
+    }
+}
+
 public class DFSAndBFSChapter{
+    Node root;
 
-    private int BFS(int start, int goal, int[] arr) {
-        Queue<Integer> queue = new LinkedList<>();
-        arr[start] = 1;
-        queue.offer(start);
-        int cnt = 0;
+    public static void main(String args[]) {
+        DFSAndBFSChapter tree=new DFSAndBFSChapter();
+        tree.root=new Node(1);
+        tree.root.lt=new Node(2);
+        tree.root.rt=new Node(3);
+        tree.root.lt.lt=new Node(4);
+        tree.root.lt.rt=new Node(5);
+        System.out.println(tree.BFS(tree.root));
+    }
 
+    private int BFS(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        int level = 0;
         while(!queue.isEmpty()){
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                Integer poll = queue.poll();
-                if(poll == goal) return cnt;
-                if(poll - 1 >0 && poll - 1 < 10000 && arr[poll - 1] == 0){
-                    arr[poll - 1] = 1;
-                    queue.add(poll - 1);
-                }
-                if(poll + 1 >0 && poll + 1 < 10000 && arr[poll + 1] == 0){
-                    arr[poll + 1] = 1;
-                    queue.add(poll + 1);
-                }
-                if(poll + 5 >0 && poll + 5 < 10000 && arr[poll + 5] == 0){
-                    arr[poll + 5] = 1;
-                    queue.add(poll + 5);
-                }
+                Node poll = queue.poll();
+                if(poll.rt == null && poll.lt == null) return level;
+                if(poll.lt != null) queue.offer(poll.lt);
+                if(poll.rt != null) queue.offer(poll.rt);
             }
-            cnt++;
+            level++;
         }
-        return cnt;
-    }
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] str = br.readLine().split(" ");
-        int start = Integer.parseInt(str[0]);
-        int goal = Integer.parseInt(str[1]);
-
-        DFSAndBFSChapter T = new DFSAndBFSChapter();
-
-        int[] arr = new int[10001];
-
-        int result = T.BFS(start, goal, arr);
-        System.out.println(result);
+        return level;
     }
 }
