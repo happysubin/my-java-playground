@@ -1,26 +1,28 @@
 package happysubin.javapractice.codingtest.inflearn;
 
 /**
- * 재귀 함수
- * 답 1 2 3 4 5 6 7 8 9
+ * 재귀함수
  *
- * public class DFSAndBFSChapter {
- *
- *     public static void recursive(int n){
- *         if(n == 0) return;
- *         else {
- *             recursive(n - 1);
- *             System.out.print(n + " ");
- *             //recursive(n - 1);
+ * class DFSAndBFSChapter {
+ *     public void DFS(int n){
+ *         if(n==0) return;
+ *         else{
+ *             DFS(n-1);
+ *             System.out.print(n+" ");
  *         }
  *     }
  *
- *     public static void main(String[] args) {
- *         recursive(9);
+ *     public void solution(int n){
+ *         DFS(n);
  *     }
- *
+ *     public static void main(String[] args){
+ *         DFSAndBFSChapter T = new DFSAndBFSChapter();
+ *         T.solution(3);
+ *         //System.out.println(T.solution(3));
+ *     }
  * }
  */
+
 
 /**
  * 이진수 출력
@@ -49,53 +51,60 @@ package happysubin.javapractice.codingtest.inflearn;
  * 답: 120
  * public class DFSAndBFSChapter {
  *
- *     public static int recursive(int n){
+ *     private int recursive(int n) {
  *         if(n == 1) return 1;
- *         else return n *= recursive(n - 1);
+ *         else return n * recursive(n - 1);
  *     }
  *
  *     public static void main(String[] args) {
- *         int recursive = recursive(5);
+ *         DFSAndBFSChapter T = new DFSAndBFSChapter();
+ *         int recursive = T.recursive(5);
  *         System.out.println("recursive = " + recursive);
  *     }
  * }
  */
 
+
+
 /**
  * 피보나치 수열
  * 답: 1 1 2 3 5 8 13 21 34 55
- *
  * public class DFSAndBFSChapter {
  *
- *     public static int recursive(int n){
+ *     private int recursive(int n) {
  *         if(n == 1) return 1;
- *         else if(n == 2) return 1;
- *         else return recursive(n -1) + recursive(n - 2);
+ *         if(n == 2) return 1;
+ *         else return recursive(n - 2) + recursive(n - 1) ;
  *     }
  *
  *     public static void main(String[] args) {
- *         for (int i = 1; i <= 10; i++) {
- *             System.out.println(recursive(i));
+ *         DFSAndBFSChapter T = new DFSAndBFSChapter();
+ *         for(int i = 1; i <= 10 ; i++) {
+ *             System.out.println(T.recursive(i));
  *         }
  *     }
  * }
+ *
  */
 
-//이진트리 순회까지
 
-/**
- * public class DFSAndBFSChapter {
+
+
+
+
+/** 이진트리 순회까지
  *
- *     Node root;
- *     public void DFS(Node root){
- *         if(root==null)
- *             return;
- *         else{
- *             DFS(root.lt);
- *             System.out.print(root.data+" ");
- *             DFS(root.rt);
- *         }
+ * class Node{
+ *     int data;
+ *     Node lt, rt;
+ *     public Node(int val) {
+ *         data=val;
+ *         lt=rt=null;
  *     }
+ * }
+ *
+ * class DFSAndBFSChapter {
+ *     Node root;
  *
  *     public static void main(String args[]) {
  *         DFSAndBFSChapter tree=new DFSAndBFSChapter();
@@ -108,31 +117,27 @@ package happysubin.javapractice.codingtest.inflearn;
  *         tree.root.rt.rt=new Node(7);
  *         tree.DFS(tree.root);
  *     }
- * }
  *
- *
- * class Node{
- *     int data;
- *     Node lt, rt;
- *     public Node(int val) {
- *         data=val;
- *         lt=rt=null;
+ *     private void DFS(Node root) {
+ *         if(root != null){
+ *             System.out.println(root.data);
+ *             DFS(root.lt);
+ *             DFS(root.rt);
+ *         }
  *     }
  * }
  */
 
-import java.awt.image.DataBufferDouble;
-import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * 부분 집합 구하기
  *
  * class DFSAndBFSChapter {
+ *
  *     static int n;
  *     static int[] ch;
- *     public void DFS(int L){
+ *
+ *     private void DFS(int L) {
  *         if(L==n+1){
  *             String tmp="";
  *             for(int i=1; i<=n; i++){
@@ -141,25 +146,32 @@ import java.util.Queue;
  *             if(tmp.length()>0) System.out.println(tmp);
  *         }
  *         else{
- *             ch[L]=1; //사용한다.
+ *             ch[L]=1;
  *             DFS(L+1);
- *             ch[L]=0; //사용하지 않는다.
+ *             ch[L]=0;
  *             DFS(L+1);
  *         }
  *     }
  *
- *     public static void main(String[] args){
+ *     public static void main(String[] args) {
  *         DFSAndBFSChapter T = new DFSAndBFSChapter();
- *         n=3;
- *         ch=new int[n+1];
+ *         n = 3;
+ *         ch = new int[n + 1];
  *         T.DFS(1);
  *     }
  * }
  */
 
-//이진트리 레벨 탐색
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
+ * 이진트리 레벨 탐색
+ *
  * class Node{
  *     int data;
  *     Node lt, rt;
@@ -170,7 +182,8 @@ import java.util.Queue;
  * }
  *
  * public class DFSAndBFSChapter{
- *     Node root;
+ *     private Node root;
+ *
  *     public void BFS(Node root){
  *         Queue<Node> Q=new LinkedList<>();
  *         Q.add(root);
@@ -190,7 +203,7 @@ import java.util.Queue;
  *     }
  *
  *     public static void main(String args[]) {
- *         DFSAndBFSChapter tree = new DFSAndBFSChapter();
+ *         DFSAndBFSChapter tree=new DFSAndBFSChapter();
  *         tree.root=new Node(1);
  *         tree.root.lt=new Node(2);
  *         tree.root.rt=new Node(3);
@@ -200,177 +213,57 @@ import java.util.Queue;
  *         tree.root.rt.rt=new Node(7);
  *         tree.BFS(tree.root);
  *     }
+ *
  * }
  */
 
-
-/** 끝까지 시도한 첫 풀이
- * public class DFSAndBFSChapter{
- *
- *     class Node{
- *         int level;
- *         int value;
- *
- *         public Node(int value, int level) {
- *             this.level = level;
- *             this.value = value;
- *         }
- *     }
- *
- *     public int BFS(int start, int goal){
- *         Queue<Node> queue = new LinkedList<>();
- *         int[] pos = new int[100001];
- *         queue.add(new Node(start, 0));
- *         Node result = null;
- *         while(true){
- *             Node node = queue.poll();
- *             pos[node.value] = 1;
- *             if(node.value == goal){
- *                 result = node;
- *                 break;
- *             }
- *             else{
- *                 if(node.value + 1 <= 10000 && node.value > 1 && pos[node.value + 1] == 0 )  queue.add(new Node(node.value + 1, node.level + 1));
- *                 if(node.value + 1 <= 10000 && node.value > 1 && pos[node.value - 1] == 0 )  queue.add(new Node(node.value - 1, node.level + 1));
- *                 if(node.value + 1 <= 10000 && node.value > 1 && pos[node.value + 5] == 0 )  queue.add(new Node(node.value + 5, node.level + 1));
- *             }
- *         }
- *
- *         return result.level;
- *     }
- *
- *     public static void main(String args[]) throws IOException {
- *         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- *         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
- *         String[] s = br.readLine().split(" ");
- *         int start = Integer.parseInt(s[0]);
- *         int goal = Integer.parseInt(s[1]);
- *
- *         DFSAndBFSChapter tree = new DFSAndBFSChapter();
- *         int bfs = tree.BFS(start, goal);
- *         bw.write(bfs + "");
- *         bw.flush();
- *     }
- * }
- */
-
-
-// 송아지 찾기
 
 /**
- * import java.util.*;
- * public class DFSAndBFSChapter {
- *     int answer=0;
- *     int[] dis={1, -1, 5};
- *     int[] ch;
- *     Queue<Integer> Q = new LinkedList<>();
- *     public int BFS(int s, int e){
- *         ch=new int[10001];
- *         ch[s]=1;
- *         Q.offer(s);
- *         int L=0;
- *         while(!Q.isEmpty()){
- *             int len=Q.size();
- *             for(int i=0; i<len; i++){
- *                 int x = Q.poll();
- *                 for(int j=0; j<3; j++){
- *                     int nx=x+dis[j];
- *                     if(nx==e){
- *                         return L+1;
- *                     }
- *                     if(nx>=1 && nx<=10000 && ch[nx]==0){
- *                         ch[nx]=1;
- *                         Q.offer(nx);
- *                     }
- *                 }
- *             }
- *             L++;
- *         }
- *         return 0;
- *     }
- *
- *     public static void main(String[] args){
- *         DFSAndBFSChapter T = new DFSAndBFSChapter();
- *         Scanner kb = new Scanner(System.in);
- *         int s=kb.nextInt();
- *         int e=kb.nextInt();
- *         System.out.println(T.BFS(s, e));
- *     }
- * }
+ * 송아지 찾기
  */
-
-
-/** 말단 노드까지의 가장 짧은 경로(DFS)
- * class Node{
- *     int data;
- *     Node lt, rt;
- *     public Node(int val) {
- *         data=val;
- *         lt=rt=null;
- *     }
- * }
- *
- * public class DFSAndBFSChapter{
- *
- *     private Node root;
- *
- *     public static void main(String args[]) {
- *         DFSAndBFSChapter tree=new DFSAndBFSChapter();
- *         tree.root=new Node(1);
- *         tree.root.lt=new Node(2);
- *         tree.root.rt=new Node(3);
- *         tree.root.lt.lt=new Node(4);
- *         tree.root.lt.rt=new Node(5);
- *         System.out.println(tree.DFS(0, tree.root));
- *     }
- *
- *     public int DFS(int L, Node root){
- *         if(root.lt==null && root.rt==null) return L;
- *         else return Math.min(DFS(L+1, root.lt), DFS(L+1, root.rt));
- *     }
- * }
- */
-
-
-//말단 노드까지의 가장 짧은 경로(BFS)
-
-class Node{
-    int data;
-    Node lt, rt;
-    public Node(int val) {
-        data=val;
-        lt=rt=null;
-    }
-}
 
 public class DFSAndBFSChapter{
 
-    private Node root;
-
-    public static void main(String args[]) {
-        DFSAndBFSChapter tree=new DFSAndBFSChapter();
-        tree.root=new Node(1);
-        tree.root.lt=new Node(2);
-        tree.root.rt=new Node(3);
-        tree.root.lt.lt=new Node(4);
-        tree.root.lt.rt=new Node(5);
-        System.out.println(tree.BFS(tree.root));
-    }
-
-    public int BFS(Node root){
-        Queue<Node> queue = new LinkedList<>();
-        queue.offer(root);
+    private int BFS(int start, int goal, int[] arr) {
+        Queue<Integer> queue = new LinkedList<>();
+        arr[start] = 1;
+        queue.offer(start);
         int cnt = 0;
+
         while(!queue.isEmpty()){
-            int len = queue.size();
-            for (int i = 0; i < len; i++) {
-                Node poll = queue.poll();
-                if(poll.lt == null && poll.rt == null) return cnt;
-                if(poll.lt == null) queue.offer(poll.lt);
-                if(poll.rt == null) queue.offer(poll.rt);
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Integer poll = queue.poll();
+                if(poll == goal) return cnt;
+                if(poll - 1 >0 && poll - 1 < 10000 && arr[poll - 1] == 0){
+                    arr[poll - 1] = 1;
+                    queue.add(poll - 1);
+                }
+                if(poll + 1 >0 && poll + 1 < 10000 && arr[poll + 1] == 0){
+                    arr[poll + 1] = 1;
+                    queue.add(poll + 1);
+                }
+                if(poll + 5 >0 && poll + 5 < 10000 && arr[poll + 5] == 0){
+                    arr[poll + 5] = 1;
+                    queue.add(poll + 5);
+                }
             }
-            cnt ++;
+            cnt++;
         }
         return cnt;
-     }
- }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int start = Integer.parseInt(str[0]);
+        int goal = Integer.parseInt(str[1]);
+
+        DFSAndBFSChapter T = new DFSAndBFSChapter();
+
+        int[] arr = new int[10001];
+
+        int result = T.BFS(start, goal, arr);
+        System.out.println(result);
+    }
+}
