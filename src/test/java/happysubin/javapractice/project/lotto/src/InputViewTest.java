@@ -76,11 +76,6 @@ public class InputViewTest {
         result.hasMessage("거스름이 없도록 입력해주세요.");
     }
 
-    private void validateMoney(Money money) {
-        if (money.getValue() < 1000) throw new RuntimeException("로또를 구입할 금액이 부족합니다.");
-        if (money.getValue() % 1000 != 0) throw new RuntimeException("거스름이 없도록 입력해주세요.");
-    }
-
     @Test
     @DisplayName("머니 객체 실패 태스트: 콘솔에 입력한 값이 숫자 형식이 아니어서 실패.")
     void createFailMoneyWithInputViewInvalidNumberFormat(){
@@ -98,4 +93,11 @@ public class InputViewTest {
         //then
         result.hasMessage("숫자 형식으로 입력해주세요.");
     }
+
+    private void validateMoney(Money money) {
+        if (money.getValue() < 1000) throw new RuntimeException("로또를 구입할 금액이 부족합니다.");
+        if (money.getValue() % 1000 != 0) throw new RuntimeException("거스름이 없도록 입력해주세요.");
+    }
+
+
 }

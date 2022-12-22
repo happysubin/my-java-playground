@@ -1,6 +1,6 @@
 package happysubin.javapractice.project.lotto.src;
 
-import happysubin.javapractice.project.lotto.src.strategy.MoneyValidationStrategy;
+import happysubin.javapractice.project.lotto.src.validation.MoneyValidationStrategy;
 
 public class InputView {
 
@@ -13,6 +13,7 @@ public class InputView {
         moneyValidationStrategy.validate(result);
         return result;
     }
+
 
     private static void validateNumberFormat(String input) {
         if(!input.chars().allMatch(Character::isDigit)) throw new RuntimeException("숫자 형식으로 입력해주세요.");

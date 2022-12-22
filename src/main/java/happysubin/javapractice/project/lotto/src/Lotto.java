@@ -1,4 +1,4 @@
-package happysubin.javapractice.project.lotto;
+package happysubin.javapractice.project.lotto.src;
 
 import java.util.List;
 
@@ -17,4 +17,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

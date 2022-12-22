@@ -168,6 +168,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 /**
  * 이진트리 레벨 탐색
@@ -299,45 +300,97 @@ import java.util.Queue;
  */
 
 /** 말단 노드까지 최단거리 BFS
+ * class Node{
+ *     int data;
+ *     Node lt, rt;
+ *     public Node(int val) {
+ *         data=val;
+ *         lt=rt=null;
+ *     }
+ * }
  *
+ * public class DFSAndBFSChapter{
+ *     Node root;
+ *
+ *     public static void main(String args[]) {
+ *         DFSAndBFSChapter tree=new DFSAndBFSChapter();
+ *         tree.root=new Node(1);
+ *         tree.root.lt=new Node(2);
+ *         tree.root.rt=new Node(3);
+ *         tree.root.lt.lt=new Node(4);
+ *         tree.root.lt.rt=new Node(5);
+ *         System.out.println(tree.BFS(tree.root));
+ *     }
+ *
+ *     private int BFS(Node root) {
+ *         Queue<Node> queue = new LinkedList<>();
+ *         queue.offer(root);
+ *         int level = 0;
+ *         while(!queue.isEmpty()){
+ *             int size = queue.size();
+ *             for (int i = 0; i < size; i++) {
+ *                 Node poll = queue.poll();
+ *                 if(poll.rt == null && poll.lt == null) return level;
+ *                 if(poll.lt != null) queue.offer(poll.lt);
+ *                 if(poll.rt != null) queue.offer(poll.rt);
+ *             }
+ *             level++;
+ *         }
+ *
+ *         return level;
+ *     }
+ * }
  */
-class Node{
-    int data;
-    Node lt, rt;
-    public Node(int val) {
-        data=val;
-        lt=rt=null;
-    }
-}
-
 public class DFSAndBFSChapter{
-    Node root;
 
-    public static void main(String args[]) {
-        DFSAndBFSChapter tree=new DFSAndBFSChapter();
-        tree.root=new Node(1);
-        tree.root.lt=new Node(2);
-        tree.root.rt=new Node(3);
-        tree.root.lt.lt=new Node(4);
-        tree.root.lt.rt=new Node(5);
-        System.out.println(tree.BFS(tree.root));
-    }
+    private static int[][] arr;
 
-    private int BFS(Node root) {
-        Queue<Node> queue = new LinkedList<>();
-        queue.offer(root);
-        int level = 0;
-        while(!queue.isEmpty()){
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                Node poll = queue.poll();
-                if(poll.rt == null && poll.lt == null) return level;
-                if(poll.lt != null) queue.offer(poll.lt);
-                if(poll.rt != null) queue.offer(poll.rt);
-            }
-            level++;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt() + 1;
+        int len = sc.nextInt();
+
+        arr = new int[size][size];
+        for (int i = 0; i < len; i++) {
+            arr[sc.nextInt()][sc.nextInt()] = 1;
         }
 
-        return level;
+        DFSAndBFSChapter T = new DFSAndBFSChapter();
+        int[] answer = new int[size];
+        answer[1] = 1; //  1부터 시작
+        T.DFS(1, answer);
+
     }
+
+    private void DFS(int L, int[] answer) {
+        int len = answer.length - 1;
+        if (L == len) {
+            for (int i = 1; i <= len; i++) {
+                System.out.print(answer[i] + " ");
+            }
+            System.out.println();
+        } else {
+            for (int i = 1; i <= len; i++) {
+                if (arr[1][i] == 1 && answer[i] == 0) {
+                    answer[i] = 1;
+                    DFS(i, answer);
+                    answer[i] = 0;
+                }
+            }
+//
+        }
+    }
+
+
 }
+
+//5 9
+//1 2
+//1 3
+//1 4
+//2 1
+//2 3
+//2 5
+//3 4
+//4 2
+//4 5

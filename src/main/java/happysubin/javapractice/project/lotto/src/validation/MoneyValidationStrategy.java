@@ -1,4 +1,4 @@
-package happysubin.javapractice.project.lotto.src.strategy;
+package happysubin.javapractice.project.lotto.src.validation;
 
 import happysubin.javapractice.project.lotto.src.Money;
 
