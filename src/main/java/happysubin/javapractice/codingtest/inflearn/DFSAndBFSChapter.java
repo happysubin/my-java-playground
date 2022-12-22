@@ -363,25 +363,22 @@ public class DFSAndBFSChapter{
     }
 
     private void DFS(int L, int[] answer) {
-        int len = answer.length - 1;
-        if (L == len) {
-            for (int i = 1; i <= len; i++) {
-                System.out.print(answer[i] + " ");
+        if(L == answer.length - 1){
+            for (int i = 1; i < answer.length; i++) {
+                System.out.print(answer[i] + " " );
             }
             System.out.println();
-        } else {
-            for (int i = 1; i <= len; i++) {
-                if (arr[1][i] == 1 && answer[i] == 0) {
+        }
+        else{
+            for (int i = 1; i < answer.length; i++) {
+                if(arr[L][i] == 1 && answer[i] == 0){
                     answer[i] = 1;
-                    DFS(i, answer);
-                    answer[i] = 0;
+                    DFS(i, answer); //여기서 고생함.
+                    answer[i] = 0; //초기화.
                 }
             }
-//
         }
     }
-
-
 }
 
 //5 9
