@@ -166,6 +166,7 @@ package happysubin.javapractice.codingtest.inflearn;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -341,45 +342,90 @@ import java.util.Scanner;
  *     }
  * }
  */
-public class DFSAndBFSChapter{
 
-    private static int[][] arr;
+/**
+ * 경로 탐색 DFS
+ *
+ * public class DFSAndBFSChapter{
+ *
+ *     private static int[][] arr;
+ *
+ *     public static void main(String[] args) {
+ *         Scanner sc = new Scanner(System.in);
+ *         int size = sc.nextInt() + 1;
+ *         int len = sc.nextInt();
+ *
+ *         arr = new int[size][size];
+ *         for (int i = 0; i < len; i++) {
+ *             arr[sc.nextInt()][sc.nextInt()] = 1;
+ *         }
+ *
+ *         DFSAndBFSChapter T = new DFSAndBFSChapter();
+ *         int[] answer = new int[size];
+ *         answer[1] = 1; //  1부터 시작
+ *         T.DFS(1, answer);
+ *
+ *     }
+ *
+ *     private void DFS(int L, int[] answer) {
+ *         if(L == answer.length - 1){
+ *             for (int i = 1; i < answer.length; i++) {
+ *                 System.out.print(answer[i] + " " );
+ *             }
+ *             System.out.println();
+ *         }
+ *         else{
+ *             for (int i = 1; i < answer.length; i++) {
+ *                 if(arr[L][i] == 1 && answer[i] == 0){
+ *                     answer[i] = 1;
+ *                     DFS(i, answer); //여기서 고생함.
+ *                     answer[i] = 0; //초기화.
+ *                 }
+ *             }
+ *         }
+ *     }
+ * }
+ */
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int size = sc.nextInt() + 1;
-        int len = sc.nextInt();
 
-        arr = new int[size][size];
-        for (int i = 0; i < len; i++) {
-            arr[sc.nextInt()][sc.nextInt()] = 1;
-        }
-
-        DFSAndBFSChapter T = new DFSAndBFSChapter();
-        int[] answer = new int[size];
-        answer[1] = 1; //  1부터 시작
-        T.DFS(1, answer);
-
-    }
-
-    private void DFS(int L, int[] answer) {
-        if(L == answer.length - 1){
-            for (int i = 1; i < answer.length; i++) {
-                System.out.print(answer[i] + " " );
-            }
-            System.out.println();
-        }
+class DFSAndBFSChapter {
+    static int n, m, answer=0;
+    static ArrayList<ArrayList<Integer>> graph;
+    static int[] ch;
+    public void DFS(int v){
+        if(v==n) answer++;
         else{
-            for (int i = 1; i < answer.length; i++) {
-                if(arr[L][i] == 1 && answer[i] == 0){
-                    answer[i] = 1;
-                    DFS(i, answer); //여기서 고생함.
-                    answer[i] = 0; //초기화.
+            for(int nv : graph.get(v)){
+                if(ch[nv]==0){
+                    ch[nv]=1;
+                    DFS(nv);
+                    ch[nv]=0;
                 }
             }
         }
     }
+
+    public static void main(String[] args){
+        DFSAndBFSChapter T = new DFSAndBFSChapter();
+        Scanner kb = new Scanner(System.in);
+        n=kb.nextInt();
+        m=kb.nextInt();
+        graph = new ArrayList<ArrayList<Integer>>();
+        for(int i=0; i<=n; i++){
+            graph.add(new ArrayList<Integer>());
+        }
+        ch=new int[n+1];
+        for(int i=0; i<m; i++){
+            int a=kb.nextInt();
+            int b=kb.nextInt();
+            graph.get(a).add(b);
+        }
+        ch[1]=1;
+        T.DFS(1);
+        System.out.println(answer);
+    }
 }
+
 
 //5 9
 //1 2
