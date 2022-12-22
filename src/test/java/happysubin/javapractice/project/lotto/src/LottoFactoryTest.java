@@ -1,6 +1,8 @@
 package happysubin.javapractice.project.lotto.src;
 
+import happysubin.javapractice.project.lotto.src.constant.LottoConst;
 import happysubin.javapractice.project.lotto.src.util.RandomUtil;
+import org.assertj.core.api.AbstractThrowableAssert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,13 +37,32 @@ class LottoFactoryTest {
     void createLottoList(){
 
         //given
-        Money money = new Money(3000);
+        BDDMockito.given(RandomUtil.pickUniqueNumbersInRange(any(Integer.class), any(Integer.class), any(Integer.class)))
+                .willReturn(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Money money = new Money(6000);
 
         //when
         List<Lotto> lotto = LottoFactory.createLotto(money);
 
         //then
-        Assertions.assertThat(lotto.size()).isEqualTo(3);
+        Assertions.assertThat(lotto.size()).isEqualTo(LottoConst.LOTTO_SIZE);
+    }
+
+    @Test
+    void createFailLottoList(){
+
+        //given
+        BDDMockito.given(RandomUtil.pickUniqueNumbersInRange(any(Integer.class), any(Integer.class), any(Integer.class)))
+                .willReturn(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        Money money = new Money(8000);
+
+        //when
+        AbstractThrowableAssert<?, ? extends Throwable> result = Assertions.assertThatThrownBy(() -> {
+            List<Lotto> lotto = LottoFactory.createLotto(money);
+        });
+
+        //then
+        result.isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

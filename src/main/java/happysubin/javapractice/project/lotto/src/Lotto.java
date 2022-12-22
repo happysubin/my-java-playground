@@ -1,5 +1,7 @@
 package happysubin.javapractice.project.lotto.src;
 
+import happysubin.javapractice.project.lotto.src.constant.LottoConst;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConst.LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
