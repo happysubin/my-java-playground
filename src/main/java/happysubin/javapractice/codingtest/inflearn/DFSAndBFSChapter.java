@@ -166,10 +166,7 @@ package happysubin.javapractice.codingtest.inflearn;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 이진트리 레벨 탐색
@@ -467,6 +464,9 @@ class DFSAndBFSChapter {
         }
         ch[1]=1;
         dis[1]=0;
+
+
+
         T.BFS();
         for (int di : dis) {
             System.out.println("di = " + di);
