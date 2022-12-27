@@ -1,5 +1,6 @@
 package happysubin.javapractice.codingtest.inflearn;
 
+import java.io.*;
 import java.util.*;
 
 /** 합이 같은 부분집합
@@ -101,56 +102,94 @@ import java.util.*;
  */
 
 
-class Solve {
-    int minute;
-    int score;
+/**
+ * class Solve {
+ *     int minute;
+ *     int score;
+ *
+ *     public Solve(int score, int minute) {
+ *         this.minute = minute;
+ *         this.score = score;
+ *     }
+ * }
+ *
+ * public class DFSAndBFSUtilizeChapter {
+ *
+ *     static int answer = Integer.MIN_VALUE;
+ *     static int limit;
+ *     static List<Solve> list = new ArrayList<>();
+ *
+ *     public static void main(String[] args) {
+ *         Scanner sc = new Scanner(System.in);
+ *         int num = sc.nextInt();
+ *         limit = sc.nextInt();
+ *         for (int i = 0; i < num; i++) {
+ *             list.add(new Solve(sc.nextInt(), sc.nextInt()));
+ *         }
+ *
+ *         int[] ch = new int[num];
+ *         DFSAndBFSUtilizeChapter main = new DFSAndBFSUtilizeChapter();
+ *         main.DFS(-1, ch);
+ *         System.out.println(answer);
+ *     }
+ *
+ *     private void DFS(int L, int[] ch) {
+ *         if(L == list.size() - 1){
+ *             int sum = 0;
+ *             int minute = limit;
+ *             for (int i = 0; i < list.size(); i++) {
+ *                 if(ch[i] == 1 && minute - list.get(i).minute >= 0){
+ *                     sum += list.get(i).score;
+ *                     minute -= list.get(i).minute;
+ *                 }
+ *             }
+ *             answer = Math.max(answer, sum);
+ *         }
+ *         else{
+ *             L++;
+ *             ch[L] = 1;
+ *             DFS(L, ch);
+ *             ch[L] = 0;
+ *             DFS(L, ch);
+ *         }
+ *     }
+ * }
+ */
 
-    public Solve(int score, int minute) {
-        this.minute = minute;
-        this.score = score;
-    }
-}
 
 public class DFSAndBFSUtilizeChapter {
 
-    static int answer = Integer.MIN_VALUE;
-    static int limit;
-    static List<Solve> list = new ArrayList<>();
+    static int n;
+    static int m;
+    static int[] arr;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        limit = sc.nextInt();
-        for (int i = 0; i < num; i++) {
-            list.add(new Solve(sc.nextInt(), sc.nextInt()));
-        }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int[] ch = new int[num];
+        String[] s = br.readLine().split(" ");
+        n = Integer.parseInt(s[0]);
+        m = Integer.parseInt(s[1]);
+
+        arr = new int[m];
         DFSAndBFSUtilizeChapter main = new DFSAndBFSUtilizeChapter();
-        main.DFS(-1, ch);
-        System.out.println(answer);
+        main.DFS(0);
+
+
     }
 
-    private void DFS(int L, int[] ch) {
-        if(L == list.size() - 1){
-            int sum = 0;
-            int minute = limit;
-            for (int i = 0; i < list.size(); i++) {
-                if(ch[i] == 1 && minute - list.get(i).minute >= 0){
-                    sum += list.get(i).score;
-                    minute -= list.get(i).minute;
-                }
+    private void DFS(int L) {
+        if(L == m){
+            for (int i : arr) {
+                System.out.print(i + " ");
             }
-            answer = Math.max(answer, sum);
+            System.out.println();
         }
         else{
-            L++;
-            ch[L] = 1;
-            DFS(L, ch);
-            ch[L] = 0;
-            DFS(L, ch);
+            for (int i = 1; i <= n; i++) {
+                arr[L] = i;
+                DFS(L + 1);
+            }
         }
     }
-
-
 }
