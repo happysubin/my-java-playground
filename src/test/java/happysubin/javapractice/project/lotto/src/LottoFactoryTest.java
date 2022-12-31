@@ -1,6 +1,7 @@
 package happysubin.javapractice.project.lotto.src;
 
 import happysubin.javapractice.project.lotto.src.constant.LottoConst;
+import happysubin.javapractice.project.lotto.src.factory.LottoFactory;
 import happysubin.javapractice.project.lotto.src.util.RandomUtil;
 import org.assertj.core.api.AbstractThrowableAssert;
 import org.assertj.core.api.Assertions;
@@ -10,13 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class LottoFactoryTest {

@@ -1,5 +1,7 @@
 package happysubin.javapractice.project.lotto.src;
 
+import happysubin.javapractice.project.lotto.src.factory.LottoFactory;
+
 import java.util.List;
 
 public class LottoService {
@@ -20,10 +22,9 @@ public class LottoService {
 
         WinningLotto winningLotto = InputView.createWinningLotto();
 
-        //TODO 로또와 뽑은 번호들을 비교. 결과 객체를 리턴해서 결과 객체가 다 보여주자.
-        winningLotto.compareLotto(lotto);
+        List<Prize> prizes = winningLotto.compareLotto(lotto);
 
-        //
+        //TODO 저 리스트를 가지고 출력해야함.
 
     }
 }

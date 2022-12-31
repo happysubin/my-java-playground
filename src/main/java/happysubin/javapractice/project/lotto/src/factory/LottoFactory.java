@@ -1,5 +1,7 @@
-package happysubin.javapractice.project.lotto.src;
+package happysubin.javapractice.project.lotto.src.factory;
 
+import happysubin.javapractice.project.lotto.src.Lotto;
+import happysubin.javapractice.project.lotto.src.Money;
 import happysubin.javapractice.project.lotto.src.constant.LottoConst;
 import happysubin.javapractice.project.lotto.src.util.RandomUtil;
 
