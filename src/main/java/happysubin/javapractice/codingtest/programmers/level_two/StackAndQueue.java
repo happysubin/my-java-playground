@@ -64,35 +64,71 @@ import java.util.Queue;
  */
 public class StackAndQueue {
 
-    class Task{
-        int priority;
-        int location;
+    class Bridge{
+        int len;
+        int limitWeight;
+        int nowWeight = 0;
+        List<Truck> trucks = new ArrayList<>();
 
-        public Task(int priority, int location) {
-            this.priority = priority;
-            this.location = location;
+        public Bridge(int len, int weight) {
+            this.len = len;
+            this.limitWeight = weight;
         }
+    }
 
-        @Override
-        public String toString() {
-            return "Task{" +
-                    "priority=" + priority +
-                    ", location=" + location +
-                    '}';
+    class Truck{
+        int dis;
+        int weight;
+
+        public Truck(int dis, int weight) {
+            this.dis = dis;
+            this.weight = weight;
         }
     }
 
     public int solution(int bridge_length, int weight, int[] truck_weights) {
-        int answer = 0;
-        return answer;
+        Bridge bridge = new Bridge(bridge_length, weight);
+        List<Truck> trucks = new ArrayList<>();
+        int time = 1;
+
+        for (int truck_weight : truck_weights) {
+            trucks.add(new Truck(0, truck_weight));
+        }
+
+        Truck remove = trucks.remove(0);
+        bridge.trucks.add(remove);
+        bridge.nowWeight += remove.weight;
+
+        while(!bridge.trucks.isEmpty()){
+
+            for (Truck truck : bridge.trucks) {
+                truck.dis++;
+            }
+
+            Truck truck = bridge.trucks.get(0);
+
+            if(truck.dis == bridge.len){
+                bridge.trucks.remove(truck);
+                bridge.nowWeight -= truck.weight;
+            }
+
+            if(trucks.size() > 0 && bridge.limitWeight >= bridge.nowWeight + trucks.get(0).weight){
+                Truck newTruck = trucks.remove(0);
+                bridge.trucks.add(newTruck);
+                bridge.nowWeight += newTruck.weight;
+            }
+            time++;
+        }
+
+        return time;
     }
 
 
     public static void main(String[] args) {
         StackAndQueue main = new StackAndQueue();
-        int[] arr = {2, 1, 3, 2};
-        int[] arr2 = {1, 1, 9, 1, 1, 1};
-        //int solution = main.solution(arr, 2);
-        //System.out.println(solution);
+        int[] arr = {7,4,5,6};
+        int[] arr2 = {10,10,10,10,10,10,10,10,10,10};
+        int solution = main.solution(100, 100, arr2);
+        System.out.println("solution = " + solution);
     }
 }
