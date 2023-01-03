@@ -62,73 +62,96 @@ import java.util.Queue;
  *     }
  * }
  */
+
+/** 다리를 지나는 트럭
+ * public class StackAndQueue {
+ *
+ *     class Bridge{
+ *         int len;
+ *         int limitWeight;
+ *         int nowWeight = 0;
+ *         List<Truck> trucks = new ArrayList<>();
+ *
+ *         public Bridge(int len, int weight) {
+ *             this.len = len;
+ *             this.limitWeight = weight;
+ *         }
+ *     }
+ *
+ *     class Truck{
+ *         int dis;
+ *         int weight;
+ *
+ *         public Truck(int dis, int weight) {
+ *             this.dis = dis;
+ *             this.weight = weight;
+ *         }
+ *     }
+ *
+ *     public int solution(int bridge_length, int weight, int[] truck_weights) {
+ *         Bridge bridge = new Bridge(bridge_length, weight);
+ *         List<Truck> trucks = new ArrayList<>();
+ *         int time = 1;
+ *
+ *         for (int truck_weight : truck_weights) {
+ *             trucks.add(new Truck(0, truck_weight));
+ *         }
+ *
+ *         Truck remove = trucks.remove(0);
+ *         bridge.trucks.add(remove);
+ *         bridge.nowWeight += remove.weight;
+ *
+ *         while(!bridge.trucks.isEmpty()){
+ *
+ *             for (Truck truck : bridge.trucks) {
+ *                 truck.dis++;
+ *             }
+ *
+ *             Truck truck = bridge.trucks.get(0);
+ *
+ *             if(truck.dis == bridge.len){
+ *                 bridge.trucks.remove(truck);
+ *                 bridge.nowWeight -= truck.weight;
+ *             }
+ *
+ *             if(trucks.size() > 0 && bridge.limitWeight >= bridge.nowWeight + trucks.get(0).weight){
+ *                 Truck newTruck = trucks.remove(0);
+ *                 bridge.trucks.add(newTruck);
+ *                 bridge.nowWeight += newTruck.weight;
+ *             }
+ *             time++;
+ *         }
+ *
+ *         return time;
+ *     }
+ *
+ *
+ *     public static void main(String[] args) {
+ *         StackAndQueue main = new StackAndQueue();
+ *         int[] arr = {7,4,5,6};
+ *         int[] arr2 = {10,10,10,10,10,10,10,10,10,10};
+ *         int solution = main.solution(100, 100, arr2);
+ *         System.out.println("solution = " + solution);
+ *     }
+ * }
+ */
 public class StackAndQueue {
 
-    class Bridge{
-        int len;
-        int limitWeight;
-        int nowWeight = 0;
-        List<Truck> trucks = new ArrayList<>();
+    public int[] solution(int[] prices) {
+        int[] answer = {};
 
-        public Bridge(int len, int weight) {
-            this.len = len;
-            this.limitWeight = weight;
-        }
+        return answer;
     }
 
-    class Truck{
-        int dis;
-        int weight;
 
-        public Truck(int dis, int weight) {
-            this.dis = dis;
-            this.weight = weight;
-        }
-    }
-
-    public int solution(int bridge_length, int weight, int[] truck_weights) {
-        Bridge bridge = new Bridge(bridge_length, weight);
-        List<Truck> trucks = new ArrayList<>();
-        int time = 1;
-
-        for (int truck_weight : truck_weights) {
-            trucks.add(new Truck(0, truck_weight));
-        }
-
-        Truck remove = trucks.remove(0);
-        bridge.trucks.add(remove);
-        bridge.nowWeight += remove.weight;
-
-        while(!bridge.trucks.isEmpty()){
-
-            for (Truck truck : bridge.trucks) {
-                truck.dis++;
-            }
-
-            Truck truck = bridge.trucks.get(0);
-
-            if(truck.dis == bridge.len){
-                bridge.trucks.remove(truck);
-                bridge.nowWeight -= truck.weight;
-            }
-
-            if(trucks.size() > 0 && bridge.limitWeight >= bridge.nowWeight + trucks.get(0).weight){
-                Truck newTruck = trucks.remove(0);
-                bridge.trucks.add(newTruck);
-                bridge.nowWeight += newTruck.weight;
-            }
-            time++;
-        }
-
-        return time;
-    }
 
 
     public static void main(String[] args) {
         StackAndQueue main = new StackAndQueue();
-        int[] arr = {7,4,5,6};
-        int[] arr2 = {10,10,10,10,10,10,10,10,10,10};
-        int solution = main.solution(100, 100, arr2);
-        System.out.println("solution = " + solution);
+        int[] arr = {1, 2, 3, 2, 3};
+        int[] solution = main.solution(arr);
+        for (int i : solution) {
+            System.out.println(i);
+        }
     }
 }
