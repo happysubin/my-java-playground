@@ -1,14 +1,11 @@
 package happysubin.javapractice.project.lotto.src.factory;
 
-import happysubin.javapractice.project.lotto.src.Lotto;
-import happysubin.javapractice.project.lotto.src.Money;
-import happysubin.javapractice.project.lotto.src.constant.LottoConst;
+import happysubin.javapractice.project.lotto.src.model.Lotto;
+import happysubin.javapractice.project.lotto.src.model.Money;
 import happysubin.javapractice.project.lotto.src.util.RandomUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static happysubin.javapractice.project.lotto.src.constant.LottoConst.*;
 

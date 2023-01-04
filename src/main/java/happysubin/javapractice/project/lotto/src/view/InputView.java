@@ -1,5 +1,8 @@
-package happysubin.javapractice.project.lotto.src;
+package happysubin.javapractice.project.lotto.src.view;
 
+import happysubin.javapractice.project.lotto.src.model.Money;
+import happysubin.javapractice.project.lotto.src.util.ScannerWrapper;
+import happysubin.javapractice.project.lotto.src.model.WinningLotto;
 import happysubin.javapractice.project.lotto.src.constant.LottoConst;
 import happysubin.javapractice.project.lotto.src.validation.MoneyValidationStrategy;
 
@@ -39,7 +42,7 @@ public class InputView {
     }
 
     private static void validateLottoWinningNumberFormat(String input) {
-        Pattern pattern = Pattern.compile("[0-9]+(,[0-9])+");
+        Pattern pattern = Pattern.compile("[0-9]+(,[0-9]+)+");
         Matcher matcher = pattern.matcher(input);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("로또 번호 입력 형식과 다릅니다. 예시 (1,2,3,4,5,6) ");

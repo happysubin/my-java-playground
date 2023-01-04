@@ -1,6 +1,4 @@
-package happysubin.javapractice.project.lotto.src;
-
-import happysubin.javapractice.project.lotto.src.service.BonusServiceImpl;
+package happysubin.javapractice.project.lotto.src.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +24,7 @@ public class WinningLotto {
     public List<Prize> compareLotto(List<Lotto> lottoList) {
         return lottoList
                 .stream()
-                .map(lotto -> lotto.compare(numbers, bonusNumber, new BonusServiceImpl()))
+                .map(lotto -> lotto.compare(numbers, bonusNumber))
                 .collect(Collectors.toList());
     }
 }

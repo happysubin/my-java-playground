@@ -1,4 +1,4 @@
-package happysubin.javapractice.project.lotto.src;
+package happysubin.javapractice.project.lotto.src.util;
 
 import java.util.Scanner;
 
