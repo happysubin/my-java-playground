@@ -33,6 +33,7 @@ public class InputView {
     }
 
     private static List<Integer> createWinningNumber() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = ScannerWrapper.input();
         validateLottoWinningNumberFormat(input);
@@ -68,6 +69,7 @@ public class InputView {
     }
 
     private static int createBonusNumber(){
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = ScannerWrapper.input();
         validateNumberFormat(input);

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     public static void printLottoList(List<Lotto> lotto){
+        System.out.println();
         System.out.println(lotto.size() + "개를 구매했습니다.");
         for (Lotto l : lotto) {
             System.out.println(l.getNumbers());
@@ -16,6 +17,7 @@ public class OutputView {
     }
 
     public static void printPrizes(List<Prize> prizes) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         Map<Prize, Integer> map = getPrizeCountMap(prizes);

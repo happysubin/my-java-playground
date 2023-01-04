@@ -23,7 +23,5 @@ public class LottoService {
         List<Prize> prizes = winningLotto.compareLotto(lotto);
         OutputView.printPrizes(prizes);
         OutputView.printRateOfReturn(CalculationUtil.calculateRateOfReturn(prizes, inputMoney));
-        //TODO 저 리스트를 가지고 출력해야함.
-
     }
 }
