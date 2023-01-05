@@ -1,6 +1,8 @@
 package happysubin.javapractice.project.lotto.src;
 
 import happysubin.javapractice.project.lotto.src.constant.LottoConst;
+import happysubin.javapractice.project.lotto.src.model.Lotto;
+import happysubin.javapractice.project.lotto.src.model.Money;
 import happysubin.javapractice.project.lotto.src.factory.LottoFactory;
 import happysubin.javapractice.project.lotto.src.util.RandomUtil;
 import org.assertj.core.api.AbstractThrowableAssert;
@@ -79,7 +81,4 @@ class LottoFactoryTest {
         Assertions.assertThat(lotto.get(0).getNumbers()).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
 
     }
-
-
-
 }

@@ -1,12 +1,15 @@
 package happysubin.javapractice.project.lotto.src;
 
+import happysubin.javapractice.project.lotto.src.model.Money;
+import happysubin.javapractice.project.lotto.src.model.WinningLotto;
+import happysubin.javapractice.project.lotto.src.util.ScannerWrapper;
+import happysubin.javapractice.project.lotto.src.view.InputView;
 import org.assertj.core.api.AbstractThrowableAssert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -112,10 +115,10 @@ public class InputViewTest {
          * 두 번째 모킹 0
          */
 
-        when(ScannerWrapper.input()).thenReturn("1,2,3,4,5,6", "9");
+        when(ScannerWrapper.input()).thenReturn("11,2,3,4,5,6", "9");
         WinningLotto winningLotto = InputView.createWinningLotto();
 
-        Assertions.assertThat(winningLotto.getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        Assertions.assertThat(winningLotto.getNumbers()).isEqualTo(List.of(11,2,3,4,5,6));
         Assertions.assertThat(winningLotto.getBonusNumber()).isEqualTo(9);
     }
 }

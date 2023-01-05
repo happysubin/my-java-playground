@@ -16,12 +16,12 @@ public class InputView {
 
     private InputView() {}
 
-    public static Money createMoney(MoneyValidationStrategy moneyValidationStrategy){
+    public static Money createMoney(MoneyValidationStrategy<Money> moneyValidationStrategy){
         
         System.out.println("구입금액을 입력해주세요.");
         String input = ScannerWrapper.input();
         validateNumberFormat(input);
-        Money result = new Money(Integer.valueOf(input));
+        Money result = new Money(Integer.parseInt(input));
         moneyValidationStrategy.validate(result);
         return result;
     }
