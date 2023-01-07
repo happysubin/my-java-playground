@@ -8,7 +8,7 @@ import java.util.List;
 public class CalculationUtil {
 
     public static double calculateRateOfReturn(List<Prize> prizes, Money inputMoney){
-        Integer sum = prizes.stream().map(Prize::getPrizeMoney).reduce(0, (a, b) -> (a + b)) * 100;
+        double sum = prizes.stream().map(Prize::getPrizeMoney).reduce(0, (a, b) -> (a + b)) * 100.0;
         return Math.round( sum / inputMoney.getValue());
     }
 }
