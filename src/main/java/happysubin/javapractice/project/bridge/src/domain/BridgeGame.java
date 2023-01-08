@@ -15,7 +15,7 @@ public class BridgeGame {
 
     public BridgeGame(int bridgeSize, Integer count, GameStatus gameStatus) {
         validateBridgeSize(bridgeSize);
-        this.bridge = new Bridge(new BridgeMaker().makeBridge(bridgeSize), List.of(new DownMoveStrategy(), new UpMoveStrategy()));
+        this.bridge = new Bridge(BridgeMaker.makeBridge(bridgeSize), List.of(new DownMoveStrategy(), new UpMoveStrategy()));
         this.count = count;
         this.gameStatus = gameStatus;
     }
@@ -58,10 +58,6 @@ public class BridgeGame {
 
     public boolean bridgeGameIsSuccess(){
         return this.gameStatus == GameStatus.SUCCESS;
-    }
-
-    public GameStatus getGameStatus() {
-        return gameStatus;
     }
 
     public Integer getCount() {

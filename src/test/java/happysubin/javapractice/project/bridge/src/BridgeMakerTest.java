@@ -15,11 +15,8 @@ class BridgeMakerTest {
     @Test
     void bridgeSizeTest(){
 
-        //given
-        BridgeMaker bridgeMaker = new BridgeMaker();
-
         //when
-        List<String> result = bridgeMaker.makeBridge(6);
+        List<String> result = BridgeMaker.makeBridge(6);
 
         //then
         Assertions.assertThat(result.size()).isEqualTo(6);
@@ -30,12 +27,11 @@ class BridgeMakerTest {
     void bridgeInnerScanTest(){
 
         //given
-        BridgeMaker bridgeMaker = new BridgeMaker();
         Mockito.mockStatic(RandomUtils.class);
         when(RandomUtils.getRandomNumber()).thenReturn(0,1,1,1);
 
         //when
-        List<String> result = bridgeMaker.makeBridge(4);
+        List<String> result = BridgeMaker.makeBridge(4);
 
         //then
         Assertions.assertThat(result.size()).isEqualTo(4);

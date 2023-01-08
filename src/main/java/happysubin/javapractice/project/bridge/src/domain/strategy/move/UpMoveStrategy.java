@@ -3,7 +3,6 @@ package happysubin.javapractice.project.bridge.src.domain.strategy.move;
 import happysubin.javapractice.project.bridge.src.domain.GameStatus;
 import happysubin.javapractice.project.bridge.src.domain.Pass;
 import happysubin.javapractice.project.bridge.src.domain.PositionRecord;
-import happysubin.javapractice.project.bridge.src.domain.strategy.move.MoveStrategy;
 
 import java.util.List;
 import java.util.Map;

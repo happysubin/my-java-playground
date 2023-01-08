@@ -7,7 +7,9 @@ import java.util.List;
 
 public class BridgeMaker {
 
-    public List<String> makeBridge(int size) {
+    //private BridgeMaker(){}
+
+    public static List<String> makeBridge(int size) {
 
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {

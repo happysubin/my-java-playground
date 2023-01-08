@@ -1,7 +1,6 @@
 package happysubin.javapractice.project.bridge.src.view;
 
 import happysubin.javapractice.project.bridge.src.domain.BridgeGame;
-import happysubin.javapractice.project.bridge.src.domain.GameStatus;
 
 public class OutputView {
 

@@ -33,6 +33,10 @@ public class Bridge {
         observer.printBridgeStatus();
     }
 
+    public Bridge initBridge(){
+        return new Bridge(this.bridge, moveStrategies);
+    }
+
     public int getNowPlace() {
         return nowPlace;
     }
@@ -43,10 +47,6 @@ public class Bridge {
 
     public Map<Integer, PositionRecord> getResultMap() {
         return resultMap;
-    }
-
-    public Bridge initBridge(){
-        return new Bridge(this.bridge, moveStrategies);
     }
 }
 
