@@ -1,21 +1,56 @@
 package happysubin.javapractice.project.bridge.src.domain;
 
-import java.util.List;
+import happysubin.javapractice.project.bridge.src.domain.observer.BridgeObserver;
+import happysubin.javapractice.project.bridge.src.domain.strategy.move.MoveStrategy;
+
+import java.util.*;
 
 public class Bridge {
 
-    private List<String> bridge;
-    private int nowPlace;
+    private final List<String> bridge;
+    private final Map<Integer, PositionRecord> resultMap = new LinkedHashMap<>();
+    private int nowPlace = 0;
 
-    public Bridge(List<String> bridge) {
+    private final List<MoveStrategy> moveStrategies = new ArrayList<>();
+    private final BridgeObserver observer;
+
+    public Bridge(List<String> bridge, List<MoveStrategy> moveStrategies) {
         this.bridge = bridge;
-        this.nowPlace = 0;
+        this.moveStrategies.addAll(moveStrategies);
+        this.observer = new BridgeObserver(this);
     }
 
-    public boolean arriveBridgeFinishLine(){
-        return nowPlace == bridge.size();
+    public GameStatus move(String moveCommand) {
+        for (MoveStrategy moveStrategy : moveStrategies) {
+            if(moveStrategy.isMove(moveCommand)){
+                return moveStrategy.move(bridge, nowPlace++, resultMap);
+            }
+        }
+        return GameStatus.FAIL;
     }
 
-    public boolean move(String moveCommand) {
+    public void printBridge(){
+        observer.printBridgeStatus();
+    }
+
+    public int getNowPlace() {
+        return nowPlace;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public Map<Integer, PositionRecord> getResultMap() {
+        return resultMap;
+    }
+
+    public Bridge initBridge(){
+        return new Bridge(this.bridge, moveStrategies);
     }
 }
+
+/**
+ * U - 0
+ * D - 1
+ */

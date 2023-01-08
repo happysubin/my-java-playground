@@ -9,6 +9,7 @@ public class InputView {
     }
 
     public static int readBridgeSize() {
+        printStartGameMessage();
         System.out.println("다리의 길이를 입력해주세요.");
         String input = ScannerWrapper.input();
         validateNumberFormat(input);
@@ -22,9 +23,11 @@ public class InputView {
         return input;
     }
 
-    public static String readGameCommand() {
+    public static String readGameCommand(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return null;
+        String input = ScannerWrapper.input();
+        validateRetryInputFormat(input);
+        return input;
     }
 
     private static void validateNumberFormat(String input){
@@ -33,5 +36,9 @@ public class InputView {
 
     private static void validateMoveInputFormat(String input){
         if(!input.equals("D") && !input.equals("U")) throw new RuntimeException("[ERROR] U 또는 D를 입력해주세요.");
+    }
+
+    private static void validateRetryInputFormat(String input){
+        if(!input.equals("R") && !input.equals("Q")) throw new RuntimeException("[ERROR] R 또는 Q를 입력해주세요.");
     }
 }
