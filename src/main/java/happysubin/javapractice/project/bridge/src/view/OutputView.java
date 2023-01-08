@@ -1,10 +1,30 @@
 package happysubin.javapractice.project.bridge.src.view;
 
 import happysubin.javapractice.project.bridge.src.domain.BridgeGame;
+import happysubin.javapractice.project.bridge.src.domain.Pass;
+import happysubin.javapractice.project.bridge.src.domain.PositionRecord;
+
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
-    public static void printMap() {
+    public static void printMap (int nowPlace, Map<Integer, PositionRecord> map, List<String> bridge, String position) {
+        System.out.print("[ ");
+        for (int i = 0; i < nowPlace; i++) {
+            PositionRecord positionRecord = map.get(i);
+            if(i != 0 && i != bridge.size()){
+                System.out.print(" | ");
+            }
+            if(positionRecord.getPosition().equals(position) && positionRecord.getPass() == Pass.PASS) {
+                System.out.print("O");
+            }
+            else if(positionRecord.getPosition().equals(position) && positionRecord.getPass() == Pass.DONT_PASS){
+                System.out.print("X");
+            }
+            else System.out.print(" ");
+        }
+        System.out.println(" ]");
     }
 
     public static  void printResult(BridgeGame bridgeGame) {
