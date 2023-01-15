@@ -2,8 +2,8 @@ package happysubin.javapractice.project.bridge.src.domain;
 
 public class PositionRecord {
 
-    private Pass pass;
-    private String position;
+    private final Pass pass;
+    private final String position;
 
     public PositionRecord(String position, Pass pass) {
         this.pass = pass;

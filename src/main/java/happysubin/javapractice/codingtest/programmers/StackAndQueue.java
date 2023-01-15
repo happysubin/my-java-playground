@@ -133,42 +133,72 @@ public class StackAndQueue {
 }
  */
 
+/**
+ * public class StackAndQueue {
+ *
+ *     public int[] solution(int []arr) {
+ *         Queue<Integer> queue = new LinkedList<>();
+ *         List<Integer> list = new ArrayList<>();
+ *         for (int i : arr) {
+ *             if(queue.isEmpty()){
+ *                 queue.offer(i);
+ *             }
+ *             else if(queue.peek() == i){
+ *                 continue;
+ *             }
+ *             else{
+ *                 list.add(queue.poll());
+ *                 queue.offer(i);
+ *             }
+ *         }
+ *
+ *         while(!queue.isEmpty()){
+ *             list.add(queue.poll());
+ *         }
+ *
+ *         int[] answer = new int[list.size()];
+ *         int i = 0;
+ *         for (Integer integer : list) {
+ *             answer[i++] = integer;
+ *         }
+ *
+ *         return answer;
+ *     }
+ *
+ *
+ *     public static void main(String[] args) {
+ *         int[] priorities1= {1,1,3,3,0,1,1};
+ *         StackAndQueue main = new StackAndQueue();
+ *         System.out.println(main.solution(priorities1));
+ *     }
+ *
+ * }
+ */
+
 public class StackAndQueue {
 
-    public int[] solution(int []arr) {
-        Queue<Integer> queue = new LinkedList<>();
-        List<Integer> list = new ArrayList<>();
-        for (int i : arr) {
-            if(queue.isEmpty()){
-                queue.offer(i);
+    boolean solution(String s) {
+        char[] chars = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+        for (char str : chars){
+            if(str ==  '('){
+                stack.add(str);
             }
-            else if(queue.peek() == i){
-                continue;
-            }
-            else{
-                list.add(queue.poll());
-                queue.offer(i);
+            else if(str == ')') {
+                if(stack.size()>0) stack.pop();
+                else return false; // ")"이면 false다.
             }
         }
 
-        while(!queue.isEmpty()){
-            list.add(queue.poll());
-        }
-
-        int[] answer = new int[list.size()];
-        int i = 0;
-        for (Integer integer : list) {
-            answer[i++] = integer;
-        }
-
-        return answer;
+        if(stack.size() > 0) return false;
+        return true;
     }
 
 
     public static void main(String[] args) {
-        int[] priorities1= {1,1,3,3,0,1,1};
+        String str = "()()";
         StackAndQueue main = new StackAndQueue();
-        System.out.println(main.solution(priorities1));
+        System.out.println(main.solution(str));
     }
 
 }

@@ -1,7 +1,6 @@
 package happysubin.javapractice.project.bridge.src.domain.observer;
 
 import happysubin.javapractice.project.bridge.src.domain.Bridge;
-import happysubin.javapractice.project.bridge.src.domain.Pass;
 import happysubin.javapractice.project.bridge.src.domain.PositionRecord;
 import happysubin.javapractice.project.bridge.src.view.OutputView;
 
@@ -10,7 +9,7 @@ import java.util.Map;
 
 public class BridgeObserver {
 
-    private Bridge bridge;
+    private final Bridge bridge;
 
     public BridgeObserver(Bridge bridge) {
         this.bridge = bridge;
@@ -23,9 +22,8 @@ public class BridgeObserver {
         int nowPlace = bridge.getNowPlace();
         Map<Integer, PositionRecord> map = this.bridge.getResultMap();
         List<String> bridge = this.bridge.getBridge();
-        System.out.println("bridge = " + bridge);
+        //System.out.println("bridge = " + bridge);
         OutputView.printMap(nowPlace, map, bridge, "0");
         OutputView.printMap(nowPlace, map, bridge, "1");
     }
-
 }
