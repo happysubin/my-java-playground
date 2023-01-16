@@ -11,7 +11,7 @@ public class Deck {
         initDeck();
     }
 
-    public Card getCard(int deckSize) {
+    public Card drawCard(int deckSize) {
         return cardList.remove(deckSize);
     }
 

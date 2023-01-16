@@ -18,5 +18,7 @@ public class BlackJackGame {
 
     public void start(){
         players.allPlayerHasTwoCard(deck);
+        players.allPlayerSelectivelyReceiveCard(deck);
+        players.printCardList();
     }
 }

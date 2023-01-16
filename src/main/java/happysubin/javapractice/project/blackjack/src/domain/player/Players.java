@@ -5,7 +5,6 @@ import happysubin.javapractice.project.blackjack.src.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -19,10 +18,19 @@ public class Players {
     public void allPlayerHasTwoCard(Deck deck){
         OutputView.printReceiveTwoCardNotifications(players.stream().map(Player::getName).collect(toList()));
         players.forEach(player -> player.receiveFirstTwoCards(deck));
+        System.out.println();
+    }
 
+    public void allPlayerSelectivelyReceiveCard(Deck deck) {
+        players.forEach(player -> player.selectivelyReceiveCard(deck));
     }
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public void printCardList() {
+        System.out.println();
+        players.forEach(player -> player.printCardList());
     }
 }

@@ -15,6 +15,7 @@ public class InputView {
 
     private final static String NAME_VALIDATION_FAIL_MESSAGE = "입력할 이름 형식과 틀립니다.";
     private final static String NUMBER_VALIDATION_FAIL_MESSAGE = "숫자 형식이 아닙니다.";
+    private final static String RUN_COMMAND_VALIDATION_FAIL_MESSAGE = "y 또는 n만 입력해주세요,";
 
     private static final String SPLIT_STANDARD = ",";
 
@@ -44,6 +45,18 @@ public class InputView {
         boolean matches = input.matches("\\d+");
         if(!matches){
             throw new IllegalStateException(NUMBER_VALIDATION_FAIL_MESSAGE);
+        }
+    }
+
+    public static String inputDrawCommand(){
+        String input= ScannerWrapper.getInput();
+        validateRunCommandFormat(input);
+        return input;
+    }
+
+    private static void validateRunCommandFormat(String runCommand) {
+        if(!runCommand.equals("y") & !runCommand.equals("n")){
+            throw new IllegalStateException(RUN_COMMAND_VALIDATION_FAIL_MESSAGE);
         }
     }
 }

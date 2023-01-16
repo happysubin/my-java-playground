@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface Player {
     void receiveFirstTwoCards(Deck deck);
+    void selectivelyReceiveCard(Deck deck);
+    void printCardList();
     List<Card> getCardList();
     String getName();
 }

@@ -7,12 +7,11 @@ import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 public abstract class AbstractPlayer implements Player{
 
-    private List<Card> cardList = new ArrayList<>();
-    private PlayerObserver observer;
+    protected List<Card> cardList = new ArrayList<>();
+    protected PlayerObserver observer;
 
     public AbstractPlayer() {
         this.observer = new PlayerObserver(this);
@@ -21,13 +20,28 @@ public abstract class AbstractPlayer implements Player{
     @Override
     public void receiveFirstTwoCards(Deck deck) {
         for (int i = 0; i < 2; i++) {
-            cardList.add(deck.getCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
+            cardList.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
         }
         observer.printCardList();
+    }
+
+    @Override
+    public void selectivelyReceiveCard(Deck deck) {
+        boolean draw = true;
+        while(draw){
+            draw = selectiveDraw(deck, cardList, observer);
+        }
     }
 
     @Override
     public List<Card> getCardList() {
         return cardList;
     }
+
+    @Override
+    public void printCardList() {
+        observer.printCardList();
+    }
+
+    protected abstract boolean selectiveDraw(Deck deck, List<Card> cardList, PlayerObserver observer);
 }

@@ -14,4 +14,8 @@ public class Card {
     public String toString() {
         return level.toString() + suit.toString();
     }
+
+    public int getLevelScore() {
+        return level.score();
+    }
 }

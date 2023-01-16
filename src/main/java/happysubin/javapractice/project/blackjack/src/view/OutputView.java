@@ -19,4 +19,16 @@ public class OutputView {
     private static void printComma(List<String> names, int i) {
         if(i != names.size() - 1) System.out.print(COMMA_WITH_SPACE);
     }
+
+    public static void notifyGameParticipantReceiveCommand(String name) {
+        System.out.println(name + "는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)");
+    }
+
+    public static void notifyDealerReceiveCommandUnder16(String name) {
+        System.out.println(name + "는 16이하라 한장의 카드를 더 받았습니다.");
+    }
+
+    public static void notifyDealerReceiveCommandOver17(String name) {
+        System.out.println(name + "는 17이상이라 카드를 받을 수 없습니다.");
+    }
 }

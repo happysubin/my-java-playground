@@ -106,4 +106,40 @@ class InputViewTest {
         //then
         assertThat(result.hasMessage("숫자 형식이 아닙니다."));
     }
+
+    @Test
+    void successInputRunCommandCase1(){
+        //given
+        given(ScannerWrapper.getInput()).willReturn("y");
+
+        //when
+        String s = InputView.inputDrawCommand();
+
+        //then
+        assertThat(s).isEqualTo("y");
+    }
+
+    @Test
+    void successInputRunCommandCase2(){
+        //given
+        given(ScannerWrapper.getInput()).willReturn("n");
+
+        //when
+        String s = InputView.inputDrawCommand();
+
+        //then
+        assertThat(s).isEqualTo("n");
+    }
+
+    @Test
+    void failInputRunCommandCase1(){
+        //given
+        given(ScannerWrapper.getInput()).willReturn("q");
+
+        //when
+        AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(InputView::inputDrawCommand);
+
+        //then
+        result.hasMessage("y 또는 n만 입력해주세요,");
+    }
 }
