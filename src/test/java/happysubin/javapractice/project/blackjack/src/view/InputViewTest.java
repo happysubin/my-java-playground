@@ -1,6 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.view;
 
-import happysubin.javapractice.project.blackjack.src.domain.PlayerInfo;
+import happysubin.javapractice.project.blackjack.src.domain.player.PlayerInfo;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.AfterEach;

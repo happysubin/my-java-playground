@@ -1,4 +1,4 @@
-package happysubin.javapractice.project.blackjack.src.domain;
+package happysubin.javapractice.project.blackjack.src.domain.player;
 
 public class PlayerInfo {
     private final String name;
