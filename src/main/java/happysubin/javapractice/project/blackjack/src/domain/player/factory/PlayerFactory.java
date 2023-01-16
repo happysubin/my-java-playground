@@ -3,7 +3,6 @@ package happysubin.javapractice.project.blackjack.src.domain.player.factory;
 import happysubin.javapractice.project.blackjack.src.domain.player.Dealer;
 import happysubin.javapractice.project.blackjack.src.domain.player.GameParticipant;
 import happysubin.javapractice.project.blackjack.src.domain.player.Player;
-import happysubin.javapractice.project.blackjack.src.domain.player.PlayerInfo;
 import happysubin.javapractice.project.blackjack.src.view.InputView;
 
 import java.util.List;

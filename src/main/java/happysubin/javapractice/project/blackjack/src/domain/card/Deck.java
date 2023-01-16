@@ -11,6 +11,10 @@ public class Deck {
         initDeck();
     }
 
+    public Card getCard(int deckSize) {
+        return cardList.remove(deckSize);
+    }
+
     private void initDeck(){
         initCardList(Level.getLevelList(), Suit.getSuitList());
     }
@@ -29,5 +33,9 @@ public class Deck {
 
     public List<Card> getCardList() {
         return cardList;
+    }
+
+    public Integer getDeckSize(){
+        return cardList.size();
     }
 }
