@@ -7,5 +7,8 @@ import java.util.List;
 public class BlackJackGame {
     public void start(){
         List<String> names = InputView.inputPlayerName();
+        for (String name : names) {
+            InputView.inputPlayerBettingMoney(name);
+        }
     }
 }

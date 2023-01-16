@@ -1,8 +1,8 @@
 package happysubin.javapractice.project.blackjack.src.view;
 
+import happysubin.javapractice.project.blackjack.src.domain.PlayerInfo;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 import org.assertj.core.api.AbstractThrowableAssert;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -78,5 +78,32 @@ class InputViewTest {
 
         //then
         result.hasMessage("입력할 이름 형식과 틀립니다.");
+    }
+
+    @Test
+    void successCreatePlayerInfo(){
+        //given
+        given(ScannerWrapper.getInput()).willReturn("10000");
+
+        //when
+        PlayerInfo result = InputView.inputPlayerBettingMoney("subin");
+
+        //then
+        assertThat(result.getName()).isEqualTo("subin");
+        assertThat(result.getBettingMoney()).isEqualTo(10000);
+    }
+
+    @Test
+    void failCreatePlayerInfo(){
+        //given
+        given(ScannerWrapper.getInput()).willReturn("kiki");
+
+        //when
+        AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(() -> {
+            InputView.inputPlayerBettingMoney("subin");
+        });
+
+        //then
+        assertThat(result.hasMessage("숫자 형식이 아닙니다."));
     }
 }
