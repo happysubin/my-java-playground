@@ -9,4 +9,9 @@ public class Card {
         this.level = level;
         this.suit = suit;
     }
+
+    @Override
+    public String toString() {
+        return level.toString() + suit.toString();
+    }
 }

@@ -10,11 +10,21 @@ public enum Level {
         public int score() {
             return 1;
         }
+
+        @Override
+        public String toString() {
+            return "A";
+        }
     },
     TWO{
         @Override
         public int score() {
             return 2;
+        }
+
+        @Override
+        public String toString() {
+            return "2";
         }
     }
     ,
@@ -23,11 +33,21 @@ public enum Level {
         public int score() {
             return 3;
         }
+
+        @Override
+        public String toString() {
+            return "3";
+        }
     },
     FOUR {
         @Override
         public int score() {
             return 4;
+        }
+
+        @Override
+        public String toString() {
+            return "4";
         }
     },
     FIVE {
@@ -35,11 +55,21 @@ public enum Level {
         public int score() {
             return 5;
         }
+
+        @Override
+        public String toString() {
+            return "5";
+        }
     },
     SIX {
         @Override
         public int score() {
             return 6;
+        }
+
+        @Override
+        public String toString() {
+            return "6";
         }
     },
     SEVEN {
@@ -47,11 +77,21 @@ public enum Level {
         public int score() {
             return 7;
         }
+
+        @Override
+        public String toString() {
+            return "7";
+        }
     },
     EIGHT {
         @Override
         public int score() {
             return 8;
+        }
+
+        @Override
+        public String toString() {
+            return "8";
         }
     },
     NINE {
@@ -59,11 +99,21 @@ public enum Level {
         public int score() {
             return 9;
         }
+
+        @Override
+        public String toString() {
+            return "9";
+        }
     },
     TEN {
         @Override
         public int score() {
             return 10;
+        }
+
+        @Override
+        public String toString() {
+            return "10";
         }
     },
     JACK {
@@ -71,17 +121,32 @@ public enum Level {
         public int score() {
             return 10;
         }
+
+        @Override
+        public String toString() {
+            return "J";
+        }
     },
     QUEEN {
         @Override
         public int score() {
             return 10;
         }
+
+        @Override
+        public String toString() {
+            return "Q";
+        }
     },
     KING {
         @Override
         public int score() {
             return 10;
+        }
+
+        @Override
+        public String toString() {
+            return "K";
         }
     };
 

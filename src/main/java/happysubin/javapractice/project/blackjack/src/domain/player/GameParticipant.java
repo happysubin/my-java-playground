@@ -7,4 +7,9 @@ public class GameParticipant extends AbstractPlayer{
     public GameParticipant(PlayerInfo playerInfo) {
         this.playerInfo = playerInfo;
     }
+
+    @Override
+    public String getName() {
+        return playerInfo.getName();
+    }
 }
