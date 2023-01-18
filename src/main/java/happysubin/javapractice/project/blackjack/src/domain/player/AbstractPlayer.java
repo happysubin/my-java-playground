@@ -27,9 +27,8 @@ public abstract class AbstractPlayer implements Player{
 
     @Override
     public void selectivelyReceiveCard(Deck deck) {
-        boolean draw = true;
-        while(draw){
-            draw = selectiveDraw(deck, cardList, observer);
+        while(isRunningState()){
+            selectiveDraw(deck);
         }
     }
 
@@ -43,5 +42,9 @@ public abstract class AbstractPlayer implements Player{
         observer.printCardListAndTotalScore();
     }
 
-    protected abstract boolean selectiveDraw(Deck deck, List<Card> cardList, PlayerObserver observer);
+    protected int calculateCardsPoint(List<Card> cardList) {
+        return cardList.stream().map(Card::getLevelScore).reduce(0, (a, b) -> a + b);
+    }
+
+    protected abstract void selectiveDraw(Deck deck);
 }

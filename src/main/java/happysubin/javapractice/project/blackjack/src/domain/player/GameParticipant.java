@@ -1,21 +1,18 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
-import happysubin.javapractice.project.blackjack.src.domain.card.Card;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
-import happysubin.javapractice.project.blackjack.src.domain.draw.DrawStrategy;
-import happysubin.javapractice.project.blackjack.src.domain.draw.GameParticipantDrawStrategy;
-import happysubin.javapractice.project.blackjack.src.domain.player.observer.PlayerObserver;
-
-import java.util.List;
+import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
+import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
+import happysubin.javapractice.project.blackjack.src.view.InputView;
 
 public class GameParticipant extends AbstractPlayer{
 
     private PlayerInfo playerInfo;
-    private final DrawStrategy drawStrategy;
+    private State state;
 
     public GameParticipant(PlayerInfo playerInfo) {
         this.playerInfo = playerInfo;
-        this.drawStrategy = new GameParticipantDrawStrategy();
+        this.state = State.RUNNING;
     }
 
     @Override
@@ -24,7 +21,19 @@ public class GameParticipant extends AbstractPlayer{
     }
 
     @Override
-    protected boolean selectiveDraw(Deck deck, List<Card> cardList, PlayerObserver observer) {
-        return drawStrategy.draw(deck, cardList, observer);
+    protected void selectiveDraw(Deck deck) {
+        observer.printParticipantReceiveCommand();
+        if(InputView.inputDrawCommand().equals("y")){
+            cardList.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
+            observer.printCardList();
+            this.state =  State.RUNNING;
+            return;
+        }
+        this.state = State.FINISH;
+    }
+
+    @Override
+    public boolean isRunningState() {
+        return state == State.RUNNING;
     }
 }

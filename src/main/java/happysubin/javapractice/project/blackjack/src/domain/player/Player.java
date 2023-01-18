@@ -13,4 +13,6 @@ public interface Player {
 
     List<Card> getCardList();
     String getName();
+    boolean isRunningState();
+
 }

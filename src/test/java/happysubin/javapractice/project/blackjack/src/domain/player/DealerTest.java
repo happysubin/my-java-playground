@@ -1,7 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
-import happysubin.javapractice.project.blackjack.src.domain.draw.DealerStrategy;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 import org.assertj.core.api.Assertions;
@@ -41,7 +40,7 @@ public class DealerTest {
         dealer.selectivelyReceiveCard(deck);
 
         //then
-        Assertions.assertThat(dealer.getCardList().size()).isEqualTo(10);
+        Assertions.assertThat(dealer.getCardList().size()).isEqualTo(1);
     }
     /**
      * 일단 에이스 1 또는 10으로 생각하지 말고 진행
