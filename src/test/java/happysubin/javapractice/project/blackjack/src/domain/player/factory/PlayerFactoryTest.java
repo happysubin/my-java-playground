@@ -1,5 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player.factory;
 
+import happysubin.javapractice.project.blackjack.src.domain.player.GameParticipant;
 import happysubin.javapractice.project.blackjack.src.domain.player.Player;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 import org.junit.jupiter.api.AfterEach;
@@ -33,7 +34,7 @@ class PlayerFactoryTest {
         BDDMockito.given(ScannerWrapper.getInput()).willReturn("su,bin", "1000", "2000");
 
         //when
-        List<Player> player = PlayerFactory.createPlayer();
+        List<GameParticipant> player = PlayerFactory.createPlayer();
 
         //then
         assertThat(player.size()).isEqualTo(2);

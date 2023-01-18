@@ -2,12 +2,10 @@ package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
-import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -34,10 +32,10 @@ public class DealerTest {
         //given
         Deck deck = new Deck();
         given(RandomUtil.getRandomNumber(Mockito.any(Integer.class))).willReturn(0);
-        Dealer dealer = new Dealer();
+        DealerImpl dealer = new DealerImpl();
 
         //when
-        dealer.selectivelyReceiveCard(deck);
+        dealer.lastDraw(deck);
 
         //then
         Assertions.assertThat(dealer.getCardList().size()).isEqualTo(1);

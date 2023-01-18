@@ -1,6 +1,7 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
+import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.view.OutputView;
 
 import java.util.ArrayList;
@@ -10,37 +11,41 @@ import static java.util.stream.Collectors.*;
 
 public class Players {
 
-    private List<Player> players = new ArrayList<>();
+    private List<GameParticipant> gameParticipants = new ArrayList<>();
     private Dealer dealer;
 
-    public Players(List<Player> players,Dealer dealer) {
-        this.players.addAll(players);
+    public Players(List<GameParticipant> gameParticipants, Dealer dealer) {
+        this.gameParticipants.addAll(gameParticipants);
         this.dealer = dealer ;
     }
 
     public void allPlayerHasTwoCard(Deck deck){
         OutputView.printReceiveTwoCardNotifications(extractAllName());
-        dealer.receiveFirstTwoCards(deck);
-        players.forEach(player -> player.receiveFirstTwoCards(deck));
+        State state = dealer.firstDrawTwoCard(deck);
+        gameParticipants.forEach(player -> player.firstDrawTwoCard(deck, state));
         System.out.println();
     }
 
-    public void allPlayerSelectivelyReceiveCard(Deck deck) {
-        players.forEach(player -> player.selectivelyReceiveCard(deck));
+    public void hasLastChanceGetCard(Deck deck) {
+        gameParticipants.forEach(gameParticipant -> gameParticipant.lastSelectiveDraw(deck));
+        dealer.lastDraw(deck);
     }
 
     public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
+        players.add(dealer);
+        players.addAll(gameParticipants);
         return players;
     }
 
     public void printCardList() {
         System.out.println();
-        players.forEach(Player::printCardListAndTotalScore);
+        gameParticipants.forEach(Player::printCardListAndTotalScore);
         dealer.printCardListAndTotalScore();
     }
 
     private List<String> extractAllName(){
-        List<String> result = players.stream().map(Player::getName).collect(toList());
+        List<String> result = gameParticipants.stream().map(Player::getName).collect(toList());
         result.add(dealer.getName());
         return result;
     }

@@ -30,7 +30,7 @@ public class GameParticipantTest {
 
         //given
         Deck deck = new Deck();
-        GameParticipant player = new GameParticipant(new PlayerInfo("subin", 10000));
+        GameParticipantImpl player = new GameParticipantImpl(new PlayerInfo("subin", 10000));
 
         //when
         player.receiveFirstTwoCards(deck);
@@ -46,10 +46,10 @@ public class GameParticipantTest {
         //given
         given(ScannerWrapper.getInput()).willReturn("n");
         Deck deck = new Deck();
-        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000));
+        GameParticipantImpl gameParticipant = new GameParticipantImpl(new PlayerInfo("subin", 1000));
 
         //when
-        gameParticipant.selectivelyReceiveCard(deck);
+        gameParticipant.lastSelectiveDraw(deck);
 
         //then
         Assertions.assertThat(gameParticipant.getCardList().size()).isEqualTo(0);
@@ -61,10 +61,10 @@ public class GameParticipantTest {
         //given
         given(ScannerWrapper.getInput()).willReturn("y", "y", "n");
         Deck deck = new Deck();
-        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000));
+        GameParticipantImpl gameParticipant = new GameParticipantImpl(new PlayerInfo("subin", 1000));
 
         //when
-        gameParticipant.selectivelyReceiveCard(deck);
+        gameParticipant.lastSelectiveDraw(deck);
 
         //then
 
