@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public static void notifyDealerReceiveCommandUnder16(String name) {
-        System.out.println(name + "는 16이하라 한장의 카드를 더 받았습니다.");
+        System.out.println("\n" + name + "는 16이하라 한장의 카드를 더 받았습니다.");
     }
 
     public static void notifyDealerReceiveCommandOver17(String name) {

@@ -1,6 +1,7 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
+import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -33,7 +34,7 @@ public class GameParticipantTest {
         GameParticipantImpl player = new GameParticipantImpl(new PlayerInfo("subin", 10000));
 
         //when
-        player.receiveFirstTwoCards(deck);
+        player.firstDrawTwoCard(deck, State.RUNNING);
 
         //then
         Assertions.assertThat(player.getCardList().size()).isEqualTo(2);

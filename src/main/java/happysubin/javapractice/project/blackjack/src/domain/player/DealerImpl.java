@@ -1,27 +1,16 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
-import happysubin.javapractice.project.blackjack.src.domain.card.Card;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
+
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 
-import java.util.List;
 
-public class DealerImpl extends AbstractPlayer implements Dealer{
+public class DealerImpl extends AbstractPlayer implements Dealer {
 
     public DealerImpl() {
         super(new PlayerInfo("딜러", 0));
-    }
-
-    @Override
-    public String getName() {
-        return playerInfo.getName();
-    }
-
-    @Override
-    public List<Card> getCardList() {
-        return cardList;
     }
 
     @Override

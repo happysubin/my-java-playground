@@ -11,8 +11,8 @@ import static java.util.stream.Collectors.*;
 
 public class PlayerFactory {
 
-    public static List<GameParticipant> createPlayer(){
-        List<GameParticipant> result = InputView
+    public static List<GameParticipantImpl> createPlayer(){
+        List<GameParticipantImpl> result = InputView
                 .inputPlayerName()
                 .stream()
                 .map(InputView::inputPlayerBettingMoney)

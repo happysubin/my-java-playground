@@ -11,10 +11,10 @@ import static java.util.stream.Collectors.*;
 
 public class Players {
 
-    private List<GameParticipant> gameParticipants = new ArrayList<>();
-    private Dealer dealer;
+    private List<GameParticipantImpl> gameParticipants = new ArrayList<>();
+    private DealerImpl dealer;
 
-    public Players(List<GameParticipant> gameParticipants, Dealer dealer) {
+    public Players(List<GameParticipantImpl> gameParticipants, DealerImpl dealer) {
         this.gameParticipants.addAll(gameParticipants);
         this.dealer = dealer ;
     }
