@@ -36,6 +36,6 @@ class PlayerFactoryTest {
         List<Player> player = PlayerFactory.createPlayer();
 
         //then
-        assertThat(player.size()).isEqualTo(3);
+        assertThat(player.size()).isEqualTo(2);
     }
 }

@@ -43,7 +43,7 @@ public abstract class AbstractPlayer implements Player{
     }
 
     protected int calculateCardsPoint(List<Card> cardList) {
-        return cardList.stream().map(Card::getLevelScore).reduce(0, (a, b) -> a + b);
+        return cardList.stream().map(Card::getLevelScore).reduce(0, Integer::sum);
     }
 
     protected abstract void selectiveDraw(Deck deck);

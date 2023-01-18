@@ -18,7 +18,6 @@ public class PlayerFactory {
                 .map(InputView::inputPlayerBettingMoney)
                 .map(GameParticipant::new)
                 .collect(toList());
-        result.add(new Dealer());
         return result;
     }
 }
