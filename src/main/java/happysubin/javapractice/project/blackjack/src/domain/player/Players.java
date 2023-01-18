@@ -19,10 +19,9 @@ public class Players {
     }
 
     public void allPlayerHasTwoCard(Deck deck){
-        OutputView.printReceiveTwoCardNotifications(players.stream().map(Player::getName).collect(toList()));
-        OutputView.printReceiveTwoCardNotifications(List.of(dealer.getName()));
-        players.forEach(player -> player.receiveFirstTwoCards(deck));
+        OutputView.printReceiveTwoCardNotifications(extractAllName());
         dealer.receiveFirstTwoCards(deck);
+        players.forEach(player -> player.receiveFirstTwoCards(deck));
         System.out.println();
     }
 
@@ -38,5 +37,11 @@ public class Players {
         System.out.println();
         players.forEach(Player::printCardListAndTotalScore);
         dealer.printCardListAndTotalScore();
+    }
+
+    private List<String> extractAllName(){
+        List<String> result = players.stream().map(Player::getName).collect(toList());
+        result.add(dealer.getName());
+        return result;
     }
 }
