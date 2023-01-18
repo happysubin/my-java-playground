@@ -9,6 +9,7 @@ import java.util.List;
 import static java.util.stream.Collectors.*;
 
 public class Players {
+
     private List<Player> players = new ArrayList<>();
 
     public Players(List<Player> players) {
@@ -31,6 +32,6 @@ public class Players {
 
     public void printCardList() {
         System.out.println();
-        players.forEach(player -> player.printCardList());
+        players.forEach(Player::printCardListAndTotalScore);
     }
 }

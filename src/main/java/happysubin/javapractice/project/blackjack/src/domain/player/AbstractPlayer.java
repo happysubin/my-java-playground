@@ -39,8 +39,8 @@ public abstract class AbstractPlayer implements Player{
     }
 
     @Override
-    public void printCardList() {
-        observer.printCardList();
+    public void printCardListAndTotalScore() {
+        observer.printCardListAndTotalScore();
     }
 
     protected abstract boolean selectiveDraw(Deck deck, List<Card> cardList, PlayerObserver observer);
