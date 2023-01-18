@@ -1,6 +1,7 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
+import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 import happysubin.javapractice.project.blackjack.src.view.InputView;
@@ -26,10 +27,10 @@ public class GameParticipant extends AbstractPlayer{
         if(InputView.inputDrawCommand().equals("y")){
             cardList.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
             observer.printCardList();
-            this.state =  State.RUNNING;
+            this.state =  StateFactory.extractState(calculateCardsPoint(cardList));
             return;
         }
-        this.state = State.FINISH;
+        this.state = StateFactory.getFinishState();
     }
 
     @Override

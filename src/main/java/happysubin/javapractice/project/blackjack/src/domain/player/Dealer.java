@@ -1,6 +1,7 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
+import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 
@@ -25,7 +26,7 @@ public class Dealer extends AbstractPlayer{
             observer.printDealerReceiveCommandUnder16();
             cardList.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
         }
-        this.state =  State.FINISH;
+        this.state = StateFactory.getFinishState();
     }
 
     @Override
