@@ -32,7 +32,7 @@ public class DealerTest {
         //given
         Deck deck = new Deck();
         given(RandomUtil.getRandomNumber(Mockito.any(Integer.class))).willReturn(0);
-        DealerImpl dealer = new DealerImpl();
+        Dealer dealer = new Dealer();
 
         //when
         dealer.lastDraw(deck);

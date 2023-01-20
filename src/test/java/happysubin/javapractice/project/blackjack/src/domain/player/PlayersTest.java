@@ -27,9 +27,9 @@ public class PlayersTest {
     private Players createPlayers() {
         return new Players(
                 List.of(
-                        new GameParticipantImpl(new PlayerInfo("subin", 10000)),
-                        new GameParticipantImpl(new PlayerInfo("subin", 10000))
-                ), new DealerImpl()
+                        new GameParticipant(new PlayerInfo("subin", 10000)),
+                        new GameParticipant(new PlayerInfo("subin", 10000))
+                ), new Dealer()
         );
     }
 

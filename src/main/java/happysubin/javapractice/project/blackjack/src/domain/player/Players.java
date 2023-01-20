@@ -11,19 +11,25 @@ import static java.util.stream.Collectors.*;
 
 public class Players {
 
-    private List<GameParticipantImpl> gameParticipants = new ArrayList<>();
-    private DealerImpl dealer;
+    private List<GameParticipant> gameParticipants = new ArrayList<>();
+    private Dealer dealer;
 
-    public Players(List<GameParticipantImpl> gameParticipants, DealerImpl dealer) {
+    public Players(List<GameParticipant> gameParticipants, Dealer dealer) {
         this.gameParticipants.addAll(gameParticipants);
         this.dealer = dealer ;
     }
 
     public void allPlayerHasTwoCard(Deck deck){
         OutputView.printReceiveTwoCardNotifications(extractAllName());
-        State state = dealer.firstDrawTwoCard(deck);
-        gameParticipants.forEach(player -> player.firstDrawTwoCard(deck, state));
-        System.out.println();
+        State dealerState = dealer.firstDrawTwoCard(deck);
+        List<Double> gameParticipantGetMoney = gameParticipantDrawTwoCardAndGetGameParticipantGainedMoney(deck, dealerState);
+        dealer.lossBettingMoney(gameParticipantGetMoney);
+    }
+
+    private List<Double> gameParticipantDrawTwoCardAndGetGameParticipantGainedMoney(Deck deck, State dealerState) {
+        return gameParticipants.stream()
+                .map(gameParticipant -> gameParticipant.firstDrawTwoCard(deck, dealerState))
+                .collect(toList());
     }
 
     public void hasLastChanceGetCard(Deck deck) {

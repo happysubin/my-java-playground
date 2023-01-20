@@ -153,6 +153,10 @@ public enum Level {
 
     public abstract int score();
 
+    public static boolean isAce(Level level){
+        return level == Level.ACE;
+    }
+
     public static List<Level> getLevelList(){
         return Arrays
                 .stream(values())

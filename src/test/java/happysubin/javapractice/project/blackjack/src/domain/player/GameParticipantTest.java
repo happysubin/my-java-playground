@@ -31,7 +31,7 @@ public class GameParticipantTest {
 
         //given
         Deck deck = new Deck();
-        GameParticipantImpl player = new GameParticipantImpl(new PlayerInfo("subin", 10000));
+        GameParticipant player = new GameParticipant(new PlayerInfo("subin", 10000));
 
         //when
         player.firstDrawTwoCard(deck, State.RUNNING);
@@ -47,7 +47,7 @@ public class GameParticipantTest {
         //given
         given(ScannerWrapper.getInput()).willReturn("n");
         Deck deck = new Deck();
-        GameParticipantImpl gameParticipant = new GameParticipantImpl(new PlayerInfo("subin", 1000));
+        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000));
 
         //when
         gameParticipant.lastSelectiveDraw(deck);
@@ -62,7 +62,7 @@ public class GameParticipantTest {
         //given
         given(ScannerWrapper.getInput()).willReturn("y", "y", "n");
         Deck deck = new Deck();
-        GameParticipantImpl gameParticipant = new GameParticipantImpl(new PlayerInfo("subin", 1000));
+        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000));
 
         //when
         gameParticipant.lastSelectiveDraw(deck);

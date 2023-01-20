@@ -1,6 +1,5 @@
 package happysubin.javapractice.project.blackjack.src.domain.player.observer;
 
-import happysubin.javapractice.project.blackjack.src.domain.card.Card;
 import happysubin.javapractice.project.blackjack.src.domain.player.Player;
 import happysubin.javapractice.project.blackjack.src.view.OutputView;
 
@@ -21,8 +20,7 @@ public class PlayerObserver {
         System.out.print(player.getName() + ": ");
         System.out.print(player.getCardList());
         System.out.println(
-                " - 결과: " +
-                player.getCardList().stream().map(Card::getLevelScore).reduce(0, (a, b) -> a + b)
+                " - 결과: " + player.calculateCardsPoint(player.getCardList())
         );
     }
 
