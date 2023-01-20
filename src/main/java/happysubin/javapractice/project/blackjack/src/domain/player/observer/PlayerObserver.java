@@ -20,7 +20,7 @@ public class PlayerObserver {
         System.out.print(player.getName() + ": ");
         System.out.print(player.getCardList());
         System.out.println(
-                " - 결과: " + player.calculateCardsPoint(player.getCardList())
+                " - 결과: " + player.calculateCardsPoint()
         );
     }
 

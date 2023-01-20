@@ -25,7 +25,7 @@ public class Card implements Comparable<Card> {
         if (!isAceCard()){
             return sum + level.score();
         }
-        if(sum <= 10 ){
+        if(sum < 11 ){
             return sum + 11;
         }
         return sum + 1;

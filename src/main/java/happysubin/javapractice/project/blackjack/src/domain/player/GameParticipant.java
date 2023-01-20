@@ -1,5 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
+import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
@@ -14,13 +15,17 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
         super(playerInfo);
     }
 
+    public GameParticipant(Cards cards, PlayerInfo playerInfo) {
+        super(cards, playerInfo);
+    }
+
     @Override
     public double firstDrawTwoCard(Deck deck, State dealerState) {
         for (int i = 0; i < 2; i++) {
             cards.addCard(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
         }
         observer.printCardList();
-        super.state = StateFactory.extractState(calculateCardsPoint(cards.getCards()));
+        super.state = StateFactory.extractState(calculateCardsPoint());
         return playerInfo.calculateBlackJack(dealerState, super.state);
     }
 
@@ -36,12 +41,11 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
         if(InputView.inputDrawCommand().equals("y")){
             cards.addCard(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
             observer.printCardList();
-            this.state = StateFactory.extractState(calculateCardsPoint(cards.getCards()));
+            this.state = StateFactory.extractState(calculateCardsPoint());
             return;
         }
         this.state = StateFactory.getFinishState();
     }
-
 
     private boolean isRunningState() {
         return state == State.RUNNING;

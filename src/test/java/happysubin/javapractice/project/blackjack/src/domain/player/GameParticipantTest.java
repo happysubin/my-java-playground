@@ -3,12 +3,14 @@ package happysubin.javapractice.project.blackjack.src.domain.player;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
-import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mockStatic;
 
@@ -27,6 +29,7 @@ public class GameParticipantTest {
     }
 
     @Test
+    @DisplayName("처음 2개의 카드를 뽑는다.")
     void receiveFirstTwoCard(){
 
         //given
@@ -37,11 +40,11 @@ public class GameParticipantTest {
         player.firstDrawTwoCard(deck, State.RUNNING);
 
         //then
-        Assertions.assertThat(player.getCardList().size()).isEqualTo(2);
-
+        assertThat(player.getCardList().size()).isEqualTo(2);
     }
 
     @Test
+    @DisplayName("카드를 받지 않는 테스트")
     void receiveSelectiveCardCase1(){
 
         //given
@@ -53,10 +56,11 @@ public class GameParticipantTest {
         gameParticipant.lastSelectiveDraw(deck);
 
         //then
-        Assertions.assertThat(gameParticipant.getCardList().size()).isEqualTo(0);
+        assertThat(gameParticipant.getCardList().size()).isEqualTo(0);
     }
 
     @Test
+    @DisplayName("카드를 2장 받는 테스트")
     void receiveSelectiveCardCase2(){
 
         //given
@@ -68,8 +72,6 @@ public class GameParticipantTest {
         gameParticipant.lastSelectiveDraw(deck);
 
         //then
-
-        Assertions.assertThat(gameParticipant.getCardList().size()).isEqualTo(2);
-
+        assertThat(gameParticipant.getCardList().size()).isEqualTo(2);
     }
 }

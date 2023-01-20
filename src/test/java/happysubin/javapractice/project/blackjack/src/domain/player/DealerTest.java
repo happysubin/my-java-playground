@@ -1,14 +1,17 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
-import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
+import happysubin.javapractice.project.blackjack.src.domain.card.*;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+
+import java.util.List;
 
 import static org.mockito.BDDMockito.*;
 
@@ -27,6 +30,7 @@ public class DealerTest {
     }
 
     @Test
+    @DisplayName("16이하면 카드를 한장 더 뽑는다.")
     void selectiveReceiveCard(){
 
         //given
@@ -40,7 +44,4 @@ public class DealerTest {
         //then
         Assertions.assertThat(dealer.getCardList().size()).isEqualTo(1);
     }
-    /**
-     * 일단 에이스 1 또는 10으로 생각하지 말고 진행
-     */
 }

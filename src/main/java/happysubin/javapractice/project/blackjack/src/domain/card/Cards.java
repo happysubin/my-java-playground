@@ -8,6 +8,13 @@ public class Cards {
 
     private List<Card> cards = new ArrayList<>();
 
+    public Cards() {
+    }
+
+    public Cards(List<Card> cards) {
+        this.cards = cards;
+    }
+
     public void addCard(Card card){
         cards.add(card);
         Collections.sort(cards);

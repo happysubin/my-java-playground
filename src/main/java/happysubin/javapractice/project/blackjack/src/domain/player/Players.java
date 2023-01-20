@@ -55,4 +55,12 @@ public class Players {
         result.add(dealer.getName());
         return result;
     }
+
+    public List<GameParticipant> getGameParticipants() {
+        return gameParticipants;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
 }

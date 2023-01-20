@@ -1,7 +1,5 @@
 package happysubin.javapractice.project.blackjack.src.domain.card;
 
-import happysubin.javapractice.project.blackjack.src.domain.player.GameParticipant;
-import happysubin.javapractice.project.blackjack.src.domain.player.PlayerInfo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

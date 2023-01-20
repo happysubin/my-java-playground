@@ -25,7 +25,6 @@ public class PlayerInfo {
         return 0;
     }
 
-
     public String getName() {
         return name;
     }
