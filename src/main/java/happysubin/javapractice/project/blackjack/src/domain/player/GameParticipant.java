@@ -41,11 +41,7 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
     }
 
     public void compareWithDealer(Dealer dealer) {
-        if(state == State.BLACK_JACK){
-        }
-        else if(state == State.GAME_OVER){
-            dealer.addBettingMoney(playerInfo.lossMoney());
-        }
+        this.playerInfo =  dealer.compare(calculateCardsPoint(), state, playerInfo);
     }
 }
 

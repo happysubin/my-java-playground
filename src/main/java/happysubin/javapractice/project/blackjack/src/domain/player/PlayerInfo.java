@@ -1,6 +1,5 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
-import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 
 import java.util.List;
 
@@ -13,18 +12,6 @@ public class PlayerInfo {
         this.bettingMoney = bettingMoney;
     }
 
-    public double calculateBlackJack(State dealerState, State myState){
-        if(dealerState == State.BLACK_JACK & myState == State.BLACK_JACK){
-            return 0;
-        }
-        else if(myState == State.BLACK_JACK){
-            int temp = this.bettingMoney;
-            this.bettingMoney *= 1.5;
-            return temp * 0.5;
-        }
-        return 0;
-    }
-
     public String getName() {
         return name;
     }
@@ -33,19 +20,23 @@ public class PlayerInfo {
         return bettingMoney;
     }
 
-    public void lossMoney(List<Double> gameParticipantGetMoney) {
-        for (Double lossMoney : gameParticipantGetMoney) {
-            this.bettingMoney -= lossMoney;
-        }
-    }
-
-    public int lossMoney(){
-        int temp = this.bettingMoney;
-        this.bettingMoney *= -1;
-        return temp;
+    public void lossMoney(Integer money) {
+        this.bettingMoney -= money;
     }
 
     public void addMoney(int lossMoney) {
         this.bettingMoney += lossMoney;
+    }
+
+    public PlayerInfo blackJackScore() {
+        return new PlayerInfo(name, (int) (bettingMoney * 1.5));
+    }
+
+    public PlayerInfo win() {
+        return new PlayerInfo(name, bettingMoney);
+    }
+
+    public PlayerInfo lossAllMoney() {
+        return new PlayerInfo(name, bettingMoney * -1);
     }
 }

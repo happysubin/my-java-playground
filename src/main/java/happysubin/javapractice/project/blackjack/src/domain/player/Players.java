@@ -27,6 +27,12 @@ public class Players {
         gameParticipantsFirstDrawTwoCardAndPrintCardList(deck);
     }
 
+    private List<String> extractAllName(){
+        List<String> result = gameParticipants.stream().map(Player::getName).collect(toList());
+        result.add(dealer.getName());
+        return result;
+    }
+
     private void gameParticipantsFirstDrawTwoCardAndPrintCardList(Deck deck) {
         gameParticipants.forEach((gameParticipant) -> {
             gameParticipant.firstDrawTwoCard(deck);
@@ -44,26 +50,9 @@ public class Players {
         dealer.printCardListAndTotalScore();
     }
 
-    private List<String> extractAllName(){
-        List<String> result = gameParticipants.stream().map(Player::getName).collect(toList());
-        result.add(dealer.getName());
-        return result;
-    }
-
     public void compareDealerAndGameParticipants(){
-        Map<String, Integer> playerPrizeMoneyMap = extractAllName()
-                .stream()
-                .collect(Collectors.toMap(name -> name, name -> 0));
-        if(dealer.isGamerOver()){
-
-            return;
-        }
-
-        else if(dealer.isBlackJack()){
-
-        }
-        gameParticipants.forEach((gameParticipant) -> {
-//            gameParticipant.compareWithDealer(dealer);
+        gameParticipants.forEach(gameParticipant ->{
+            gameParticipant.compareWithDealer(dealer);
         });
     }
 
@@ -85,4 +74,6 @@ public class Players {
     public Dealer getDealer() {
         return dealer;
     }
+
+
 }

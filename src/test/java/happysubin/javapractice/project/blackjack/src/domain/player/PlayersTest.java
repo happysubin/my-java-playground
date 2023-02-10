@@ -91,18 +91,19 @@ public class PlayersTest {
         //given
         Players players = createPlayers();
         Deck mockDeck = Mockito.mock(Deck.class);
-
-        //when
-        when(RandomUtil.getRandomNumber(Mockito.anyInt())).thenReturn(46);
-        when(mockDeck.drawCard(Mockito.anyInt())).thenReturn(
-                new Card(Level.FOUR, Suit.SPADE), new Card(Level.JACK, Suit.SPADE),
-                new Card(Level.ACE, Suit.SPADE), new Card(Level.JACK, Suit.SPADE),
-                new Card(Level.ACE, Suit.SPADE), new Card(Level.JACK, Suit.SPADE)
+        given(RandomUtil.getRandomNumber(Mockito.anyInt())).willReturn(46);
+        given(mockDeck.drawCard(Mockito.anyInt())).willReturn(
+                new Card(Level.FOUR, Suit.SPADE), new Card(Level.JACK, Suit.SPADE), // 14 딜러
+                new Card(Level.ACE, Suit.SPADE), new Card(Level.JACK, Suit.SPADE), // 21
+                new Card(Level.ACE, Suit.SPADE), new Card(Level.JACK, Suit.SPADE) // 21
         );
         players.allPlayerHasTwoCard(mockDeck);
 
+        //when
+        players.compareDealerAndGameParticipants();
+
         //then
-        assertThat(players.getDealer().getPlayerInfo().getBettingMoney()).isEqualTo(-10000);
+        assertThat(players.getDealer().getPlayerInfo().getBettingMoney()).isEqualTo(-30000);
         assertThat(players.getDealer().getState()).isEqualTo(State.RUNNING);
 
         assertThat(players.getGameParticipants().get(0).getPlayerInfo().getBettingMoney()).isEqualTo(15000);
@@ -121,17 +122,20 @@ public class PlayersTest {
         Players players = createPlayers();
         Deck mockDeck = Mockito.mock(Deck.class);
 
-        //when
-        when(RandomUtil.getRandomNumber(Mockito.anyInt())).thenReturn(46);
-        when(mockDeck.drawCard(Mockito.anyInt())).thenReturn(
-                new Card(Level.FOUR, Suit.SPADE), new Card(Level.JACK, Suit.SPADE),
-                new Card(Level.KING, Suit.SPADE), new Card(Level.JACK, Suit.SPADE),
-                new Card(Level.ACE, Suit.SPADE), new Card(Level.JACK, Suit.SPADE)
+        given(RandomUtil.getRandomNumber(Mockito.anyInt())).willReturn(46);
+        given(mockDeck.drawCard(Mockito.anyInt())).willReturn(
+                new Card(Level.SIX, Suit.SPADE), new Card(Level.JACK, Suit.SPADE), // 14
+                new Card(Level.KING, Suit.SPADE), new Card(Level.JACK, Suit.SPADE), // 20
+                new Card(Level.ACE, Suit.SPADE), new Card(Level.JACK, Suit.SPADE) // 21
         );
         players.allPlayerHasTwoCard(mockDeck);
 
+        //when
+
+        players.compareDealerAndGameParticipants();
+
         //then
-        assertThat(players.getDealer().getPlayerInfo().getBettingMoney()).isEqualTo(-5000);
+        assertThat(players.getDealer().getPlayerInfo().getBettingMoney()).isEqualTo(-25000);
         assertThat(players.getDealer().getState()).isEqualTo(State.RUNNING);
 
         assertThat(players.getGameParticipants().get(0).getPlayerInfo().getBettingMoney()).isEqualTo(10000);
