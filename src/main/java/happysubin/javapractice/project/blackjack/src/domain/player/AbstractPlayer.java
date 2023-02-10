@@ -2,12 +2,15 @@ package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Card;
 import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
+import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
+import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
 import happysubin.javapractice.project.blackjack.src.domain.player.observer.PlayerObserver;
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
+import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 
 import java.util.List;
 
-public abstract class AbstractPlayer implements Player{
+public abstract class AbstractPlayer implements Player {
 
     protected Cards cards;
     protected PlayerInfo playerInfo;
@@ -43,11 +46,11 @@ public abstract class AbstractPlayer implements Player{
         observer.printCardListAndTotalScore();
     }
 
-    @Override
-    public void lossBettingMoney(List<Double> gameParticipantGetMoney) {
-        playerInfo.lossMoney(gameParticipantGetMoney);
-        System.out.println();
-    }
+//    @Override
+//    public void lossBettingMoney(List<Double> gameParticipantGetMoney) {
+//        playerInfo.lossMoney(gameParticipantGetMoney);
+//        System.out.println();
+//    }
 
     @Override
     public int calculateCardsPoint() {
@@ -66,5 +69,18 @@ public abstract class AbstractPlayer implements Player{
     @Override
     public State getState() {
         return state;
+    }
+
+    @Override
+    public void printCardList() {
+        observer.printCardList();
+    }
+
+    @Override
+    public void firstDrawTwoCard(Deck deck) {
+        for (int i = 0; i < 2; i++) {
+            cards.addCard(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
+        }
+        this.state = StateFactory.firstExtractState(calculateCardsPoint());
     }
 }

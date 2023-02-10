@@ -37,7 +37,7 @@ public class GameParticipantTest {
         GameParticipant player = new GameParticipant(new PlayerInfo("subin", 10000));
 
         //when
-        player.firstDrawTwoCard(deck, State.RUNNING);
+        player.firstDrawTwoCard(deck);
 
         //then
         assertThat(player.getCardList().size()).isEqualTo(2);

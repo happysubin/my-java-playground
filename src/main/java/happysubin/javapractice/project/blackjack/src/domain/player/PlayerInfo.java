@@ -38,4 +38,14 @@ public class PlayerInfo {
             this.bettingMoney -= lossMoney;
         }
     }
+
+    public int lossMoney(){
+        int temp = this.bettingMoney;
+        this.bettingMoney *= -1;
+        return temp;
+    }
+
+    public void addMoney(int lossMoney) {
+        this.bettingMoney += lossMoney;
+    }
 }

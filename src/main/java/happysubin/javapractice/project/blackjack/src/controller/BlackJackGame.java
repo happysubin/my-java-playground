@@ -21,15 +21,6 @@ public class BlackJackGame {
         players.allPlayerHasTwoCard(deck);
         players.hasLastChanceGetCard(deck);
         players.printCardList();
-        //TODO 결과 출력 끝.
-    }
-
-
-    public Players getPlayers() {
-        return players;
-    }
-
-    public Deck getDeck() {
-        return deck;
+        players.compareDealerAndGameParticipants();
     }
 }

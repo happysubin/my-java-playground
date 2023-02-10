@@ -13,7 +13,7 @@ public class PlayerObserver {
 
     public void printCardList() {
         System.out.print(player.getName() + ": ");
-        System.out.println(player.getCardList());
+        System.out.println(player.getCardList() + "\n");
     }
 
     public void printCardListAndTotalScore(){
@@ -30,9 +30,5 @@ public class PlayerObserver {
 
     public void printDealerReceiveCommandUnder16() {
         OutputView.notifyDealerReceiveCommandUnder16(player.getName());
-    }
-
-    public void printDealerReceiveCommandOver17() {
-        OutputView.notifyDealerReceiveCommandOver17(player.getName());
     }
 }

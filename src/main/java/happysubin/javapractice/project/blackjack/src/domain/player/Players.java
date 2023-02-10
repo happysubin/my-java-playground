@@ -1,11 +1,12 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
-import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -21,15 +22,16 @@ public class Players {
 
     public void allPlayerHasTwoCard(Deck deck){
         OutputView.printReceiveTwoCardNotifications(extractAllName());
-        State dealerState = dealer.firstDrawTwoCard(deck);
-        List<Double> gameParticipantGetMoney = gameParticipantDrawTwoCardAndGetGameParticipantGainedMoney(deck, dealerState);
-        dealer.lossBettingMoney(gameParticipantGetMoney);
+        dealer.firstDrawTwoCard(deck);
+        dealer.printCardList();
+        gameParticipantsFirstDrawTwoCardAndPrintCardList(deck);
     }
 
-    private List<Double> gameParticipantDrawTwoCardAndGetGameParticipantGainedMoney(Deck deck, State dealerState) {
-        return gameParticipants.stream()
-                .map(gameParticipant -> gameParticipant.firstDrawTwoCard(deck, dealerState))
-                .collect(toList());
+    private void gameParticipantsFirstDrawTwoCardAndPrintCardList(Deck deck) {
+        gameParticipants.forEach((gameParticipant) -> {
+            gameParticipant.firstDrawTwoCard(deck);
+            gameParticipant.printCardList();
+        });
     }
 
     public void hasLastChanceGetCard(Deck deck) {
@@ -37,15 +39,7 @@ public class Players {
         dealer.lastDraw(deck);
     }
 
-    public List<Player> getPlayers() {
-        List<Player> players = new ArrayList<>();
-        players.add(dealer);
-        players.addAll(gameParticipants);
-        return players;
-    }
-
     public void printCardList() {
-        System.out.println();
         gameParticipants.forEach(Player::printCardListAndTotalScore);
         dealer.printCardListAndTotalScore();
     }
@@ -54,6 +48,34 @@ public class Players {
         List<String> result = gameParticipants.stream().map(Player::getName).collect(toList());
         result.add(dealer.getName());
         return result;
+    }
+
+    public void compareDealerAndGameParticipants(){
+        Map<String, Integer> playerPrizeMoneyMap = extractAllName()
+                .stream()
+                .collect(Collectors.toMap(name -> name, name -> 0));
+        if(dealer.isGamerOver()){
+
+            return;
+        }
+
+        else if(dealer.isBlackJack()){
+
+        }
+        gameParticipants.forEach((gameParticipant) -> {
+//            gameParticipant.compareWithDealer(dealer);
+        });
+    }
+
+    /**
+     * 아래는 테스트를 위한 코드
+     */
+
+    public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
+        players.add(dealer);
+        players.addAll(gameParticipants);
+        return players;
     }
 
     public List<GameParticipant> getGameParticipants() {
