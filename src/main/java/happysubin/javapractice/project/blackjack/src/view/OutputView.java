@@ -1,5 +1,7 @@
 package happysubin.javapractice.project.blackjack.src.view;
 
+import happysubin.javapractice.project.blackjack.src.domain.player.PlayerInfo;
+
 import java.util.List;
 
 public class OutputView {
@@ -28,7 +30,7 @@ public class OutputView {
         System.out.println("\n" + name + "는 16이하라 한장의 카드를 더 받았습니다.\n");
     }
 
-    public static void notifyDealerReceiveCommandOver17(String name) {
-        System.out.println(name + "는 17이상이라 카드를 받을 수 없습니다.");
+    public static void printResult(PlayerInfo playerInfo) {
+        System.out.println(playerInfo.getName() + ": " + playerInfo.getBettingMoney());
     }
 }

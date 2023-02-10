@@ -22,6 +22,6 @@ public class BlackJackGame {
         players.hasLastChanceGetCard(deck);
         players.printCardList();
         players.compareDealerAndGameParticipants();
-
+        players.printResult();
     }
 }
