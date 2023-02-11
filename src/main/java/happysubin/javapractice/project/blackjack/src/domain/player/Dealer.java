@@ -1,8 +1,10 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
+import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
 
+import happysubin.javapractice.project.blackjack.src.domain.player.observer.PlayerObserver;
 import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 
@@ -10,6 +12,14 @@ public class Dealer extends AbstractPlayer implements DealerBehavior {
 
     public Dealer() {
         super(new PlayerInfo("딜러", 0));
+    }
+
+    /**
+     * 테스트 코드를 위한 생성자
+     */
+
+    public Dealer(Cards cards, PlayerInfo playerInfo, State state) {
+        super(cards, playerInfo, state);
     }
 
     @Override
@@ -24,7 +34,7 @@ public class Dealer extends AbstractPlayer implements DealerBehavior {
     public PlayerInfo compare(int gameParticipantPoint, State gameParticipantState, PlayerInfo gameParticipantInfo) {
         if(allBlackJack(gameParticipantState) || allSamePoint(gameParticipantPoint)){
             //0배 취급 안함. 그냥 배팅 금액 돌려줌.
-            return new PlayerInfo(playerInfo.getName(), 0);
+            return new PlayerInfo(gameParticipantInfo.getName(), 0);
         }
         else if(gameParticipantState == State.BLACK_JACK){
             //1.5배를 게임 참여자에게 주고 딜러는 그만큼을 잃음.

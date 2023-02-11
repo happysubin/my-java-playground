@@ -24,10 +24,13 @@ public abstract class AbstractPlayer implements Player {
         this.observer = new PlayerObserver(this);
     }
 
-    public AbstractPlayer(Cards cards, PlayerInfo playerInfo) {
+    /**
+     * 테스트에서 사용할 생성자다.
+     */
+    public AbstractPlayer(Cards cards, PlayerInfo playerInfo, State state) {
         this.cards = cards;
         this.playerInfo = playerInfo;
-        this.state = State.RUNNING;
+        this.state = state;
         this.observer = new PlayerObserver(this);
     }
 
@@ -46,11 +49,6 @@ public abstract class AbstractPlayer implements Player {
         observer.printCardListAndTotalScore();
     }
 
-//    @Override
-//    public void lossBettingMoney(List<Double> gameParticipantGetMoney) {
-//        playerInfo.lossMoney(gameParticipantGetMoney);
-//        System.out.println();
-//    }
 
     @Override
     public int calculateCardsPoint() {

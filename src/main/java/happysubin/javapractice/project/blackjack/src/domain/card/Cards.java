@@ -8,9 +8,11 @@ public class Cards {
 
     private List<Card> cards = new ArrayList<>();
 
-    public Cards() {
-    }
+    public Cards() {}
 
+    /**
+     * 테스트 코드용 생성자
+     */
     public Cards(List<Card> cards) {
         this.cards = cards;
     }
