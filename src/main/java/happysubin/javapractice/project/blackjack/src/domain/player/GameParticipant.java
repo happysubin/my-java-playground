@@ -1,11 +1,8 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
-import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
-import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
 
-import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
-
+import static happysubin.javapractice.project.blackjack.src.utils.RandomUtil.*;
 import static happysubin.javapractice.project.blackjack.src.view.InputView.*;
 
 public class GameParticipant extends AbstractPlayer implements GameParticipantBehavior {
@@ -16,7 +13,7 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
 
     @Override
     public void lastSelectiveDraw(Deck deck) {
-        while(isRunningState()){
+        while(cards.isRunning()){
             observer.printParticipantReceiveCommand();
             selectiveDraw(deck);
             observer.printCardList();
@@ -25,23 +22,19 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
 
     private void selectiveDraw(Deck deck) {
         if(inputCommandIsY()){
-            cards.addCard(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
-            this.state = StateFactory.lastGameParticipantExtractState(calculateCardsPoint());
+            cards.addCard(deck.drawCard(getRandomNumber(deck.getDeckSize())));
+            cards.lastGameParticipantExtractState();
             return;
         }
-        this.state = StateFactory.finishState();
+        cards.finish();
     }
 
     private boolean inputCommandIsY() {
         return inputDrawCommand().equals("y");
     }
 
-    private boolean isRunningState() {
-        return state == State.RUNNING;
-    }
-
     public void compareWithDealer(Dealer dealer) {
-        this.playerInfo =  dealer.compare(calculateCardsPoint(), state, playerInfo);
+        this.playerInfo =  dealer.compare(cards, playerInfo);
     }
 }
 

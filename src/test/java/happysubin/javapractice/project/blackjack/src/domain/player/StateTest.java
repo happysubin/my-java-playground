@@ -63,7 +63,7 @@ public class StateTest {
         //then
         assertThat(players.getDealer().getPlayerInfo().getName()).isEqualTo("딜러");
         assertThat(players.getDealer().getPlayerInfo().getBettingMoney()).isEqualTo(0);
-        assertThat(players.getDealer().getState()).isSameAs(State.BLACK_JACK);
+        assertThat(players.get).isSameAs(State.BLACK_JACK);
 
         assertThat(players.getGameParticipants().get(0).getPlayerInfo().getName()).isEqualTo("subin");
         assertThat(players.getGameParticipants().get(0).getPlayerInfo().getBettingMoney()).isEqualTo(0);
