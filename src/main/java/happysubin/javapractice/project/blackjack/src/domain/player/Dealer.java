@@ -15,8 +15,8 @@ public class Dealer extends AbstractPlayer implements DealerBehavior {
      * 테스트 코드를 위한 생성자
      */
 
-    public Dealer(Cards cards, PlayerInfo playerInfo) {
-        super(cards, playerInfo);
+    public Dealer(Cards cards) {
+        super(cards, new PlayerInfo("딜러", 0));
     }
 
     @Override

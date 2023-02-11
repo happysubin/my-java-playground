@@ -20,6 +20,7 @@ public class Cards {
      * 테스트 코드용 생성자
      */
     public Cards(List<Card> cards) {
+        Collections.sort(cards);
         this.cards = cards;
     }
 
@@ -28,16 +29,25 @@ public class Cards {
         Collections.sort(cards);
     }
 
-    public List<Card> getCards() {
-        return cards;
+
+    public void firstExtractState() {
+        this.state = StateFactory.firstExtractState(calculateCardsPoint());
+    }
+
+    public void lastDealerExtractState() {
+        this.state = StateFactory.lastDealerExtractState(calculateCardsPoint());
+    }
+
+    public void lastGameParticipantExtractState() {
+        this.state = StateFactory.lastGameParticipantExtractState(calculateCardsPoint());
+    }
+
+    public void finish() {
+        this.state = StateFactory.finishState();
     }
 
     public boolean leePointThan16() {
         return calculateCardsPoint() <= 16;
-    }
-
-    public void firstExtractState() {
-        this.state = StateFactory.firstExtractState(calculateCardsPoint());
     }
 
     private int calculateCardsPoint() {
@@ -46,18 +56,6 @@ public class Cards {
             sum = card.getCumulativeScore(sum);
         }
         return sum;
-    }
-
-    public void lastDealerExtractState() {
-        this.state = StateFactory.lastDealerExtractState(calculateCardsPoint());
-    }
-
-    public void finish() {
-        this.state = StateFactory.finishState();
-    }
-
-    public void lastGameParticipantExtractState() {
-        this.state = StateFactory.lastGameParticipantExtractState(calculateCardsPoint());
     }
 
     public boolean isRunning() {
@@ -71,6 +69,11 @@ public class Cards {
     public boolean isGameOver() {
         return state == State.GAME_OVER;
     }
+
+    public boolean isFinish() {
+        return state == State.FINISH;
+    }
+
 
     public boolean isNotGameOver() {
         return state != State.GAME_OVER;
@@ -94,5 +97,9 @@ public class Cards {
 
     public int getTotalScore() {
         return calculateCardsPoint();
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 }

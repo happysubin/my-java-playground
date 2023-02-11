@@ -1,5 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
+import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 
 import static happysubin.javapractice.project.blackjack.src.utils.RandomUtil.*;
@@ -9,6 +10,10 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
 
     public GameParticipant(PlayerInfo playerInfo) {
         super(playerInfo);
+    }
+
+    public GameParticipant(Cards cards, PlayerInfo playerInfo) {
+        super(cards, playerInfo);
     }
 
     @Override
@@ -37,9 +42,3 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
         this.playerInfo =  dealer.compare(cards, playerInfo);
     }
 }
-
-/**
- * 첫 번째는 블랙잭이 되지만
- * 두 번재부터는 21이 되도 블랙잭이 아님.
- *
- */

@@ -11,8 +11,6 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 
-import java.util.List;
-
 import static org.mockito.BDDMockito.*;
 
 public class DealerTest {
@@ -47,6 +45,6 @@ public class DealerTest {
         dealer.lastDraw(deck);
 
         //then
-        Assertions.assertThat(dealer.getCardList().size()).isEqualTo(1);
+        Assertions.assertThat(dealer.getCards().getCards().size()).isEqualTo(1);
     }
 }

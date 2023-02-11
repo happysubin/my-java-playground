@@ -1,7 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
-import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 
 import org.junit.jupiter.api.AfterEach;
@@ -40,7 +39,7 @@ public class GameParticipantTest {
         player.firstDrawTwoCard(deck);
 
         //then
-        assertThat(player.getCardList().size()).isEqualTo(2);
+        assertThat(player.getCards().getCards().size()).isEqualTo(2);
     }
 
     @Test
@@ -56,7 +55,7 @@ public class GameParticipantTest {
         gameParticipant.lastSelectiveDraw(deck);
 
         //then
-        assertThat(gameParticipant.getCardList().size()).isEqualTo(0);
+        assertThat(gameParticipant.getCards().getCards().size()).isEqualTo(0);
     }
 
     @Test
@@ -72,6 +71,6 @@ public class GameParticipantTest {
         gameParticipant.lastSelectiveDraw(deck);
 
         //then
-        assertThat(gameParticipant.getCardList().size()).isEqualTo(2);
+        assertThat(gameParticipant.getCards().getCards().size()).isEqualTo(2);
     }
 }

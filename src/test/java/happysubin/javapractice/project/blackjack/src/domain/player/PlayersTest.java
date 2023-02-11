@@ -42,8 +42,8 @@ public class PlayersTest {
         players.allPlayerHasTwoCard(deck);
 
         //then
-        assertThat(players.getPlayers().get(0).getCardList().size()).isEqualTo(2);
-        assertThat(players.getPlayers().get(1).getCardList().size()).isEqualTo(2);
+        assertThat(players.getPlayers().get(0).getCards().getCards().size()).isEqualTo(2);
+        assertThat(players.getPlayers().get(1).getCards().getCards().size()).isEqualTo(2);
     }
 
     private Players createPlayers() {

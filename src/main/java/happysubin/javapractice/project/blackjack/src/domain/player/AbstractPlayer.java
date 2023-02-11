@@ -1,13 +1,10 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
-import happysubin.javapractice.project.blackjack.src.domain.card.Card;
 import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.domain.player.observer.PlayerObserver;
 
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
-
-import java.util.List;
 
 public abstract class AbstractPlayer implements Player {
 
@@ -37,8 +34,8 @@ public abstract class AbstractPlayer implements Player {
     }
 
     @Override
-    public List<Card> getCardList() {
-        return cards.getCards();
+    public Cards getCards() {
+        return cards;
     }
 
     @Override

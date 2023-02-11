@@ -1,7 +1,5 @@
 package happysubin.javapractice.project.blackjack.src.domain.card;
 
-import java.util.Comparator;
-
 public class Card implements Comparable<Card> {
 
     private final Level level;

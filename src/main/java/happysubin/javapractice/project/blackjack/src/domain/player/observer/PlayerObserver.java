@@ -13,12 +13,12 @@ public class PlayerObserver {
 
     public void printCardList() {
         System.out.print(player.getName() + ": ");
-        System.out.println(player.getCardList() + "\n");
+        System.out.println(player.getCards().getCards() + "\n");
     }
 
     public void printCardListAndTotalScore(){
         System.out.print(player.getName() + ": ");
-        System.out.print(player.getCardList());
+        System.out.print(player.getCards().getCards());
         System.out.println(
                 " - 결과: " + player.getTotalScore()
         );

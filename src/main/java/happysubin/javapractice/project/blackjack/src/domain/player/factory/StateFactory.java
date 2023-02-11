@@ -7,8 +7,7 @@ public class StateFactory {
     private StateFactory(){}
 
     public static State firstExtractState(int totalScore){
-        if(totalScore > 21 ) return State.GAME_OVER;
-        else if(totalScore == 21) return State.BLACK_JACK;
+        if(totalScore == 21) return State.BLACK_JACK;
         return State.RUNNING;
     }
 
