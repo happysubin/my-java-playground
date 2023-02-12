@@ -56,7 +56,7 @@ public abstract class AbstractPlayer implements Player {
     @Override
     public void firstDrawTwoCard(Deck deck) {
         for (int i = 0; i < 2; i++) {
-            cards.addCard(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
+            cards.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
         }
         cards.firstExtractState();
     }

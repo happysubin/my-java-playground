@@ -1,7 +1,7 @@
 package happysubin.javapractice.project.blackjack.src.domain.card;
 
 import happysubin.javapractice.project.blackjack.src.domain.player.factory.StateFactory;
-import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
+import happysubin.javapractice.project.blackjack.src.domain.player.state.legacy.LegacyState;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,10 +10,10 @@ import java.util.List;
 public class Cards {
 
     private List<Card> cards = new ArrayList<>();
-    protected State state;
+    protected LegacyState state;
 
     public Cards() {
-        this.state = State.RUNNING;
+        this.state = LegacyState.RUNNING;
     }
 
     /**
@@ -24,7 +24,9 @@ public class Cards {
         this.cards = cards;
     }
 
-    public void addCard(Card card){
+
+
+    public void add(Card card){
         cards.add(card);
         Collections.sort(cards);
     }
@@ -59,24 +61,24 @@ public class Cards {
     }
 
     public boolean isRunning() {
-        return state == State.RUNNING;
+        return state == LegacyState.RUNNING;
     }
 
     public boolean isBlackJack() {
-        return state == State.BLACK_JACK;
+        return state == LegacyState.BLACK_JACK;
     }
 
     public boolean isGameOver() {
-        return state == State.GAME_OVER;
+        return state == LegacyState.GAME_OVER;
     }
 
     public boolean isFinish() {
-        return state == State.FINISH;
+        return state == LegacyState.FINISH;
     }
 
 
     public boolean isNotGameOver() {
-        return state != State.GAME_OVER;
+        return state != LegacyState.GAME_OVER;
     }
 
     public boolean isSamePoint(Cards cards) {
@@ -102,4 +104,9 @@ public class Cards {
     public List<Card> getCards() {
         return cards;
     }
+
+    public boolean isBust() {
+        return calculateCardsPoint() > 21;
+    }
+
 }

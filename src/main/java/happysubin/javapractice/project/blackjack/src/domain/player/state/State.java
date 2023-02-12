@@ -1,5 +1,12 @@
 package happysubin.javapractice.project.blackjack.src.domain.player.state;
 
-public enum State {
-    RUNNING, FINISH, GAME_OVER, BLACK_JACK;
+import happysubin.javapractice.project.blackjack.src.domain.card.Card;
+import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
+
+public interface State {
+    State draw(Card card);
+    State stay();
+    boolean isFinished();
+    Cards cards();
+    double profit(double profit);
 }

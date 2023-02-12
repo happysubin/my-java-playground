@@ -23,7 +23,7 @@ public class Dealer extends AbstractPlayer implements DealerBehavior {
     public void lastDraw(Deck deck) {
         if(cards.leePointThan16()){
             observer.printDealerReceiveCommandUnder16();
-            cards.addCard(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
+            cards.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
         }
         cards.lastDealerExtractState();
     }

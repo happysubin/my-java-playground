@@ -27,7 +27,7 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
 
     private void selectiveDraw(Deck deck) {
         if(inputCommandIsY()){
-            cards.addCard(deck.drawCard(getRandomNumber(deck.getDeckSize())));
+            cards.add(deck.drawCard(getRandomNumber(deck.getDeckSize())));
             cards.lastGameParticipantExtractState();
             return;
         }
