@@ -13,10 +13,8 @@ public class CardsTest {
 
     @Test
     void isBlackJack(){
-        //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(JACK, DIAMOND));
 
-        //then
         assertThat(cards.isBlackJack()).isTrue();
         assertThat(cards.getTotalScore()).isEqualTo(21);
     }
@@ -24,21 +22,16 @@ public class CardsTest {
 
     @Test
     void isLessPointThan16(){
-        //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(ACE, DIAMOND));
 
-        //then
         assertThat(cards.lessPointThan16()).isTrue();
         assertThat(cards.getTotalScore()).isEqualTo(12);
     }
 
     @Test
     void isBurst(){
-        //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(ACE, DIAMOND), new Card(JACK, DIAMOND), new Card(KING, HEART));
-        //when
 
-        //then
         assertThat(cards.getTotalScore()).isEqualTo(22);
         assertThat(cards.isBust()).isTrue();
     }
@@ -46,10 +39,8 @@ public class CardsTest {
 
     @Test
     void pointSame21ButNotBlackJack(){
-        //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(JACK, DIAMOND), new Card(KING, HEART));
 
-        //then
         assertThat(cards.getTotalScore()).isEqualTo(21);
         assertThat(cards.isBlackJack()).isFalse();
     }
@@ -59,12 +50,8 @@ public class CardsTest {
      */
     @Test
     void aceBug(){
-        //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(ACE, DIAMOND), new Card(JACK, DIAMOND));
 
-        //when
-
-        //then
         assertThat(cards.getTotalScore()).isEqualTo(13);
     }
 

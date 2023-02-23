@@ -17,7 +17,7 @@ public abstract class AbstractPlayer implements Player {
 
     public AbstractPlayer(PlayerInfo playerInfo, Cards cards) {
         this.playerInfo = playerInfo;
-        this.state = new RightAfterStarted(cards);
+        this.state = new RightAfterStarted(cards, 0);
         this.observer = new PlayerObserver(this);
     }
 
