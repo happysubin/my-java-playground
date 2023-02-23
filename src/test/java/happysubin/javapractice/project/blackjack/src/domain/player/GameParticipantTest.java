@@ -1,5 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
+import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.utils.ScannerWrapper;
 
@@ -33,7 +34,7 @@ public class GameParticipantTest {
 
         //given
         Deck deck = new Deck();
-        GameParticipant player = new GameParticipant(new PlayerInfo("subin", 10000));
+        GameParticipant player = new GameParticipant(new PlayerInfo("subin", 10000), new Cards());
 
         //when
         player.firstDrawTwoCard(deck);
@@ -49,7 +50,7 @@ public class GameParticipantTest {
         //given
         given(ScannerWrapper.getInput()).willReturn("n");
         Deck deck = new Deck();
-        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000));
+        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000), new Cards());
 
         //when
         gameParticipant.lastSelectiveDraw(deck);
@@ -65,7 +66,7 @@ public class GameParticipantTest {
         //given
         given(ScannerWrapper.getInput()).willReturn("y", "y", "n");
         Deck deck = new Deck();
-        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000));
+        GameParticipant gameParticipant = new GameParticipant(new PlayerInfo("subin", 1000), new Cards());
 
         //when
         gameParticipant.lastSelectiveDraw(deck);

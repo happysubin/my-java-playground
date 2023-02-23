@@ -19,11 +19,10 @@ public class Players {
         this.dealer = dealer ;
     }
 
-    public void allPlayerHasTwoCard(Deck deck){
+    public void firstDrawTwoCards(Deck deck){
         OutputView.printReceiveTwoCardNotifications(extractAllName());
         dealer.firstDrawTwoCard(deck);
-        dealer.printCardList();
-        gameParticipantsFirstDrawTwoCardAndPrintCardList(deck);
+        gameParticipantsFirstDrawTwoCard(deck);
     }
 
     private List<String> extractAllName(){
@@ -32,14 +31,13 @@ public class Players {
         return result;
     }
 
-    private void gameParticipantsFirstDrawTwoCardAndPrintCardList(Deck deck) {
-        gameParticipants.forEach((gameParticipant) -> {
+    private void gameParticipantsFirstDrawTwoCard(Deck deck) {
+        for (GameParticipant gameParticipant : gameParticipants) {
             gameParticipant.firstDrawTwoCard(deck);
-            gameParticipant.printCardList();
-        });
+        }
     }
 
-    public void hasLastChanceGetCard(Deck deck) {
+    public void lastDrawCards(Deck deck) {
         gameParticipants.forEach(gameParticipant -> gameParticipant.lastSelectiveDraw(deck));
         dealer.lastDraw(deck);
     }

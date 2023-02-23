@@ -1,5 +1,6 @@
 package happysubin.javapractice.project.blackjack.src.domain.player.factory;
 
+import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.player.GameParticipant;
 import happysubin.javapractice.project.blackjack.src.view.InputView;
 
@@ -14,7 +15,7 @@ public class PlayerFactory {
                 .inputPlayerName()
                 .stream()
                 .map(InputView::inputPlayerBettingMoney)
-                .map(GameParticipant::new)
+                .map(playerInfo -> new GameParticipant(playerInfo, new Cards()))
                 .collect(toList());
         return result;
     }

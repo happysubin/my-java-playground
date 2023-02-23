@@ -34,7 +34,7 @@ public class DealerTest {
         //given
         Deck deck = new Deck();
         given(RandomUtil.getRandomNumber(Mockito.any(Integer.class))).willReturn(0);
-        Dealer dealer = new Dealer(){
+        Dealer dealer = new Dealer(new Cards()){
             @Override
             public void firstDrawTwoCard(Deck deck) {
                 super.firstDrawTwoCard(deck);

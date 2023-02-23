@@ -14,6 +14,6 @@ public class Stay extends Finished{
 
     @Override
     protected double earningRate() {
-        return 0;
+        return 1;
     }
 }

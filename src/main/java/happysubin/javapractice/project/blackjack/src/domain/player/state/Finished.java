@@ -26,7 +26,7 @@ public abstract class Finished extends Started {
 
     @Override
     public double profit(double profit) {
-        return 0;
+        return profit * earningRate();
     }
 
     abstract protected double earningRate();

@@ -1,30 +1,23 @@
 package happysubin.javapractice.project.blackjack.src.domain.player;
 
+import happysubin.javapractice.project.blackjack.src.domain.card.Card;
 import happysubin.javapractice.project.blackjack.src.domain.card.Cards;
 import happysubin.javapractice.project.blackjack.src.domain.card.Deck;
 import happysubin.javapractice.project.blackjack.src.domain.player.observer.PlayerObserver;
+import happysubin.javapractice.project.blackjack.src.domain.player.state.RightAfterStarted;
+import happysubin.javapractice.project.blackjack.src.domain.player.state.State;
 
 import happysubin.javapractice.project.blackjack.src.utils.RandomUtil;
 
 public abstract class AbstractPlayer implements Player {
 
-    protected Cards cards;
+    protected State state;
     protected PlayerInfo playerInfo;
     protected PlayerObserver observer;
 
-    public AbstractPlayer(PlayerInfo playerInfo) {
+    public AbstractPlayer(PlayerInfo playerInfo, Cards cards) {
         this.playerInfo = playerInfo;
-        this.cards = new Cards();
-        this.observer = new PlayerObserver(this);
-    }
-
-    /**
-     * 테스트에서 사용할 생성자다.
-     */
-
-    public AbstractPlayer(Cards cards, PlayerInfo playerInfo) {
-        this.cards = cards;
-        this.playerInfo = playerInfo;
+        this.state = new RightAfterStarted(cards);
         this.observer = new PlayerObserver(this);
     }
 
@@ -35,7 +28,7 @@ public abstract class AbstractPlayer implements Player {
 
     @Override
     public Cards getCards() {
-        return cards;
+        return state.cards();
     }
 
     @Override
@@ -56,13 +49,18 @@ public abstract class AbstractPlayer implements Player {
     @Override
     public void firstDrawTwoCard(Deck deck) {
         for (int i = 0; i < 2; i++) {
-            cards.add(deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize())));
+            state.draw(drawCardFromDeck(deck));
         }
-        cards.firstExtractState();
+        printCardList();
+    }
+
+
+    protected Card drawCardFromDeck(Deck deck) {
+        return deck.drawCard(RandomUtil.getRandomNumber(deck.getDeckSize()));
     }
 
     @Override
     public int getTotalScore() {
-        return cards.getTotalScore();
+        return state.cards().getTotalScore();
     }
 }

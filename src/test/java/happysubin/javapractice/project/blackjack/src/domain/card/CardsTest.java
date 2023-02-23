@@ -16,9 +16,6 @@ public class CardsTest {
         //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(JACK, DIAMOND));
 
-        //when
-        cards.firstExtractState();
-
         //then
         assertThat(cards.isBlackJack()).isTrue();
         assertThat(cards.getTotalScore()).isEqualTo(21);
@@ -26,70 +23,35 @@ public class CardsTest {
 
 
     @Test
-    void isRunning(){
+    void isLessPointThan16(){
         //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(ACE, DIAMOND));
 
-        //when
-        cards.firstExtractState();
-
         //then
-        assertThat(cards.isRunning()).isTrue();
+        assertThat(cards.lessPointThan16()).isTrue();
         assertThat(cards.getTotalScore()).isEqualTo(12);
     }
 
     @Test
-    void isDealerGameOver(){
+    void isBurst(){
         //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(ACE, DIAMOND), new Card(JACK, DIAMOND), new Card(KING, HEART));
         //when
-        cards.lastDealerExtractState();
 
         //then
         assertThat(cards.getTotalScore()).isEqualTo(22);
-        assertThat(cards.isGameOver()).isTrue();
+        assertThat(cards.isBust()).isTrue();
     }
 
 
     @Test
-    void isDealerFinish(){
+    void pointSame21ButNotBlackJack(){
         //given
         Cards cards = createCards(new Card(ACE, SPADE), new Card(JACK, DIAMOND), new Card(KING, HEART));
 
-        //when
-        cards.lastDealerExtractState();
-
         //then
         assertThat(cards.getTotalScore()).isEqualTo(21);
-        assertThat(cards.isFinish()).isTrue();
-    }
-
-
-    @Test
-    void isGameParticipantGameOver(){
-        //given
-        Cards cards = createCards(new Card(ACE, SPADE), new Card(FOUR, DIAMOND), new Card(JACK, DIAMOND), new Card(KING, HEART));
-
-        //when
-        cards.lastGameParticipantExtractState();
-
-        //then
-        assertThat(cards.getTotalScore()).isEqualTo(25);
-        assertThat(cards.isGameOver()).isTrue();
-    }
-
-
-    @Test
-    void isGameParticipantRunning(){
-        //given
-        Cards cards = createCards(new Card(ACE, SPADE), new Card(FIVE, HEART));
-
-        //when
-        cards.lastGameParticipantExtractState();
-
-        //then
-        assertThat(cards.getTotalScore()).isEqualTo(16);
-        assertThat(cards.isRunning()).isTrue();
+        assertThat(cards.isBlackJack()).isFalse();
     }
 
     /**
@@ -101,11 +63,9 @@ public class CardsTest {
         Cards cards = createCards(new Card(ACE, SPADE), new Card(ACE, DIAMOND), new Card(JACK, DIAMOND));
 
         //when
-        cards.lastDealerExtractState();
 
         //then
         assertThat(cards.getTotalScore()).isEqualTo(13);
-        assertThat(cards.isFinish()).isTrue();
     }
 
 

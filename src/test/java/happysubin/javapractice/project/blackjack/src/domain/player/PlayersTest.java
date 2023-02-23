@@ -35,7 +35,7 @@ public class PlayersTest {
         Players players = createPlayers();
 
         //when
-        players.allPlayerHasTwoCard(deck);
+        players.firstDrawTwoCards(deck);
 
         //then
         assertThat(players.getPlayers().get(0).getCards().getCards().size()).isEqualTo(2);
@@ -45,9 +45,9 @@ public class PlayersTest {
     private Players createPlayers() {
         return new Players(
                 List.of(
-                        new GameParticipant(new PlayerInfo("subin", 10000)),
-                        new GameParticipant(new PlayerInfo("subin", 10000))
-                ), new Dealer()
+                        new GameParticipant(new PlayerInfo("subin", 10000), new Cards()),
+                        new GameParticipant(new PlayerInfo("subin", 10000), new Cards())
+                ), new Dealer(new Cards())
         );
     }
 
