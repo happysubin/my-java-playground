@@ -11,5 +11,4 @@ class DeckTest {
 
         Assertions.assertThat(deck.getCardList().size()).isEqualTo(52);
     }
-
 }

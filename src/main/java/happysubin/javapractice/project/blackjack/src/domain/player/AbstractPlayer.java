@@ -49,7 +49,7 @@ public abstract class AbstractPlayer implements Player {
     @Override
     public void firstDrawTwoCard(Deck deck) {
         for (int i = 0; i < 2; i++) {
-            state.draw(drawCardFromDeck(deck));
+            state = state.draw(drawCardFromDeck(deck));
         }
         printCardList();
     }

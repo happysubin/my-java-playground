@@ -24,6 +24,7 @@ public class RightAfterStarted extends Running{
         if(count == 2){
             return new Hit(cards);
         }
+
         return new RightAfterStarted(cards, count);
     }
 }
