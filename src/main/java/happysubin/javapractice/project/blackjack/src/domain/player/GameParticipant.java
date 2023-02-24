@@ -33,6 +33,6 @@ public class GameParticipant extends AbstractPlayer implements GameParticipantBe
     }
 
     public void compareWithDealer(Dealer dealer) {
-        //this.playerInfo =  dealer.compare(cards, playerInfo);
+        this.playerInfo =  dealer.compare(state, playerInfo);
     }
 }

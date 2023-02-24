@@ -9,4 +9,5 @@ public interface State {
     boolean isFinished();
     Cards cards();
     double profit(double profit);
+    double compare(State dealerState, int betMoney);
 }

@@ -16,4 +16,9 @@ public class Bust extends Finished{
     protected double earningRate() {
         return -1;
     }
+
+    @Override
+    public double compare(State dealerState, int betMoney) {
+        return profit(betMoney);
+    }
 }

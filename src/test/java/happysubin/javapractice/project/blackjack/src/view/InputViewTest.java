@@ -90,7 +90,7 @@ class InputViewTest {
 
         //then
         assertThat(result.getName()).isEqualTo("subin");
-        assertThat(result.getBettingMoney()).isEqualTo(10000);
+        assertThat(result.getBetMoney()).isEqualTo(10000);
     }
 
     @Test

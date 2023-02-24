@@ -22,4 +22,9 @@ public abstract class Running extends Started{
     public State stay() {
         return new Stay(cards);
     }
+
+    @Override
+    public double compare(State dealerState, int betMoney) {
+        throw new UnsupportedOperationException("게임 진행 중에는 결론을 도출할 수 없습니다.");
+    }
 }

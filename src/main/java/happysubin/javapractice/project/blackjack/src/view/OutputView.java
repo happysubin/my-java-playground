@@ -31,6 +31,6 @@ public class OutputView {
     }
 
     public static void printResult(PlayerInfo playerInfo) {
-        System.out.println(playerInfo.getName() + ": " + playerInfo.getBettingMoney());
+        System.out.println(playerInfo.getName() + ": " + playerInfo.getBetMoney());
     }
 }

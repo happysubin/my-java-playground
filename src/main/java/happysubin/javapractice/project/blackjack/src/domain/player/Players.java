@@ -38,7 +38,9 @@ public class Players {
     }
 
     public void lastDrawCards(Deck deck) {
-        gameParticipants.forEach(gameParticipant -> gameParticipant.lastSelectiveDraw(deck));
+        for (GameParticipant gameParticipant : gameParticipants) {
+            gameParticipant.lastSelectiveDraw(deck);
+        }
         dealer.lastDraw(deck);
     }
 
@@ -48,9 +50,9 @@ public class Players {
     }
 
     public void compareDealerAndGameParticipants(){
-        gameParticipants.forEach(gameParticipant ->{
+        for (GameParticipant gameParticipant : gameParticipants) {
             gameParticipant.compareWithDealer(dealer);
-        });
+        };
     }
 
     public void printResult() {
