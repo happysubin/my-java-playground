@@ -1,4 +1,4 @@
-package happysubin.javapractice.codingtest.programmers.level_two;
+package happysubin.javapractice.codingtest.programmers.java.level_two;
 
 import java.util.ArrayList;
 import java.util.Arrays;

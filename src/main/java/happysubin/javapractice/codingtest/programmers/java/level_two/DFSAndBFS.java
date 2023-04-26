@@ -1,8 +1,7 @@
-package happysubin.javapractice.codingtest.programmers.level_two;
+package happysubin.javapractice.codingtest.programmers.java.level_two;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 /**타겟 넘버
  * public class DFSAndBFS {

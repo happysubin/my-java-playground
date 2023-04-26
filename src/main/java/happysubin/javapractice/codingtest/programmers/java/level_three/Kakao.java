@@ -1,11 +1,4 @@
-package happysubin.javapractice.codingtest.programmers.level_three;
-
-import net.bytebuddy.dynamic.scaffold.MethodGraph;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+package happysubin.javapractice.codingtest.programmers.java.level_three;
 
 /** 두 큐 합 같게 만들기
  * public class Kakao {

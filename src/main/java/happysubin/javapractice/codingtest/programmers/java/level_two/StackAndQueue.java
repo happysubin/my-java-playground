@@ -1,9 +1,4 @@
-package happysubin.javapractice.codingtest.programmers.level_two;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+package happysubin.javapractice.codingtest.programmers.java.level_two;
 
 /** 프린터
  * public class StackAndQueue {

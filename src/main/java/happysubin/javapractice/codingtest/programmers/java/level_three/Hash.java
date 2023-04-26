@@ -1,4 +1,4 @@
-package happysubin.javapractice.codingtest.programmers.level_three;
+package happysubin.javapractice.codingtest.programmers.java.level_three;
 
 import java.util.*;
 import java.util.stream.Collectors;

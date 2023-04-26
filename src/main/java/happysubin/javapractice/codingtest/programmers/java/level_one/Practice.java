@@ -1,4 +1,4 @@
-package happysubin.javapractice.codingtest.programmers.level_one;
+package happysubin.javapractice.codingtest.programmers.java.level_one;
 
 /**
  * 가운데 글자 구하기

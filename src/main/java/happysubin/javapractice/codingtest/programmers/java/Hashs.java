@@ -1,4 +1,4 @@
-package happysubin.javapractice.codingtest.programmers;
+package happysubin.javapractice.codingtest.programmers.java;
 
 import java.util.*;
 

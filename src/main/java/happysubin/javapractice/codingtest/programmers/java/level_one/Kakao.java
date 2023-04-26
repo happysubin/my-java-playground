@@ -1,7 +1,5 @@
-package happysubin.javapractice.codingtest.programmers.level_one;
+package happysubin.javapractice.codingtest.programmers.java.level_one;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
 
 //성격 유형 검사
