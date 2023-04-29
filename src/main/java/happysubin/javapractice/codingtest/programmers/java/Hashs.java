@@ -93,28 +93,20 @@ public class Hashs {
 
  */
 
-public class Hashs {
-
-    static public int solution(int[] nums) {
+import java.util.*;
+class Hashs {
+    public int solution(int[] nums) {
+        int max = nums.length / 2;
         Set<Integer> hashSet = new HashSet<>();
-        int count = nums.length / 2;
 
-        for (int num : nums) {
+        for(int num : nums){
             hashSet.add(num);
         }
 
-        if(hashSet.size() > count){
-            return count;
+        if(hashSet.size() > max){
+            return max;
         }
 
-        else {
-            return hashSet.size();
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {3,1,2,3};
-        System.out.println(solution(arr));
+        return hashSet.size();
     }
 }
-//
