@@ -115,3 +115,40 @@ public class DFSAndBFS {
         System.out.println(solution);
     }
 }
+
+/** 타겟 넘버
+ * class Solution {
+ *     private static int goal = 0;
+ *
+ *     private static void dfs(int[] numbers, int target, boolean[] check, int level){
+ *         if(level == check.length - 1){
+ *             int cnt = 0;
+ *             int sum = 0;
+ *             for(int i = 0; i < numbers.length; i++){
+ *                 if(check[i] == true){
+ *                     sum += numbers[i];
+ *                 }
+ *                 else{
+ *                     sum -= numbers[i];
+ *                 }
+ *
+ *             }
+ *             if(sum == target) goal++;
+ *         }
+ *         else{
+ *             level++;
+ *             check[level] = false;
+ *             dfs(numbers, target, check, level);
+ *             check[level] = true;
+ *             dfs(numbers, target, check, level);
+ *         }
+ *     }
+ *
+ *
+ *     public int solution(int[] numbers, int target) {
+ *         boolean[] check = new boolean[numbers.length];
+ *         dfs(numbers, target, check, -1);
+ *         return goal;
+ *     }
+ * }
+ */

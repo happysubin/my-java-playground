@@ -94,6 +94,7 @@ public class Hashs {
  */
 
 import java.util.*;
+//폰켓몬
 class Hashs {
     public int solution(int[] nums) {
         int max = nums.length / 2;
