@@ -38,6 +38,48 @@ class Solution {
     }
 }
 
-/**
- * 네트워크 DFS 방식
- */
+//단어 변환
+class Solution {
+    static boolean[] visited;
+    static int answer = 0;
+
+    public int solution(String begin, String target, String[] words) {
+        //추적 값
+        visited = new boolean[words.length];
+        int cnt = 0;
+
+        dfs(begin, target, words, cnt);
+        return answer;
+    }
+
+    private void dfs(String begin, String target, String[] words, int cnt){
+        //같다면 끝
+        if(begin.equals(target)){
+            answer = cnt;
+            return;
+        }
+        //더 많은 곳을 탐색하면 의미가 없다.
+        if(cnt >= words.length - 1){
+            return;
+        }
+        for(int j = 0; j < words.length; j++){ //단어를 반복
+            String s = words[j];
+            String[] temp1 = s.split("");
+            String[] temp2 = begin.split("");
+            int check = 0;
+            int i = 0;
+            for(; i < temp1.length; i++){
+                if(!temp1[i].equals(temp2[i])){
+                    check++;
+                }
+            }
+            if(check == 1 && visited[j] == false){
+                visited[j] = true;
+                dfs(s, target, words, cnt + 1);
+                visited[j] = false; //이걸 안해서 고생함.
+            }
+
+        }
+
+    }
+}
