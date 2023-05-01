@@ -43,6 +43,11 @@ import java.io.*;
 import java.io.*;
 import java.util.*;
 
+import java.io.*;
+import java.util.*;
+
+
+//단지 번호 붙이기
 public class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -59,8 +64,8 @@ public class Main{
             }
         }
         //초기화 끝
-        //1번부터 출발해야함.
 
+        //1번부터 출발해야함. 번호 끝까지 뒤진다/
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
                 if(map[i][j] == 1 & visited[i][j] == false){
@@ -71,6 +76,7 @@ public class Main{
             }
         }
 
+        //출력
         Collections.sort(result);
         bw.write(String.valueOf(answer) + "\n");
         for(Integer s : result){
@@ -82,31 +88,36 @@ public class Main{
     static private int bfs(int[][] map, boolean[][] visited, int x, int y){
         int count = 0;
         Queue<Position> queue = new LinkedList<>();
-        visited[x][y] = true;
         queue.add(new Position(x, y));
+        visited[x][y] = true;
+
 
         while(!queue.isEmpty()){
             Position poll = queue.poll();
             count++;
             int tx = poll.x;
             int ty = poll.y;
-            visited[tx][ty] = true;
 
             //위쪽
-            if(tx + 1 < map.length && map[tx + 1][ty] == 1 && visited[tx + 1][ty] ==false){
+            if(tx + 1 < map.length && map[tx + 1][ty] == 1 && visited[tx + 1][ty] == false){
                 queue.add(new Position(tx + 1, ty));
+                visited[tx + 1][ty] = true; //이걸 넣어줘야 경우의 수가 줄어든다.!! 매우 중요
             }
             //오른쪽
-            if(ty + 1 < map.length && map[tx][ty + 1] == 1 && visited[tx][ty + 1] ==false){
+            if(ty + 1 < map.length && map[tx][ty + 1] == 1 && visited[tx][ty + 1] == false){
                 queue.add(new Position(tx, ty + 1));
+                visited[tx][ty + 1] = true;
             }
             //아래쪽
-            if(tx - 1 >= 0 && map[tx - 1][ty] == 1 && visited[tx - 1][ty] ==false){
+            if(tx - 1 >= 0 && map[tx - 1][ty] == 1 && visited[tx - 1][ty] == false){
                 queue.add(new Position(tx - 1, ty));
+                visited[tx - 1][ty] = true;
+
             }
             //왼쪽
-            if(ty - 1 >= 0 && map[tx][ty - 1] == 1 && visited[tx][ty - 1] ==false){
+            if(ty - 1 >= 0 && map[tx][ty - 1] == 1 && visited[tx][ty - 1] == false){
                 queue.add(new Position(tx, ty - 1));
+                visited[tx][ty - 1] = true;
             }
         }
         return count;
