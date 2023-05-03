@@ -1,7 +1,8 @@
 package happysubin.javapractice.codingtest.programmers.java.level_two;
 
 import java.util.*;
-//소수찾기
+
+//소수기
 class BruteForce {
     Set<Integer> set = new HashSet<>();
     public int solution(String numbers) {
@@ -26,7 +27,8 @@ class BruteForce {
 
         for(int i = 2; i <= result; i++ ){
             if(result % i ==0){
-                if(i != result){                        break;
+                if(i != result){
+                    break;
                 }
                 else{
                     set.add(result);
@@ -41,5 +43,32 @@ class BruteForce {
                 visited[i] = false;
             }
         }
+    }
+}
+
+//카펫
+class BruteForce {
+    public int[] solution(int brown, int yellow) {
+        int ansB = 0;
+        int ansY = 0;
+
+        //1. 세로 블럭만 남겨 놓음. 모서리랑 가로 제외.
+        int h = 1; //
+
+        //2. 가로 블럭만 남겨놓음. 모서리랑 세로 제외.
+        int w = (brown  - 4 - 2) / 2;
+
+        while(w > 0){ //가로가 0보다 커야지?
+            if((w * h) == yellow){ //
+                ansB = w + 2;
+                ansY = h + 2;
+                break;
+            }
+            else{
+                h++; //세로에 블럭 2개가 추가되니
+                w--; //가로라인 블럭 2개 삭제
+            }
+        }
+        return new int[]{ansB, ansY};
     }
 }
