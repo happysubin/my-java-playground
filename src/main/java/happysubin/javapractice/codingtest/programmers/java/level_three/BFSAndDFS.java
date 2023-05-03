@@ -134,3 +134,40 @@ class Solution {
         return 0;
     }
 }
+
+//여행 경로
+import java.util.*;
+
+class Solution {
+
+    boolean[] used;
+    List<String> result;
+
+    public String[] solution(String[][] tickets) {
+
+        // 티켓을 사용했는지 추적
+        used = new boolean[tickets.length];
+        result = new ArrayList<>();
+        dfs(tickets, "ICN", "ICN", 0);
+        Collections.sort(result);
+        return result.get(0).split(" ");
+
+    }
+
+    private void dfs(String[][] tickets, String po, String path, int cnt){
+        if(cnt == tickets.length){
+            result.add(path);
+            return ;
+        }
+
+        for(int i = 0; i < tickets.length; i++){
+            String from = tickets[i][0];
+            String to = tickets[i][1];
+            if(from.equals(po) && used[i] == false){
+                used[i] = true;
+                dfs(tickets, to, path + " " + to, cnt +1);
+                used[i] = false;
+            }
+        }
+    }
+}
