@@ -92,48 +92,49 @@ import java.util.*;
 //}
 
 import java.util.*;
-class Solution {
-
-    class Count{
-        String name;
-        int count;
-        public Count(String name, int count){
-            this.name = name;
-            this.count = count;
-        }
-    }
-
-    public int ladderLength(String beginWord, String endWord, List<String> wordList){
-        boolean[] visited = new boolean[wordList.size()];
-        Queue<Count> queue = new LinkedList<>();
-        queue.add(new Count(beginWord, 1));
-
-        while(!queue.isEmpty()){
-            Count count = queue.poll(); //값을 꺼냄
-            if(count.name.equals(endWord)){
-                return count.count;
-            }
-            String[] str = count.name.split(""); //꺼낸 이름을 분리함.
-
-            for(int i = 0; i< wordList.size(); i++){ // 모든 단어를 가져와서 꺼낸 값과 비교해야함
-                String word = wordList.get(i);
-                String[] s = word.split(""); //들어온 단어 분리
-                int cnt = 0;
-                int j = 0;
-                for(; j < str.length; j++){
-                    if(!str[j].equals(s[j])){ //1개만 차이가나는지 비교
-                        cnt++;
-                    }
-                }
-                if(cnt == 1 && visited[i] == false){
-                    visited[i] = true;
-                    queue.add(new Count(word, count.count + 1));
-                }
-            }
-        }
-        return 0;
-    }
-}
+//java ladder
+//class Solution {
+//
+//    class Count{
+//        String name;
+//        int count;
+//        public Count(String name, int count){
+//            this.name = name;
+//            this.count = count;
+//        }
+//    }
+//
+//    public int ladderLength(String beginWord, String endWord, List<String> wordList){
+//        boolean[] visited = new boolean[wordList.size()];
+//        Queue<Count> queue = new LinkedList<>();
+//        queue.add(new Count(beginWord, 1));
+//
+//        while(!queue.isEmpty()){
+//            Count count = queue.poll(); //값을 꺼냄
+//            if(count.name.equals(endWord)){
+//                return count.count;
+//            }
+//            String[] str = count.name.split(""); //꺼낸 이름을 분리함.
+//
+//            for(int i = 0; i< wordList.size(); i++){ // 모든 단어를 가져와서 꺼낸 값과 비교해야함
+//                String word = wordList.get(i);
+//                String[] s = word.split(""); //들어온 단어 분리
+//                int cnt = 0;
+//                int j = 0;
+//                for(; j < str.length; j++){
+//                    if(!str[j].equals(s[j])){ //1개만 차이가나는지 비교
+//                        cnt++;
+//                    }
+//                }
+//                if(cnt == 1 && visited[i] == false){
+//                    visited[i] = true;
+//                    queue.add(new Count(word, count.count + 1));
+//                }
+//            }
+//        }
+//        return 0;
+//    }
+//}
 
 //여행 경로
 import java.util.*;

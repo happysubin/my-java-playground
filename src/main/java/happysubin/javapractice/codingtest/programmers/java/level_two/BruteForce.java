@@ -73,3 +73,39 @@ class BruteForce {
         return new int[]{ansB, ansY};
     }
 }
+
+
+
+class BruteForce1 {
+    List<String> list = new ArrayList<>();
+    public int solution(String word) {
+        int answer = 0;
+        String[] words = {"A", "E", "I", "O", "U"};
+
+        for(int i = 0; i < words.length ; i++){
+            list.add(words[i]);
+            dfs(words, words[i]);
+        }
+
+        Collections.sort(list);
+
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).equals(word)){
+                answer = i + 1;
+                break;
+            }
+        }
+
+
+        return answer;
+    }
+
+    private void dfs(String[] words, String word){
+        if(word.length() == words.length) return;
+
+        for(int i = 0; i < words.length; i++){
+            list.add(word + words[i]); // A와 A를 더함.
+            dfs(words, word + words[i]);
+        }
+    }
+}
