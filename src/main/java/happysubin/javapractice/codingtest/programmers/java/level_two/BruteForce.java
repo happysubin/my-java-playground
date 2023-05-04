@@ -75,7 +75,7 @@ class BruteForce {
 }
 
 
-
+// 모음 사전
 class BruteForce1 {
     List<String> list = new ArrayList<>();
     public int solution(String word) {
@@ -107,5 +107,50 @@ class BruteForce1 {
             list.add(word + words[i]); // A와 A를 더함.
             dfs(words, word + words[i]);
         }
+    }
+}
+
+
+class BruteForce2 {
+    public int solution(int n, int[][] wires) {
+        int answer = Integer.MAX_VALUE;
+        for(int i = 0; i < wires.length; i++){ //총 모든 노드를 1번씩 끊어봐야 한다.
+            int[][] arr = new int[n + 1][n + 1]; //1개를 끊을 노드를 담을 임시 그래프 배열.
+            int temp1 = 0;
+            for(int j = 0; j < wires.length; j++){ //wires를 순회해야 한다.
+                if(i != j){
+                    int from = wires[j][0];
+                    int to = wires[j][1];
+                    arr[from][to] = 1;
+                    arr[to][from] = 1;
+                    temp1 = from;
+                }
+            }
+            //1개의 노드를 끊은 트리가 완성됨. 이제 트리 2개를 비교해서 빼면 된다.
+            //생각해보면 2개의 노드이므로 1번만 탐색하고 n개에서 1번 탐색한 값을 빼면 될 거 같다.
+            int n1 = check(arr, temp1); //마지막 값을 넣어서 어떻게든 1개의 네트워크를 포함된 값을 구한다.
+            int n2 = n - n1;
+            answer = Math.min(answer, Math.abs(n2- n1));
+        }
+        return answer;
+    }
+
+    private int check(int[][] arr, int x){
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[arr.length];// 추적 배열
+        visited[x] = true;
+        queue.add(x);
+        int cnt = 1;
+        while(!queue.isEmpty()){
+            int poll = queue.poll();
+            for(int i = 1; i < arr.length; i++){
+                if(visited[i] == false & arr[poll][i] == 1){
+                    visited[i] = true;
+                    cnt++;
+                    queue.add(i);
+                }
+            }
+        }
+        return cnt;
     }
 }
