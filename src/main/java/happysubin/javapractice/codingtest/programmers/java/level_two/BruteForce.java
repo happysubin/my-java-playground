@@ -110,7 +110,7 @@ class BruteForce1 {
     }
 }
 
-
+//전력망을 둘로 나누기
 class BruteForce2 {
     public int solution(int n, int[][] wires) {
         int answer = Integer.MAX_VALUE;
@@ -152,5 +152,33 @@ class BruteForce2 {
             }
         }
         return cnt;
+    }
+}
+
+
+//1. 모든 경우를 탐색해야함.
+//2. 언제 던전 탐색을 멈춰야하는가?
+
+//피로도
+class BruteForce3 {
+    int answer = 0;
+    public int solution(int k, int[][] dungeons) { //k 피로도
+        boolean[] visited = new boolean[dungeons.length];
+        dfs(dungeons, visited, 0, k); //모든 경우를 탐색해야함.
+        return answer;
+    }
+
+    private void dfs(int[][] dungeons, boolean[] visited, int cnt, int k){
+        for(int i = 0; i < dungeons.length; i++){
+            int x = dungeons[i][0]; //최소
+            int y = dungeons[i][1]; //소모
+            if(visited[i] == false && k >= x){
+                visited[i] = true;
+                answer = Math.max(answer, cnt + 1);
+                dfs(dungeons, visited, cnt + 1, k - y);
+                visited[i] = false;
+            }
+        }
+
     }
 }
