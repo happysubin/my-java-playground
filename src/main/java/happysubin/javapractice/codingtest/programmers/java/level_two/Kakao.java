@@ -49,3 +49,37 @@ class Solution {
     }
 }
 
+//문자열 압축
+class Solution {
+    public int solution(String s) {
+        int answer = s.length();
+
+        for(int i = 1; i <= s.length() / 2; i++){
+            int level = 1; //압축 레벨
+            String str = s.substring(0,i);
+            StringBuilder sb = new StringBuilder();
+            for(int j = i; j <= s.length(); j+= i){
+                //문자열이 길다면 그냥 붙이기
+                String next = "";
+                if(j + i > s.length()){
+                    next = s.substring(j, s.length());
+                }
+                //괜찮다면 압축하기
+                else{
+                    next = s.substring(j, j + i);
+                }
+
+                if(str.equals(next)) level++;
+                else{
+                    sb.append((level != 1 ? level : "") + str);
+                    str = next;
+                    level = 1;
+                }
+            }
+            sb.append(str);
+            answer = Math.min(answer, sb.length());
+        }
+
+        return answer;
+    }
+}
