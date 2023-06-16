@@ -16,10 +16,10 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class StockServiceTest {
+class PessimisticLockStockServiceTest {
 
     @Autowired
-    StockService stockService;
+    PessimisticLockStockService stockService;
 
     @Autowired
     StockRepository stockRepository;
@@ -34,16 +34,6 @@ class StockServiceTest {
     @AfterEach
     void afterEach(){
         stockRepository.deleteAll();
-    }
-
-    @Test
-    void stock_decrease(){
-
-        stockService.decrease(1L, 1L);
-
-        stock = stockRepository.findById(stock.getId()).orElseThrow();
-
-        Assertions.assertThat(stock.getQuantity()).isEqualTo(99);
     }
 
     @Test
@@ -66,6 +56,6 @@ class StockServiceTest {
 
         stock = stockRepository.findById(stock.getId()).orElseThrow();
 
-        Assertions.assertThat(stock.getQuantity()).isEqualTo(0); //기대하는 값인 0이 나오지 않는다. 경쟁 조건이 발생했기 때문!!!
+        Assertions.assertThat(stock.getQuantity()).isEqualTo(0);
     }
 }
