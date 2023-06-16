@@ -4,7 +4,6 @@ spring:
     password: 1234
     username: root
     hikari:
-      maximum-pool-size: 40
 
   jpa:
     hibernate:
