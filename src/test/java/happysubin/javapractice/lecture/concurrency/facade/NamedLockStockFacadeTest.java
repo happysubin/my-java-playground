@@ -2,7 +2,7 @@ package happysubin.javapractice.lecture.concurrency.facade;
 
 import happysubin.javapractice.lecture.concurrency.domain.Stock;
 import happysubin.javapractice.lecture.concurrency.domain.StockRepository;
-import happysubin.javapractice.lecture.concurrency.service.PessimisticLockStockService;
+import happysubin.javapractice.lecture.concurrency.service.StockService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,20 +14,11 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
-/**
- * 충돌이 빈번하지 않을 때 사용.
- * 개발자가 직접 실패했을 때 로직을 개발해야함.
- * 충돌이 빈번하지 않다면 PessmisticLock보다 좋다.
- */
-
 @SpringBootTest
-class OptimisticLockStockFacadeTest {
+class NamedLockStockFacadeTest {
 
     @Autowired
-    OptimisticLockStockFacade stockService;
+    NamedLockStockFacade stockService;
 
     @Autowired
     StockRepository stockRepository;
@@ -54,8 +45,6 @@ class OptimisticLockStockFacadeTest {
             executorService.submit(() -> {
                 try {
                     stockService.decrease(stock.getId(), 1L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 } finally {
                     latch.countDown();
                 }
@@ -66,6 +55,6 @@ class OptimisticLockStockFacadeTest {
 
         stock = stockRepository.findById(stock.getId()).orElseThrow();
 
-        Assertions.assertThat(stock.getQuantity()).isEqualTo(0);
+        Assertions.assertThat(stock.getQuantity()).isEqualTo(0); //기대하는 값인 0이 나오지 않는다. 경쟁 조건이 발생했기 때문!!!
     }
 }
