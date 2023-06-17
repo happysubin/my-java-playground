@@ -10,3 +10,5 @@ spring:
       ddl-auto: create
     open-in-view: false
     show-sql: true
+server:
+  port: 8099
