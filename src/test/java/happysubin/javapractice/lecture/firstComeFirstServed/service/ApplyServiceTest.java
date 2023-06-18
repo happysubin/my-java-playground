@@ -57,3 +57,4 @@ class ApplyServiceTest {
 
         assertThat(count).isEqualTo(100); //마찬가지로 경쟁 조건이 발생, 레디스를 사용해 해결
     }
+}

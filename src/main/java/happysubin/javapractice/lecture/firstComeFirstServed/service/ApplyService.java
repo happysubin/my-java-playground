@@ -3,6 +3,7 @@ package happysubin.javapractice.lecture.firstComeFirstServed.service;
 import happysubin.javapractice.lecture.firstComeFirstServed.domain.Coupon;
 import happysubin.javapractice.lecture.firstComeFirstServed.domain.CouponCountRepository;
 import happysubin.javapractice.lecture.firstComeFirstServed.domain.CouponRepository;
+import happysubin.javapractice.lecture.firstComeFirstServed.infra.CouponProducer;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,10 +11,12 @@ public class ApplyService {
 
     private final CouponRepository couponRepository;
     private final CouponCountRepository couponCountRepository;
+    private final CouponProducer couponProducer;
 
-    public ApplyService(CouponRepository couponRepository, CouponCountRepository couponCountRepository) {
+    public ApplyService(CouponRepository couponRepository, CouponCountRepository couponCountRepository, CouponProducer couponProducer) {
         this.couponRepository = couponRepository;
         this.couponCountRepository = couponCountRepository;
+        this.couponProducer = couponProducer;
     }
 
     /**
@@ -28,6 +31,7 @@ public class ApplyService {
         if(count > 100 ){
             return ;
         }
-        couponRepository.save(new Coupon(userId));
+        //couponRepository.save(new Coupon(userId)); //현재 구조는 RDB에 부하가 너무 심하다.
+        couponProducer.create(userId);
     }
 }
