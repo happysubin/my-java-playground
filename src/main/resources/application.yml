@@ -10,5 +10,20 @@ spring:
       ddl-auto: create
     open-in-view: false
     show-sql: true
+
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "user"
+    password: "1234"
+
+  redis:
+    password: 4648
+    cluster:
+      nodes:
+        - localhost:7000
+        - localhost:7001
+        - localhost:7002
+
 server:
   port: 8099
