@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.multi_thread;
+package happysubin.javapractice.lecture.multi_thread.c01;
 
 public class ThreadControl {
     public static void main(String[] args) throws InterruptedException { // 진입점, entry point. main method에서 실행된다.

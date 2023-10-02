@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.multi_thread;
+package happysubin.javapractice.lecture.multi_thread.c02;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -40,7 +40,7 @@ public class GuardedSuspension {
         System.out.println("All Done");
     }
 
-    private static Runnable doClient() {
+    private static Runnable doClient() { // 요청을 넣는다.
         return () -> {
             while (!shouldStop) {
                 synchronized (requests) {
@@ -59,7 +59,7 @@ public class GuardedSuspension {
     }
 
 
-    private static Runnable doServer() {
+    private static Runnable doServer() { //요청 처리
         return () -> {
             while (!shouldStop) {
                 synchronized (requests) {
@@ -70,7 +70,7 @@ public class GuardedSuspension {
                     else {
                         System.out.println(Thread.currentThread().getName() + " : Wait");
                         try {
-                            requests.wait(); // 일 없으니까 쉴래요
+                            requests.wait(); // 일 없으니까 쉴래요. 별도의 작업 불가능
                             System.out.println(Thread.currentThread().getName() + " : Awake");
                         } catch (InterruptedException e) {
                             e.printStackTrace();

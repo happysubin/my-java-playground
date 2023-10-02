@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.multi_thread;
+package happysubin.javapractice.lecture.multi_thread.c01;
 
 public class ThreadEnd {
 
