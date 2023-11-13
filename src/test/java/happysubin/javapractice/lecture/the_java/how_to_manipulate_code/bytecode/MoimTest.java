@@ -1,6 +1,6 @@
 package happysubin.javapractice.lecture.the_java.how_to_manipulate_code.bytecode;
 
-import happysubin.javapractice.lecture.the_java.how_to_manipulate_code.bytecode.Moim;
+import happysubin.javapractice.lecture.inflearn.the_java.how_to_manipulate_code.bytecode.Moim;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

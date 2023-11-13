@@ -1,7 +1,8 @@
 package happysubin.javapractice.lecture.concurrency.service;
 
-import happysubin.javapractice.lecture.concurrency.domain.Stock;
-import happysubin.javapractice.lecture.concurrency.domain.StockRepository;
+import happysubin.javapractice.lecture.inflearn.concurrency.domain.Stock;
+import happysubin.javapractice.lecture.inflearn.concurrency.domain.StockRepository;
+import happysubin.javapractice.lecture.inflearn.concurrency.service.StockService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class StockServiceTest {

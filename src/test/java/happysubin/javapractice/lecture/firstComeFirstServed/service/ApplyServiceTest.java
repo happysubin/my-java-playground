@@ -1,7 +1,7 @@
 package happysubin.javapractice.lecture.firstComeFirstServed.service;
 
-import happysubin.javapractice.lecture.firstComeFirstServed.domain.CouponRepository;
-import org.assertj.core.api.Assertions;
+import happysubin.javapractice.lecture.inflearn.firstComeFirstServed.domain.CouponRepository;
+import happysubin.javapractice.lecture.inflearn.firstComeFirstServed.service.ApplyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ApplyServiceTest {

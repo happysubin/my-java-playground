@@ -1,8 +1,8 @@
 package happysubin.javapractice.lecture.concurrency.facade;
 
-import happysubin.javapractice.lecture.concurrency.domain.Stock;
-import happysubin.javapractice.lecture.concurrency.domain.StockRepository;
-import happysubin.javapractice.lecture.concurrency.service.StockService;
+import happysubin.javapractice.lecture.inflearn.concurrency.domain.Stock;
+import happysubin.javapractice.lecture.inflearn.concurrency.domain.StockRepository;
+import happysubin.javapractice.lecture.inflearn.concurrency.facade.NamedLockStockFacade;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
