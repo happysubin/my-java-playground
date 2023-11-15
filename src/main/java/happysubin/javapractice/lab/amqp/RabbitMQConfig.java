@@ -18,7 +18,7 @@ public class RabbitMQConfig {
 //        DirectExchange exchange = new DirectExchange("direct-exchange");
 //        admin.declareExchange(exchange);
 //
-//        Queue queue = new Queue("test", false);
+//        Stack queue = new Stack("test", false);
 //        admin.declareQueue(queue);
 //
 //        Binding binding = BindingBuilder

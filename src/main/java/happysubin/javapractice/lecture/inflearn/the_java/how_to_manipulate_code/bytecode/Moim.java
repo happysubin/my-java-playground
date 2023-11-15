@@ -2,8 +2,8 @@ package happysubin.javapractice.lecture.inflearn.the_java.how_to_manipulate_code
 
 public class Moim {
 
-    int maxNumberOfAttendees;
-    int numberOfEnrollment;
+    public int maxNumberOfAttendees;
+    public int numberOfEnrollment;
 
     public boolean isEnrollmentFull(){
         if(maxNumberOfAttendees == 0){
