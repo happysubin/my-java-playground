@@ -1,11 +1,9 @@
 package happysubin.javapractice.lab.datastructure;
 
-import org.assertj.core.api.Assert;
-import org.assertj.core.api.Assertions;
+import happysubin.javapractice.lab.datastructure.stack.Stack;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * 큐 2개를 사용해 스택을 만든다.
