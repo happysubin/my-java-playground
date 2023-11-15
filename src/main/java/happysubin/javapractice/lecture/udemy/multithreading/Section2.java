@@ -24,5 +24,15 @@ public class Section2 {
 
         Thread.sleep(3000);
 
+        NewThread newThread = new NewThread();
+        newThread.run();
+    }
+
+
+    static class NewThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("HelloWorld = " + Thread.currentThread().getName());
+        }
     }
 }
