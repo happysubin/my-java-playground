@@ -1,4 +1,4 @@
-package happysubin.javapractice.lab.datastructure;
+package happysubin.javapractice.lab.datastructure.stack;
 
 import happysubin.javapractice.lab.datastructure.stack.Stack;
 import org.junit.jupiter.api.Test;
