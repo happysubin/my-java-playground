@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.node.BigIntegerNode;
 
 import java.math.BigInteger;
 
-public class Main {
+public class TerminateAndDaemon {
 
     public static void main(String[] args) {
         Thread thread = new Thread(new BlockingTask());
