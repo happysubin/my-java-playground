@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter04.exam02;
+package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter04.flagandinterrupt;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

@@ -1,7 +1,6 @@
-package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter04.exam02;
+package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter04.flagandinterrupt;
 
-public class InterruptedExceptionThreadStopExample {
-
+public class InterruptedExceptionThreadStopExample4 {
     public static void main(String[] args) {
         Thread worker = new Thread(() -> {
             try {
@@ -9,23 +8,23 @@ public class InterruptedExceptionThreadStopExample {
                     // 스레드의 작업을 수행합니다.
                     System.out.println("작업 스레드가 실행 중입니다.");
                     System.out.println("인트럽트 상태 1 : " + Thread.currentThread().isInterrupted());
-                    Thread.sleep(500);
+
+                    if(Thread.currentThread().isInterrupted()) throw new InterruptedException("thread is interrupted");
                 }
             } catch (InterruptedException e) {
-                // sleep 메서드가 인터럽트되면 InterruptedException을 던지며
-                // 이 때 interrupt 상태는 초기화 된다.
-                // 그렇기 때문에 다시 interrupt 를 호출해 줘야 한다.
+                // Thread.currentThread().isInterrupted() 는 interrupt 상태를 유지한다.
+                // 그래서 interrupt() 를 호출할 필요가 없다
                 System.out.println("인트럽트 상태 2 : " + Thread.currentThread().isInterrupted());
-                Thread.currentThread().interrupt();
-            }
+        }
             System.out.println("작업 스레드가 중단되었습니다.");
-            System.out.println("인트럽트 상태 3 : " + Thread.currentThread().isInterrupted());
+            System.out.println("인트럽트 상태 2 : " + Thread.currentThread().isInterrupted());
         });
+
 
         Thread stopper = new Thread(() -> {
             try {
-                // 1초 후에 스레드를 중지합니다.
-                Thread.sleep(1000);
+                // 0.1초 후에 스레드를 중지합니다.
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -36,5 +35,4 @@ public class InterruptedExceptionThreadStopExample {
         worker.start();
         stopper.start();
     }
-
 }
