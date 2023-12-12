@@ -1,8 +1,9 @@
 package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter03.exam03;
 
-public class InterruptExample {
 
+public class InterruptedExample {
     public static void main(String[] args) throws InterruptedException {
+
         Thread thread1 = new Thread(() -> {
             System.out.println("스레드 1 작업 시작...");
             System.out.println("스레드 1 인터럽트 상태: " + Thread.currentThread().isInterrupted());
@@ -15,12 +16,11 @@ public class InterruptExample {
         });
 
         thread2.start();
-        Thread.sleep(7000);
+        Thread.sleep(1000);
         thread1.start();
 
         thread1.join();
         thread2.join();
-
 
         System.out.println("모든 스레드 작업 완료");
     }
