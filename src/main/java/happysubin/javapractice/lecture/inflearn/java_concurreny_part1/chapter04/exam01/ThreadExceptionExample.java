@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter04;
+package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter04.exam01;
 
 public class ThreadExceptionExample {
 
