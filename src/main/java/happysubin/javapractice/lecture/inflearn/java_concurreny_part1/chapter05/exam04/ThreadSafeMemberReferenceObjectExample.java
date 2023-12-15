@@ -11,6 +11,11 @@ public class ThreadSafeMemberReferenceObjectExample {
         Company company = new Company("Company"); // 스레드에 안전하지 못함, 멤버변수를 공유함
         new Thread(new MyRunnable(company)).start();
         new Thread(new MyRunnable(company)).start();
+        new Thread(new MyRunnable(company)).start();
+        new Thread(new MyRunnable(company)).start();
+        new Thread(new MyRunnable(company)).start();
+        new Thread(new MyRunnable(company)).start();
+
     }
 }
 
@@ -34,7 +39,8 @@ class Company {
         this.member = new Member(name);
     }
 
-    public synchronized void changeName(String name) {
+    //    public synchronized void changeName(String name) {
+    public void changeName(String name) {
         String oldName = member.getName();
         member.setName(name);
         System.out.println(oldName + ": " + member.getName());
