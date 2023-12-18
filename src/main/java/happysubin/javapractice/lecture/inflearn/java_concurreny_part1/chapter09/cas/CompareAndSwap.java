@@ -13,6 +13,10 @@ public class CompareAndSwap {
                 if(compareAndSwap(expected, newValue)) return;
             }
         }
+
+        /**
+         * CPU가 아래를 원자적으로 보장
+         */
         public synchronized boolean compareAndSwap(int expectedValue, int newValue) {
             int oldValue = this.counter;
             if(oldValue == expectedValue) {
