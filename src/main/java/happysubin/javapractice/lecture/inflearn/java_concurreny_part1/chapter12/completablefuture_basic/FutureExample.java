@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter12.exam02;
+package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter12.completablefuture_basic;
 
 import java.util.concurrent.*;
 
