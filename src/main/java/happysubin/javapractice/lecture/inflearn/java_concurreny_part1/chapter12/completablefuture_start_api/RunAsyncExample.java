@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter12.completablefuture_async_api;
+package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter12.completablefuture_start_api;
 
 import java.util.Arrays;
 import java.util.List;

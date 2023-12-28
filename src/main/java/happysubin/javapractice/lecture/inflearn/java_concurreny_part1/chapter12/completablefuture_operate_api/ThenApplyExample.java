@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter12.completablefuture_apply_api;
+package happysubin.javapractice.lecture.inflearn.java_concurreny_part1.chapter12.completablefuture_operate_api;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -24,11 +24,11 @@ public class ThenApplyExample {
                  */
                 .thenApply(result -> {
                     System.out.println("thread2:" + Thread.currentThread().getName());
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     int r = myService.getData1();
                     return r + result;
                 })
