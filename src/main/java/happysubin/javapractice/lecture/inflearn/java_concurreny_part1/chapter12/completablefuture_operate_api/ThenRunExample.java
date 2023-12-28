@@ -22,6 +22,11 @@ public class ThenRunExample {
                     return myService.getData1();
                 });
 
+        /**
+         * thenRun Async()는 이전 작업 결과와 상관없이 무조건 풀 스레드에서 비동기 처리된다. 풀 스레드는 이전과 동일한 스레드 혹은 새롭게 생성된 스레드가 될 수 있다
+         * thenRun() 는 이전 작업 결과가 완료 되었다면 메인 스레드에서 동기 처리되고 그렇지 않으면 이전과  동일한 스레드에서  비동기 처리된다
+         */
+
         // 비동기 작업 2: 로깅
         CompletableFuture<Void> asyncTask2 = asyncTask1.thenRun(() -> {
             System.out.println("thread: " + Thread.currentThread().getName());
