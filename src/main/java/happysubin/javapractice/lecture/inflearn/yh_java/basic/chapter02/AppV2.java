@@ -11,6 +11,8 @@ public class AppV2 {
 
         int num = sc.nextInt();
 
+        sc.nextLine()
+
         ProductOrder[] orders = new ProductOrder[num];
 
         for (int i = 0; i < orders.length; i++) {
