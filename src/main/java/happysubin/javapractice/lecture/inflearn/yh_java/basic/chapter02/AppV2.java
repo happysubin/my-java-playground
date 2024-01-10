@@ -11,7 +11,7 @@ public class AppV2 {
 
         int num = sc.nextInt();
 
-        sc.nextLine()
+        sc.nextLine();
 
         ProductOrder[] orders = new ProductOrder[num];
 
@@ -26,6 +26,8 @@ public class AppV2 {
 
             System.out.println("수량: ");
             int quantity = sc.nextInt();
+
+            sc.nextLine(); //버퍼 비우기
 
             orders[i] = new ProductOrder(productName, price, quantity);
 
