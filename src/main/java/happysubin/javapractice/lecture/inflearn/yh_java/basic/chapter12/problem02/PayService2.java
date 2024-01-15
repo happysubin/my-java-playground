@@ -1,13 +1,11 @@
 package happysubin.javapractice.lecture.inflearn.yh_java.basic.chapter12.problem02;
 
 import java.util.List;
+import java.util.Scanner;
 
-public class PayService {
-
+public class PayService2 {
 
     public void processPay(String option, int amount) {
-
-        System.out.println("결제를 시작합니다: option=" + option + ", amount=" + amount);
 
         Payment pay = PayFactory.createPay(option);
 
