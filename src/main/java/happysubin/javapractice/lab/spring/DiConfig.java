@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import java.util.List;
 import java.util.Optional;
 
 @Configuration
@@ -74,6 +75,16 @@ public class DiConfig {
         System.out.println(o.toString());
         Z z = new Z(o);
         return z;
+    }
+
+    @Bean
+    public Z z1(List<O> os) {
+        System.out.println("===");
+        for (O o : os) {
+            System.out.println(o);
+        }
+        System.out.println("===");
+        return null;
     }
 
 }
