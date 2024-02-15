@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
 @Configuration
 public class DiConfig {
+
 
     static class O {
         private String name;
@@ -85,6 +87,26 @@ public class DiConfig {
         }
         System.out.println("===");
         return null;
+    }
+
+
+    static class Ex {
+
+        @PostConstruct
+        void postConstruct(){
+            System.out.println("postconstruct");
+        }
+    }
+
+    @Bean
+    public Ex ex() {
+        System.out.println("Ex");
+        return new Ex();
+    }
+
+    @PostConstruct
+    void postConstruct() {
+        System.out.println("postConstruct 222");
     }
 
 }
