@@ -18,6 +18,11 @@ public class Stock {
         this.quantity = quantity;
     }
 
+    public Stock(Long id, Integer quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
+
     protected Stock() {}
 
     public Long getId() {
