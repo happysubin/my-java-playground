@@ -6,7 +6,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-import javax.transaction.Transactional;
 import java.util.concurrent.CompletableFuture;
 
 @Component

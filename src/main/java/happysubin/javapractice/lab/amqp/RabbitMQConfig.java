@@ -1,10 +1,10 @@
 package happysubin.javapractice.lab.amqp;
 
 //import org.springframework.amqp.core.*;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
 
 @Configuration
 public class RabbitMQConfig {

@@ -1,6 +1,6 @@
 package happysubin.javapractice.lab.jpa.many_to_many;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Table(name = "opt")
 @Entity
