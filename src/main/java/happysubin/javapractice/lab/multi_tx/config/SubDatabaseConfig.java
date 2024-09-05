@@ -30,6 +30,8 @@ import java.util.Map;
 )
 public class SubDatabaseConfig {
 
+    public static final String SUB_TRANSACTION_MANGER_NAME = "subTransactionManager";
+
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.sub")
     public HikariConfig subHikariConfig() {
