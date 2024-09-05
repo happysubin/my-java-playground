@@ -1,11 +1,10 @@
-package happysubin.javapractice.lab.async;
+package happysubin.javapractice.lab.multi_tx.sub;
 
 import jakarta.persistence.*;
 
-
 @Entity
-
-public class Data {
+@Table(name = "sub_data")
+public class SubData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +12,9 @@ public class Data {
 
     private String data;
 
-    protected Data() {}
+    protected SubData() {}
 
-    public Data(String data) {
+    public SubData(String data) {
         this.data = data;
     }
 

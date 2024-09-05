@@ -1,13 +1,13 @@
 package happysubin.javapractice.lab.spring;
 
 import io.micrometer.core.lang.Nullable;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 

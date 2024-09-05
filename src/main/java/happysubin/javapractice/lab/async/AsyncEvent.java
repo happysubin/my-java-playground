@@ -1,8 +1,6 @@
 package happysubin.javapractice.lab.async;
 
-import org.springframework.context.ApplicationEvent;
-
-import java.time.Clock;
+import happysubin.javapractice.lab.multi_tx.main.Data;
 
 public class AsyncEvent  {
 

@@ -1,12 +1,10 @@
 package happysubin.javapractice.lab.async;
 
-import org.springframework.context.ApplicationEvent;
+import happysubin.javapractice.lab.multi_tx.main.Data;
+import happysubin.javapractice.lab.multi_tx.main.DataRepository;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.event.TransactionalEventListener;
-
 
 
 @Service
