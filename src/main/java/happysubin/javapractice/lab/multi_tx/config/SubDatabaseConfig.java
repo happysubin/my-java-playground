@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -49,17 +50,17 @@ public class SubDatabaseConfig {
                                                                           JpaProperties jpaProperties,
                                                                           HibernateProperties hibernateProperties) {
 
-        Map<String, String> map = new HashMap<>(jpaProperties.getProperties());
-        map.put("hibernate.hbm2ddl.auto", hibernateProperties.getDdlAuto());
 
-        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = builder
+        var properties = hibernateProperties
+                .determineHibernateProperties(jpaProperties.getProperties(), new HibernateSettings());
+
+        return builder
                 .dataSource(subDataSource)
+                .properties(properties)
                 .packages("happysubin.javapractice.lab.multi_tx.sub")
                 .persistenceUnit("sub")
                 .build();
 
-        localContainerEntityManagerFactoryBean.setJpaPropertyMap(map);
-        return localContainerEntityManagerFactoryBean;
     }
 
     @Bean
