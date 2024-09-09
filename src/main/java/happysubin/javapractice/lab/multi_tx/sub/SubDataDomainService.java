@@ -17,6 +17,6 @@ public class SubDataDomainService {
     @Transactional(transactionManager = SUB_TRANSACTION_MANGER_NAME)
     public void execute() {
         subDataRepository.save(new SubData("sub"));
-        throw new RuntimeException("TEST");
+//        throw new RuntimeException("TEST");
     }
 }
