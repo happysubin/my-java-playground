@@ -25,7 +25,7 @@ spring:
   #    password: "1234"
 
   redis:
-#    password: 4648
+    password: 4648
 #    cluster:
 #      nodes:
 #        - localhost:7000
