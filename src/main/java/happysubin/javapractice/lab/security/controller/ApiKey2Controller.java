@@ -1,12 +1,13 @@
 package happysubin.javapractice.lab.security.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/key")
-public class ApiKeyController {
+@RequestMapping("/api/key2")
+public class ApiKey2Controller {
 
     @GetMapping("/test")
     public Dto test() {
@@ -22,6 +23,7 @@ public class ApiKeyController {
         }
 
         public String getMessage() {
+
             return message;
         }
     }
