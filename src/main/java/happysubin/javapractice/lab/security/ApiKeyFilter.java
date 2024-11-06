@@ -33,6 +33,7 @@ public class ApiKeyFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         String key = request.getHeader("API-KEY");
 
         if(key == null || !key.equals(apiKey)) {
@@ -43,7 +44,11 @@ public class ApiKeyFilter extends OncePerRequestFilter {
             return;
         }
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken("PASS", null, Collections.emptyList());
+
+        UsernamePasswordAuthenticationToken token =
+                new UsernamePasswordAuthenticationToken("PASS", null, Collections.emptyList());
+
+
         SecurityContextHolder.getContext().setAuthentication(token);
         filterChain.doFilter(request, response);
     }
