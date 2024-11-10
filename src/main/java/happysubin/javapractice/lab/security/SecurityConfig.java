@@ -52,15 +52,31 @@ public class SecurityConfig {
         return http.build();
     }
 
-
     @Bean
     @Order(2)
-    public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain tempApiFilterChain(HttpSecurity http) throws Exception {
         http
+                .securityMatcher("/state-machine/**")
                 .httpBasic(basic -> basic.disable())
                 .formLogin(form -> form.disable())
                 .csrf(csrf-> csrf.disable())
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .sessionManagement(session -> {
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                });
 
+        return http.build();
+    }
+
+
+    @Bean
+    @Order(3)
+    public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
+        http
+
+                .httpBasic(basic -> basic.disable())
+                .formLogin(form -> form.disable())
+                .csrf(csrf-> csrf.disable())
 
                 .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
 
