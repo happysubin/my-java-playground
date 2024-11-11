@@ -51,6 +51,10 @@ dependencies {
 
 
     implementation "org.springframework.statemachine:spring-statemachine-starter"
+
+    implementation "org.springframework.statemachine:spring-statemachine-data-jpa"
+
+
 }
 
 tasks.named('test') {
