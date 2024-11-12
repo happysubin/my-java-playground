@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.statemachine.data.jpa.JpaRepositoryState;
+import org.springframework.statemachine.data.jpa.JpaStateRepository;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -24,10 +26,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration(proxyBeanMethods = false)
-@EntityScan(basePackages = {"happysubin.javapractice.lab.multi_tx.main"})
+@EntityScan(
+        basePackages = {"happysubin.javapractice.lab.multi_tx.main"}
+)
 @EnableJpaRepositories(
         basePackages = {"happysubin.javapractice.lab.multi_tx.main"},
-        entityManagerFactoryRef = "mainEntityManagerFactory",
+        entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "mainTransactionManager"
 )
 public class MainDatabaseConfig {
@@ -43,13 +47,13 @@ public class MainDatabaseConfig {
 
     @Bean
     @Primary
-    public HikariDataSource mainDataSource(@Qualifier("mainHikariConfig") HikariConfig config) {
+    public HikariDataSource mainDataSource(HikariConfig config) {
         return new HikariDataSource(config);
     }
 
     @Bean
     @Primary
-    public LocalContainerEntityManagerFactoryBean mainEntityManagerFactory(EntityManagerFactoryBuilder builder,
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
                                                                            DataSource dataSource,
                                                                            JpaProperties jpaProperties,
                                                                            HibernateProperties hibernateProperties) {
@@ -60,7 +64,7 @@ public class MainDatabaseConfig {
         return builder
                 .dataSource(dataSource)
                 .properties(properties)
-                .packages("happysubin.javapractice.lab.multi_tx.main")
+                .packages("happysubin.javapractice.lab.multi_tx.main", "org.springframework.statemachine.data.jpa")
                 .persistenceUnit("main")
                 .build();
     }

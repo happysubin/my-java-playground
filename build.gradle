@@ -16,7 +16,7 @@ repositories {
 }
 
 ext {
-    springStatemachineVersion = '3.1.0'
+    springStatemachineVersion = '4.0.0'
 }
 
 

@@ -18,6 +18,7 @@ spring:
     open-in-view: false
     show-sql: true
 
+
   #  rabbitmq:
   #    host: "localhost"
   #    port: 5672
