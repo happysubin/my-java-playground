@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/state-machine")
-@RestController
+//@RequestMapping("/state-machine")
+//@RestController
 public class VendingMachineController {
 
     private final VendingMachineService service;

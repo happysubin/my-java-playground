@@ -20,8 +20,8 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
 
-@Configuration
-@EnableStateMachine
+//@Configuration
+//@EnableStateMachine
 public class StateMachineConfig extends StateMachineConfigurerAdapter<States, Events> {
 
 
