@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) {
         new Producer().start();
         new Producer().start();
-        new Producer().start();
-        new Producer().start();
+        new Consumer().start();
+        new Consumer().start();
     }
 }
