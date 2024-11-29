@@ -1,4 +1,4 @@
-package happysubin.javapractice.lab.multi_tx.main;
+package happysubin.javapractice.lab.spring.state_machine.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

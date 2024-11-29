@@ -1,6 +1,6 @@
-package happysubin.javapractice.lab.multi_tx.main;
+package happysubin.javapractice.lab.spring.state_machine.order;
 
-import happysubin.javapractice.lab.spring.state_machine.sample.order.OrderState;
+import happysubin.javapractice.lab.spring.state_machine.order.OrderState;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +15,10 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderState status; // 상태를 저장할 필드
+
+
+    protected Order() {
+    }
 
     public Order(String customerName, String product, OrderState status) {
         this.customerName = customerName;

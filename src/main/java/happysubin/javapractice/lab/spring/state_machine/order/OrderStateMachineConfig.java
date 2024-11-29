@@ -1,18 +1,25 @@
-package happysubin.javapractice.lab.spring.state_machine.sample.order;
+package happysubin.javapractice.lab.spring.state_machine.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.StateMachinePersist;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
-import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
+import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
-import org.springframework.statemachine.data.*;
+import org.springframework.statemachine.persist.StateMachineRuntimePersister;
 
-@EnableStateMachine
+@EnableStateMachineFactory
 @Configuration
 public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<OrderState, OrderEvent> {
+
+    private final StateMachineRuntimePersister stateMachineRuntimePersister;
+
+    public OrderStateMachineConfig(StateMachineRuntimePersister stateMachineRuntimePersister) {
+        this.stateMachineRuntimePersister = stateMachineRuntimePersister;
+    }
 
     @Override
     public void configure(StateMachineStateConfigurer<OrderState, OrderEvent> states) throws Exception {
@@ -37,6 +44,13 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
                 .source(OrderState.PROCESSING).target(OrderState.CANCELLED).event(OrderEvent.CANCEL_ORDER);
     }
 
+
+    @Override
+    public void configure(StateMachineConfigurationConfigurer<OrderState, OrderEvent> config) throws Exception {
+        config
+                .withPersistence()
+                .runtimePersister(stateMachineRuntimePersister);
+    }
 }
 
 
