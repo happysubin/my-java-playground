@@ -10,15 +10,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String customerName;
     private String product;
 
     @Enumerated(EnumType.STRING)
     private OrderState status; // 상태를 저장할 필드
 
-
-    protected Order() {
-    }
+    protected Order() {}
 
     public Order(String customerName, String product, OrderState status) {
         this.customerName = customerName;

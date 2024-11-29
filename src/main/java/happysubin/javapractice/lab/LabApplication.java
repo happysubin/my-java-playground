@@ -13,7 +13,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(
         basePackages = {"happysubin.javapractice.lab.spring.state_machine.order"}
 )
-@ComponentScan(basePackages = {"happysubin.javapractice.lab.spring.state_machine.order"})
+@ComponentScan(basePackages = {
+        "happysubin.javapractice.lab.spring.state_machine.order",
+        "happysubin.javapractice.lab.security"
+})
 @SpringBootApplication
 public class LabApplication {
     public static void main(String[] args) {
