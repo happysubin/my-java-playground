@@ -7,6 +7,7 @@ import happysubin.javapractice.lab.spring.state_machine.order.OrderState;
 import happysubin.javapractice.lab.spring.state_machine.order.dto.CreateOrderRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.statemachine.StateContext;
+import org.springframework.statemachine.StateMachineException;
 import org.springframework.statemachine.action.Action;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,6 @@ public class PlaceOrderAction implements Action<OrderState, OrderEvent> {
         order.setStatus(OrderState.PROCESSING);
         System.out.println("TransactionSynchronizationManager.getCurrentTransactionName() = " + TransactionSynchronizationManager.getCurrentTransactionName());
         System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
-        throw new RuntimeException("asdf");
+        throw new StateMachineException("asdf");
     }
 }

@@ -1,10 +1,14 @@
 package happysubin.javapractice.lab.spring.state_machine.order;
 
 import happysubin.javapractice.lab.spring.state_machine.order.action.PlaceOrderAction;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.EntityManagerFactoryAccessor;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.statemachine.StateContext;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.StateMachinePersist;
 import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachine;
@@ -13,10 +17,9 @@ import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
+import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.persist.StateMachineRuntimePersister;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 @EnableAsync
 @EnableStateMachineFactory
@@ -28,7 +31,7 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
     private final PlaceOrderAction placeOrderAction;
 
     @Autowired
-    private  PlatformTransactionManager platformTransactionManager;
+    private EntityManager em;
 
     public OrderStateMachineConfig(StateMachineRuntimePersister stateMachineRuntimePersister,
                                    PlaceOrderAction placeOrderAction) {
@@ -53,13 +56,11 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
     public void configure(StateMachineTransitionConfigurer<OrderState, OrderEvent> transitions) throws Exception {
         transitions.withExternal()
                 .source(OrderState.NEW).target(OrderState.PROCESSING).event(OrderEvent.PLACE_ORDER)
-                .action(placeOrderAction, new Action<>() {
+                .action(placeOrderAction, new Action<OrderState, OrderEvent>() {
                     @Override
                     public void execute(StateContext<OrderState, OrderEvent> stateContext) {
-                        Exception exception = stateContext.getException();
-                        System.out.println("exception = " + exception);
-                        TransactionStatus txStatus = platformTransactionManager.getTransaction(new DefaultTransactionDefinition());
-                        platformTransactionManager.rollback(txStatus);
+                        System.out.println("stateContext.getException() = " + stateContext.getException());
+                        em.clear();
                     }
                 })
                 .and().withExternal()
@@ -75,8 +76,12 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
     public void configure(StateMachineConfigurationConfigurer<OrderState, OrderEvent> config) throws Exception {
         config
                 .withPersistence()
-                .runtimePersister(stateMachineRuntimePersister);
+                .runtimePersister(stateMachineRuntimePersister)
+
+        ;
     }
+
+
 }
 
 
