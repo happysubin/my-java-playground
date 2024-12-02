@@ -22,7 +22,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class CustomStateMachineService<S, E> implements StateMachineService<S, E>, DisposableBean {
 
-    private static final Log log = LogFactory.getLog(DefaultStateMachineService.class);
+    private static final Log log = LogFactory.getLog(CustomStateMachineService.class);
     private final StateMachineFactory<S, E> stateMachineFactory;
     private final StateMachinePersist<S, E, String> stateMachinePersist;
 
@@ -39,6 +39,7 @@ public class CustomStateMachineService<S, E> implements StateMachineService<S, E
 
     public StateMachine<S, E> acquireStateMachine(String machineId, boolean start) {
         log.info("Acquiring machine with id " + machineId);
+
         StateMachine stateMachine;
         StateMachineContext stateMachineContext;
 
@@ -46,7 +47,7 @@ public class CustomStateMachineService<S, E> implements StateMachineService<S, E
             stateMachineContext = this.stateMachinePersist.read(machineId);
 
             if(stateMachineContext == null) {
-                throw new Exception("123123");
+                throw new Exception("안돼");
             }
 
             stateMachine = this.restoreStateMachine(stateMachineFactory.getStateMachine(machineId), stateMachineContext);
