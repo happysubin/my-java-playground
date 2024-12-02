@@ -1,5 +1,6 @@
 package happysubin.javapractice.lab.spring.state_machine.order;
 
+import happysubin.javapractice.lab.spring.state_machine.order.custom.CustomStateMachineService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.StateMachineFactory;
@@ -20,11 +21,11 @@ public class StateMachineConfig {
     }
 
     @Bean
-    public StateMachineService<OrderState, OrderEvent> stateMachineService (
+    public CustomStateMachineService<OrderState, OrderEvent> stateMachineService (
             StateMachineFactory<OrderState, OrderEvent> stateMachineFactory,
             StateMachineRuntimePersister<OrderState, OrderEvent, String> stateMachineRuntimePersister
     ) {
-        return new DefaultStateMachineService(stateMachineFactory, stateMachineRuntimePersister);
+        return new CustomStateMachineService<>(stateMachineFactory, stateMachineRuntimePersister);
     }
 }
 

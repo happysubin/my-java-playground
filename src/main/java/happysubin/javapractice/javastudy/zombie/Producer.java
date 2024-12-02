@@ -1,6 +1,5 @@
 package happysubin.javapractice.javastudy.zombie;
 
-import happysubin.javapractice.realtest.Main;
 
 import java.util.Random;
 import java.util.logging.Logger;

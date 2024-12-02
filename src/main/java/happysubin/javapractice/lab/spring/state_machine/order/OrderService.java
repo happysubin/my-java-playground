@@ -1,5 +1,6 @@
 package happysubin.javapractice.lab.spring.state_machine.order;
 
+import happysubin.javapractice.lab.spring.state_machine.order.custom.CustomStateMachineService;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.service.StateMachineService;
@@ -11,19 +12,22 @@ import java.util.UUID;
 @Service
 public class OrderService {
 
-    private final StateMachineService stateMachineService;
+    private final CustomStateMachineService stateMachineService;
     private final OrderRepository orderRepository;
 
-    public OrderService(StateMachineService stateMachineService, OrderRepository orderRepository) {
+    private final StateMachineFactory stateMachineFactory;
+
+    public OrderService(CustomStateMachineService stateMachineService, OrderRepository orderRepository, StateMachineFactory stateMachineFactory) {
         this.stateMachineService = stateMachineService;
         this.orderRepository = orderRepository;
+        this.stateMachineFactory = stateMachineFactory;
     }
 
     @Transactional
     public void createNewOrder(String customerName, String product) {
         Order order = new Order(customerName, product, OrderState.NEW);
         Order savedOrder = orderRepository.save(order);
-        stateMachineService.acquireStateMachine(String.valueOf(savedOrder.getId())); //저장됨
+        stateMachineService.saveNewStateMachine(String.valueOf(savedOrder.getId())); //저장됨
     }
 
     @Transactional

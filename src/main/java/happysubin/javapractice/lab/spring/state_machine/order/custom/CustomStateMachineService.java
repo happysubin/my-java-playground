@@ -24,22 +24,13 @@ public class CustomStateMachineService<S, E> implements StateMachineService<S, E
 
     private static final Log log = LogFactory.getLog(DefaultStateMachineService.class);
     private final StateMachineFactory<S, E> stateMachineFactory;
-    private final Map<String, StateMachine<S, E>> machines;
     private final StateMachinePersist<S, E, String> stateMachinePersist;
 
-    public CustomStateMachineService(StateMachineFactory<S, E> stateMachineFactory) {
-        this(stateMachineFactory, (StateMachinePersist)null);
-    }
 
     public CustomStateMachineService(StateMachineFactory<S, E> stateMachineFactory, StateMachinePersist<S, E, String> stateMachinePersist) {
-        this.machines = new HashMap();
         Assert.notNull(stateMachineFactory, "'stateMachineFactory' must be set");
         this.stateMachineFactory = stateMachineFactory;
         this.stateMachinePersist = stateMachinePersist;
-    }
-
-    public final void destroy() throws Exception {
-        this.doStop();
     }
 
     public StateMachine<S, E> acquireStateMachine(String machineId) {
@@ -48,62 +39,24 @@ public class CustomStateMachineService<S, E> implements StateMachineService<S, E
 
     public StateMachine<S, E> acquireStateMachine(String machineId, boolean start) {
         log.info("Acquiring machine with id " + machineId);
-        log.info("Getting new machine  from factory with id " + machineId);
-        StateMachine stateMachine = this.stateMachineFactory.getStateMachine(machineId);
+        StateMachine stateMachine;
+        StateMachineContext stateMachineContext;
+
         try {
-            StateMachineContext<S, E> stateMachineContext = this.stateMachinePersist.read(machineId);
-            stateMachine = this.restoreStateMachine(stateMachine, stateMachineContext);
+            stateMachineContext = this.stateMachinePersist.read(machineId);
+
+            if(stateMachineContext == null) {
+                throw new Exception("123123");
+            }
+
+            stateMachine = this.restoreStateMachine(stateMachineFactory.getStateMachine(machineId), stateMachineContext);
+
         } catch (Exception var7) {
             log.error("Error handling context", var7);
             throw new StateMachineException("Unable to read context from store", var7);
         }
 
-        this.machines.put(machineId, stateMachine);
         return this.handleStart(stateMachine, start);
-    }
-
-    public void releaseStateMachine(String machineId) {
-        log.info("Releasing machine with id " + machineId);
-        synchronized(this.machines) {
-            StateMachine<S, E> stateMachine = (StateMachine)this.machines.remove(machineId);
-            if (stateMachine != null) {
-                log.info("Found machine with id " + machineId);
-                stateMachine.stopReactively().block();
-            }
-
-        }
-    }
-
-    public void releaseStateMachine(String machineId, boolean stop) {
-        log.info("Releasing machine with id " + machineId);
-        synchronized(this.machines) {
-            StateMachine<S, E> stateMachine = (StateMachine)this.machines.remove(machineId);
-            if (stateMachine != null) {
-                log.info("Found machine with id " + machineId);
-                this.handleStop(stateMachine, stop);
-            }
-
-        }
-    }
-
-    public boolean hasStateMachine(String machineId) {
-        synchronized(this.machines) {
-            return this.machines.containsKey(machineId);
-        }
-    }
-
-    protected void doStop() {
-        log.info("Entering stop sequence, stopping all managed machines");
-        synchronized(this.machines) {
-            ArrayList<String> machineIds = new ArrayList(this.machines.keySet());
-            Iterator var3 = machineIds.iterator();
-
-            while(var3.hasNext()) {
-                String machineId = (String)var3.next();
-                this.releaseStateMachine(machineId, true);
-            }
-
-        }
     }
 
     protected StateMachine<S, E> restoreStateMachine(StateMachine<S, E> stateMachine, StateMachineContext<S, E> stateMachineContext) {
@@ -133,19 +86,20 @@ public class CustomStateMachineService<S, E> implements StateMachineService<S, E
         return stateMachine;
     }
 
-    protected StateMachine<S, E> handleStop(StateMachine<S, E> stateMachine, boolean stop) {
-        if (stop && ((Lifecycle)stateMachine).isRunning()) {
-            StopListener<S, E> listener = new StopListener(stateMachine);
-            stateMachine.addStateListener(listener);
-            stateMachine.stopReactively().block();
 
-            try {
-                listener.latch.await();
-            } catch (InterruptedException var5) {
-            }
-        }
+    @Override
+    public void destroy() throws Exception {
+        //TODO
+    }
 
-        return stateMachine;
+    @Override
+    public void releaseStateMachine(String s) {
+        //TODO
+    }
+
+    @Override
+    public void releaseStateMachine(String s, boolean b) {
+        //TODO
     }
 
     private static class StartListener<S, E> extends StateMachineListenerAdapter<S, E> {
@@ -174,5 +128,10 @@ public class CustomStateMachineService<S, E> implements StateMachineService<S, E
             this.stateMachine.removeStateListener(this);
             this.latch.countDown();
         }
+    }
+
+    public StateMachine saveNewStateMachine(String machineId) {
+        StateMachine<S, E> stateMachine = stateMachineFactory.getStateMachine(machineId);
+        return this.handleStart(stateMachine, true);
     }
 }
