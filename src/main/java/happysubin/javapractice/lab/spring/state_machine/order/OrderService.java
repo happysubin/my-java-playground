@@ -43,9 +43,23 @@ public class OrderService {
         System.out.println("TransactionSynchronizationManager.getCurrentTransactionName() = " + TransactionSynchronizationManager.getCurrentTransactionName());
         System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
         stateMachine.getExtendedState().getVariables().put("orderId", orderId);
-        stateMachine.sendEvent(Mono.just(
-                MessageBuilder.withPayload(OrderEvent.PLACE_ORDER).build())
-        ).subscribe();
+        stateMachine.sendEvent(Mono
+                .just(MessageBuilder.withPayload(OrderEvent.PLACE_ORDER).build()))
+                .onErrorMap(throwable -> {
+                    // 예외를 변환하거나 그대로 전달
+                    return throwable;
+                })
+                .doOnError(error -> {
+                    // 예외 처리 로그
+                    System.err.println("Caught exception: " + error);
+                })
+                .subscribe(
+                        System.out::println,
+                        error -> {
+                            // 여기서 예외를 확인 가능
+                            System.err.println("Error: " + error);
+                        }
+                );
 //        throw new RuntimeException("123123");
     }
 

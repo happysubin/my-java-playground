@@ -31,5 +31,6 @@ public class PlaceOrderAction implements Action<OrderState, OrderEvent> {
         order.setStatus(OrderState.PROCESSING);
         System.out.println("TransactionSynchronizationManager.getCurrentTransactionName() = " + TransactionSynchronizationManager.getCurrentTransactionName());
         System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+        throw new RuntimeException("asdf");
     }
 }
