@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -45,14 +46,19 @@ public class OrderService {
         System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
 
         stateMachine.getExtendedState().getVariables().put("orderId", orderId);
-        stateMachine.sendEvent(Mono
-                .just(MessageBuilder.withPayload(OrderEvent.PLACE_ORDER).build()))
-                .subscribe(
-                        r -> {
-                            StateMachineEventResult.DefaultStateMachineEventResult er = (StateMachineEventResult.DefaultStateMachineEventResult) r;
-                            System.out.println("er = " + er);
-                        }
+
+
+        Flux<StateMachineEventResult<OrderState, OrderEvent>> flux =
+                stateMachine.sendEvent(
+                        Mono.just(MessageBuilder.withPayload(OrderEvent.PLACE_ORDER).build())
                 );
+
+        StateMachineEventResult<OrderState, OrderEvent> result = flux.blockFirst();
+
+        if(result.getResultType() == StateMachineEventResult.ResultType.DENIED) {
+            System.out.println("result = " + result);
+            throw new RuntimeException("실패");
+        }
     }
 
     @Transactional
