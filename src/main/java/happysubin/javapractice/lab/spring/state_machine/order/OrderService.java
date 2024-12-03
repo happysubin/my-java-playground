@@ -4,6 +4,7 @@ import happysubin.javapractice.lab.spring.state_machine.order.custom.CustomState
 import org.hibernate.Transaction;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.StateMachineEventResult;
 import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.service.StateMachineService;
 import org.springframework.stereotype.Service;
@@ -42,25 +43,16 @@ public class OrderService {
         StateMachine stateMachine = stateMachineService.acquireStateMachine(String.valueOf(orderId));
         System.out.println("TransactionSynchronizationManager.getCurrentTransactionName() = " + TransactionSynchronizationManager.getCurrentTransactionName());
         System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+
         stateMachine.getExtendedState().getVariables().put("orderId", orderId);
         stateMachine.sendEvent(Mono
                 .just(MessageBuilder.withPayload(OrderEvent.PLACE_ORDER).build()))
-                .onErrorMap(throwable -> {
-                    // 예외를 변환하거나 그대로 전달
-                    return throwable;
-                })
-                .doOnError(error -> {
-                    // 예외 처리 로그
-                    System.err.println("Caught exception: " + error);
-                })
                 .subscribe(
-                        System.out::println,
-                        error -> {
-                            // 여기서 예외를 확인 가능
-                            System.err.println("Error: " + error);
+                        r -> {
+                            StateMachineEventResult.DefaultStateMachineEventResult er = (StateMachineEventResult.DefaultStateMachineEventResult) r;
+                            System.out.println("er = " + er);
                         }
                 );
-//        throw new RuntimeException("123123");
     }
 
     @Transactional

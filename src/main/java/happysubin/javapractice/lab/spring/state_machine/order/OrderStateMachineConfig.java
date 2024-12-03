@@ -20,6 +20,8 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.persist.StateMachineRuntimePersister;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 @EnableAsync
 @EnableStateMachineFactory
@@ -32,6 +34,9 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
 
     @Autowired
     private EntityManager em;
+
+    @Autowired
+    private PlatformTransactionManager transactionManager;
 
     public OrderStateMachineConfig(StateMachineRuntimePersister stateMachineRuntimePersister,
                                    PlaceOrderAction placeOrderAction) {
@@ -56,13 +61,7 @@ public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<O
     public void configure(StateMachineTransitionConfigurer<OrderState, OrderEvent> transitions) throws Exception {
         transitions.withExternal()
                 .source(OrderState.NEW).target(OrderState.PROCESSING).event(OrderEvent.PLACE_ORDER)
-                .action(placeOrderAction, new Action<OrderState, OrderEvent>() {
-                    @Override
-                    public void execute(StateContext<OrderState, OrderEvent> stateContext) {
-                        System.out.println("stateContext.getException() = " + stateContext.getException());
-                        em.clear();
-                    }
-                })
+                .action(placeOrderAction)
                 .and().withExternal()
                 .source(OrderState.PROCESSING).target(OrderState.COMPLETED).event(OrderEvent.COMPLETE_ORDER)
                 .and().withExternal()

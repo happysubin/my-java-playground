@@ -10,6 +10,7 @@ import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateMachineException;
 import org.springframework.statemachine.action.Action;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -23,8 +24,7 @@ public class PlaceOrderAction implements Action<OrderState, OrderEvent> {
         this.orderRepository = orderRepository;
     }
 
-//    @Async
-//    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void execute(StateContext stateContext) {
         Long orderId = stateContext.getExtendedState().get("orderId", Long.class);
