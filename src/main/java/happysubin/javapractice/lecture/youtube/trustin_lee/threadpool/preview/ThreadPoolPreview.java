@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool;
+package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.preview;
 
 import org.springframework.boot.actuate.management.ThreadDumpEndpoint;
 
