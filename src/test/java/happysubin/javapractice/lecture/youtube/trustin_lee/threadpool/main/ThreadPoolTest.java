@@ -31,6 +31,19 @@ class ThreadPoolTest {
             final int finalI = i;
             executor.execute(() -> {
                 System.out.println(Thread.currentThread().getName() + " executes a task " + finalI);
+
+                /**
+                 * 아래 내용을 추가하면 다음과 같이 출력됨
+                 * Thread-3 executes a task 0
+                 * Thread-4 executes a task 1
+                 *
+                 * 테스트 메서드가 그냥 종료되버리기 때문
+                 */
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
     }
