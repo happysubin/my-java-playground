@@ -48,7 +48,10 @@ class ThreadPoolTest {
                 } catch (InterruptedException e) {
                     /**
                      * shutdown해 InterruptedException가 발생해도 여기서 잡힘
+                     *
+                     * 따라서 정석대로라면 여기서 interrupt를 해줘야함.
                      */
+                    Thread.currentThread().interrupt();
                     throw new RuntimeException(e);
                 }
                 latch.countDown();
