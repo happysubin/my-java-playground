@@ -33,7 +33,7 @@ public class ThreadPool implements Executor {
                         try {
                             task.run();
                         } catch(Throwable t) { //사용자가 던지는 모든 예외를 잡기위해 Throwable
-                            if(!(t instanceof InterruptedException)) {
+                            if(!(t instanceof InterruptedException)) { //자바 스펙상 안돼서 always true 라고 나오지만 실제로 발생할 수 있다.
                                 System.err.println("Unexpected exception: ");
                                 t.printStackTrace();
                             }
@@ -64,5 +64,12 @@ public class ThreadPool implements Executor {
                 thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
             }
         }
+
+        //실제로 발생할 수 있는 예외 코드
+        doThrowUnsafely(new InterruptedException());
+    }
+
+    private static <E extends Throwable> void doThrowUnsafely(Throwable cause) throws E {
+        throw (E) cause;
     }
 }
