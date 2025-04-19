@@ -20,14 +20,25 @@ public class ThreadPool implements Executor {
         for (int i = 0; i < numThreads; i++) {
             threads[i] = new Thread(() -> {
                 //queue.poll(); poll은 안됨. 없으면 바로 return하니까, timeout도 줄 필요 없다.
-                try {
-                    //계속 실행해야하니 무한 루프
-                    while(!shutdown) {
-                        final Runnable task = queue.take(); //계속 기다림
-                        task.run();
+                //계속 실행해야하니 무한 루프
+                while(!shutdown) {
+                    Runnable task = null;
+                    try {
+                        task = queue.take(); //계속 기다림
+                    } catch (InterruptedException e) {
+                        //루프를 빠져나감
                     }
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+
+                    if(task != null) {
+                        try {
+                            task.run();
+                        } catch(Throwable t) { //사용자가 던지는 모든 예외를 잡기위해 Throwable
+                            if(!(t instanceof InterruptedException)) {
+                                System.err.println("Unexpected exception: ");
+                                t.printStackTrace();
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -49,8 +60,9 @@ public class ThreadPool implements Executor {
     public void shutdown() {
         this.shutdown = true;
         for (Thread thread : threads) {
-            thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
+            while(thread.isAlive()) {
+                thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
+            }
         }
     }
-
 }
