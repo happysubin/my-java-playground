@@ -46,6 +46,9 @@ class ThreadPoolTest {
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
+                    /**
+                     * shutdown해 InterruptedException가 발생해도 여기서 잡힘
+                     */
                     throw new RuntimeException(e);
                 }
                 latch.countDown();

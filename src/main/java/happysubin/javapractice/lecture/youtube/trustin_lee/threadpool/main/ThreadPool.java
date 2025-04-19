@@ -44,4 +44,11 @@ public class ThreadPool implements Executor {
         }
         queue.add(command);
     }
+
+    public void shutdown() {
+        for (Thread thread : threads) {
+            thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
+        }
+    }
+
 }
