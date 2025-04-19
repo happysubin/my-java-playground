@@ -13,6 +13,7 @@ public class ThreadPool implements Executor {
     private final BlockingQueue<Runnable> queue = new LinkedTransferQueue<>();
     private final Thread[] threads;
     private final AtomicBoolean started = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
+    private boolean shutdown;
 
     public ThreadPool(int numThreads) {
         this.threads = new Thread[numThreads];
@@ -21,7 +22,7 @@ public class ThreadPool implements Executor {
                 //queue.poll(); poll은 안됨. 없으면 바로 return하니까, timeout도 줄 필요 없다.
                 try {
                     //계속 실행해야하니 무한 루프
-                    for(;;) {
+                    while(!shutdown) {
                         final Runnable task = queue.take(); //계속 기다림
                         task.run();
                     }
@@ -46,6 +47,7 @@ public class ThreadPool implements Executor {
     }
 
     public void shutdown() {
+        this.shutdown = true;
         for (Thread thread : threads) {
             thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
         }
