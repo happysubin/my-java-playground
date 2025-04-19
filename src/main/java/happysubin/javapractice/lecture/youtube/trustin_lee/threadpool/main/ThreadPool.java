@@ -59,17 +59,38 @@ public class ThreadPool implements Executor {
 
     public void shutdown() {
         this.shutdown = true;
+
+        /**
+         * 이렇게하면 동시적으로 스레드 종료를 시작
+         */
         for (Thread thread : threads) {
-            while(thread.isAlive()) {
-                thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
+            thread.interrupt(); //이걸 걸면 InterruptedException이 발생한다. stop()은 deprecated 됨
+        }
+
+
+        for (Thread thread : threads) {
+            for(;;) {
+
+                try {
+                    thread.join(); //스레드가 종료될때까지 기다려준다. 무한 루프는 cpu 소모가 많으므로 해당 방식을 채택
+                } catch (InterruptedException e) {
+                    // Do not propagate to prevent incomplete shutdown.
+                }
+
+                if(!thread.isAlive()) {
+                    break;
+                }
+
+                //스레드가 살아있다면 인터럽트하고
+                thread.interrupt();
             }
         }
 
         //실제로 발생할 수 있는 예외 코드
-        doThrowUnsafely(new InterruptedException());
+//        doThrowUnsafely(new InterruptedException());
     }
 
-    private static <E extends Throwable> void doThrowUnsafely(Throwable cause) throws E {
-        throw (E) cause;
-    }
+//    private static <E extends Throwable> void doThrowUnsafely(Throwable cause) throws E {
+//        throw (E) cause;
+//    }
 }
