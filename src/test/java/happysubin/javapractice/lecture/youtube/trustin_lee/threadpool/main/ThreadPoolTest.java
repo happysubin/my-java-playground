@@ -1,5 +1,6 @@
 package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.main;
 
+import happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.history.day1.Day1ThreadPool;
 import org.junit.jupiter.api.Test;
 import java.util.concurrent.CountDownLatch;
 
@@ -8,8 +9,8 @@ class ThreadPoolTest {
 
 
     @Test
-    public void submitTasksAreExecuted() throws InterruptedException {
-        final ThreadPool executor = new ThreadPool(2);
+    public void submitTasksAreExecutedAtDay1() throws InterruptedException {
+        final Day1ThreadPool executor = new Day1ThreadPool(2);
         final int numTasks = 100;
         final CountDownLatch latch = new CountDownLatch(numTasks);
 
@@ -58,6 +59,37 @@ class ThreadPoolTest {
             }
 
 //            latch.await();
+        } finally {
+            executor.shutdown();
+        }
+    }
+
+
+    @Test
+    public void submitTasksAreExecutedAtDay2() throws InterruptedException {
+        final ThreadPool executor = new ThreadPool(100);
+        final int numTasks = 100;
+        final CountDownLatch latch = new CountDownLatch(numTasks);
+
+        try {
+
+            /**
+             * 1. Thread.sleep()을 지우면 maxNumThreads 로 100개로 할당해도 1개 스레드가 모두 해결한다. lazy 하게 해결
+             * 2. Thread.sleep()을 반영해도 maxNumThreads 100개까지 안올라간다. (강의는 스레드 2개, 본인 컴은 스레드 4개)
+             */
+            for (int i = 0; i < numTasks; i++) {
+                final int finalI = i;
+                executor.execute(() -> {
+                    System.out.println(Thread.currentThread().getName() + " executes a task " + finalI);
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        throw new RuntimeException(e);
+                    }
+                    latch.countDown();
+                });
+            }
         } finally {
             executor.shutdown();
         }

@@ -2,7 +2,6 @@ package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.main;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.*;
@@ -19,7 +18,7 @@ public class ThreadPool implements Executor {
     private final int maxNumThreads;
 
     private final BlockingQueue<Runnable> queue = new LinkedTransferQueue<>();
-    private final AtomicBoolean shutdown = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
+    private final AtomicBoolean shutdown = new AtomicBoolean();
     private final Set<Thread> threads = new HashSet<>();
     private final AtomicInteger numThreads = new AtomicInteger();
     private final AtomicInteger numActiveThreads = new AtomicInteger();
@@ -33,25 +32,29 @@ public class ThreadPool implements Executor {
     private Thread newThread() {
         numThreads.incrementAndGet();
         return new Thread(() -> {
-            //queue.poll(); poll은 안됨. 없으면 바로 return하니까, timeout도 줄 필요 없다.
-            //계속 실행해야하니 무한 루프
-            for (; ; ) { //큐가 끝날때까지 돈다
-                try {
-                    final Runnable task = queue.take();
-
-                    if (task == SHUTDOWN_TASK) {
-                        break;
-                    } else {
-                        task.run();
+            try {
+                for (; ; ) {
+                    try {
+                        final Runnable task = queue.take();
+                        if (task == SHUTDOWN_TASK) {
+                            break;
+                        } else {
+                            numActiveThreads.incrementAndGet();
+                            try {
+                                task.run();
+                            } finally {
+                                numActiveThreads.decrementAndGet();
+                            }
+                        }
+                    } catch (Throwable t) {
+                        if (!(t instanceof InterruptedException)) { //자바 스펙상 안돼서 always true 라고 나오지만 실제로 발생할 수 있다.
+                            System.err.println("Unexpected exception: ");
+                            t.printStackTrace();
+                        }
                     }
-                } catch (Throwable t) {
-                    if (!(t instanceof InterruptedException)) { //자바 스펙상 안돼서 always true 라고 나오지만 실제로 발생할 수 있다.
-                        System.err.println("Unexpected exception: ");
-                        t.printStackTrace();
-                    }
-                } finally {
-                    numThreads.decrementAndGet();
                 }
+            } finally {
+                numThreads.decrementAndGet();
             }
             System.err.println("Shutting thread '" + Thread.currentThread().getName() + '\'');
         });
@@ -123,7 +126,7 @@ public class ThreadPool implements Executor {
         }
 
         //FIXME: Fix the race condition where a new thread is added by execute() during shutdown.
-        //레이스 컨디션 문제가 있을 수 있으므로 루프로 감싼다.
+        //레이스 컨디션 문제가 있을 수 있으므로 루프로 감싼다. 여전히 문제는 존재
         for(;;) {
             final Thread[] threads;
             threadsLock.lock();
