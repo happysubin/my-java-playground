@@ -15,7 +15,7 @@ public class ThreadPool implements Executor {
     private final BlockingQueue<Runnable> queue = new LinkedTransferQueue<>();
     private final Thread[] threads;
     private final AtomicBoolean started = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
-    private volatile boolean shutdown; //코어 캐시 사용 X
+    private final AtomicBoolean shutdown = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
 
     public ThreadPool(int numThreads) {
         this.threads = new Thread[numThreads];
@@ -56,24 +56,43 @@ public class ThreadPool implements Executor {
             }
         }
 
-        if(shutdown) {
+        if(shutdown.get()) {
             throw new RejectedExecutionException();
         }
 
         queue.add(command);
+
+        /**
+         * add되고 shutdown 될 수 있으므로 한번 더 체크
+         */
+        if(shutdown.get()) {
+            queue.remove(command);
+            throw new RejectedExecutionException();
+        }
     }
 
     public void shutdown() {
-        this.shutdown = true;
 
         /**
-         * 이렇게 해야 take에서 무한 대기하는 스레드가 없어진다.
-         * 이걸 도입하면 interrupt()를 호출하지 않아도 된다.
+         * 1번만 실행된다.
          */
-        for (int i = 0; i < threads.length; i++) {
-            queue.add(SHUTDOWN_TASK);
+        if(shutdown.compareAndSet(false, true)) {
+            /**
+             * 이렇게 해야 take에서 무한 대기하는 스레드가 없어진다.
+             * 이걸 도입하면 interrupt()를 호출하지 않아도 된다.
+             */
+            for (int i = 0; i < threads.length; i++) {
+                queue.add(SHUTDOWN_TASK);
+            }
         }
 
+        /**
+         * 뒷부분은 실행하게 그대로 둔다.
+         * 이 부분을 위 if문으로 넣으면 무슨일이 발생하는가
+         *
+         * 스레드 A가 shutdown()을 호출하고 아직 join 대기 중일 때, 스레드 B가 shutdown()을 호출하면 B는 아무것도 하지 않고 즉시 리턴하게 된다.
+         * 이는 스레드 B가 스레드풀이 완전히 종료되기 전에 계속 진행하게 만들어 버린다.
+         */
         for (Thread thread : threads) {
             do {
                 try {

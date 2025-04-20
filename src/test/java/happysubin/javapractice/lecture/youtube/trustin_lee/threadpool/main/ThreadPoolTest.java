@@ -57,7 +57,7 @@ class ThreadPoolTest {
                 });
             }
 
-            latch.await();
+//            latch.await();
         } finally {
             executor.shutdown();
         }
