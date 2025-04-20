@@ -60,11 +60,17 @@ public class Day1ThreadPool implements Executor {
             throw new RejectedExecutionException();
         }
 
+        /**
+         * 검증한 이후 이 라인에서 다른 스레드에 의해 shutdown이 진행될 수 있음.
+         * 그럼 큐에 들어간 command는 처리가 안됨. (큐에 남아있게 된다)
+         */
         queue.add(command);
 
         /**
-         * add되고 shutdown 될 수 있으므로 한번 더 체크
+         * 따라서 한번 더 체크
+         * 아래는 자바 ThreadPoolExecutor 방어 로직과 유사
          */
+
         if(shutdown.get()) {
             queue.remove(command);
             throw new RejectedExecutionException();
