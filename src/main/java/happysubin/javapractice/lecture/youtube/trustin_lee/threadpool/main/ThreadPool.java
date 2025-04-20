@@ -23,7 +23,7 @@ public class ThreadPool implements Executor {
             threads[i] = new Thread(() -> {
                 //queue.poll(); poll은 안됨. 없으면 바로 return하니까, timeout도 줄 필요 없다.
                 //계속 실행해야하니 무한 루프
-                while(!shutdown || !queue.isEmpty()) { //큐가 끝날때까지 돈다
+                for(;;) { //큐가 끝날때까지 돈다
                     try {
                         final Runnable task = queue.take();
 
