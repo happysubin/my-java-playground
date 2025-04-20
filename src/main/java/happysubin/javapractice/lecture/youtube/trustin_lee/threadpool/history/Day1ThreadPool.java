@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.main;
+package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.history;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -8,7 +8,7 @@ import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ThreadPool implements Executor {
+public class Day1ThreadPool implements Executor {
 
     private static final Runnable SHUTDOWN_TASK = () -> {};
 
@@ -17,7 +17,7 @@ public class ThreadPool implements Executor {
     private final AtomicBoolean started = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
     private final AtomicBoolean shutdown = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
 
-    public ThreadPool(int numThreads) {
+    public Day1ThreadPool(int numThreads) {
         this.threads = new Thread[numThreads];
         for (int i = 0; i < numThreads; i++) {
             threads[i] = new Thread(() -> {
