@@ -1,4 +1,4 @@
-package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.history;
+package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.history.day1;
 
 import org.jetbrains.annotations.NotNull;
 
