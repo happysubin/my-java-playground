@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedTransferQueue;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ThreadPool implements Executor {
@@ -13,7 +14,7 @@ public class ThreadPool implements Executor {
     private final BlockingQueue<Runnable> queue = new LinkedTransferQueue<>();
     private final Thread[] threads;
     private final AtomicBoolean started = new AtomicBoolean(); //동시성 이슈가 있으므로 해당 클래스 사용
-    private boolean shutdown;
+    private volatile boolean shutdown; //코어 캐시 사용 X
 
     public ThreadPool(int numThreads) {
         this.threads = new Thread[numThreads];
@@ -40,6 +41,8 @@ public class ThreadPool implements Executor {
                         }
                     }
                 }
+
+                System.err.println("Shutting thread '" + Thread.currentThread().getName() + '\'');
             });
         }
     }
@@ -54,6 +57,11 @@ public class ThreadPool implements Executor {
                 thread.start();
             }
         }
+
+        if(shutdown) {
+            throw new RejectedExecutionException();
+        }
+
         queue.add(command);
     }
 
