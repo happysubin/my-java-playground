@@ -35,7 +35,16 @@ public class ThreadPool implements Executor {
             try {
                 for (; ; ) {
                     try {
-                        final Runnable task = queue.take();
+                        /**
+                         * 최적화 시도
+                         * 현재는 태스크를 넣고 뺗때 increment, decrement
+                         * 최적화는 다른 태스크가 존재해야 increment, decrement
+                         */
+                        Runnable task = queue.poll();
+                        if(task == null) {
+                            task = queue.take();
+                        }
+
                         if (task == SHUTDOWN_TASK) {
                             break;
                         } else {
