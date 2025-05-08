@@ -1,5 +1,5 @@
 
-
+## 성능 최적화
 
 ### 📌 ① take()만 쓰는 버전
 
@@ -49,3 +49,28 @@ if (task == null) {
 - 작업이 연속적으로 들어오면 → ++는 한 번만 하고 유지
 - 그래서 중복 CAS 연산 없음, CPU 캐시 일관성 비용 최소화
 
+## Race Condition
+
+문제
+
+producer1: Adds a new task
+        -> Adds a new thread(numThreads:1, numActiveThreads: 0) //이 스레드가 시작을 안했기 때문
+producer1: Adds a new task //이 부분의 속도가 너무 빨라서 발생한 버그
+        -> Doesn't add a new thread //이게 100번 반복됨
+producer1: Adds a new task
+        -> Doesn't add a new thread
+producer1: Adds a new task
+        -> Doesn't add a new thread
+....
+
+consumer1: Starts to consume a task (numThreads: 1, numActiveThreads: 1)
+producer1: Adds a new Task
+        -> Adds a new Thread(2, 1)
+producer1: Adds a new task
+        -> Doesn't add a new thread
+
+
+해결 
+
+producer1: Adds a new task
+-> Adds a new thread(numThreads:1, numActiveThreads: 1) //활성된 스레드를 올리고 시작

@@ -31,8 +31,9 @@ public class ThreadPool implements Executor {
     @NotNull
     private Thread newThread() {
         numThreads.incrementAndGet();
+        numActiveThreads.incrementAndGet();
         return new Thread(() -> {
-            boolean isActive = false; //내가 일을하고 있냐 기억하는 용도
+            boolean isActive = true; //내가 일을하고 있냐 기억하는 용도
             try {
                 for (; ; ) {
                     try {
