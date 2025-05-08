@@ -32,6 +32,7 @@ public class ThreadPool implements Executor {
     private Thread newThread() {
         numThreads.incrementAndGet();
         return new Thread(() -> {
+            boolean isActive = false; //내가 일을하고 있냐 기억하는 용도
             try {
                 for (; ; ) {
                     try {
@@ -42,18 +43,31 @@ public class ThreadPool implements Executor {
                          */
                         Runnable task = queue.poll();
                         if(task == null) {
-                            task = queue.take();
+                            if(isActive) {
+                                isActive = false; //task가 null인데, active가 true라면 처리할 작없이 없으면 false
+                                numActiveThreads.decrementAndGet();
+                            }
+                            task = queue.take(); //블록킹 대기
+                        } else {
+                            if(!isActive) {
+                                isActive = true;
+                                numActiveThreads.incrementAndGet(); //작업이 생기면 ++
+                            }
                         }
-
+                        /**
+                         * 아래는 태스크가 항상 널이 아님
+                         */
                         if (task == SHUTDOWN_TASK) {
                             break;
                         } else {
-                            numActiveThreads.incrementAndGet();
-                            try {
-                                task.run();
-                            } finally {
-                                numActiveThreads.decrementAndGet();
-                            }
+                            task.run();
+//                            보통은 작업이 있을 때마다 numActiveThreads++, 작업이 끝나면 -- 하는 식으로 처리. 비효율적
+//                            numActiveThreads.incrementAndGet();
+//                            try {
+//                                task.run();
+//                            } finally {
+//                                numActiveThreads.decrementAndGet();
+//                            }
                         }
                     } catch (Throwable t) {
                         if (!(t instanceof InterruptedException)) { //자바 스펙상 안돼서 always true 라고 나오지만 실제로 발생할 수 있다.
@@ -97,25 +111,25 @@ public class ThreadPool implements Executor {
 
     private void addThreadIfNecessary() {
         if(needsMoreThreads()) {
-            addThreadIfNecessaryLocked();
-        }
-    }
+            threadsLock.lock();
+            Thread newThread = null;
+            try {
+                /**
+                 * 동시에 여러스레드가 위 if문을 통과할 수 있으므로, 한번 더 체크
+                 */
 
-    private void addThreadIfNecessaryLocked() {
-        threadsLock.lock();
-        try {
-            /**
-             * 동시에 여러스레드가 위 if문을 통과할 수 있으므로, 한번 더 체크
-             */
+                if(needsMoreThreads()) {
+                    newThread = newThread();
+                    threads.add(newThread);
+                }
 
-            if(needsMoreThreads()) {
-                final Thread newThread= newThread();
-                threads.add(newThread);
-                newThread.start();
+            } finally {
+                threadsLock.unlock();
             }
 
-        } finally {
-            threadsLock.unlock();
+            if(newThread != null) {
+                newThread.start();
+            }
         }
     }
 
@@ -165,3 +179,7 @@ public class ThreadPool implements Executor {
         }
     }
 }
+
+/**
+ *
+ */
