@@ -118,10 +118,10 @@ public class ThreadPool implements Executor {
             threadsLock.lock();
             Thread newThread = null;
             try {
-                /**
-                 * 동시에 여러스레드가 위 if문을 통과할 수 있으므로, 한번 더 체크
-                 */
-
+                // Note that we check if the pool is shut down *after* acquiring the lock
+                // because
+                // - shutting down a pool doesn't occur very often;
+                // and thus it's not worth checking whether the pool is shut down or not frequently.
                 if(needsMoreThreads() && !shutdown.get()) {
                     newThread = newThread();
                     threads.add(newThread);
@@ -131,6 +131,7 @@ public class ThreadPool implements Executor {
                 threadsLock.unlock();
             }
 
+            // Call 'Thread.start()' call out of the lock window to minimize the contention.
             if(newThread != null) {
                 newThread.start();
             }
@@ -153,7 +154,6 @@ public class ThreadPool implements Executor {
             }
         }
 
-        //FIXME: Fix the race condition where a new thread is added by execute() during shutdown.
         //레이스 컨디션 문제가 있을 수 있으므로 루프로 감싼다. 여전히 문제는 존재
         for(;;) {
             final Thread[] threads;
