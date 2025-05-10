@@ -95,12 +95,6 @@ public class ThreadPool implements Executor {
 
     @Override
     public void execute(@NotNull Runnable command) {
-//        필요 없어짐
-//        if(started.compareAndSet(false, true)) {
-//            for (Thread thread : threads) {
-//                thread.start();
-//            }
-//        }
 
         if(shutdown.get()) {
             throw new RejectedExecutionException();
@@ -128,7 +122,7 @@ public class ThreadPool implements Executor {
                  * 동시에 여러스레드가 위 if문을 통과할 수 있으므로, 한번 더 체크
                  */
 
-                if(needsMoreThreads()) {
+                if(needsMoreThreads() && !shutdown.get()) {
                     newThread = newThread();
                     threads.add(newThread);
                 }
@@ -190,7 +184,3 @@ public class ThreadPool implements Executor {
         }
     }
 }
-
-/**
- * 1시간 15분 35초 부터
- */
