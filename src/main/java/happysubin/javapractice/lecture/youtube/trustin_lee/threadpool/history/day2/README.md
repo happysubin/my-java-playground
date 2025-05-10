@@ -53,8 +53,13 @@ if (task == null) {
 
 문제
 
+```
+//numActiveThreads는 0인데, numThreads는 1이다. 따라서 스레드를 생성하지 않아 스레드 분배가 이뤄지지 못한 상황
+return numActiveThreads < maxNumThreads && numActiveThreads >= numThreads.get(); 
+```
+
 producer1: Adds a new task
-        -> Adds a new thread(numThreads:1, numActiveThreads: 0) //이 스레드가 시작을 안했기 때문
+        -> Adds a new thread(numThreads:1, numActiveThreads: 0) //이 스레드가 시작을 안했기 때문, 스레드 생성에는 시간이 많이 걸린다.
 producer1: Adds a new task //이 부분의 속도가 너무 빨라서 발생한 버그
         -> Doesn't add a new thread //이게 100번 반복됨
 producer1: Adds a new task
@@ -71,6 +76,8 @@ producer1: Adds a new task
 
 
 해결 
+
+2부 타임라인 01.11.22 
 
 producer1: Adds a new task
 -> Adds a new thread(numThreads:1, numActiveThreads: 1) //활성된 스레드를 올리고 시작

@@ -82,7 +82,7 @@ class ThreadPoolTest {
                 executor.execute(() -> {
                     System.out.println(Thread.currentThread().getName() + " executes a task " + finalI);
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         throw new RuntimeException(e);
