@@ -2,7 +2,10 @@ package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.main;
 
 import happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.history.day1.Day1ThreadPool;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 
 class ThreadPoolTest {
@@ -67,7 +70,7 @@ class ThreadPoolTest {
 
     @Test
     public void submitTasksAreExecutedAtDay2() throws InterruptedException {
-        final ThreadPool executor = new ThreadPool(100);
+        final ThreadPool executor = new ThreadPool(100, Duration.ofSeconds(1));
         final int numTasks = 100;
         final CountDownLatch latch = new CountDownLatch(numTasks);
 
@@ -90,6 +93,12 @@ class ThreadPoolTest {
                     latch.countDown();
                 });
             }
+            latch.await();
+            System.err.println("----------------------------------");
+            /**
+             * 스스로 종료하는 것 확인
+             */
+            Thread.sleep(10000);
         } finally {
             executor.shutdown();
         }

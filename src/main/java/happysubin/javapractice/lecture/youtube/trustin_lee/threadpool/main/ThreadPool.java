@@ -2,6 +2,7 @@ package happysubin.javapractice.lecture.youtube.trustin_lee.threadpool.main;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.*;
@@ -16,6 +17,7 @@ public class ThreadPool implements Executor {
     private static final Thread[] EMPTY_THREADS_ARRAY = new Thread[0];
 
     private final int maxNumThreads;
+    private final long idleTimeoutNanos; //큐에 아무것도 없는 상태로 이 만큼 시간이 지나면 스레드가 스스로 종료
 
     private final BlockingQueue<Runnable> queue = new LinkedTransferQueue<>();
     private final AtomicBoolean shutdown = new AtomicBoolean();
@@ -24,8 +26,9 @@ public class ThreadPool implements Executor {
     private final AtomicInteger numActiveThreads = new AtomicInteger();
     private final Lock threadsLock = new ReentrantLock();
 
-    public ThreadPool(int maxNumThreads) {
+    public ThreadPool(int maxNumThreads, Duration idleTimeout) {
         this.maxNumThreads = maxNumThreads;
+        this.idleTimeoutNanos = idleTimeout.toNanos();
     }
 
     @NotNull
@@ -35,6 +38,7 @@ public class ThreadPool implements Executor {
         Runnable target = () -> {
             System.err.println("Started a new thread: " + Thread.currentThread().getName());
             boolean isActive = true; //내가 일을하고 있냐 기억하는 용도
+            long lastRunTimeNanos = System.nanoTime();
             try {
                 for (; ; ) {
                     try {
@@ -49,7 +53,27 @@ public class ThreadPool implements Executor {
                                 isActive = false; //task가 null인데, active가 true라면 처리할 작없이 없으면 false
                                 numActiveThreads.decrementAndGet();
                             }
-                            task = queue.take(); //블록킹 대기
+
+                            final long waitTimeNanos = idleTimeoutNanos - (System.nanoTime() - lastRunTimeNanos);
+
+                            // 스레드가 작업 없이 얼마나 "놀고 있었는지"를 체크해서, 일정 시간 이상 아무 일도 하지 않았으면 종료.
+                            if(waitTimeNanos <= 0) {
+                                break;
+                            }
+
+                            //큐에서 요소를 꺼내고(remove) 없으면 주어진 시간 동안 기다리며,
+                            //그 시간 안에 요소가 생기면 반환하고, 아니면 null을 반환합니다.
+                            //대기 중 인터럽트되면 예외가 발생합니다.
+
+                            //race 컨디션 발생 가능. 기존에 스레드가 있네? 라고 생각하고 스레드를 안만들고 태스크를 추가한다. 알고보니 스레드들은 종료하는 중. 그럼 큐에 태스크는 처리가 안되는 문제 발생
+                            //대기 시간이 10초 누가 1초마다 인터럽트를 한다고 가정하면 스스로 종료 불가능. 영원히 안끝나는문제
+                            task = queue.poll(idleTimeoutNanos, TimeUnit.NANOSECONDS);
+                            if(task == null) {
+                                break; //멈추면 finally 구문으로 삭제
+                            }
+                            isActive = true;
+                            numActiveThreads.incrementAndGet();
+
                         } else {
                             if (!isActive) {
                                 isActive = true;
@@ -62,7 +86,13 @@ public class ThreadPool implements Executor {
                         if (task == SHUTDOWN_TASK) {
                             break;
                         } else {
-                            task.run();
+                            try {
+                                task.run();
+                            } finally {
+                                // task.run() 에서 예외 터지면 기록 못하므로 finally 에서 처리
+                                lastRunTimeNanos = System.nanoTime();
+                            }
+
                         }
                     } catch (Throwable t) {
                         if (!(t instanceof InterruptedException)) { //자바 스펙상 안돼서 always true 라고 나오지만 실제로 발생할 수 있다.
@@ -184,3 +214,4 @@ public class ThreadPool implements Executor {
         }
     }
 }
+//1.25.55 스레드 자동 종료 로직 추가
